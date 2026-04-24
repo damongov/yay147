@@ -9,32 +9,103 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #2a2620;
-    --ink-soft: #5a5247;
-    --ink-fade: #938977;
+    /* LIGHT MODE — higher contrast than before */
+    --ink: #1a1712;
+    --ink-soft: #403a32;
+    --ink-fade: #706858;
     --cream: #faf4e6;
-    --cream-deep: #f0e7d0;
-    --accent: #d97a3e;
-    --accent-deep: #b85a24;
-    --gold: #c9a84a;
-    --line: rgba(42, 38, 32, 0.14);
+    --cream-deep: #ece1c4;
+    --surface: #ffffff;
+    --surface-soft: rgba(255,255,255,0.7);
+    --accent: #c25a1f;
+    --accent-deep: #9a4418;
+    --gold: #a8871f;
+    --line: rgba(26, 23, 18, 0.18);
+    --line-strong: rgba(26, 23, 18, 0.3);
 
-    --pole-a: #3b7a8a;
-    --pole-b: #c96538;
-    --pole-a-soft: #d4e4e8;
-    --pole-b-soft: #f2dcc8;
+    --pole-a: #255d6e;
+    --pole-b: #a84a20;
+    --pole-a-soft: #c8dde3;
+    --pole-b-soft: #f0d4bc;
+    --pole-a-text: #164051;
+    --pole-b-text: #7a3413;
 
-    --nt: #5a4a8e; --nt-soft: #e4dff1;
-    --nf: #2d7a5f; --nf-soft: #d9ecdf;
-    --sj: #2f5d8c; --sj-soft: #dbe6f1;
-    --sp: #a8650f; --sp-soft: #f2e3c6;
+    --nt: #4a3d80; --nt-soft: #ddd6ef;
+    --nf: #1f6a50; --nf-soft: #c9e3d3;
+    --sj: #24517d; --sj-soft: #cde0ef;
+    --sp: #8a5408; --sp-soft: #eed9b4;
 
-    --enn1: #7a5cb8; --enn2: #2d8a6a; --enn3: #c86a40;
-    --enn4: #b84872; --enn5: #6b6560; --enn6: #3a6da8;
-    --enn7: #c88a1e; --enn8: #a82a2a; --enn9: #6b8a3a;
+    --enn1: #6a4ba8; --enn1-text: #3e2b6a;
+    --enn2: #1f7559; --enn2-text: #0f4a37;
+    --enn3: #b85932; --enn3-text: #7a3413;
+    --enn4: #a33862; --enn4-text: #6d1f3f;
+    --enn5: #5a5450; --enn5-text: #36322f;
+    --enn6: #2c5f96; --enn6-text: #143d66;
+    --enn7: #a87515; --enn7-text: #6a480a;
+    --enn8: #8f1f1f; --enn8-text: #5e1010;
+    --enn9: #5a7a2f; --enn9-text: #364b1a;
+
+    --triad-head: #5a5450;
+    --triad-heart: #a33862;
+    --triad-body: #8f1f1f;
+
+    --shadow: rgba(0,0,0,0.08);
+    --backdrop: rgba(26, 23, 18, 0.55);
+
+    --bg-grad-1: rgba(194, 90, 31, 0.08);
+    --bg-grad-2: rgba(37, 93, 110, 0.08);
+  }
+
+  [data-theme="dark"] {
+    --ink: #f0e8d6;
+    --ink-soft: #c5bba5;
+    --ink-fade: #8a8070;
+    --cream: #1a1712;
+    --cream-deep: #252019;
+    --surface: #2a241c;
+    --surface-soft: rgba(255,255,255,0.04);
+    --accent: #e89055;
+    --accent-deep: #d97a3e;
+    --gold: #d4b254;
+    --line: rgba(240, 232, 214, 0.15);
+    --line-strong: rgba(240, 232, 214, 0.3);
+
+    --pole-a: #6ab3c4;
+    --pole-b: #e89055;
+    --pole-a-soft: rgba(106, 179, 196, 0.22);
+    --pole-b-soft: rgba(232, 144, 85, 0.22);
+    --pole-a-text: #8fc9d8;
+    --pole-b-text: #f0a474;
+
+    --nt: #a890e0; --nt-soft: rgba(168, 144, 224, 0.22);
+    --nf: #5fc296; --nf-soft: rgba(95, 194, 150, 0.22);
+    --sj: #7ab0e0; --sj-soft: rgba(122, 176, 224, 0.22);
+    --sp: #e0b060; --sp-soft: rgba(224, 176, 96, 0.22);
+
+    --enn1: #a890e0; --enn1-text: #c4b0f0;
+    --enn2: #5fc296; --enn2-text: #80d4ad;
+    --enn3: #e89a70; --enn3-text: #f0b088;
+    --enn4: #e08098; --enn4-text: #f099ad;
+    --enn5: #b0a898; --enn5-text: #c8bfae;
+    --enn6: #7ab0e0; --enn6-text: #96c4ec;
+    --enn7: #e0b060; --enn7-text: #f0c478;
+    --enn8: #e07070; --enn8-text: #f09090;
+    --enn9: #b0c880; --enn9-text: #c4d89a;
+
+    --triad-head: #b0a898;
+    --triad-heart: #e08098;
+    --triad-body: #e07070;
+
+    --shadow: rgba(0,0,0,0.4);
+    --backdrop: rgba(0, 0, 0, 0.7);
+
+    --bg-grad-1: rgba(232, 144, 85, 0.06);
+    --bg-grad-2: rgba(106, 179, 196, 0.06);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
 
   body {
     font-family: 'Inter', sans-serif;
@@ -43,16 +114,41 @@
     min-height: 100vh;
     line-height: 1.6;
     background-image:
-      radial-gradient(ellipse at 15% 0%, rgba(217, 122, 62, 0.08), transparent 50%),
-      radial-gradient(ellipse at 85% 100%, rgba(59, 122, 138, 0.08), transparent 50%);
+      radial-gradient(ellipse at 15% 0%, var(--bg-grad-1), transparent 50%),
+      radial-gradient(ellipse at 85% 100%, var(--bg-grad-2), transparent 50%);
+    transition: background-color 0.3s, color 0.3s;
   }
 
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 56px 32px 80px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* THEME TOGGLE */
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 50;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+  .theme-toggle:hover { transform: scale(1.08); border-color: var(--accent); }
+  .theme-toggle svg { width: 20px; height: 20px; }
+  [data-theme="light"] .theme-toggle .sun { display: none; }
+  [data-theme="dark"] .theme-toggle .moon { display: none; }
 
   header {
     position: relative;
-    padding: 0 0 48px;
-    margin-bottom: 48px;
+    padding: 0 0 40px;
+    margin-bottom: 40px;
     border-bottom: 1px solid var(--line);
   }
   .logo-row {
@@ -72,7 +168,7 @@
   h1 {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: clamp(48px, 7vw, 88px);
+    font-size: clamp(42px, 7vw, 88px);
     letter-spacing: -0.03em;
     line-height: 0.95;
     margin-bottom: 18px;
@@ -86,7 +182,7 @@
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: 22px;
+    font-size: clamp(18px, 2.5vw, 22px);
     color: var(--ink-soft);
     margin-bottom: 20px;
     position: relative;
@@ -96,7 +192,7 @@
   .lede {
     font-family: 'Fraunces', serif;
     font-size: 16px;
-    color: var(--ink-fade);
+    color: var(--ink-soft);
     max-width: 620px;
   }
   .census-bar {
@@ -107,7 +203,7 @@
   }
   .census-bar .big {
     font-family: 'Fraunces', serif;
-    font-size: 72px;
+    font-size: clamp(48px, 8vw, 72px);
     font-weight: 300;
     line-height: 1;
     color: var(--accent);
@@ -123,7 +219,7 @@
   h2 {
     font-family: 'Fraunces', serif;
     font-weight: 400;
-    font-size: 32px;
+    font-size: clamp(26px, 4vw, 32px);
     letter-spacing: -0.015em;
     margin-bottom: 6px;
   }
@@ -134,15 +230,15 @@
     color: var(--ink-soft);
     margin-bottom: 28px;
   }
-  .section { margin-bottom: 64px; }
+  .section { margin-bottom: 56px; }
 
-  /* SEARCH BAR */
+  /* SEARCH */
   .search-wrap {
     position: sticky;
     top: 0;
     z-index: 20;
     background: var(--cream);
-    padding: 16px 0;
+    padding: 14px 0;
     margin-bottom: 24px;
     border-bottom: 1px solid var(--line);
   }
@@ -154,31 +250,35 @@
   }
   .search-input {
     flex: 1;
-    padding: 12px 16px 12px 42px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.6);
+    padding: 12px 14px 12px 40px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
     font-family: 'Fraunces', serif;
     font-size: 16px;
     color: var(--ink);
     border-radius: 2px;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s;
+    min-width: 0;
+    -webkit-appearance: none;
   }
-  .search-input:focus { outline: none; border-color: var(--gold); background: white; }
-  .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-fade); pointer-events: none; }
+  .search-input:focus { outline: none; border-color: var(--accent); }
+  .search-input::placeholder { color: var(--ink-fade); }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--ink-fade); pointer-events: none; }
   .clear-btn {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 10px 14px;
+    padding: 10px 12px;
     background: transparent;
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     color: var(--ink-soft);
     cursor: pointer;
     border-radius: 2px;
+    white-space: nowrap;
     transition: all 0.15s;
   }
-  .clear-btn:hover { border-color: var(--crimson, #8b2e2e); color: #8b2e2e; }
+  .clear-btn:hover { border-color: var(--accent); color: var(--accent); }
   .search-hint {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
@@ -189,23 +289,23 @@
   }
 
   /* DIMS */
-  .dim-stack { display: flex; flex-direction: column; gap: 18px; }
+  .dim-stack { display: flex; flex-direction: column; gap: 14px; }
   .dim {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     border-radius: 2px;
-    padding: 20px 24px;
+    padding: 18px 20px;
     transition: background 0.2s, border-color 0.2s;
   }
-  .dim:hover { background: rgba(255, 255, 255, 0.7); }
-  .dim.expanded { background: rgba(255, 255, 255, 0.9); border-color: var(--accent); }
+  .dim:hover { background: var(--surface); }
+  .dim.expanded { background: var(--surface); border-color: var(--accent); }
 
   .dim-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 14px;
-    gap: 20px;
+    gap: 16px;
   }
   .pole {
     display: flex;
@@ -217,14 +317,14 @@
     border-radius: 2px;
     transition: background 0.15s;
   }
-  .pole:hover { background: rgba(255,255,255,0.7); }
+  .pole:hover { background: var(--cream-deep); }
   .pole.right { justify-content: flex-end; }
   .pole.active-a { background: var(--pole-a-soft); }
   .pole.active-b { background: var(--pole-b-soft); }
   .pole-letter {
     font-family: 'Fraunces', serif;
-    font-size: 40px;
-    font-weight: 400;
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 500;
     line-height: 1;
   }
   .pole-letter.a { color: var(--pole-a); }
@@ -238,22 +338,22 @@
     line-height: 1.4;
   }
   .pole-info strong {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--ink);
-    font-size: 13px;
+    font-size: 12px;
     display: block;
   }
   .pole-count {
     font-family: 'Fraunces', serif;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 500;
   }
   .pole-count.a { color: var(--pole-a); }
   .pole-count.b { color: var(--pole-b); }
 
   .dim-bar {
     display: flex;
-    height: 42px;
+    height: 38px;
     border-radius: 2px;
     overflow: hidden;
     border: 1px solid var(--line);
@@ -263,26 +363,23 @@
   .dim-bar-a, .dim-bar-b {
     display: flex;
     align-items: center;
-    padding: 0 14px;
-    transition: flex-basis 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 12px;
+    transition: flex-basis 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
     position: relative;
   }
   .dim-bar-a {
     background: var(--pole-a-soft);
-    color: var(--pole-a);
-    border-right: 1px solid rgba(255,255,255,0.5);
+    color: var(--pole-a-text);
   }
   .dim-bar-b {
     background: var(--pole-b-soft);
-    color: var(--pole-b);
+    color: var(--pole-b-text);
     justify-content: flex-end;
   }
-  .dim-bar-a:hover { background: color-mix(in srgb, var(--pole-a-soft) 70%, var(--pole-a) 30%); }
-  .dim-bar-b:hover { background: color-mix(in srgb, var(--pole-b-soft) 70%, var(--pole-b) 30%); }
   .dim-bar-pct {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 0.05em;
   }
   .dim-members {
@@ -290,14 +387,14 @@
     overflow: hidden;
     transition: max-height 0.4s ease, margin-top 0.4s ease;
   }
-  .dim.expanded .dim-members { max-height: 1000px; margin-top: 16px; }
+  .dim.expanded .dim-members { max-height: 1500px; margin-top: 16px; }
   .dim-members-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 12px;
   }
   .dim-members-col {
-    background: var(--cream);
+    background: var(--cream-deep);
     padding: 12px 14px;
     border-radius: 2px;
     transition: opacity 0.3s, box-shadow 0.3s;
@@ -311,8 +408,9 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--ink-fade);
+    color: var(--ink-soft);
     margin-bottom: 8px;
+    font-weight: 700;
   }
 
   .chip {
@@ -321,22 +419,22 @@
     gap: 5px;
     font-family: 'Fraunces', serif;
     font-size: 14px;
-    padding: 3px 10px;
-    background: rgba(255,255,255,0.7);
+    padding: 4px 10px;
+    background: var(--surface);
     color: var(--ink);
     border-radius: 2px;
     margin: 2px 3px 2px 0;
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.15s, opacity 0.2s;
   }
-  .chip:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-  .chip.match { border-color: var(--gold); background: rgba(201, 168, 74, 0.15); box-shadow: 0 0 0 2px rgba(201, 168, 74, 0.25); }
+  .chip:hover { transform: translateY(-1px); box-shadow: 0 2px 8px var(--shadow); }
+  .chip.match { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 18%, var(--surface)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 30%, transparent); }
   .chip.muted { opacity: 0.3; }
   .chip-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
-    opacity: 0.6;
+    opacity: 0.7;
     letter-spacing: 0.05em;
   }
 
@@ -344,22 +442,22 @@
   .fam-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
+    gap: 14px;
   }
   .fam-card {
-    background: rgba(255,255,255,0.5);
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     border-radius: 2px;
-    padding: 20px 22px;
+    padding: 18px 20px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s, background 0.2s;
   }
-  .fam-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .fam-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); background: var(--surface); }
   .fam-card.active {
     box-shadow: 0 0 0 2px var(--fc);
-    background: rgba(255,255,255,0.9);
+    background: var(--surface);
   }
   .fam-card.muted { opacity: 0.4; }
   .fam-card::before {
@@ -412,28 +510,27 @@
   .fam-types {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
   .fam-type {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 3px 0;
     font-size: 13px;
     border-bottom: 1px dashed var(--line);
     gap: 12px;
     cursor: pointer;
     transition: background 0.15s;
     border-radius: 2px;
-    padding: 4px 6px;
+    padding: 5px 6px;
   }
-  .fam-type:hover { background: rgba(255,255,255,0.6); }
-  .fam-type.active { background: color-mix(in srgb, var(--fc) 15%, transparent); }
+  .fam-type:hover { background: var(--cream-deep); }
+  .fam-type.active { background: color-mix(in srgb, var(--fc) 18%, transparent); }
   .fam-type:last-child { border-bottom: none; }
   .fam-type-code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--fc);
     flex-shrink: 0;
@@ -446,24 +543,24 @@
   }
   .fam-type-members.empty { color: var(--ink-fade); font-style: italic; }
 
-  /* FAMILY DETAIL */
-  .fam-detail {
+  .fam-detail, .triad-detail {
     margin-top: 20px;
-    padding: 20px 24px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid var(--fc, var(--line));
-    border-left: 4px solid var(--fc, var(--ink-fade));
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--fc, var(--tc, var(--ink-fade)));
     border-radius: 2px;
     display: none;
   }
-  .fam-detail.open { display: block; }
-  .fam-detail-title {
+  .fam-detail.open, .triad-detail.open { display: block; }
+  .fam-detail-title, .triad-detail-title {
     font-family: 'Fraunces', serif;
     font-size: 22px;
-    color: var(--fc);
+    color: var(--fc, var(--tc));
     margin-bottom: 6px;
+    font-weight: 500;
   }
-  .fam-detail-sub {
+  .fam-detail-sub, .triad-detail-sub {
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 14px;
@@ -478,32 +575,32 @@
     gap: 32px;
     align-items: center;
   }
-  .enn-wheel { width: 100%; max-width: 440px; margin: 0 auto; }
-  .enn-list { display: flex; flex-direction: column; gap: 6px; }
+  .enn-wheel { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
+  .enn-list { display: flex; flex-direction: column; gap: 4px; }
   .enn-row {
     display: grid;
     grid-template-columns: 28px 1fr auto;
     align-items: center;
     gap: 12px;
-    padding: 8px 8px;
+    padding: 8px;
     border-bottom: 1px dashed var(--line);
     cursor: pointer;
     transition: background 0.15s;
     border-radius: 2px;
   }
-  .enn-row:hover { background: rgba(255,255,255,0.5); }
-  .enn-row.active { background: rgba(255,255,255,0.9); box-shadow: inset 3px 0 0 var(--ec); }
+  .enn-row:hover { background: var(--cream-deep); }
+  .enn-row.active { background: var(--surface); box-shadow: inset 3px 0 0 var(--ec); }
   .enn-row.muted { opacity: 0.4; }
   .enn-dot {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Fraunces', serif;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: white;
     background: var(--ec);
   }
@@ -511,6 +608,7 @@
     font-family: 'Fraunces', serif;
     font-size: 15px;
     color: var(--ink);
+    font-weight: 500;
   }
   .enn-row-sub {
     font-family: 'JetBrains Mono', monospace;
@@ -519,16 +617,18 @@
     color: var(--ink-fade);
     text-transform: uppercase;
     display: block;
+    margin-top: 2px;
   }
   .enn-row-count {
     font-family: 'Fraunces', serif;
     font-size: 20px;
     color: var(--ec);
+    font-weight: 500;
   }
   .enn-detail {
-    margin-top: 12px;
-    padding: 14px 16px;
-    background: rgba(255,255,255,0.5);
+    margin-top: 16px;
+    padding: 16px 18px;
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     border-radius: 2px;
     min-height: 80px;
@@ -536,11 +636,12 @@
   .enn-detail-title {
     font-family: 'Fraunces', serif;
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-weight: 500;
   }
   .enn-detail-title .num {
     color: var(--e-current);
-    font-weight: 500;
+    font-weight: 600;
   }
   .enn-detail-sub {
     font-family: 'Fraunces', serif;
@@ -554,20 +655,20 @@
   .triad-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 32px;
+    gap: 14px;
+    margin-top: 28px;
   }
   .triad-card {
-    background: rgba(255,255,255,0.5);
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     border-radius: 2px;
-    padding: 20px;
+    padding: 18px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s, background 0.2s;
   }
-  .triad-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-  .triad-card.active { box-shadow: 0 0 0 2px var(--tc); background: rgba(255,255,255,0.9); }
+  .triad-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); background: var(--surface); }
+  .triad-card.active { box-shadow: 0 0 0 2px var(--tc); background: var(--surface); }
   .triad-card.muted { opacity: 0.4; }
   .triad-name {
     font-family: 'Fraunces', serif;
@@ -586,7 +687,7 @@
   }
   .triad-count {
     font-family: 'Fraunces', serif;
-    font-size: 44px;
+    font-size: clamp(32px, 6vw, 44px);
     font-weight: 300;
     color: var(--tc);
     line-height: 1;
@@ -598,33 +699,10 @@
     color: var(--ink-soft);
     letter-spacing: 0.08em;
   }
-  .triad-detail {
-    margin-top: 20px;
-    padding: 20px 24px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid var(--tc, var(--line));
-    border-left: 4px solid var(--tc, var(--ink-fade));
-    border-radius: 2px;
-    display: none;
-  }
-  .triad-detail.open { display: block; }
-  .triad-detail-title {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    color: var(--tc);
-    margin-bottom: 6px;
-  }
-  .triad-detail-sub {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
-  }
 
   /* ROSTER */
   .roster-table {
-    background: rgba(255,255,255,0.5);
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     border-radius: 2px;
     overflow: hidden;
@@ -644,10 +722,10 @@
     text-transform: uppercase;
     color: var(--ink-soft);
     border-bottom: 1px solid var(--line);
-    cursor: pointer;
+    font-weight: 700;
     user-select: none;
   }
-  .roster-head > div { display: flex; align-items: center; gap: 4px; }
+  .roster-head > div { display: flex; align-items: center; gap: 4px; cursor: pointer; }
   .roster-head .sort-arrow { font-size: 9px; color: var(--ink-fade); }
   .roster-head .sort-arrow.active { color: var(--accent); }
   .roster-row {
@@ -657,9 +735,9 @@
     transition: background 0.15s, opacity 0.2s;
     cursor: pointer;
   }
-  .roster-row:hover { background: rgba(255,255,255,0.8); }
+  .roster-row:hover { background: var(--cream-deep); }
   .roster-row.muted { opacity: 0.3; }
-  .roster-row.match { background: rgba(201, 168, 74, 0.12); }
+  .roster-row.match { background: color-mix(in srgb, var(--gold) 15%, transparent); }
   .roster-row:last-child { border-bottom: none; }
   .r-name { font-weight: 500; }
   .r-nick {
@@ -672,7 +750,7 @@
   .r-mbti, .r-enn, .r-wing {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.08em;
   }
   .r-mbti { color: var(--ink-soft); }
@@ -690,13 +768,14 @@
     color: var(--ink-fade);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
+    font-weight: 700;
   }
 
-  /* GOOSE DETAIL MODAL */
+  /* MODAL */
   .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(42, 38, 32, 0.55);
+    background: var(--backdrop);
     display: none;
     align-items: center;
     justify-content: center;
@@ -707,34 +786,35 @@
   .modal-backdrop.open { display: flex; }
   .modal-card {
     background: var(--cream);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     border-radius: 2px;
-    padding: 40px;
+    padding: 36px;
     max-width: 460px;
     width: 100%;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    background-image: radial-gradient(circle at top right, rgba(217, 122, 62, 0.1), transparent 50%);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    background-image: radial-gradient(circle at top right, var(--bg-grad-1), transparent 50%);
   }
   .modal-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 12px;
+    right: 12px;
     background: transparent;
-    border: 1px solid var(--line);
-    width: 28px;
-    height: 28px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-soft);
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     font-family: 'JetBrains Mono', monospace;
-    color: var(--ink-soft);
     border-radius: 2px;
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1;
   }
   .modal-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
   .modal-name {
     font-family: 'Fraunces', serif;
-    font-size: 42px;
-    font-weight: 300;
+    font-size: clamp(32px, 6vw, 42px);
+    font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: 2px;
     line-height: 1.05;
@@ -742,10 +822,10 @@
   .modal-nick {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--accent);
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--line);
   }
   .modal-row {
@@ -762,6 +842,7 @@
     text-transform: uppercase;
     color: var(--ink-fade);
     padding-top: 2px;
+    font-weight: 700;
   }
   .modal-val {
     font-family: 'Fraunces', serif;
@@ -770,8 +851,8 @@
   .modal-val.muted { color: var(--ink-fade); font-style: italic; }
 
   footer {
-    margin-top: 80px;
-    padding-top: 32px;
+    margin-top: 64px;
+    padding-top: 28px;
     border-top: 1px solid var(--line);
     text-align: center;
     font-family: 'JetBrains Mono', monospace;
@@ -781,19 +862,104 @@
     text-transform: uppercase;
   }
 
+  /* ===== MOBILE ===== */
   @media (max-width: 760px) {
-    .wrap { padding: 32px 20px 60px; }
-    .census-bar { position: static; text-align: left; margin-bottom: 20px; }
-    .enn-wheel-wrap { grid-template-columns: 1fr; }
-    .dim-members-inner { grid-template-columns: 1fr; }
-    .roster-head, .roster-row { grid-template-columns: 1fr 70px 60px 60px; padding: 10px 14px; font-size: 13px; gap: 8px; }
-    .triad-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 28px 16px 60px; }
+    .theme-toggle { top: 12px; right: 12px; width: 40px; height: 40px; }
+
+    header { padding-bottom: 28px; margin-bottom: 28px; }
+    .census-bar {
+      position: static;
+      text-align: left;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .census-bar .big { font-size: 52px; }
+    .census-bar .lbl { margin-bottom: 6px; }
+
     h1 { font-size: 44px; }
-    .tagline { font-size: 18px; }
+    .logo-row { margin-bottom: 20px; }
+    .lede { font-size: 15px; }
+
+    .section { margin-bottom: 44px; }
+    .section-sub { font-size: 14px; margin-bottom: 20px; }
+
+    .search-wrap { padding: 12px 0; }
+    .search-input { font-size: 15px; padding: 10px 12px 10px 36px; }
+    .search-icon { left: 10px; }
+    .clear-btn { padding: 10px; font-size: 9px; }
+
+    /* DIMS — stack on mobile */
+    .dim { padding: 14px 14px; }
+    .dim-head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .pole, .pole.right {
+      justify-content: space-between;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: var(--surface-soft);
+    }
+    .pole-letter { font-size: 32px; }
+    .pole-info { flex: 1; padding: 0 10px; }
+    .pole.right .pole-info { text-align: left !important; }
+    .pole.right { flex-direction: row !important; }
+
+    .dim-members-inner { grid-template-columns: 1fr; gap: 10px; }
+    .dim-bar { height: 34px; }
+
+    .fam-grid { grid-template-columns: 1fr; gap: 12px; }
+    .fam-card { padding: 16px 18px; }
+
+    .enn-wheel-wrap { grid-template-columns: 1fr; gap: 20px; }
+    .enn-wheel { max-width: 320px; }
+
+    .triad-grid { grid-template-columns: 1fr; gap: 10px; }
+    .triad-card { padding: 14px; display: grid; grid-template-columns: 1fr auto; text-align: left; align-items: center; gap: 8px 16px; }
+    .triad-name { margin-bottom: 0; }
+    .triad-emotion { margin-bottom: 0; grid-column: 1; grid-row: 2; }
+    .triad-count { grid-column: 2; grid-row: 1 / 3; font-size: 36px; align-self: center; }
+    .triad-types { grid-column: 1; grid-row: 3; margin-top: 4px; }
+
+    /* ROSTER — compact, scrollable if needed */
+    .roster-head, .roster-row {
+      grid-template-columns: 1fr 58px 52px 52px;
+      padding: 10px 12px;
+      font-size: 13px;
+      gap: 6px;
+    }
+    .roster-head { font-size: 9px; letter-spacing: 0.12em; }
+    .r-nick { display: block; margin-left: 0; font-size: 11px; margin-top: 2px; }
+    .r-mbti, .r-enn, .r-wing { font-size: 10px; letter-spacing: 0.04em; }
+    .r-enn::before { content: ""; }
+
+    .modal-card { padding: 28px 22px; }
+    .modal-row { grid-template-columns: 80px 1fr; gap: 12px; }
+  }
+
+  @media (max-width: 420px) {
+    h1 { font-size: 38px; }
+    .tagline { font-size: 16px; }
+    .roster-head, .roster-row {
+      grid-template-columns: 1.4fr 50px 44px 44px;
+      padding: 10px;
+      gap: 4px;
+    }
   }
 </style>
 </head>
-<body>
+<body data-theme="light">
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+</button>
+
 <div class="wrap">
 
 <header>
@@ -804,12 +970,12 @@
 
   <div class="logo-row">
     <svg class="logo-goose" viewBox="0 0 64 64" fill="none">
-      <ellipse cx="32" cy="42" rx="20" ry="14" fill="#faf4e6" stroke="#2a2620" stroke-width="1.5"/>
-      <path d="M 22 32 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 32" fill="#faf4e6" stroke="#2a2620" stroke-width="1.5" stroke-linejoin="round"/>
-      <circle cx="30" cy="18" r="1.2" fill="#2a2620"/>
-      <path d="M 36 18 L 44 17 L 36 20 Z" fill="#d97a3e" stroke="#2a2620" stroke-width="1"/>
-      <path d="M 12 42 Q 6 38 8 34" stroke="#2a2620" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="#d97a3e" stroke-width="1.5" stroke-linecap="round"/>
+      <ellipse cx="32" cy="42" rx="20" ry="14" fill="var(--cream)" stroke="var(--ink)" stroke-width="1.5"/>
+      <path d="M 22 32 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 32" fill="var(--cream)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="30" cy="18" r="1.2" fill="var(--ink)"/>
+      <path d="M 36 18 L 44 17 L 36 20 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1"/>
+      <path d="M 12 42 Q 6 38 8 34" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
     <div>
       <div class="logo-text">YAY · GUILD CENSUS · MMXXVI</div>
@@ -824,15 +990,15 @@
 <div class="search-wrap">
   <div class="search-inner">
     <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11L15 15"/></svg>
-    <input class="search-input" id="search" type="search" placeholder="Search a goose by nickname or real name..." />
-    <button class="clear-btn" onclick="clearAll()">Clear all</button>
+    <input class="search-input" id="search" type="search" placeholder="Search a goose by name..." />
+    <button class="clear-btn" onclick="clearAll()">Clear</button>
   </div>
   <div class="search-hint" id="hint">Click any element to filter · Click again to unfilter</div>
 </div>
 
 <div class="section">
   <h2>The four axes</h2>
-  <p class="section-sub">Every MBTI type is built from four binary choices. Click a pole or bar to filter the whole page.</p>
+  <p class="section-sub">Every MBTI type is built from four binary choices. Click a pole or bar to filter.</p>
   <div class="dim-stack" id="dims"></div>
 </div>
 
@@ -851,7 +1017,7 @@
     <div>
       <div class="enn-list" id="enn-list"></div>
       <div class="enn-detail" id="enn-detail" style="--e-current: var(--ink);">
-        <div class="enn-detail-title">Hover or click a type</div>
+        <div class="enn-detail-title">Click a type to explore</div>
         <div class="enn-detail-sub">See which geese belong to each enneatype.</div>
       </div>
     </div>
@@ -872,7 +1038,7 @@
 
 <div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()">×</button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
     <div class="modal-name" id="m-name"></div>
     <div class="modal-nick" id="m-nick"></div>
     <div class="modal-row"><div class="modal-key">MBTI</div><div class="modal-val" id="m-mbti"></div></div>
@@ -884,33 +1050,33 @@
 </div>
 
 <script>
-// Nicknames are the display names. Real names shown as secondary context.
+// Per the rename requests, formal names are primary; nicknames in `nick`.
 const characters = [
-  { name: "Alita", real: null, mbti: "INFP", enn: "2", wing: null },
-  { name: "Aria", real: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Atlas", real: null, mbti: "INTJ", enn: null, wing: null },
-  { name: "Babs", real: null, mbti: "ENFJ", enn: "6", wing: null },
-  { name: "Corpse Bride", real: null, mbti: "INFP", enn: "4", wing: "4w3" },
-  { name: "Damon", real: null, mbti: "ENTJ", enn: "8", wing: null },
-  { name: "Diss", real: null, mbti: "INTJ", enn: "1", wing: null },
-  { name: "Elvira", real: null, mbti: "INFJ", enn: "2", wing: null },
-  { name: "Ferrinh", real: null, mbti: "INTP", enn: "5", wing: null },
-  { name: "Gogo", real: null, mbti: "ESFP", enn: "7", wing: null },
-  { name: "GooseLaLa", real: "CPD", mbti: "ESFP", enn: "8", wing: "8w9" },
-  { name: "Ji Soo", real: null, mbti: "ISFJ", enn: "2", wing: null },
-  { name: "Karma", real: null, mbti: "INFJ", enn: "2", wing: null },
-  { name: "Leif", real: null, mbti: "ESFJ", enn: "1", wing: null },
-  { name: "Lilac", real: "Sevi", mbti: "ESTJ", enn: "6", wing: "6w5" },
-  { name: "Maki", real: null, mbti: "ISFP", enn: "9", wing: null },
-  { name: "Mollies", real: null, mbti: "ENFP", enn: null, wing: null },
-  { name: "Nelgandis", real: "Nel", mbti: "ENTP", enn: "7", wing: null },
-  { name: "Noriella", real: "Nori", mbti: "ISFJ", enn: "2", wing: "2w1" },
-  { name: "Panda", real: null, mbti: "ESFP", enn: "7", wing: "7w6" },
-  { name: "Remy", real: null, mbti: "ISFJ", enn: "6", wing: null },
-  { name: "Sels", real: null, mbti: "INFP", enn: "4", wing: "4w5" },
-  { name: "Soul", real: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Vesper", real: null, mbti: "ESFP", enn: "7", wing: "7w8" },
-  { name: "Whiskey", real: null, mbti: "ESTP", enn: null, wing: null }
+  { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: null },
+  { name: "Aria", nick: null, mbti: "ISFP", enn: null, wing: null },
+  { name: "Atlas", nick: null, mbti: "INTJ", enn: null, wing: null },
+  { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: null },
+  { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3" },
+  { name: "CPD", nick: "GooseLaLa", mbti: "ESFP", enn: "8", wing: "8w9" },
+  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: null },
+  { name: "Diss", nick: null, mbti: "INTJ", enn: "1", wing: null },
+  { name: "Elvira", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: null },
+  { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: null },
+  { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: null },
+  { name: "Karma", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: null },
+  { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: null },
+  { name: "Mollies", nick: null, mbti: "ENFP", enn: null, wing: null },
+  { name: "Nel", nick: "Nelgandis", mbti: "ENTP", enn: "7", wing: null },
+  { name: "Nori", nick: "Noriella", mbti: "ISFJ", enn: "2", wing: "2w1" },
+  { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6" },
+  { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: null },
+  { name: "Sels", nick: null, mbti: "INFP", enn: "4", wing: "4w5" },
+  { name: "Sevi", nick: "Lilac", mbti: "ESTJ", enn: "6", wing: "6w5" },
+  { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null },
+  { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8" },
+  { name: "Whiskey", nick: null, mbti: "ESTP", enn: null, wing: null }
 ];
 
 const knownButUntyped = ["Clover", "Lily"];
@@ -963,46 +1129,27 @@ const ennData = [
 ];
 
 const triadInfo = {
-  head: { name: "Head", emotion: "Fear", color: "#6b6560", types: ["5", "6", "7"] },
-  heart: { name: "Heart", emotion: "Shame", color: "#b84872", types: ["2", "3", "4"] },
-  body: { name: "Body", emotion: "Anger", color: "#a82a2a", types: ["8", "9", "1"] }
+  head: { name: "Head", emotion: "Fear", color: "var(--triad-head)", types: ["5", "6", "7"] },
+  heart: { name: "Heart", emotion: "Shame", color: "var(--triad-heart)", types: ["2", "3", "4"] },
+  body: { name: "Body", emotion: "Anger", color: "var(--triad-body)", types: ["8", "9", "1"] }
 };
 
-// GLOBAL FILTER STATE
-let filter = {
-  search: "",
-  dim: null,    // { key: 0-3, value: 'E'/'I'/etc }
-  family: null, // 'NT'/'NF'/'SJ'/'SP'
-  mbti: null,   // specific type code
-  enn: null,    // '1'-'9'
-  triad: null   // 'head'/'heart'/'body'
-};
-
+let filter = { search: "", dim: null, family: null, mbti: null, enn: null, triad: null };
 let rosterSort = { by: "name", dir: "asc" };
 
 function getFamily(mbti) { return mbtiTypes.find(t => t.code === mbti)?.family; }
 
-function passesFilter(c, ignore = {}) {
-  if (!ignore.search && filter.search) {
+function passesFilter(c) {
+  if (filter.search) {
     const s = filter.search.toLowerCase();
-    const hit = c.name.toLowerCase().includes(s) || (c.real && c.real.toLowerCase().includes(s));
+    const hit = c.name.toLowerCase().includes(s) || (c.nick && c.nick.toLowerCase().includes(s));
     if (!hit) return false;
   }
-  if (!ignore.dim && filter.dim !== null) {
-    if (!c.mbti || c.mbti[filter.dim.key] !== filter.dim.value) return false;
-  }
-  if (!ignore.family && filter.family) {
-    if (getFamily(c.mbti) !== filter.family) return false;
-  }
-  if (!ignore.mbti && filter.mbti) {
-    if (c.mbti !== filter.mbti) return false;
-  }
-  if (!ignore.enn && filter.enn) {
-    if (c.enn !== filter.enn) return false;
-  }
-  if (!ignore.triad && filter.triad) {
-    if (!c.enn || !triadInfo[filter.triad].types.includes(c.enn)) return false;
-  }
+  if (filter.dim !== null && (!c.mbti || c.mbti[filter.dim.key] !== filter.dim.value)) return false;
+  if (filter.family && getFamily(c.mbti) !== filter.family) return false;
+  if (filter.mbti && c.mbti !== filter.mbti) return false;
+  if (filter.enn && c.enn !== filter.enn) return false;
+  if (filter.triad && (!c.enn || !triadInfo[filter.triad].types.includes(c.enn))) return false;
   return true;
 }
 
@@ -1010,7 +1157,14 @@ function anyFilterActive() {
   return filter.search || filter.dim || filter.family || filter.mbti || filter.enn || filter.triad;
 }
 
-// RENDER DIMS
+function chipHTML(m) {
+  const matches = filter.search && (m.name.toLowerCase().includes(filter.search.toLowerCase()) || (m.nick && m.nick.toLowerCase().includes(filter.search.toLowerCase())));
+  const passes = passesFilter(m);
+  const cls = matches ? "match" : (anyFilterActive() && !passes ? "muted" : "");
+  const tag = m.wing || m.mbti || m.enn || "";
+  return `<span class="chip ${cls}" data-goose="${m.name}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
+}
+
 function renderDims() {
   const host = document.getElementById("dims");
   host.innerHTML = "";
@@ -1020,7 +1174,6 @@ function renderDims() {
     const total = aMembers.length + bMembers.length;
     const aPct = Math.round((aMembers.length / total) * 100);
     const bPct = 100 - aPct;
-
     const dimActive = filter.dim?.key === d.key;
     const aActive = dimActive && filter.dim.value === d.a;
     const bActive = dimActive && filter.dim.value === d.b;
@@ -1061,17 +1214,13 @@ function renderDims() {
         </div>
       </div>
     `;
-
     el.querySelectorAll("[data-dim]").forEach(elm => {
       elm.addEventListener("click", (ev) => {
         ev.stopPropagation();
         const k = parseInt(elm.dataset.dim);
         const v = elm.dataset.val;
-        if (filter.dim?.key === k && filter.dim?.value === v) {
-          filter.dim = null;
-        } else {
-          filter.dim = { key: k, value: v };
-        }
+        if (filter.dim?.key === k && filter.dim?.value === v) filter.dim = null;
+        else filter.dim = { key: k, value: v };
         renderAll();
       });
     });
@@ -1079,15 +1228,6 @@ function renderDims() {
   });
 }
 
-function chipHTML(m) {
-  const matches = filter.search && (m.name.toLowerCase().includes(filter.search.toLowerCase()) || (m.real && m.real.toLowerCase().includes(filter.search.toLowerCase())));
-  const passes = passesFilter(m);
-  const cls = matches ? "match" : (anyFilterActive() && !passes ? "muted" : "");
-  const tag = m.wing || m.mbti || m.enn || "";
-  return `<span class="chip ${cls}" data-goose="${m.name}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
-}
-
-// RENDER FAMILIES
 function renderFamilies() {
   const host = document.getElementById("fams");
   host.innerHTML = "";
@@ -1095,7 +1235,6 @@ function renderFamilies() {
     const famTypes = mbtiTypes.filter(t => t.family === f.code);
     const famMembers = characters.filter(c => famTypes.some(t => t.code === c.mbti));
     const pct = Math.round((famMembers.length / characters.length) * 100);
-
     const isFamActive = filter.family === f.code;
     const isDimmed = (filter.family && filter.family !== f.code) || (filter.mbti && !famTypes.some(t => t.code === filter.mbti));
 
@@ -1121,9 +1260,7 @@ function renderFamilies() {
       <div class="fam-bar"><div class="fam-bar-fill" style="width: ${pct}%;"></div></div>
       <div class="fam-types">${typeRows}</div>
     `;
-
     el.addEventListener("click", (ev) => {
-      // clicks on a fam-type should override
       const typeEl = ev.target.closest(".fam-type");
       if (typeEl) {
         ev.stopPropagation();
@@ -1140,7 +1277,6 @@ function renderFamilies() {
     host.appendChild(el);
   });
 
-  // Fam detail
   const detail = document.getElementById("fam-detail");
   if (filter.family) {
     const f = families.find(x => x.code === filter.family);
@@ -1169,12 +1305,10 @@ function renderFamilies() {
   }
 }
 
-// ENNEAGRAM WHEEL
 function polar(angleDeg, radius) {
   const rad = (angleDeg - 90) * Math.PI / 180;
   return [Math.cos(rad) * radius, Math.sin(rad) * radius];
 }
-
 function arcPath(startAngle, endAngle, rOuter, rInner) {
   const [x1, y1] = polar(startAngle, rOuter);
   const [x2, y2] = polar(endAngle, rOuter);
@@ -1189,6 +1323,10 @@ function renderWheel() {
   svg.innerHTML = "";
   const rOuter = 100, rInner = 50;
   const sliceAngle = 360 / 9;
+  const creamColor = getComputedStyle(document.body).getPropertyValue('--cream').trim();
+  const inkColor = getComputedStyle(document.body).getPropertyValue('--ink').trim();
+  const fadeColor = getComputedStyle(document.body).getPropertyValue('--ink-fade').trim();
+  const lineColor = getComputedStyle(document.body).getPropertyValue('--line').trim();
 
   ennData.forEach((e, i) => {
     const start = i * sliceAngle;
@@ -1198,20 +1336,15 @@ function renderWheel() {
     const hasMembers = members.length > 0;
     const isActive = filter.enn === e.num;
     const isDimmed = (filter.enn && filter.enn !== e.num) || (filter.triad && !triadInfo[filter.triad].types.includes(e.num));
-
-    let opacity;
-    if (isActive) opacity = 1;
-    else if (isDimmed) opacity = 0.12;
-    else opacity = hasMembers ? 0.85 : 0.2;
+    let opacity = isActive ? 1 : isDimmed ? 0.15 : (hasMembers ? 0.92 : 0.3);
 
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", arcPath(start, end, rOuter, rInner));
     path.setAttribute("fill", e.color);
     path.setAttribute("fill-opacity", opacity);
-    path.setAttribute("stroke", "var(--cream)");
+    path.setAttribute("stroke", creamColor);
     path.setAttribute("stroke-width", "2");
     path.setAttribute("style", "cursor: pointer; transition: fill-opacity 0.25s;");
-    path.dataset.num = e.num;
     path.addEventListener("click", () => {
       filter.enn = filter.enn === e.num ? null : e.num;
       renderAll();
@@ -1223,7 +1356,7 @@ function renderWheel() {
     numText.setAttribute("y", ly - 2);
     numText.setAttribute("text-anchor", "middle");
     numText.setAttribute("fill", "white");
-    numText.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; pointer-events: none;");
+    numText.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; pointer-events: none;");
     numText.textContent = e.num;
     svg.appendChild(numText);
 
@@ -1232,7 +1365,7 @@ function renderWheel() {
     countText.setAttribute("y", ly + 10);
     countText.setAttribute("text-anchor", "middle");
     countText.setAttribute("fill", "white");
-    countText.setAttribute("fill-opacity", "0.85");
+    countText.setAttribute("fill-opacity", "0.9");
     countText.setAttribute("style", "font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; pointer-events: none;");
     countText.textContent = members.length;
     svg.appendChild(countText);
@@ -1241,25 +1374,25 @@ function renderWheel() {
   const center = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   center.setAttribute("cx", 0); center.setAttribute("cy", 0);
   center.setAttribute("r", rInner - 2);
-  center.setAttribute("fill", "var(--cream)");
-  center.setAttribute("stroke", "var(--line)");
+  center.setAttribute("fill", creamColor);
+  center.setAttribute("stroke", lineColor);
   svg.appendChild(center);
 
-  const centerText1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  centerText1.setAttribute("x", 0); centerText1.setAttribute("y", -4);
-  centerText1.setAttribute("text-anchor", "middle");
-  centerText1.setAttribute("fill", "var(--ink)");
-  centerText1.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 18px;");
-  centerText1.textContent = characters.filter(c => c.enn).length;
-  svg.appendChild(centerText1);
+  const c1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  c1.setAttribute("x", 0); c1.setAttribute("y", -4);
+  c1.setAttribute("text-anchor", "middle");
+  c1.setAttribute("fill", inkColor);
+  c1.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;");
+  c1.textContent = characters.filter(c => c.enn).length;
+  svg.appendChild(c1);
 
-  const centerText2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  centerText2.setAttribute("x", 0); centerText2.setAttribute("y", 12);
-  centerText2.setAttribute("text-anchor", "middle");
-  centerText2.setAttribute("fill", "var(--ink-fade)");
-  centerText2.setAttribute("style", "font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;");
-  centerText2.textContent = "typed";
-  svg.appendChild(centerText2);
+  const c2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  c2.setAttribute("x", 0); c2.setAttribute("y", 12);
+  c2.setAttribute("text-anchor", "middle");
+  c2.setAttribute("fill", fadeColor);
+  c2.setAttribute("style", "font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;");
+  c2.textContent = "typed";
+  svg.appendChild(c2);
 }
 
 function renderEnnList() {
@@ -1287,18 +1420,16 @@ function renderEnnList() {
     host.appendChild(row);
   });
 
-  // Detail panel
   const detail = document.getElementById("enn-detail");
-  const activeNum = filter.enn;
-  if (activeNum) {
-    const e = ennData.find(x => x.num === activeNum);
-    const members = characters.filter(c => c.enn === activeNum);
+  if (filter.enn) {
+    const e = ennData.find(x => x.num === filter.enn);
+    const members = characters.filter(c => c.enn === filter.enn);
     detail.style.setProperty("--e-current", e.color);
     const chips = members.length === 0
       ? '<div style="font-family: Fraunces, serif; font-style: italic; color: var(--ink-fade);">No geese of this type yet.</div>'
       : members.map(m => chipHTML(m)).join("");
     detail.innerHTML = `
-      <div class="enn-detail-title"><span class="num">${activeNum}.</span> ${e.label}</div>
+      <div class="enn-detail-title"><span class="num">${filter.enn}.</span> ${e.label}</div>
       <div class="enn-detail-sub">${e.tagline} · ${triadInfo[e.triad].name} triad</div>
       <div>${chips}</div>
     `;
@@ -1351,11 +1482,9 @@ function renderTriads() {
   }
 }
 
-// ROSTER
 function renderRoster() {
   const host = document.getElementById("roster-table");
   host.innerHTML = "";
-
   const head = document.createElement("div");
   head.className = "roster-head";
   const cols = [
@@ -1388,11 +1517,11 @@ function renderRoster() {
 
   sorted.forEach(c => {
     const passes = passesFilter(c);
-    const matches = filter.search && (c.name.toLowerCase().includes(filter.search.toLowerCase()) || (c.real && c.real.toLowerCase().includes(filter.search.toLowerCase())));
+    const matches = filter.search && (c.name.toLowerCase().includes(filter.search.toLowerCase()) || (c.nick && c.nick.toLowerCase().includes(filter.search.toLowerCase())));
     const row = document.createElement("div");
     row.className = "roster-row" + (anyFilterActive() && !passes ? " muted" : "") + (matches ? " match" : "");
     row.innerHTML = `
-      <div class="r-name">${c.name}${c.real ? `<span class="r-nick">aka ${c.real}</span>` : ''}</div>
+      <div class="r-name">${c.name}${c.nick ? `<span class="r-nick">aka ${c.nick}</span>` : ''}</div>
       <div class="r-mbti">${c.mbti || '<span class="muted-txt">—</span>'}</div>
       <div class="r-enn">${c.enn ? `Type ${c.enn}` : '<span class="muted-txt">—</span>'}</div>
       <div class="r-wing">${c.wing || '<span class="muted-txt">—</span>'}</div>
@@ -1406,7 +1535,6 @@ function renderRoster() {
     divider.className = "divider-row";
     divider.textContent = `Known · awaiting typing · ${knownButUntyped.length}`;
     host.appendChild(divider);
-
     knownButUntyped.sort().forEach(n => {
       const row = document.createElement("div");
       row.className = "roster-row";
@@ -1428,7 +1556,6 @@ function renderRoster() {
   }
 }
 
-// MODAL
 function openModal(name) {
   const c = characters.find(x => x.name === name);
   if (!c) return;
@@ -1438,12 +1565,10 @@ function openModal(name) {
 
   document.getElementById("m-name").textContent = c.name;
   const nickEl = document.getElementById("m-nick");
-  if (c.real) {
-    nickEl.textContent = `known formally as ${c.real} · ${mbtiType?.label || ""}${ennType ? ` · ${ennType.label}` : ""}`;
-    nickEl.style.display = "block";
+  if (c.nick) {
+    nickEl.textContent = `also known as ${c.nick} · ${mbtiType?.label || ""}${ennType ? ` · ${ennType.label}` : ""}`;
   } else {
     nickEl.textContent = [mbtiType?.label, ennType?.label].filter(Boolean).join(" · ") || "Uncharted";
-    nickEl.style.display = "block";
   }
 
   const set = (id, val, muted) => {
@@ -1456,13 +1581,11 @@ function openModal(name) {
   set("m-enn", c.enn ? `${c.enn} · ${ennType.label}` : null, !c.enn);
   set("m-wing", c.wing, !c.wing);
   set("m-triad", ennType ? `${triadInfo[ennType.triad].name} · ${triadInfo[ennType.triad].emotion}` : null, !ennType);
-
   document.getElementById("modal").classList.add("open");
 }
 
 function closeModal() { document.getElementById("modal").classList.remove("open"); }
 
-// CHIP CLICKS (delegated)
 document.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip[data-goose]");
   if (chip) {
@@ -1471,22 +1594,42 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// SEARCH + CLEAR
 document.getElementById("search").addEventListener("input", (e) => {
   filter.search = e.target.value.trim();
   renderAll();
 });
+
 function clearAll() {
   filter = { search: "", dim: null, family: null, mbti: null, enn: null, triad: null };
   document.getElementById("search").value = "";
   renderAll();
 }
+
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     if (document.getElementById("modal").classList.contains("open")) closeModal();
     else clearAll();
   }
 });
+
+function toggleTheme() {
+  const body = document.body;
+  const current = body.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  body.setAttribute("data-theme", next);
+  try { localStorage.setItem("goose-theme", next); } catch(e) {}
+  // Re-render the SVG wheel so it picks up new CSS var colors
+  renderWheel();
+}
+
+// Load theme preference
+try {
+  const saved = localStorage.getItem("goose-theme");
+  if (saved) document.body.setAttribute("data-theme", saved);
+  else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.setAttribute("data-theme", "dark");
+  }
+} catch(e) {}
 
 function updateHint() {
   const hint = document.getElementById("hint");
@@ -1497,7 +1640,6 @@ function updateHint() {
   if (filter.mbti) parts.push(filter.mbti);
   if (filter.enn) parts.push(`Type ${filter.enn}`);
   if (filter.triad) parts.push(`${triadInfo[filter.triad].name} triad`);
-
   if (parts.length === 0) {
     hint.textContent = "Click any element to filter · Click again to unfilter · ESC to clear";
   } else {
