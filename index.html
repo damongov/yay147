@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YAY: Silly Geese — A Census</title>
+<title>147 YAY: Silly Geese — A Census</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -118,10 +118,8 @@
   [data-theme="dark"] .theme-toggle .moon { display: none; }
 
   header {
-    position: relative;
-    padding: 0 0 40px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--line);
+    position: relative; padding: 0 0 40px;
+    margin-bottom: 32px; border-bottom: 1px solid var(--line);
   }
   .logo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
   .logo-goose { width: 56px; height: 56px; flex-shrink: 0; }
@@ -155,46 +153,30 @@
     color: var(--ink-fade); text-transform: uppercase;
   }
 
-  /* Section headers with icons & quotes */
   .sec-head { margin-bottom: 24px; }
   .sec-title-row {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 4px;
   }
-  .sec-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    color: var(--accent);
-  }
+  .sec-icon { width: 36px; height: 36px; flex-shrink: 0; color: var(--accent); }
   h2 {
     font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: clamp(26px, 4vw, 32px);
-    letter-spacing: -0.015em;
+    font-size: clamp(26px, 4vw, 32px); letter-spacing: -0.015em;
   }
-  .sec-quote {
+  .sec-sub {
     font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 15px; color: var(--ink-soft);
-    padding-left: 14px; border-left: 2px solid var(--gold);
-    max-width: 700px;
-  }
-  .sec-quote .who {
-    font-style: normal; font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--ink-fade); display: block; margin-top: 4px;
+    font-size: 14px; color: var(--ink-fade); margin-left: 50px;
   }
   .section { margin-bottom: 56px; }
 
-  /* SEARCH — now a profile reveal */
+  /* SEARCH */
   .search-wrap {
     position: sticky; top: 0; z-index: 20;
-    background: var(--cream);
-    padding: 14px 0 0;
-    margin-bottom: 8px;
-    border-bottom: 1px solid var(--line);
+    background: var(--cream); padding: 14px 0 0;
+    margin-bottom: 8px; border-bottom: 1px solid var(--line);
   }
   .search-inner {
-    position: relative; display: flex; gap: 10px; align-items: center;
-    padding-bottom: 12px;
+    position: relative; display: flex; gap: 10px;
+    align-items: center; padding-bottom: 12px;
   }
   .search-input {
     flex: 1; padding: 12px 14px 12px 40px;
@@ -221,16 +203,12 @@
   }
   .clear-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Search suggestions dropdown */
   .search-suggestions {
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--surface);
-    border: 1px solid var(--line-strong);
-    border-top: none;
-    max-height: 280px; overflow-y: auto;
-    z-index: 30;
-    box-shadow: 0 8px 24px var(--shadow);
-    display: none;
+    border: 1px solid var(--line-strong); border-top: none;
+    max-height: 280px; overflow-y: auto; z-index: 30;
+    box-shadow: 0 8px 24px var(--shadow); display: none;
   }
   .search-suggestions.open { display: block; }
   .sugg-item {
@@ -247,19 +225,15 @@
   }
   .sugg-meta {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--ink-soft);
-    letter-spacing: 0.08em;
+    font-size: 10px; color: var(--ink-soft); letter-spacing: 0.08em;
   }
 
-  /* PROFILE CARD — search result */
+  /* PROFILE CARD */
   .profile-card {
     background: var(--surface);
     border: 1px solid var(--line-strong);
-    border-radius: 2px;
-    padding: 28px 32px;
-    margin-bottom: 32px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 2px; padding: 28px 32px;
+    margin-bottom: 32px; position: relative; overflow: hidden;
     background-image: radial-gradient(circle at top right, var(--bg-grad-1), transparent 60%);
     display: none;
   }
@@ -277,34 +251,43 @@
     border-radius: 2px; font-size: 16px; line-height: 1;
   }
   .profile-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .profile-name-row {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .profile-icon-pair { display: flex; gap: 8px; }
+  .profile-type-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; color: white;
+  }
+  .profile-type-icon.mbti { background: var(--mbti-color, var(--accent)); }
+  .profile-type-icon.enn { background: var(--enn-color, var(--accent)); }
+  .profile-type-icon svg { width: 24px; height: 24px; }
   .profile-name {
     font-family: 'Fraunces', serif;
     font-size: clamp(32px, 5vw, 44px);
     font-weight: 400; letter-spacing: -0.02em;
-    line-height: 1.05; margin-bottom: 4px;
+    line-height: 1.05;
   }
   .profile-nick {
     font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 15px; color: var(--accent);
-    margin-bottom: 20px;
+    font-size: 15px; color: var(--accent); margin-bottom: 20px;
   }
   .profile-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 16px; margin-bottom: 24px;
     padding: 18px 0;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .stat {
-    display: flex; flex-direction: column; gap: 4px;
-  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
   .stat-key {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    font-weight: 700;
+    text-transform: uppercase; color: var(--ink-fade); font-weight: 700;
   }
   .stat-val {
     font-family: 'Fraunces', serif; font-size: 18px;
@@ -312,18 +295,54 @@
   }
   .stat-val.muted { color: var(--ink-fade); font-style: italic; font-weight: 400; }
   .stat-sub {
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-soft);
+  }
+  .profile-section-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-fade);
+    font-weight: 700; margin: 18px 0 8px;
   }
   .profile-desc {
     font-family: 'Fraunces', serif; font-size: 16px;
-    line-height: 1.65; color: var(--ink-soft);
-    margin-bottom: 18px;
+    line-height: 1.7; color: var(--ink); margin-bottom: 4px;
   }
-  .profile-desc strong { color: var(--ink); font-weight: 500; }
+  .profile-desc strong { font-weight: 600; }
+  .profile-desc em { color: var(--accent-deep); font-style: italic; }
+  .profile-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .profile-stat-card {
+    background: var(--cream-deep);
+    border-radius: 2px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .profile-stat-card.rare { border-left-color: var(--enn4); }
+  .profile-stat-card.common { border-left-color: var(--enn2); }
+  .profile-stat-card.flock { border-left-color: var(--enn6); }
+  .profile-stat-card-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-fade);
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .profile-stat-card-val {
+    font-family: 'Fraunces', serif; font-size: 17px;
+    color: var(--ink); font-weight: 500;
+    line-height: 1.25;
+  }
+  .profile-stat-card-sub {
+    font-family: 'Inter', sans-serif; font-size: 12px;
+    color: var(--ink-soft); margin-top: 3px;
+  }
   .profile-similar {
     display: flex; gap: 16px; flex-wrap: wrap;
-    padding-top: 16px; border-top: 1px dashed var(--line);
+    padding-top: 16px; margin-top: 16px;
+    border-top: 1px dashed var(--line);
   }
   .profile-similar-block { flex: 1; min-width: 200px; }
   .profile-similar-lbl {
@@ -375,16 +394,14 @@
     font-size: 12px; display: block;
   }
   .pole-count {
-    font-family: 'Fraunces', serif;
-    font-size: 22px; font-weight: 500;
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
   }
   .pole-count.a { color: var(--pole-a); }
   .pole-count.b { color: var(--pole-b); }
 
   .dim-bar {
     display: flex; height: 38px; border-radius: 2px;
-    overflow: hidden; border: 1px solid var(--line);
-    cursor: pointer;
+    overflow: hidden; border: 1px solid var(--line); cursor: pointer;
   }
   .dim-bar-a, .dim-bar-b {
     display: flex; align-items: center; padding: 0 12px;
@@ -488,8 +505,7 @@
     display: flex; justify-content: space-between;
     align-items: baseline; font-size: 13px;
     border-bottom: 1px dashed var(--line);
-    gap: 12px; cursor: pointer;
-    transition: background 0.15s;
+    gap: 12px; cursor: pointer; transition: background 0.15s;
     border-radius: 2px; padding: 5px 6px;
   }
   .fam-type:hover { background: var(--cream-deep); }
@@ -497,9 +513,13 @@
   .fam-type:last-child { border-bottom: none; }
   .fam-type-code {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; color: var(--fc);
-    flex-shrink: 0;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--fc); flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .fam-type-icon-mini {
+    width: 16px; height: 16px;
+    color: var(--fc); flex-shrink: 0;
   }
   .fam-type-members {
     font-family: 'Fraunces', serif; color: var(--ink-soft);
@@ -517,13 +537,11 @@
   .fam-detail.open, .triad-detail.open { display: block; }
   .fam-detail-title, .triad-detail-title {
     font-family: 'Fraunces', serif; font-size: 22px;
-    color: var(--fc, var(--tc)); margin-bottom: 6px;
-    font-weight: 500;
+    color: var(--fc, var(--tc)); margin-bottom: 6px; font-weight: 500;
   }
   .fam-detail-sub, .triad-detail-sub {
     font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 14px; color: var(--ink-soft);
-    margin-bottom: 14px;
+    font-size: 14px; color: var(--ink-soft); margin-bottom: 14px;
   }
 
   /* ENNEAGRAM */
@@ -534,7 +552,7 @@
   .enn-wheel { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
   .enn-list { display: flex; flex-direction: column; gap: 4px; }
   .enn-row {
-    display: grid; grid-template-columns: 28px 1fr auto;
+    display: grid; grid-template-columns: 32px 1fr auto;
     align-items: center; gap: 12px; padding: 8px;
     border-bottom: 1px dashed var(--line);
     cursor: pointer; transition: background 0.15s;
@@ -543,15 +561,20 @@
   .enn-row:hover { background: var(--cream-deep); }
   .enn-row.active { background: var(--surface); box-shadow: inset 3px 0 0 var(--ec); }
   .enn-row.muted { opacity: 0.4; }
-  .enn-dot {
-    width: 26px; height: 26px; border-radius: 50%;
+  .enn-icon-wrap {
+    width: 30px; height: 30px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-size: 14px;
-    font-weight: 600; color: white; background: var(--ec);
+    color: white; background: var(--ec);
   }
+  .enn-icon-wrap svg { width: 16px; height: 16px; }
   .enn-row-label {
     font-family: 'Fraunces', serif; font-size: 15px;
     color: var(--ink); font-weight: 500;
+  }
+  .enn-row-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ec); font-weight: 700;
+    margin-right: 4px;
   }
   .enn-row-sub {
     font-family: 'JetBrains Mono', monospace;
@@ -572,11 +595,28 @@
   .enn-detail-title {
     font-family: 'Fraunces', serif; font-size: 18px;
     margin-bottom: 6px; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
   }
   .enn-detail-title .num { color: var(--e-current); font-weight: 600; }
+  .enn-detail-icon-wrap {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; background: var(--e-current); flex-shrink: 0;
+  }
+  .enn-detail-icon-wrap svg { width: 16px; height: 16px; }
   .enn-detail-sub {
     font-family: 'Fraunces', serif; font-style: italic;
     font-size: 13px; color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .enn-detail-body {
+    font-family: 'Fraunces', serif; font-size: 14px;
+    color: var(--ink-soft); line-height: 1.65; margin-bottom: 12px;
+  }
+  .enn-detail-members-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--ink-fade);
+    font-weight: 700; margin-bottom: 8px;
   }
 
   /* TRIADS */
@@ -601,8 +641,7 @@
   .triad-emotion {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    margin-bottom: 12px;
+    text-transform: uppercase; color: var(--ink-fade); margin-bottom: 12px;
   }
   .triad-count {
     font-family: 'Fraunces', serif;
@@ -615,7 +654,7 @@
     font-size: 11px; color: var(--ink-soft); letter-spacing: 0.08em;
   }
 
-  /* INSIGHTS SECTION */
+  /* INSIGHTS */
   .insights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -636,8 +675,7 @@
   .insight-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); }
   .insight-icon {
     width: 28px; height: 28px;
-    color: var(--ic, var(--accent));
-    margin-bottom: 12px;
+    color: var(--ic, var(--accent)); margin-bottom: 12px;
   }
   .insight-title {
     font-family: 'JetBrains Mono', monospace;
@@ -652,33 +690,26 @@
   }
   .insight-sub {
     font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 13px; color: var(--ink-soft);
-    margin-bottom: 14px;
+    font-size: 13px; color: var(--ink-soft); margin-bottom: 14px;
   }
   .insight-pair {
     display: flex; align-items: center; gap: 8px;
     margin-bottom: 8px; flex-wrap: wrap;
   }
   .insight-pair-name {
-    font-family: 'Fraunces', serif; font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    border-bottom: 1px dotted var(--ic, var(--accent));
+    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500;
+    cursor: pointer; border-bottom: 1px dotted var(--ic, var(--accent));
   }
   .insight-pair-name:hover { color: var(--ic, var(--accent)); }
   .insight-pair-meta {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--ink-fade);
-    letter-spacing: 0.1em;
+    font-size: 10px; color: var(--ink-fade); letter-spacing: 0.1em;
   }
-  .insight-arrow {
-    color: var(--ink-fade); font-family: monospace;
-  }
+  .insight-arrow { color: var(--ink-fade); font-family: monospace; }
   .insight-note {
     font-family: 'Inter', sans-serif; font-size: 13px;
     color: var(--ink-soft); margin-top: 12px;
-    padding-top: 12px; border-top: 1px dashed var(--line);
-    line-height: 1.55;
+    padding-top: 12px; border-top: 1px dashed var(--line); line-height: 1.55;
   }
 
   /* ROSTER */
@@ -706,12 +737,10 @@
   .roster-row {
     border-bottom: 1px dashed var(--line);
     font-family: 'Fraunces', serif; font-size: 15px;
-    transition: background 0.15s, opacity 0.2s;
-    cursor: pointer;
+    transition: background 0.15s, opacity 0.2s; cursor: pointer;
   }
   .roster-row:hover { background: var(--cream-deep); }
   .roster-row.muted { opacity: 0.3; }
-  .roster-row.match { background: color-mix(in srgb, var(--gold) 15%, transparent); }
   .roster-row:last-child { border-bottom: none; }
   .r-name { font-weight: 500; }
   .r-nick {
@@ -729,15 +758,13 @@
     color: var(--ink-fade); font-style: italic;
     font-family: 'Fraunces', serif; letter-spacing: 0;
   }
-
   .divider-row {
     background: var(--cream-deep); padding: 8px 20px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--ink-fade);
     border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    font-weight: 700;
+    border-bottom: 1px solid var(--line); font-weight: 700;
   }
 
   footer {
@@ -748,7 +775,6 @@
     color: var(--ink-fade); text-transform: uppercase;
   }
 
-  /* MOBILE */
   @media (max-width: 760px) {
     .wrap { padding: 28px 16px 60px; }
     .theme-toggle { top: 12px; right: 12px; width: 40px; height: 40px; }
@@ -763,17 +789,18 @@
     .logo-row { margin-bottom: 20px; }
     .section { margin-bottom: 44px; }
     .sec-icon { width: 28px; height: 28px; }
+    .sec-sub { margin-left: 42px; }
 
     .search-input { font-size: 15px; padding: 10px 12px 10px 36px; }
     .search-icon { left: 10px; top: 16px; }
     .clear-btn { padding: 10px; font-size: 9px; }
 
     .profile-card { padding: 22px 20px; }
-    .profile-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
+    .profile-stats { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .profile-similar { flex-direction: column; gap: 14px; }
+    .profile-name-row { gap: 10px; }
+    .profile-type-icon { width: 38px; height: 38px; }
+    .profile-type-icon svg { width: 20px; height: 20px; }
 
     .dim { padding: 14px 14px; }
     .dim-head { flex-direction: column; align-items: stretch; gap: 10px; }
@@ -836,7 +863,6 @@
     <div class="big">27</div>
     <div class="lbl">Silly geese, in total</div>
   </div>
-
   <div class="logo-row">
     <svg class="logo-goose" viewBox="0 0 64 64" fill="none">
       <ellipse cx="32" cy="42" rx="20" ry="14" fill="var(--cream)" stroke="var(--ink)" stroke-width="1.5"/>
@@ -846,19 +872,16 @@
       <path d="M 12 42 Q 6 38 8 34" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
-    <div>
-      <div class="logo-text">YAY · GUILD CENSUS · MMXXVI</div>
-    </div>
+    <div><div class="logo-text">147 YAY · GUILD CENSUS · MMXXVI</div></div>
   </div>
-
-  <h1>Silly <em>Geese</em>,<br/>enumerated.</h1>
+  <h1>147 <em>YAY</em><br/>silly geese.</h1>
   <p class="tagline">"Birds of a feather flock together."</p>
 </header>
 
 <div class="search-wrap">
   <div class="search-inner">
     <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11L15 15"/></svg>
-    <input class="search-input" id="search" type="search" placeholder="Search a goose to see their profile..." autocomplete="off" />
+    <input class="search-input" id="search" type="search" placeholder="Search a goose to see their full profile..." autocomplete="off" />
     <button class="clear-btn" onclick="clearAll()">Clear</button>
     <div class="search-suggestions" id="suggestions"></div>
   </div>
@@ -877,7 +900,6 @@
       </svg>
       <h2>The four axes — MBTI</h2>
     </div>
-    <div class="sec-quote">"A bird does not sing because it has an answer; it sings because it has a song."<span class="who">— Chinese proverb</span></div>
   </div>
   <div class="dim-stack" id="dims"></div>
 </div>
@@ -890,7 +912,6 @@
       </svg>
       <h2>By family — temperaments</h2>
     </div>
-    <div class="sec-quote">"Geese mate for life. They migrate together, take turns leading, and honk encouragement to those behind."<span class="who">— Field guide to Anseriformes</span></div>
   </div>
   <div class="fam-grid" id="fams"></div>
   <div class="fam-detail" id="fam-detail" style="--fc: var(--ink);"></div>
@@ -903,9 +924,8 @@
         <circle cx="12" cy="12" r="10"/>
         <path d="M12 2l5.5 17M12 2L6.5 19M2 12l20-3M22 15L2 9"/>
       </svg>
-      <h2>The ennead — Enneagram</h2>
+      <h2>Enneagram</h2>
     </div>
-    <div class="sec-quote">"Hope is the thing with feathers that perches in the soul, and sings the tune without the words, and never stops at all."<span class="who">— Emily Dickinson</span></div>
   </div>
   <div class="enn-wheel-wrap">
     <svg class="enn-wheel" id="enn-wheel" viewBox="-110 -110 220 220"></svg>
@@ -917,7 +937,6 @@
       </div>
     </div>
   </div>
-
   <div class="triad-grid" id="triads"></div>
   <div class="triad-detail" id="triad-detail" style="--tc: var(--ink);"></div>
 </div>
@@ -931,7 +950,6 @@
       </svg>
       <h2>Insights — flock dynamics</h2>
     </div>
-    <div class="sec-quote">"No bird soars too high if he soars with his own wings."<span class="who">— William Blake</span></div>
   </div>
   <div class="insights-grid" id="insights"></div>
 </div>
@@ -944,25 +962,24 @@
       </svg>
       <h2>The full roster</h2>
     </div>
-    <div class="sec-quote">"It is the company of the wise, like a flock of geese, that makes the long flight bearable."<span class="who">— Old saying</span></div>
   </div>
   <div class="roster-table" id="roster-table"></div>
 </div>
 
-<footer>YAY · Silly Geese · Birds of a feather flock together</footer>
+<footer>147 YAY · Silly Geese · Birds of a feather flock together</footer>
 </div>
 
 <script>
 const characters = [
   { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: null },
-  { name: "Aria", nick: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Atlas", nick: null, mbti: "INTJ", enn: null, wing: null },
+  { name: "Aria", nick: null, mbti: "ISFP", enn: "6", wing: "6w7" },
+  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6" },
   { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: null },
   { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3" },
   { name: "CPD", nick: "GooseLaLa", mbti: "ESFP", enn: "8", wing: "8w9" },
-  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: null },
+  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7" },
   { name: "Diss", nick: null, mbti: "INTJ", enn: "1", wing: null },
-  { name: "Elvira", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: null },
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: null },
   { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: null },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: null },
@@ -977,32 +994,59 @@ const characters = [
   { name: "Sels", nick: null, mbti: "INFP", enn: "4", wing: "4w5" },
   { name: "Sevi", nick: "Lilac", mbti: "ESTJ", enn: "6", wing: "6w5" },
   { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8" },
-  { name: "Whiskey", nick: null, mbti: "ESTP", enn: null, wing: null }
+  { name: "Vesper", nick: null, mbti: "ISFP", enn: "7", wing: "7w8" },
+  { name: "Whiskey", nick: null, mbti: "ESTP", enn: "7", wing: "7w8" }
 ];
 
 const knownButUntyped = ["Clover", "Lily"];
 const TOTAL_MEMBERS = 27;
 const uncatalogued = TOTAL_MEMBERS - characters.length - knownButUntyped.length;
 
+// Population stats from PersonalityMax / 16Personalities Foundation (US data)
+const mbtiPopulation = {
+  ISFJ: 13.8, ESFJ: 12.0, ISTJ: 11.6, ISFP: 8.8, ESTJ: 8.7,
+  ESFP: 8.5, ENFP: 8.1, ISTP: 5.4, INFP: 4.4, ESTP: 4.3,
+  INTP: 3.3, ENTP: 3.2, ENFJ: 2.5, INTJ: 2.1, ENTJ: 1.8, INFJ: 1.5
+};
+
 const mbtiTypes = [
-  { code: "INTJ", label: "The Architect", family: "NT" },
-  { code: "INTP", label: "The Logician", family: "NT" },
-  { code: "ENTJ", label: "The Commander", family: "NT" },
-  { code: "ENTP", label: "The Debater", family: "NT" },
-  { code: "INFJ", label: "The Advocate", family: "NF" },
-  { code: "INFP", label: "The Mediator", family: "NF" },
-  { code: "ENFJ", label: "The Protagonist", family: "NF" },
-  { code: "ENFP", label: "The Campaigner", family: "NF" },
-  { code: "ISTJ", label: "The Logistician", family: "SJ" },
-  { code: "ISFJ", label: "The Defender", family: "SJ" },
-  { code: "ESTJ", label: "The Executive", family: "SJ" },
-  { code: "ESFJ", label: "The Consul", family: "SJ" },
-  { code: "ISTP", label: "The Virtuoso", family: "SP" },
-  { code: "ISFP", label: "The Adventurer", family: "SP" },
-  { code: "ESTP", label: "The Entrepreneur", family: "SP" },
-  { code: "ESFP", label: "The Entertainer", family: "SP" }
+  { code: "INTJ", label: "The Architect", family: "NT", nickname: "The Strategist" },
+  { code: "INTP", label: "The Logician", family: "NT", nickname: "The Theorist" },
+  { code: "ENTJ", label: "The Commander", family: "NT", nickname: "The Strategist" },
+  { code: "ENTP", label: "The Debater", family: "NT", nickname: "The Innovator" },
+  { code: "INFJ", label: "The Advocate", family: "NF", nickname: "The Visionary" },
+  { code: "INFP", label: "The Mediator", family: "NF", nickname: "The Idealist" },
+  { code: "ENFJ", label: "The Protagonist", family: "NF", nickname: "The Mentor" },
+  { code: "ENFP", label: "The Campaigner", family: "NF", nickname: "The Enthusiast" },
+  { code: "ISTJ", label: "The Logistician", family: "SJ", nickname: "The Inspector" },
+  { code: "ISFJ", label: "The Defender", family: "SJ", nickname: "The Protector" },
+  { code: "ESTJ", label: "The Executive", family: "SJ", nickname: "The Pragmatist" },
+  { code: "ESFJ", label: "The Consul", family: "SJ", nickname: "The Caregiver" },
+  { code: "ISTP", label: "The Virtuoso", family: "SP", nickname: "The Mechanic" },
+  { code: "ISFP", label: "The Adventurer", family: "SP", nickname: "The Artist" },
+  { code: "ESTP", label: "The Entrepreneur", family: "SP", nickname: "The Doer" },
+  { code: "ESFP", label: "The Entertainer", family: "SP", nickname: "The Performer" }
 ];
+
+// MBTI ICONS — distinct symbol per type
+const mbtiIcons = {
+  INTJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M9 21v-7h6v7"/><circle cx="12" cy="11" r="1.2" fill="currentColor"/></svg>',
+  INTP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M7 17l-1.5 1.5M18.5 5.5L17 7"/></svg>',
+  ENTJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17l3-9 4 6 4-9 3 12"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>',
+  ENTP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 2h6M12 8c-3 0-6 2-6 6v2a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-2c0-4-3-6-6-6z"/><path d="M9 14h.01M15 14h.01"/></svg>',
+  INFJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12c4-1 8 3 7 7M19 12c-4-1-8 3-7 7M5 12c4 1 8-3 7-7M19 12c-4 1-8-3-7-7"/></svg>',
+  INFP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/></svg>',
+  ENFJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7M12 12v3M9 16h6"/></svg>',
+  ENFP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
+  ISTJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/></svg>',
+  ISFJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 7.5-8 12-8 12z"/><path d="M9 11l2 2 4-4"/></svg>',
+  ESTJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6l2-7 4 14 2-7h4"/></svg>',
+  ESFJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><path d="M7.5 9c.5-.5 1-1 2-1M14 9c-.5-.5-1-1-2-1"/></svg>',
+  ISTP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3l3 3-9 9H5.7v-3z"/><path d="M13 8l3 3M3 21h18"/></svg>',
+  ISFP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="11" r="2"/><circle cx="6" cy="13" r="2.5"/><circle cx="10" cy="19" r="2"/><path d="M12 22a10 10 0 0 1-7-7"/></svg>',
+  ESTP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-12h-7z"/></svg>',
+  ESFP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>'
+};
 
 const families = [
   { code: "NT", name: "Analysts", sub: "Intuitive · Thinking", color: "var(--nt)" },
@@ -1030,103 +1074,80 @@ const ennData = [
   { num: "9", label: "The Peacemaker", tagline: "Receptive, reassuring", triad: "body", color: "var(--enn9)" }
 ];
 
+// ENNEAGRAM ICONS
+const ennIcons = {
+  "1": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l3-1v18M7 21h10"/></svg>',
+  "2": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/></svg>',
+  "3": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5 1.5 6L12 16.5 6 19.5l1.5-6L3 9l6-1z"/></svg>',
+  "4": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2C5 6 5 10 8 12c-3 2-3 8 4 10M16 2c3 4 3 8 0 10 3 2 3 8-4 10"/></svg>',
+  "5": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L21 21"/></svg>',
+  "6": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 7.5-8 12-8 12z"/></svg>',
+  "7": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>',
+  "8": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12L12 4l5.5 8L12 20z"/><circle cx="12" cy="12" r="2"/></svg>',
+  "9": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>'
+};
+
 const triadInfo = {
   head: { name: "Head", emotion: "Fear", color: "var(--triad-head)", types: ["5", "6", "7"] },
   heart: { name: "Heart", emotion: "Shame", color: "var(--triad-heart)", types: ["2", "3", "4"] },
   body: { name: "Body", emotion: "Anger", color: "var(--triad-body)", types: ["8", "9", "1"] }
 };
 
-// MBTI descriptions per type — bird-themed
+// MBTI descriptions sourced from funkymbtifiction.com (Charity Bishop)
+// Each weaves the goose's name through a bird-flavored take on the type.
 const mbtiDesc = {
-  INTJ: "the lone heron — patient, strategic, content to stand still in the reeds while the others flap. Sees three steps ahead and prefers to plan in silence.",
-  INTP: "the thinking owl — turns ideas over endlessly, more curious than committed. Treats every conversation as a puzzle worth dismantling.",
-  ENTJ: "the lead goose in the V — natural pacesetter, wired to organize the migration. Decisive, direct, allergic to drift.",
-  ENTP: "the magpie of ideas — bright-eyed, easily delighted by a new shiny thought, quick to argue any side just to feel out its edges.",
-  INFJ: "the quiet swan — moves with intention beneath a still surface, seeing the patterns that others miss. Private, principled, deeply tuned in.",
-  INFP: "the songbird at dawn — interior, idealistic, with a private moral compass that points slightly off true north on purpose.",
-  ENFJ: "the warm-hearted goose-mother — keeps the flock honking encouragement to one another. Gathers strays and remembers everyone's name.",
-  ENFP: "the meadowlark — radiates possibility, can't help but light up the room. Easily bored by structure, easily moved by people.",
-  ISTJ: "the steady sentinel — reliable as the seasons. Will keep the schedule, lock the gate, and remember exactly where everything goes.",
-  ISFJ: "the nesting goose — quietly tending, anticipating needs before they're spoken. The flock's quiet keeper.",
-  ESTJ: "the practical commander — runs a tight nest. Direct, dependable, builds the routines everyone else benefits from.",
-  ESFJ: "the social hen — keeper of warmth and birthdays. Genuinely happiest when everyone else is taken care of.",
-  ISTP: "the kestrel — quiet, observant, tinkers in the corner. Speaks rarely but acts decisively when it matters.",
-  ISFP: "the gentle finch — soft-spoken, deeply aesthetic, lives by inner rhythm rather than outer schedule.",
-  ESTP: "the dive-bombing tern — all reflex and momentum, thrives where others freeze. Negotiates the world by leaping into it.",
-  ESFP: "the cockatoo at the party — bright, present, made of joy and rhythm. Pulls others into the moment whether they meant to come or not."
+  INTJ: name => `${name} is what funky-MBTI calls <em>The Strategist</em> — a dominant Ni / auxiliary Te combination. ${name} sees patterns emerging long before others do, narrows infinite possibilities into one direct route, and sets goals in images and impressions. They prefer hard work and focused determination over staying open to "all options." On a first date, ${name} probably already knows whether you have a future. Inferior Se can show up as occasional indulgences and a quiet love of physical experience after the planning is done.`,
+  INTP: name => `${name} is <em>The Theorist</em> — dominant Ti, auxiliary Ne. ${name} runs every incoming idea through a private logic gauntlet before accepting it; rationality isn't a tool, it's the entire foundation. ${name} questions premises, tests propositions, and refuses to build on anything without proven first principles. Auxiliary Ne keeps the hypothesis-generator running. Tertiary Si makes them surprisingly attached to certain rituals; inferior Fe means they can be caught off-guard by other people's emotional weather.`,
+  ENTJ: name => `${name} is <em>The Strategist</em> in the extraverted-thinking lineage — dominant Te, auxiliary Ni. Ben Shapiro's "facts don't care about your feelings" is basically ${name}'s native dialect. ${name} expects to be evaluated, and evaluates others, on output and competency rather than personality. Ni gives them long-range vision; tertiary Se gives them appetite. Inferior Fi means feelings tend to get processed late and all at once.`,
+  ENTP: name => `${name} is <em>The Innovator</em> — dominant Ne, auxiliary Ti. Nothing is ever what it first appears to be, and the obvious answer is never the one ${name} wants to pick. They search for hidden connections like a spider tracking vibrations across a giant web — every conversation is a chance to see another angle. ${name} doesn't intend to follow through on most of their ideas; they're just fun to discuss. Inferior Si means routine is their kryptonite.`,
+  INFJ: name => `${name} is <em>The Visionary</em> — dominant Ni, auxiliary Fe. ${name} moves with intention beneath a still surface, seeing patterns and people's underlying currents that others miss. Auxiliary Fe gives them genuine, attuned warmth, but Ni keeps the inner world private. Tertiary Ti makes them analytical when alone; inferior Se can leave them disconnected from their body until they crash into burnout.`,
+  INFP: name => `${name} is <em>The Idealist</em> — dominant Fi, auxiliary Ne. ${name}'s quest in life is to learn what truly matters to them, evaluating every experience against a private inner compass. They count on themselves to be correct about their own inner experiences and let others walk their own paths without judgement. ${name} bombards the world with what they believe; auxiliary Ne lets them imagine countless versions of how things could be. Inferior Te means structure feels external and oppressive — until it's their own.`,
+  ENFJ: name => `${name} is <em>The Mentor</em> — dominant Fe, auxiliary Ni. People are the centre of ${name}'s world: they categorise relationships by dynamic and adapt their behaviour to each person and setting so everyone feels at ease. Their mind clears and connects to whoever they're talking to. Auxiliary Ni gives them long-range read on what people need before they say it. Inferior Ti can make self-analysis hard — they need to talk things out to know their own feelings.`,
+  ENFP: name => `${name} is <em>The Enthusiast</em> — dominant Ne, auxiliary Fi. ${name} considers ideas from every angle, refusing to dismiss anyone without hearing them. They value debate but won't entertain anything that triggers a moral "no" from auxiliary Fi. ${name} uses new experiences to test their inner sense of things and to discover their actual beliefs. Tertiary Te is their distant taskmaster; inferior Si leaves them allergic to repetition.`,
+  ISTJ: name => `${name} is <em>The Inspector</em> — dominant Si, auxiliary Te. ${name} runs life by what's been proven: detailed memory, dependable systems, methodical order. They trust track records and lived experience over speculation. Auxiliary Te makes them quietly efficient; tertiary Fi gives them strong (if rarely-spoken) personal values. Inferior Ne is where stress lives — sudden change can spook them.`,
+  ISFJ: name => `${name} is <em>The Protector</em> — dominant Si, auxiliary Fe. ${name} anticipates needs before they're spoken, remembering everyone's preferences and quietly tending to small things others overlook. Auxiliary Fe keeps them attuned to social warmth; tertiary Ti gives them surprising depth of opinion when pressed. Inferior Ne means they prefer the known — but when they imagine worst-case scenarios, they imagine them vividly.`,
+  ESTJ: name => `${name} is <em>The Pragmatist</em> — dominant Te, auxiliary Si. ${name} hoards data: facts, figures, statistics, references. They organise time, environment and tasks by efficiency and replace whatever isn't working. Auxiliary Si means proven methods earn their trust; mastery matters more than getting it done quickly. Tertiary Ne provides humour and the occasional curveball; inferior Fi means feelings can crash in hard during difficulty.`,
+  ESFJ: name => `${name} is <em>The Caregiver</em> — dominant Fe, auxiliary Si. ${name} reads the room, tunes their behaviour to its dynamic, and runs on the joy of making everyone present feel comfortable. Auxiliary Si gives them rituals, traditions and a long memory for who likes what. Tertiary Ne adds spark and humour. Inferior Ti can make them slow to question their own assumptions — they often need someone else's friction to see clearly.`,
+  ISTP: name => `${name} is <em>The Mechanic</em> — dominant Ti, auxiliary Se. ${name} learns by doing, taking systems apart with their hands to understand the mechanism. They speak rarely but act decisively. Auxiliary Se keeps them present and reactive; tertiary Ni gives a quiet long-game read on people. Inferior Fe means social niceties feel unnecessary — they'll skip the small talk and tell you the truth.`,
+  ISFP: name => `${name} is <em>The Artist</em> — dominant Fi, auxiliary Se. ${name} sees everything for what it is, trusting the information their senses gather. Their actions express what they value; words feel like a poor substitute. ${name} accepts people for who they are or wants nothing to do with them — there's no in-between. Tertiary Ni surfaces in private daydreams; inferior Te means external structure has to align with their inner compass or it bounces off.`,
+  ESTP: name => `${name} is <em>The Doer</em> — dominant Se, auxiliary Ti. Hemingway's "live completely in the very second of the present" is ${name}'s default state. They notice opportunities and take them — pulling the car over for a whitewater raft sign, signing up for the next thing. Auxiliary Ti makes them surprisingly analytical mid-action. Tertiary Fe can make them charming; inferior Ni means they don't always see consequences until they arrive.`,
+  ESFP: name => `${name} is <em>The Performer</em> — dominant Se, auxiliary Fi. ${name} lives through their senses and reactions to the physical environment, with constant self-awareness anchored in sensation. Auxiliary Fi gives them a fierce private compass on what feels right. Tertiary Te can surprise people who underestimated them; inferior Ni means they prefer the present and may underestimate where current paths lead.`
 };
 
-// Enneagram descriptions
+// Enneagram descriptions, also from funkymbtifiction
 const ennDesc = {
-  "1": "carries an inner voice of 'should be better' — strives for what's right, sometimes at the cost of what's easy.",
-  "2": "leads with the heart outstretched — finds purpose in caring, must learn to receive as well as give.",
-  "3": "moves toward goals like a homing pigeon — driven by the shape of success, learning to distinguish their image from themselves.",
-  "4": "holds beauty and longing in the same beat — a romantic of the inner life, always reaching for the missing piece.",
-  "5": "guards a private library of mind — observes the world from a safe perch, conserving energy for what matters.",
-  "6": "scans the horizon for threats and allies — loyal to the bone, finding courage by walking through doubt.",
-  "7": "chases the next bright idea like a swallow on the wing — joyful, scattered, learning to land.",
-  "8": "fronts the flock without flinching — protects, confronts, leads with raw force; softens by trusting others.",
-  "9": "makes peace by finding the still water — easygoing, attuned, learning that their presence matters too."
+  "1": "is one of the body/anger triad. Carries a strong inner voice of 'should be better' and channels life through the question of what's right. Will set high standards for themselves first, others second, and feels personal responsibility for whatever they see going wrong.",
+  "2": "leads with the heart triad — root emotion is shame, channeled into being needed. Finds purpose in caring and connection, and must learn that receiving is as important as giving, or risk burnout dressed up as devotion.",
+  "3": "is heart-triad — image and identity sit at the core. Moves toward goals like a homing pigeon, naturally adapting to whichever shape success takes in their environment. The work is distinguishing the image from the self.",
+  "4": "is heart-triad and lives most vividly in the gap between what is and what could be. Romantic about the inner life, deeply individualistic, often finding meaning in beauty, longing, and the things others miss.",
+  "5": "is head-triad — root emotion is fear, managed by withdrawing into knowledge. Guards a private library of mind, conserving energy and attention for what genuinely matters. Observation before participation.",
+  "6": "is head-triad and the type most attuned to threat and trust. Scans the horizon for what could go wrong and who can be counted on. Loyal to the bone; courage is their growth, not their default.",
+  "7": "is head-triad. Their motto is 'you only live once, so live your best life' — they reframe pain into possibility and chase the next bright thing. Looks for the silver lining in every cloud and expects a pot of gold at the end. Fear of being trapped or stuck in unhappiness drives most of the engine.",
+  "8": "is body/anger-triad. Fronts the room without flinching, wired to protect, confront, and lead through raw force. Softens by trusting others with vulnerability — which feels riskier to an 8 than physical danger does.",
+  "9": "is body-triad — anger is real but submerged. Makes peace by finding the still water, attuning to others, and quietly merging. The growth is realising their own presence and preferences matter."
 };
 
-// MBTI + Enneagram combo descriptors (programmatic but feel hand-crafted)
-function comboDescription(c) {
-  if (!c.mbti) return "Untyped — a goose of mystery still circling the pond.";
-
-  const mbtiInfo = mbtiTypes.find(t => t.code === c.mbti);
-  const fam = families.find(f => f.code === mbtiInfo.family);
-  const ennInfo = c.enn ? ennData.find(e => e.num === c.enn) : null;
-  const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
-
-  let text = `<strong>${c.mbti}</strong> · <em>${mbtiInfo.label}</em> — ${mbtiDesc[c.mbti]}`;
-
-  if (ennInfo) {
-    text += ` Layered with the <strong>Enneagram ${c.enn}</strong> (${ennInfo.label.toLowerCase()}), ${ennDesc[c.enn]}`;
-    text += ` Rooted in the <strong>${tri.name} triad</strong>, the core current is ${tri.emotion.toLowerCase()} — felt and metabolised, not always named.`;
-    if (c.wing) {
-      const wingNum = c.wing.split('w')[1];
-      const wingInfo = ennData.find(e => e.num === wingNum);
-      text += ` The wing toward <strong>${c.wing}</strong> brings a flavor of the ${wingInfo.label.toLowerCase()} alongside.`;
-    }
-    // Combo flavor
-    text += ` ${comboFlavor(c.mbti, c.enn)}`;
-  } else {
-    text += ` <em>Enneatype not yet recorded — half the picture, half the song.</em>`;
-  }
-
-  return text;
-}
-
-// Hand-curated combo flavor for the most common combos
-function comboFlavor(mbti, enn) {
-  const key = `${mbti}-${enn}`;
-  const map = {
-    "INFP-2": "An INFP-2 is a goose who feels everything twice — once for themselves, once for whoever they're with. Soft beak, fierce inner compass.",
-    "INFP-4": "An INFP-4 is the dreamer of dreamers — keeps a private nest of feelings most never see, but the songs that come out of it are the ones the flock remembers.",
-    "INTJ-1": "An INTJ-1 builds the blueprint and then enforces it on themselves first — quietly demanding, quietly excellent.",
-    "INTJ": "An INTJ on its own is already an architect; the lack of an enneatype here just means we haven't seen the engine yet.",
-    "ENFJ-6": "An ENFJ-6 is the goose who calls everyone home before the storm — warm, anticipatory, occasionally over-vigilant on the flock's behalf.",
-    "ESFP-8": "An ESFP-8 is full-throttle presence — lives loud, loves loud, doesn't ask permission to take up the room they were going to take up anyway.",
-    "ESFP-7": "An ESFP-7 is sunlight-on-water energy — the goose who turns a regular afternoon into something everyone tells stories about later.",
-    "ENTJ-8": "An ENTJ-8 is twice-distilled command — strategic vision plus raw drive. The goose who would actually plan the migration *and* lead it.",
-    "INFJ-2": "An INFJ-2 is a quiet healer — sees what people need before they say it, gives without spectacle, needs more rest than they admit.",
-    "INTP-5": "An INTP-5 is the most introverted bird in the pond — both types pull inward, and together they build a genuinely private inner world.",
-    "ESFP-7-7w6": "An ESFP-7w6 brings warmth alongside the spark — the loyal life-of-the-party rather than the chaotic one.",
-    "ESFP-7-7w8": "An ESFP-7w8 is sparkle with teeth — fun, yes, but with backbone you only notice when you cross it.",
-    "ISFJ-2": "An ISFJ-2 is the quiet keeper of the flock — remembers how everyone takes their tea, protects the small things others overlook.",
-    "ISFJ-6": "An ISFJ-6 is loyalty in its purest plumage — steady, watchful, the goose you'd want guarding the eggs.",
-    "ESTJ-6": "An ESTJ-6 builds structure as a form of devotion — the rules exist because they keep the flock safe.",
-    "ESFJ-1": "An ESFJ-1 is the goose who organizes the potluck and politely fixes the spelling on the sign-up sheet.",
-    "INFP-4-4w3": "A 4w3 INFP is the introspective artist who still wants to be seen — the songbird who writes the song *and* takes the stage.",
-    "INFP-4-4w5": "A 4w5 INFP is the deep-water type — feelings in one wing, ideas in the other, both private until trusted.",
-    "INTJ-1-default": "Plans in silence and corrects in silence — two types that share a deep tolerance for solitude.",
-    "ENTP-7": "An ENTP-7 is two species of curiosity in one body — the goose who has six tabs open and is genuinely thriving.",
-    "ISFP-9": "An ISFP-9 is the most peaceable nest in the marsh — quiet aesthetic, low conflict, surprisingly stubborn at the core.",
-    "INFJ-2-default": "Sensitive antennae plus a giving heart — wonderful and exhausting in equal measure.",
-  };
-  // try wing-specific first
-  return map[`${mbti}-${enn}`] || "";
-}
+// Wing flavor (light)
+const wingDesc = {
+  "1w9": "with a 9 wing — calmer, more philosophical, slower to react",
+  "1w2": "with a 2 wing — warmer, more interpersonal in their reform",
+  "2w1": "with a 1 wing — principled and a touch more reserved in their giving",
+  "2w3": "with a 3 wing — outwardly warmer, more socially polished",
+  "3w2": "with a 2 wing — relational, charming, people-aware",
+  "3w4": "with a 4 wing — more introspective and image-conscious in a quieter key",
+  "4w3": "with a 3 wing — the introspective artist who still wants to be seen",
+  "4w5": "with a 5 wing — deep-water type, more withdrawn and observational",
+  "5w4": "with a 4 wing — the more imaginative, melancholic 5",
+  "5w6": "with a 6 wing — the more loyal, alliance-building 5; analytical with an eye for risk",
+  "6w5": "with a 5 wing — quieter, more analytical loyalty",
+  "6w7": "with a 7 wing — the warmer, more sociable loyalist",
+  "7w6": "with a 6 wing — warmth alongside the spark; loyalty inside the fun",
+  "7w8": "with an 8 wing — sparkle with teeth; backbone you only notice when crossed",
+  "8w7": "with a 7 wing — the more outgoing, adventurous challenger",
+  "8w9": "with a 9 wing — the calmer, gentler-fronted challenger",
+  "9w8": "with an 8 wing — peaceable until pushed, then surprisingly firm",
+  "9w1": "with a 1 wing — peaceable with a quiet sense of how things should be"
+};
 
 let filter = { search: "", dim: null, family: null, mbti: null, enn: null, triad: null };
 let rosterSort = { by: "name", dir: "asc" };
@@ -1134,6 +1155,8 @@ let selectedProfile = null;
 let suggIdx = -1;
 
 function getFamily(mbti) { return mbtiTypes.find(t => t.code === mbti)?.family; }
+function getMbtiInfo(code) { return mbtiTypes.find(t => t.code === code); }
+function getEnnInfo(num) { return ennData.find(e => e.num === num); }
 
 function passesFilter(c) {
   if (filter.dim !== null && (!c.mbti || c.mbti[filter.dim.key] !== filter.dim.value)) return false;
@@ -1143,35 +1166,32 @@ function passesFilter(c) {
   if (filter.triad && (!c.enn || !triadInfo[filter.triad].types.includes(c.enn))) return false;
   return true;
 }
-
 function anyFilterActive() {
   return filter.dim || filter.family || filter.mbti || filter.enn || filter.triad;
 }
 
-function chipHTML(m) {
+function chipHTML(m, tagType) {
   const passes = passesFilter(m);
   const cls = (anyFilterActive() && !passes ? "muted" : "");
-  const tag = m.wing || m.mbti || m.enn || "";
+  let tag = "";
+  if (tagType === "mbti") tag = m.mbti || "";
+  else if (tagType === "enn") tag = m.wing || (m.enn ? "Type " + m.enn : "");
+  else if (tagType === "none") tag = "";
+  else tag = m.wing || m.mbti || (m.enn ? "Type " + m.enn : "");
   return `<span class="chip ${cls}" data-goose="${m.name}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
 }
 
-// SEARCH SUGGESTIONS
+// SUGGESTIONS
 function renderSuggestions() {
   const q = filter.search.toLowerCase();
   const box = document.getElementById("suggestions");
-  if (!q) {
-    box.classList.remove("open");
-    box.innerHTML = "";
-    suggIdx = -1;
-    return;
-  }
+  if (!q) { box.classList.remove("open"); box.innerHTML = ""; suggIdx = -1; return; }
   const matches = characters.filter(c =>
     c.name.toLowerCase().includes(q) || (c.nick && c.nick.toLowerCase().includes(q))
   );
   if (matches.length === 0) {
     box.innerHTML = `<div class="sugg-item" style="cursor:default; color: var(--ink-fade); font-style: italic;">No goose by that name in the flock.</div>`;
-    box.classList.add("open");
-    return;
+    box.classList.add("open"); return;
   }
   box.innerHTML = matches.map((c, i) => `
     <div class="sugg-item ${i === suggIdx ? 'focused' : ''}" data-name="${c.name}">
@@ -1179,15 +1199,12 @@ function renderSuggestions() {
         <span class="sugg-name">${c.name}</span>
         ${c.nick ? `<span class="sugg-nick">aka ${c.nick}</span>` : ''}
       </div>
-      <div class="sugg-meta">${c.mbti || '—'} · ${c.enn ? 'Type ' + c.enn : '—'}</div>
+      <div class="sugg-meta">${c.mbti || '—'} · ${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div>
     </div>
   `).join("");
   box.classList.add("open");
   box.querySelectorAll(".sugg-item[data-name]").forEach(el => {
-    el.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      selectGoose(el.dataset.name);
-    });
+    el.addEventListener("mousedown", (e) => { e.preventDefault(); selectGoose(el.dataset.name); });
   });
 }
 
@@ -1208,26 +1225,72 @@ function closeProfile() {
   renderSuggestions();
 }
 
+function rarityLabel(pct) {
+  if (pct >= 10) return "very common";
+  if (pct >= 5) return "common";
+  if (pct >= 3) return "moderately rare";
+  if (pct >= 2) return "rare";
+  return "very rare";
+}
+
 function renderProfile() {
   const card = document.getElementById("profile-card");
-  if (!selectedProfile) {
-    card.classList.remove("open");
-    return;
-  }
+  if (!selectedProfile) { card.classList.remove("open"); return; }
   const c = characters.find(x => x.name === selectedProfile);
   if (!c) { card.classList.remove("open"); return; }
 
-  const mbtiInfo = mbtiTypes.find(t => t.code === c.mbti);
+  const mbtiInfo = getMbtiInfo(c.mbti);
   const fam = mbtiInfo ? families.find(f => f.code === mbtiInfo.family) : null;
-  const ennInfo = c.enn ? ennData.find(e => e.num === c.enn) : null;
+  const ennInfo = c.enn ? getEnnInfo(c.enn) : null;
   const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
 
-  // Find similar geese
+  // Stats
   const sameMbti = characters.filter(o => o.name !== c.name && o.mbti === c.mbti);
   const sameEnn = characters.filter(o => o.name !== c.name && c.enn && o.enn === c.enn);
+  const sameWing = c.wing ? characters.filter(o => o.name !== c.name && o.wing === c.wing) : [];
+  const sameTriad = ennInfo ? characters.filter(o => o.name !== c.name && o.enn && triadInfo[ennInfo.triad].types.includes(o.enn)) : [];
+  const sameFamily = fam ? characters.filter(o => o.name !== c.name && getFamily(o.mbti) === fam.code) : [];
+
+  // Population stats
+  const pop = mbtiInfo ? mbtiPopulation[c.mbti] : null;
+  const popSorted = Object.entries(mbtiPopulation).sort((a,b) => b[1] - a[1]);
+  const popRank = pop ? popSorted.findIndex(([code]) => code === c.mbti) + 1 : null;
+
+  // Flock vs world prevalence
+  const flockMbtiCount = characters.filter(o => o.mbti === c.mbti).length;
+  const flockMbtiPct = (flockMbtiCount / characters.length) * 100;
+  const flockVsWorld = pop ? flockMbtiPct - pop : null;
+
+  // Compose description: MBTI base + enneagram layer + wing nuance
+  let desc = "";
+  if (mbtiInfo && mbtiDesc[c.mbti]) {
+    desc += mbtiDesc[c.mbti](c.name);
+  }
+  if (ennInfo) {
+    desc += ` On the Enneagram side, ${c.name} ${ennDesc[c.enn]}`;
+    if (c.wing && wingDesc[c.wing]) {
+      desc += ` Specifically a <strong>${c.wing}</strong>, ${wingDesc[c.wing]}.`;
+    }
+  } else if (mbtiInfo) {
+    desc += ` <em>${c.name}'s enneatype isn't yet on file — half the picture, half the song.</em>`;
+  }
+
+  // MBTI icon for the profile pair
+  const mbtiIconHTML = mbtiIcons[c.mbti] || '';
+  const ennIconHTML = c.enn ? ennIcons[c.enn] : '';
+  const mbtiColor = fam ? fam.color : 'var(--accent)';
+  const ennColor = ennInfo ? ennInfo.color : 'var(--accent)';
 
   document.getElementById("profile-content").innerHTML = `
-    <div class="profile-name">${c.name}</div>
+    <div class="profile-name-row">
+      <div class="profile-icon-pair">
+        ${c.mbti ? `<div class="profile-type-icon mbti" style="--mbti-color: ${mbtiColor};" title="${c.mbti}">${mbtiIconHTML}</div>` : ''}
+        ${c.enn ? `<div class="profile-type-icon enn" style="--enn-color: ${ennColor};" title="Type ${c.enn}">${ennIconHTML}</div>` : ''}
+      </div>
+      <div>
+        <div class="profile-name">${c.name}</div>
+      </div>
+    </div>
     <div class="profile-nick">${c.nick ? `also known as ${c.nick}` : (mbtiInfo ? mbtiInfo.label : 'Uncharted')}${ennInfo ? ` · ${ennInfo.label}` : ''}</div>
 
     <div class="profile-stats">
@@ -1243,34 +1306,79 @@ function renderProfile() {
       </div>
       <div class="stat">
         <div class="stat-key">Enneagram</div>
-        <div class="stat-val ${!c.enn ? 'muted' : ''}">${c.enn ? 'Type ' + c.enn : '—'}</div>
+        <div class="stat-val ${!c.enn ? 'muted' : ''}">${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div>
         <div class="stat-sub">${ennInfo ? ennInfo.tagline : ''}</div>
       </div>
       <div class="stat">
-        <div class="stat-key">Wing · Triad</div>
-        <div class="stat-val ${!c.wing && !tri ? 'muted' : ''}">${c.wing || (tri ? tri.name : '—')}</div>
-        <div class="stat-sub">${tri ? `${tri.name} · ${tri.emotion}` : ''}</div>
+        <div class="stat-key">Triad</div>
+        <div class="stat-val ${!tri ? 'muted' : ''}">${tri ? tri.name : '—'}</div>
+        <div class="stat-sub">${tri ? `Root emotion · ${tri.emotion.toLowerCase()}` : ''}</div>
       </div>
     </div>
 
-    <div class="profile-desc">${comboDescription(c)}</div>
+    <div class="profile-section-lbl">Profile</div>
+    <div class="profile-desc">${desc}</div>
+
+    <div class="profile-section-lbl">${c.name} by the numbers</div>
+    <div class="profile-stats-row">
+      ${pop !== null ? `
+      <div class="profile-stat-card ${pop < 3 ? 'rare' : (pop > 8 ? 'common' : '')}">
+        <div class="profile-stat-card-key">In the world</div>
+        <div class="profile-stat-card-val">${pop}% of people are ${c.mbti}</div>
+        <div class="profile-stat-card-sub">Rank ${popRank} of 16 — ${rarityLabel(pop)}</div>
+      </div>` : ''}
+      <div class="profile-stat-card flock">
+        <div class="profile-stat-card-key">In the flock</div>
+        <div class="profile-stat-card-val">${flockMbtiCount} of ${characters.length} are ${c.mbti}</div>
+        <div class="profile-stat-card-sub">${flockMbtiPct.toFixed(0)}% of catalogued geese</div>
+      </div>
+      ${flockVsWorld !== null ? `
+      <div class="profile-stat-card">
+        <div class="profile-stat-card-key">Over/under-represented</div>
+        <div class="profile-stat-card-val">${flockVsWorld > 0 ? '+' : ''}${flockVsWorld.toFixed(1)} points</div>
+        <div class="profile-stat-card-sub">vs general population</div>
+      </div>` : ''}
+      ${ennInfo ? `
+      <div class="profile-stat-card" style="border-left-color: ${ennInfo.color};">
+        <div class="profile-stat-card-key">Same enneatype</div>
+        <div class="profile-stat-card-val">${sameEnn.length + 1} ${sameEnn.length + 1 === 1 ? 'goose' : 'geese'}</div>
+        <div class="profile-stat-card-sub">share Type ${c.enn}</div>
+      </div>
+      <div class="profile-stat-card" style="border-left-color: ${tri.color};">
+        <div class="profile-stat-card-key">Same triad</div>
+        <div class="profile-stat-card-val">${sameTriad.length + 1} ${sameTriad.length + 1 === 1 ? 'goose' : 'geese'}</div>
+        <div class="profile-stat-card-sub">in the ${tri.name.toLowerCase()} triad</div>
+      </div>` : ''}
+      ${fam ? `
+      <div class="profile-stat-card" style="border-left-color: ${fam.color};">
+        <div class="profile-stat-card-key">Same family</div>
+        <div class="profile-stat-card-val">${sameFamily.length + 1} ${sameFamily.length + 1 === 1 ? 'goose' : 'geese'}</div>
+        <div class="profile-stat-card-sub">in the ${fam.name}</div>
+      </div>` : ''}
+      ${c.wing && sameWing.length ? `
+      <div class="profile-stat-card">
+        <div class="profile-stat-card-key">Same wing</div>
+        <div class="profile-stat-card-val">${sameWing.length + 1} ${sameWing.length + 1 === 1 ? 'goose' : 'geese'}</div>
+        <div class="profile-stat-card-sub">share ${c.wing}</div>
+      </div>` : ''}
+    </div>
 
     <div class="profile-similar">
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same MBTI</div>
-        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m)).join("") : '<span class="muted-txt">No others share this type.</span>'}</div>
+        <div class="profile-similar-lbl">Same MBTI as ${c.name}</div>
+        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">No others share this MBTI.</span>'}</div>
       </div>
       ${c.enn ? `
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same Enneagram</div>
-        <div>${sameEnn.length ? sameEnn.map(m => chipHTML(m)).join("") : '<span class="muted-txt">No others share this type.</span>'}</div>
+        <div class="profile-similar-lbl">Same Enneagram as ${c.name}</div>
+        <div>${sameEnn.length ? sameEnn.map(m => chipHTML(m, "mbti")).join("") : '<span class="muted-txt">No others share this enneatype.</span>'}</div>
       </div>` : ''}
     </div>
   `;
   card.classList.add("open");
 }
 
-// SECTIONS
+// Sections — DIMS, FAMILIES, ENN, TRIADS, INSIGHTS, ROSTER
 function renderDims() {
   const host = document.getElementById("dims");
   host.innerHTML = "";
@@ -1307,11 +1415,11 @@ function renderDims() {
         <div class="dim-members-inner">
           <div class="dim-members-col a ${aActive ? 'highlight' : (bActive ? 'dim' : '')}">
             <div class="dim-members-lbl">${d.a_name}s · ${aMembers.length}</div>
-            <div>${aMembers.map(m => chipHTML(m)).join("")}</div>
+            <div>${aMembers.map(m => chipHTML(m, "mbti")).join("")}</div>
           </div>
           <div class="dim-members-col b ${bActive ? 'highlight' : (aActive ? 'dim' : '')}">
             <div class="dim-members-lbl">${d.b_name}s · ${bMembers.length}</div>
-            <div>${bMembers.map(m => chipHTML(m)).join("")}</div>
+            <div>${bMembers.map(m => chipHTML(m, "mbti")).join("")}</div>
           </div>
         </div>
       </div>
@@ -1346,7 +1454,14 @@ function renderFamilies() {
         ? '<span class="fam-type-members empty">—</span>'
         : `<span class="fam-type-members">${members.map(m => m.name).join(", ")}</span>`;
       const active = filter.mbti === t.code ? "active" : "";
-      return `<div class="fam-type ${active}" data-mbti="${t.code}"><span class="fam-type-code">${t.code}</span>${memberStr}</div>`;
+      const iconHTML = mbtiIcons[t.code] || '';
+      return `<div class="fam-type ${active}" data-mbti="${t.code}">
+        <span class="fam-type-code">
+          <span class="fam-type-icon-mini">${iconHTML}</span>
+          ${t.code}
+        </span>
+        ${memberStr}
+      </div>`;
     }).join("");
 
     const el = document.createElement("div");
@@ -1384,18 +1499,19 @@ function renderFamilies() {
     detail.innerHTML = `
       <div class="fam-detail-title">${f.name}</div>
       <div class="fam-detail-sub">${f.sub} · ${members.length} geese in the flock</div>
-      <div>${members.map(m => chipHTML(m)).join("")}</div>
+      <div>${members.map(m => chipHTML(m, "mbti")).join("")}</div>
     `;
   } else if (filter.mbti) {
     const t = mbtiTypes.find(x => x.code === filter.mbti);
     const f = families.find(x => x.code === t.family);
     const members = characters.filter(c => c.mbti === t.code);
+    const pop = mbtiPopulation[t.code];
     detail.style.setProperty("--fc", f.color);
     detail.className = "fam-detail open";
     detail.innerHTML = `
       <div class="fam-detail-title">${t.code} · ${t.label}</div>
-      <div class="fam-detail-sub">${f.name} family · ${members.length} ${members.length === 1 ? 'goose' : 'geese'}</div>
-      <div>${members.length ? members.map(m => chipHTML(m)).join("") : '<span class="muted-txt">None of this type yet.</span>'}</div>
+      <div class="fam-detail-sub">${f.name} family · ${members.length} ${members.length === 1 ? 'goose' : 'geese'} in flock · ${pop}% of general population</div>
+      <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">None of this type yet.</span>'}</div>
     `;
   } else {
     detail.className = "fam-detail";
@@ -1416,8 +1532,7 @@ function arcPath(s, e, ro, ri) {
 function renderWheel() {
   const svg = document.getElementById("enn-wheel");
   svg.innerHTML = "";
-  const rOuter = 100, rInner = 50;
-  const sliceAngle = 360 / 9;
+  const rOuter = 100, rInner = 50, sliceAngle = 360 / 9;
   const cs = getComputedStyle(document.body);
   const creamColor = cs.getPropertyValue('--cream').trim();
   const inkColor = cs.getPropertyValue('--ink').trim();
@@ -1497,8 +1612,8 @@ function renderEnnList() {
       renderAll();
     });
     row.innerHTML = `
-      <div class="enn-dot">${e.num}</div>
-      <div><div class="enn-row-label">${e.label}</div><div class="enn-row-sub">${e.tagline}</div></div>
+      <div class="enn-icon-wrap">${ennIcons[e.num]}</div>
+      <div><div class="enn-row-label"><span class="enn-row-num">${e.num}.</span>${e.label}</div><div class="enn-row-sub">${e.tagline}</div></div>
       <div class="enn-row-count">${members.length}</div>
     `;
     host.appendChild(row);
@@ -1510,9 +1625,14 @@ function renderEnnList() {
     const members = characters.filter(c => c.enn === filter.enn);
     detail.style.setProperty("--e-current", e.color);
     detail.innerHTML = `
-      <div class="enn-detail-title"><span class="num">${filter.enn}.</span> ${e.label}</div>
-      <div class="enn-detail-sub">${e.tagline} · ${triadInfo[e.triad].name} triad</div>
-      <div>${members.length ? members.map(m => chipHTML(m)).join("") : '<div style="font-family: Fraunces, serif; font-style: italic; color: var(--ink-fade);">No geese of this type yet.</div>'}</div>
+      <div class="enn-detail-title">
+        <div class="enn-detail-icon-wrap">${ennIcons[filter.enn]}</div>
+        <span><span class="num">${filter.enn}.</span> ${e.label}</span>
+      </div>
+      <div class="enn-detail-sub">${e.tagline} · ${triadInfo[e.triad].name} triad · root emotion is ${triadInfo[e.triad].emotion.toLowerCase()}</div>
+      <div class="enn-detail-body">Type ${filter.enn} ${ennDesc[filter.enn]}</div>
+      <div class="enn-detail-members-lbl">Members · ${members.length}</div>
+      <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<div style="font-family: Fraunces, serif; font-style: italic; color: var(--ink-fade);">No geese of this type yet.</div>'}</div>
     `;
   } else {
     detail.style.setProperty("--e-current", "var(--ink)");
@@ -1555,7 +1675,7 @@ function renderTriads() {
     detail.innerHTML = `
       <div class="triad-detail-title">${t.name} triad · ${t.emotion}</div>
       <div class="triad-detail-sub">Types ${t.types.join(", ")} · ${members.length} geese</div>
-      <div>${members.map(m => chipHTML(m)).join("")}</div>
+      <div>${members.map(m => chipHTML(m, "enn")).join("")}</div>
     `;
   } else {
     detail.className = "triad-detail";
@@ -1563,14 +1683,10 @@ function renderTriads() {
   }
 }
 
-// ====== INSIGHTS ======
 function similarity(a, b) {
-  // Higher = more similar. MBTI dim matches + enneagram triad/family bonuses.
   let score = 0;
   if (a.mbti && b.mbti) {
-    for (let i = 0; i < 4; i++) {
-      if (a.mbti[i] === b.mbti[i]) score += 1;
-    }
+    for (let i = 0; i < 4; i++) if (a.mbti[i] === b.mbti[i]) score += 1;
     if (getFamily(a.mbti) === getFamily(b.mbti)) score += 1;
   }
   if (a.enn && b.enn) {
@@ -1582,69 +1698,59 @@ function similarity(a, b) {
   return score;
 }
 
-function distance(a, b) {
-  // For "most different": lower-similarity pair, but require both be fully typed
-  if (!a.mbti || !b.mbti || !a.enn || !b.enn) return null;
-  return -similarity(a, b);
-}
-
 function renderInsights() {
   const host = document.getElementById("insights");
   const fully = characters.filter(c => c.mbti && c.enn);
 
-  // Most similar pair
   let bestPair = null, bestScore = -1;
-  for (let i = 0; i < fully.length; i++) {
+  for (let i = 0; i < fully.length; i++)
     for (let j = i+1; j < fully.length; j++) {
       const s = similarity(fully[i], fully[j]);
       if (s > bestScore) { bestScore = s; bestPair = [fully[i], fully[j]]; }
     }
-  }
 
-  // Most different pair
   let farPair = null, farScore = 999;
-  for (let i = 0; i < fully.length; i++) {
+  for (let i = 0; i < fully.length; i++)
     for (let j = i+1; j < fully.length; j++) {
       const s = similarity(fully[i], fully[j]);
       if (s < farScore) { farScore = s; farPair = [fully[i], fully[j]]; }
     }
-  }
 
-  // Most common MBTI
   const mbtiCounts = {};
   characters.forEach(c => { if (c.mbti) mbtiCounts[c.mbti] = (mbtiCounts[c.mbti]||0)+1; });
   const topMbti = Object.entries(mbtiCounts).sort((a,b)=>b[1]-a[1])[0];
   const topMbtiMembers = characters.filter(c => c.mbti === topMbti[0]);
+  const topMbtiPop = mbtiPopulation[topMbti[0]];
 
-  // Most common Enneagram
   const ennCounts = {};
   characters.forEach(c => { if (c.enn) ennCounts[c.enn] = (ennCounts[c.enn]||0)+1; });
   const topEnn = Object.entries(ennCounts).sort((a,b)=>b[1]-a[1])[0];
   const topEnnMembers = characters.filter(c => c.enn === topEnn[0]);
   const topEnnInfo = ennData.find(e => e.num === topEnn[0]);
 
-  // Rarest MBTI in flock (types with exactly 1)
   const uniques = characters.filter(c => c.mbti && mbtiCounts[c.mbti] === 1);
 
-  // Most common triad
   const triadCounts = { head: 0, heart: 0, body: 0 };
   characters.forEach(c => {
-    if (c.enn) {
-      const t = ennData.find(e => e.num === c.enn).triad;
-      triadCounts[t]++;
-    }
+    if (c.enn) triadCounts[ennData.find(e => e.num === c.enn).triad]++;
   });
   const topTriad = Object.entries(triadCounts).sort((a,b)=>b[1]-a[1])[0];
   const topTriadInfo = triadInfo[topTriad[0]];
 
-  // Introverts vs Extraverts
   const ints = characters.filter(c => c.mbti?.[0] === "I").length;
   const exts = characters.filter(c => c.mbti?.[0] === "E").length;
   const introvertWins = ints > exts;
-
-  // Feelers vs Thinkers
   const feelers = characters.filter(c => c.mbti?.[2] === "F").length;
   const thinkers = characters.filter(c => c.mbti?.[2] === "T").length;
+
+  // Most over-represented type vs population
+  let mostOver = null, mostOverDelta = 0;
+  Object.entries(mbtiCounts).forEach(([code, count]) => {
+    const flockPct = (count / characters.length) * 100;
+    const delta = flockPct - mbtiPopulation[code];
+    if (delta > mostOverDelta) { mostOverDelta = delta; mostOver = code; }
+  });
+  const mostOverInfo = mostOver ? mbtiTypes.find(t => t.code === mostOver) : null;
 
   const cards = [
     {
@@ -1662,7 +1768,7 @@ function renderInsights() {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12l5-5M5 12l5 5M19 12l-5-5M19 12l-5 5"/></svg>',
       title: "Most different",
       headline: `${farPair[0].name} & ${farPair[1].name}`,
-      sub: `Polar opposites · similarity ${-farScore}/8`,
+      sub: `Polar opposites · similarity ${farScore}/8`,
       pairs: [[farPair[0], farPair[1]]],
       note: "These two operate from nearly opposite ends of both systems. Together they'd cover every blind spot — or drive each other a little wild.",
       color: "var(--enn8)"
@@ -1671,9 +1777,10 @@ function renderInsights() {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>',
       title: "Most common MBTI",
       headline: `${topMbti[0]} · ${mbtiTypes.find(t=>t.code===topMbti[0]).label}`,
-      sub: `${topMbti[1]} geese share this type`,
+      sub: `${topMbti[1]} geese · ${topMbtiPop}% of general population`,
       members: topMbtiMembers,
-      note: `The flock leans toward ${mbtiTypes.find(t=>t.code===topMbti[0]).label.toLowerCase().replace('the ','')} energy more than any other.`,
+      tag: "enn",
+      note: `In the wider world, ${topMbti[0]}s make up ${topMbtiPop}% of the population. In this flock they're ${((topMbti[1]/characters.length)*100).toFixed(0)}% — ${((topMbti[1]/characters.length)*100 - topMbtiPop).toFixed(1)} points off the baseline.`,
       color: families.find(f => f.code === getFamily(topMbti[0])).color
     },
     {
@@ -1682,7 +1789,8 @@ function renderInsights() {
       headline: `Type ${topEnn[0]} · ${topEnnInfo.label}`,
       sub: `${topEnn[1]} geese · ${topEnnInfo.tagline}`,
       members: topEnnMembers,
-      note: `The flock has more ${topEnnInfo.label.replace('The ','').toLowerCase()}s than any other type. ${topEnn[0] === '2' ? "A nest full of caretakers." : ""}`,
+      tag: "mbti",
+      note: `The flock has more ${topEnnInfo.label.replace('The ','').toLowerCase()}s than any other enneatype.`,
       color: topEnnInfo.color
     },
     {
@@ -1702,7 +1810,7 @@ function renderInsights() {
       title: "Energy balance",
       headline: introvertWins ? `${ints} introverts vs ${exts} extraverts` : `${exts} extraverts vs ${ints} introverts`,
       sub: introvertWins ? "A quieter flock — many private nests" : "A louder flock — many open meadows",
-      note: `Feelers outnumber thinkers ${feelers}–${thinkers}. This is a flock that runs on heart more than logic.`,
+      note: `Feelers outnumber thinkers ${feelers}–${thinkers}. The general population splits 60/40 the same way (Feeling 59.8% / Thinking 40.2%) per 16Personalities.`,
       color: "var(--accent)"
     },
     {
@@ -1711,10 +1819,19 @@ function renderInsights() {
       headline: `${uniques.length} unique types`,
       sub: "Geese with no MBTI twin in the flock",
       members: uniques,
+      tag: "mbti",
       note: "Each of these geese carries an MBTI no one else in the catalogued flock shares — solo voices in the chorus.",
       color: "var(--gold)"
-    }
-  ];
+    },
+    mostOver ? {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>',
+      title: "Most over-represented",
+      headline: `${mostOver} · ${mostOverInfo.label}`,
+      sub: `+${mostOverDelta.toFixed(1)} points vs world (${mbtiPopulation[mostOver]}% globally)`,
+      note: `${mostOver}s are ${mostOverDelta > 5 ? "dramatically" : "noticeably"} over-represented in this flock compared to general population baselines from 16Personalities — a strong signal of who tends to find their way here.`,
+      color: families.find(f => f.code === getFamily(mostOver)).color
+    } : null
+  ].filter(Boolean);
 
   host.innerHTML = cards.map(card => `
     <div class="insight-card" style="--ic: ${card.color};">
@@ -1725,18 +1842,16 @@ function renderInsights() {
       ${card.pairs ? card.pairs.map(([a,b]) => `
         <div class="insight-pair">
           <span class="insight-pair-name" data-goose="${a.name}">${a.name}</span>
-          <span class="insight-pair-meta">${a.mbti} · ${a.enn ? 'E'+a.enn : ''}</span>
+          <span class="insight-pair-meta">${a.mbti} · ${a.wing || (a.enn ? 'E'+a.enn : '')}</span>
           <span class="insight-arrow">↔</span>
           <span class="insight-pair-name" data-goose="${b.name}">${b.name}</span>
-          <span class="insight-pair-meta">${b.mbti} · ${b.enn ? 'E'+b.enn : ''}</span>
+          <span class="insight-pair-meta">${b.mbti} · ${b.wing || (b.enn ? 'E'+b.enn : '')}</span>
         </div>
       `).join('') : ''}
-      ${card.members ? `<div>${card.members.map(m => chipHTML(m)).join("")}</div>` : ''}
+      ${card.members ? `<div>${card.members.map(m => chipHTML(m, card.tag || "default")).join("")}</div>` : ''}
       <div class="insight-note">${card.note}</div>
     </div>
   `).join("");
-
-  // wire pair-name clicks
   host.querySelectorAll(".insight-pair-name[data-goose]").forEach(el => {
     el.addEventListener("click", () => selectGoose(el.dataset.goose));
   });
@@ -1813,27 +1928,19 @@ function renderRoster() {
   }
 }
 
-// chip click → select goose
 document.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip[data-goose]");
-  if (chip) {
-    e.stopPropagation();
-    selectGoose(chip.dataset.goose);
-  }
+  if (chip) { e.stopPropagation(); selectGoose(chip.dataset.goose); }
 });
 
-// SEARCH input
 const searchEl = document.getElementById("search");
 searchEl.addEventListener("input", (e) => {
   filter.search = e.target.value.trim();
   suggIdx = -1;
   renderSuggestions();
 });
-searchEl.addEventListener("focus", () => {
-  if (filter.search) renderSuggestions();
-});
+searchEl.addEventListener("focus", () => { if (filter.search) renderSuggestions(); });
 searchEl.addEventListener("blur", () => {
-  // delay so click on suggestion still registers
   setTimeout(() => document.getElementById("suggestions").classList.remove("open"), 150);
 });
 searchEl.addEventListener("keydown", (e) => {
@@ -1875,12 +1982,10 @@ function toggleTheme() {
   renderWheel();
 }
 
+// Light is the default; only respect saved choice
 try {
   const saved = localStorage.getItem("goose-theme");
-  if (saved) document.body.setAttribute("data-theme", saved);
-  else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.setAttribute("data-theme", "dark");
-  }
+  if (saved === "dark") document.body.setAttribute("data-theme", "dark");
 } catch(e) {}
 
 function renderAll() {
