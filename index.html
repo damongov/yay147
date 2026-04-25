@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>147 YAY: Silly Geese — Home to the Flock</title>
+<title>147 YAY: Silly Geese — Home of the Flock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1335,15 +1335,30 @@ function renderInsights() {
       if (s > bestScore) { bestScore = s; bestPair = [fully[i], fully[j]]; }
       if (s < farScore) farScore = s;
     }
-  // collect all pairs at the minimum, then pick the goose who appears in the most of them
+  // collect all pairs at the minimum, then cluster members into two opposing sides by MBTI
   const minPairs = allPairs.filter(([,,s]) => s === farScore);
-  const counts = {};
-  minPairs.forEach(([a,b]) => { counts[a.name]=(counts[a.name]||0)+1; counts[b.name]=(counts[b.name]||0)+1; });
-  const anchorName = Object.entries(counts).sort((x,y)=>y[1]-x[1])[0][0];
-  const farAnchor = fully.find(c => c.name === anchorName);
-  const farOpposites = minPairs
-    .filter(([a,b]) => a.name === anchorName || b.name === anchorName)
-    .map(([a,b]) => a.name === anchorName ? b : a);
+  const sideA = new Map(), sideB = new Map();
+  if (minPairs.length) {
+    sideA.set(minPairs[0][0].name, minPairs[0][0]);
+    sideB.set(minPairs[0][1].name, minPairs[0][1]);
+    const aMbti = minPairs[0][0].mbti, bMbti = minPairs[0][1].mbti;
+    minPairs.forEach(([x, y]) => {
+      [x, y].forEach(m => {
+        if (m.mbti === aMbti) sideA.set(m.name, m);
+        else if (m.mbti === bMbti) sideB.set(m.name, m);
+        else if (!sideA.has(m.name) && !sideB.has(m.name)) {
+          // assign to whichever side they appear opposite of more often
+          const oppA = minPairs.filter(([p,q]) => (p===m && sideA.has(q.name)) || (q===m && sideA.has(p.name))).length;
+          const oppB = minPairs.filter(([p,q]) => (p===m && sideB.has(q.name)) || (q===m && sideB.has(p.name))).length;
+          (oppA >= oppB ? sideB : sideA).set(m.name, m);
+        }
+      });
+    });
+  }
+  const farA = [...sideA.values()];
+  const farB = [...sideB.values()];
+  const farAType = farA[0]?.mbti || '';
+  const farBType = farB[0]?.mbti || '';
 
   const mbtiCounts = {};
   characters.forEach(c => { if (c.mbti) mbtiCounts[c.mbti] = (mbtiCounts[c.mbti]||0)+1; });
@@ -1393,10 +1408,10 @@ function renderInsights() {
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12l5-5M5 12l5 5M19 12l-5-5M19 12l-5 5"/></svg>',
       title: "Perfect complements",
-      headline: `${farAnchor.name} ↔ ${farOpposites.map(o => o.name).join(" & ")}`,
-      sub: `The most contrasting ${farOpposites.length > 1 ? 'pairings' : 'pair'} in the flock`,
-      members: [farAnchor, ...farOpposites], tag: "default",
-      note: `${farAnchor.name} sits at the opposite end of nearly every scale from ${farOpposites.map(o => o.name).join(" and ")} — different MBTI letters, different family, different triad. Together they cover every blind spot. A powerful team when they're on the same side.`,
+      headline: `${farA.map(o => o.name).join(" & ")} ↔ ${farB.map(o => o.name).join(", ")}`,
+      sub: `${farAType} and ${farBType} — opposite on every MBTI letter`,
+      members: [...farA, ...farB], tag: "default",
+      note: `${farA.map(o => o.name).join(" and ")} (${farAType}) are different from ${farB.map(o => o.name).join(", ")} (${farBType}) on every MBTI axis, sit in different families, and land in different Enneagram triads. Put them together and there's almost no blind spot left — a powerful team when they're on the same side.`,
       color: "var(--enn6)"
     },
     {
