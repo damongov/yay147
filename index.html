@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>147 YAY: Silly Geese — The Flock</title>
+<title>147 YAY: Silly Geese — Home to the Flock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -218,10 +218,20 @@
   .enn-row-sub { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-fade);text-transform:uppercase;display:block;margin-top:2px; }
   .enn-row-count { font-family:'Fraunces',serif;font-size:20px;color:var(--ec);font-weight:500; }
   .enn-row-body { max-height:0;overflow:hidden;transition:max-height 0.35s ease; }
-  .enn-row.active .enn-row-body { max-height:800px; }
+  .enn-row.active .enn-row-body { max-height:1400px; }
   .enn-row-body-inner { padding:0 14px 14px;border-top:1px dashed var(--line);margin-top:4px;padding-top:12px; }
   .enn-body-desc { font-family:'Fraunces',serif;font-size:14px;color:var(--ink-soft);line-height:1.65;margin-bottom:10px; }
   .enn-body-desc strong { color:var(--ink);font-weight:600; }
+  .enn-bullets { list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:5px; }
+  .enn-bullets li { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.55;padding-left:18px;position:relative; }
+  .enn-bullets li::before { content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--ec); }
+  .enn-bullets li strong { color:var(--ink);font-weight:600; }
+  .enn-wing-contrast { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0; }
+  .enn-wing-col { background:var(--cream-deep);border-radius:2px;padding:10px 12px;border-left:3px solid var(--ec); }
+  .enn-wing-col-head { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--ec);margin-bottom:4px; }
+  .enn-wing-col-text { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.55; }
+  .enn-wing-col-text em { color:var(--ink);font-style:italic; }
+  .enn-wing-col-members { margin-top:8px; }
   .enn-body-members-lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:6px; }
 
   /* TRIADS */
@@ -310,6 +320,7 @@
     .fam-grid { grid-template-columns:1fr;gap:12px; }
     .enn-wheel-wrap { grid-template-columns:1fr;gap:20px; }
     .enn-wheel { max-width:320px;position:static; }
+    .enn-wing-contrast { grid-template-columns:1fr; }
     .triad-grid { grid-template-columns:1fr;gap:10px; }
     .insights-grid { grid-template-columns:1fr; }
     .roster-head, .roster-row { grid-template-columns:1fr 58px 52px 52px;padding:10px 12px;font-size:13px;gap:6px; }
@@ -600,37 +611,73 @@ const triadInfo = {
     ] }
 };
 
-// PLAIN-LANGUAGE MBTI descriptions, no function jargon, name + pronouns woven through
+// PLAIN-LANGUAGE MBTI descriptions, drawn from funkymbtifiction (Charity Bishop / 16 Kinds of Crazy), name + pronouns woven through
 const mbtiDesc = {
-  INTJ: (n,p) => `${n} is the kind of person who's already three moves ahead. ${p.They} likes having a plan, prefers working things out alone before sharing, and isn't interested in doing something just because that's how it's always been done. Direct, private, and very comfortable working independently — ${n} would rather get something <em>right</em> than get it done fast.`,
-  INTP: (n,p) => `${n} is endlessly curious about how things work and why. ${p.They} questions assumptions, takes ideas apart for fun, and is far more interested in understanding something properly than in winning the argument. Reserved, independent, and happiest when given room to think — ${p.they} can lose track of time chasing an interesting problem.`,
-  ENTJ: (n,p) => `${n} is a natural organiser. When something's inefficient or directionless, ${p.they} can't help but step in and structure it. Decisive, ambitious, and very direct — ${n} sets high standards, says what ${p.they} means, and expects to be evaluated on results, not intentions.`,
-  ENTP: (n,p) => `${n} loves a new idea, a what-if, or a friendly argument. ${p.They} is quick on ${p.their} feet, gets bored with routine, and would rather poke at the rules than follow them. Charming, clever, and a little contrarian — ${n} is the one who'll find the loophole no one else noticed.`,
-  INFJ: (n,p) => `${n} is quiet but deeply tuned in to people. ${p.They} picks up on what others are feeling, thinks long-term about what actually matters, and tends to keep ${p.their} inner world private. Warm but reserved, idealistic, and selective about who ${p.they} lets close.`,
-  INFP: (n,p) => `${n} runs on personal values. ${p.They} cares deeply about authenticity — both ${p.their} own and other people's — and would rather do what feels right than what's expected. Imaginative, gentle, and more sensitive than ${p.they} lets on. ${n} doesn't try to change anyone; ${p.they} just wants everyone to be allowed to be themselves.`,
-  ENFJ: (n,p) => `${n} is a people person through and through. ${p.They} reads the room instinctively, draws others out, and genuinely enjoys helping people get where they're going. Warm, organised, encouraging — and occasionally so focused on everyone else that ${p.they} forgets to check on ${p.themself}.`,
-  ENFP: (n,p) => `${n} is enthusiastic, open-minded, and easily lit up by possibility. ${p.They} sees potential in people and ideas that others miss, hates being boxed in, and can talk to anyone about anything. Warm, spontaneous, and sometimes scattered — but never boring.`,
-  ISTJ: (n,p) => `${n} is dependable and thorough. ${p.They} likes things done properly, remembers the details everyone else forgets, and takes commitments seriously. Reserved, practical, steady — ${n} isn't flashy, but is exactly who you want when something actually has to work.`,
-  ISFJ: (n,p) => `${n} is the quiet caretaker. ${p.They} notices what people need before they ask, remembers what matters to them, and shows up consistently without making a fuss about it. Loyal, practical, and genuinely kind — ${n} keeps things running in ways that often go unnoticed.`,
-  ESTJ: (n,p) => `${n} likes order, clear expectations, and getting things done. ${p.They} is practical, organised, and not afraid to take charge when something needs structure. Direct and reliable — ${n} says what ${p.they} thinks and follows through on what ${p.they} promises.`,
-  ESFJ: (n,p) => `${n} is warm, sociable, and tuned in to how everyone's doing. ${p.They} likes keeping the group happy, remembers birthdays, and feels responsible for the vibe in the room. Caring and dependable — ${n} is the one who makes sure no one's left out.`,
-  ISTP: (n,p) => `${n} is hands-on, observant, and unbothered by pressure. ${p.They} learns by doing, fixes things rather than talking about them, and doesn't waste words. Calm, independent, and surprisingly hard to rattle.`,
-  ISFP: (n,p) => `${n} is easy-going on the surface and quietly principled underneath. ${p.They} lives in the moment, expresses ${p.themself} through what ${p.they} makes or does rather than what ${p.they} says, and won't be pushed into anything that doesn't feel right. Gentle, observant, and more stubborn than ${p.they} looks.`,
-  ESTP: (n,p) => `${n} is action-first. ${p.They} thinks fast, jumps in, and figures it out on the way. Practical, charming, and good in a crisis — ${n} would rather <em>do</em> something than sit around discussing it.`,
-  ESFP: (n,p) => `${n} brings the energy. ${p.They} lives in the moment, loves people, and has a gift for turning an ordinary situation into something fun. Warm, spontaneous, and genuinely present — when ${n} is in the room, you know it.`
+  INTJ: (n,p) => `${n} is constantly getting answers to questions ${p.they} hasn't asked yet. ${p.Their} mind connects scattered pieces of information into a single picture and arrives at a strong impression of where things are heading — not because ${p.they} worked it out step by step, but because the pattern is just <em>there</em>. ${n} rarely thinks about the thing in front of ${p.them}; ${p.they} thinks about what it represents and what it will become. That makes ${p.them} private, strategic, and very comfortable working alone. ${p.They} would rather get something <em>right</em> than get it done fast, and ${p.they} isn't interested in doing something just because that's how it's always been done.`,
+  INTP: (n,p) => `${n} won't accept anything until ${p.they} has taken it apart. Every claim, system, or assumption gets run through ${p.their} own private logic test before ${p.they} trusts it — not to be difficult, but because ${p.they} genuinely needs to understand how the pieces connect before building on them. ${n} is far more interested in understanding something properly than in winning the argument or being agreed with. Reserved, independent, and happiest when given room to think — ${p.they} can lose track of time chasing an interesting problem and is occasionally caught off-guard by other people's emotional weather.`,
+  ENTJ: (n,p) => `${n} sees the future coming and thinks it's foolish not to plan for it. ${p.They} looks for the pattern emerging, narrows the possibilities into one direct route, and gets on it — staying open to "all options" just feels like not knowing what you want. When something's inefficient or directionless, ${p.they} can't help but step in and structure it. Decisive, ambitious, and very direct — ${n} sets high standards, says what ${p.they} means, and expects to be evaluated on results, not intentions. On a first date, ${p.they} probably already knows whether there's a future.`,
+  ENTP: (n,p) => `For ${n}, nothing is ever what it first appears to be, and the obvious answer is never the one ${p.they} wants to pick. ${p.They} looks for hidden connections between things — like a spider feeling vibrations across a massive web — and any conversation is mostly a chance to find an angle no one else considered. ${n} loves a new idea, a what-if, or a friendly argument; ${p.they} doesn't intend to follow through on most of it, it's just fun to discuss. Quick on ${p.their} feet, bored by routine, a little contrarian — ${n} is the one who'll spot the loophole no one else noticed.`,
+  INFJ: (n,p) => `${n} moves through life sensing what's underneath the surface. ${p.They} picks up on patterns in people and situations that others miss — strong impressions of where something is heading or what someone really needs, often before ${p.they} can explain why. ${n} is warm and genuinely tuned in, but keeps ${p.their} inner world very private; ${p.they} is selective about who ${p.they} lets close and tends to think long-term about what actually matters. Idealistic, perceptive, and quietly intense — ${p.they} can be hard on ${p.themself} when reality doesn't match the vision.`,
+  INFP: (n,p) => `${n}'s quest in life is to learn what truly matters to ${p.them} and to live by it. Everything ${p.they} encounters gets weighed against an inner compass of "is this okay with me or not?" — and that compass doesn't change with the scenery or the company. ${n} values acceptance and won't impose ${p.their} standards on anyone; ${p.they} believes everyone's on their own journey and it's none of ${p.their} business unless it affects ${p.them}. But ${p.they} also won't pretend, won't perform, and won't sacrifice ${p.their} integrity to be liked. Imaginative, gentle, and more sensitive than ${p.they} lets on.`,
+  ENFJ: (n,p) => `People are the centre of ${n}'s world. When ${p.they} talks to you, ${p.their} mind clears and connects to yours — for that moment you're the only person in the room, and ${p.they} is genuinely tuned in to what you need. ${n} thinks in "we" rather than "me," instinctively reads social dynamics, and adapts to each person and setting so everyone present feels at ease. Warm, organised, encouraging — and occasionally so absorbed in everyone else's feelings that ${p.they} forgets to check on ${p.their} own.`,
+  ENFP: (n,p) => `${n} approaches life as a puzzle waiting to be solved and a story waiting to be told. ${p.They} sees connections and potential everywhere — in people, in ideas, in throwaway comments — and gets genuinely lit up imagining what something <em>could</em> become. ${n} hates being boxed in, can talk to anyone about anything, and considers every viewpoint before dismissing it. Warm, spontaneous, and sometimes scattered — ${p.they} chases inspiration wherever it leads and isn't always great at the follow-through, but is never, ever boring.`,
+  ISTJ: (n,p) => `${n} trusts what lasts. ${p.They} looks at the world in terms of what has proven itself over time — reliable methods, repeating patterns, the lessons of experience — and builds ${p.their} life on that. ${n} hoards detailed information, remembers what everyone else forgets, and moves systematically from A to B without skipping steps; mastery matters more to ${p.them} than getting it done quickly. Reserved, practical, steady — ${n} isn't flashy, but is exactly who you want when something actually has to work.`,
+  ISFJ: (n,p) => `${n} is anchored in what endures — tradition, family, the things that connect one generation to the next. ${p.They} notices what people need before they ask, remembers what matters to them, and shows up consistently without making a fuss about it. ${n} finds meaning in the story behind things, not just the thing itself, and feels responsible for keeping the people around ${p.them} comfortable and cared for. Loyal, practical, and genuinely kind — ${p.they} keeps things running in ways that often go unnoticed.`,
+  ESTJ: (n,p) => `${n} hoards data — facts, figures, references, statistics — and organises everything by efficiency. ${p.They} examines new information, decides whether it's accurate and useful, and files it; if a method isn't working, ${p.they} replaces it. ${n} likes order, clear expectations, and getting things done properly the first time; mastery matters more than speed, because shortcuts leave holes. Direct and reliable — ${p.they} says what ${p.they} thinks, follows through on what ${p.they} promises, and isn't afraid to take charge when something needs structure.`,
+  ESFJ: (n,p) => `${n} feels most at ease when everyone around ${p.them} is in harmony. ${p.They} thinks in "we" not "me," tunes into the unwritten rules of every room, and genuinely enjoys creating spaces where people feel included and heard. ${n} remembers birthdays, knows what's going on in everyone's life, and feels responsible for the vibe wherever ${p.they} is. Warm, sociable, and dependable — ${p.they} builds ${p.their} life on what's lasted across generations and is the one who makes sure no one's left out.`,
+  ISTP: (n,p) => `${n} learns by getting ${p.their} hands on things. ${p.They} takes systems apart to see how the pieces connect, builds a mental map of how they work, and won't trust information ${p.they} hasn't tested. Book learning bores ${p.them} — put ${p.them} on-site. ${n} is observant, unbothered by pressure, and doesn't waste words; ${p.they} stays present, adjusts in real time, and does ${p.their} best work mid-crisis. Calm, independent, and surprisingly hard to rattle.`,
+  ISFP: (n,p) => `${n} checks in with ${p.themself} before acting — <em>is this who I am?</em> — and once the answer is yes, ${p.they} wants it to happen <em>now</em>. ${p.They} would rather be on the Ferris wheel than watch it spin; sensations are life, and passion is meaningless without action. ${n} won't violate ${p.their} own beliefs to make anyone comfortable, but also won't impose them on you — ${p.their} truth isn't yours, and ${p.they} respects that. Gentle, observant, present in the moment, and far more stubborn than ${p.they} looks.`,
+  ESTP: (n,p) => `${n} lives completely in the present second — no before, no after. ${p.They} notices opportunities and takes them: sees a whitewater-rafting sign, pulls the car over, signs up for the next raft. ${n} learns by doing and tinkering, not by reading about it; ${p.they} eliminates possibilities through experimentation and does ${p.their} best thinking with ${p.their} hands on the problem. Practical, charming, all reflex and momentum — ${p.they} would rather <em>do</em> something than sit around discussing it, and is genuinely good in a crisis.`,
+  ESFP: (n,p) => `${n} doesn't say no to experiences — they're how ${p.they} figures out who ${p.they} is. ${p.They} feels everything through ${p.their} body, lives in a constant state of awareness of what's happening right now, and has a gift for turning an ordinary situation into something fun. ${n} makes decisions for and about ${p.themself}; ${p.they} won't force ${p.their} views on you but won't fake agreement either. Warm, spontaneous, and genuinely present — when ${n} is in the room, you know it.`
 };
 
 // PLAIN-LANGUAGE Enneagram descriptions for accordion + profile
 const ennLong = {
-  "1": "Type 1s are driven by a sense of right and wrong. They have a strong inner critic that constantly checks whether things meet the standard, and they hold themselves to it before anyone else. <strong>Core motivation:</strong> to be good, correct, and have integrity. <strong>Core fear:</strong> being wrong, bad, or corrupt. At their best, 1s are fair, responsible, and genuinely improve everything they touch. Under stress they can become rigid, critical, or quietly resentful.",
-  "2": "Type 2s are wired to focus on other people's needs. They feel most valuable when they're helping, supporting, or being needed by someone. <strong>Core motivation:</strong> to be loved and appreciated. <strong>Core fear:</strong> being unwanted or unworthy of love. At their best, 2s are genuinely warm, generous, and emotionally attuned. Under stress they can over-give, neglect their own needs, or feel hurt when help isn't reciprocated.",
-  "3": "Type 3s are achievement-oriented. They adapt to whatever 'success' looks like in their environment and work hard to embody it. <strong>Core motivation:</strong> to be valuable and admired. <strong>Core fear:</strong> being worthless or a failure. At their best, 3s are competent, motivating, and genuinely accomplished. Under stress they can over-identify with their image and lose touch with what they actually want.",
-  "4": "Type 4s are focused on identity and authenticity. They're highly aware of how they're different from others and place a lot of value on emotional depth and meaning. <strong>Core motivation:</strong> to be unique and understood for who they really are. <strong>Core fear:</strong> having no identity or significance. At their best, 4s are creative, emotionally honest, and deeply empathetic. Under stress they can withdraw, dwell on what's missing, or feel chronically misunderstood.",
-  "5": "Type 5s are observers. They cope with the world by understanding it — gathering knowledge, conserving energy, and keeping a clear boundary between themselves and outside demands. <strong>Core motivation:</strong> to be capable and competent. <strong>Core fear:</strong> being overwhelmed, depleted, or incapable. At their best, 5s are insightful, objective, and inventive. Under stress they can become detached, withholding, or isolated.",
-  "6": "Type 6s are focused on security and trust. They constantly scan for what could go wrong and who can be relied on, which makes them excellent troubleshooters and very loyal once trust is earned. <strong>Core motivation:</strong> to feel safe and supported. <strong>Core fear:</strong> being without guidance or unable to cope alone. At their best, 6s are dependable, courageous, and great in a team. Under stress they can become anxious, suspicious, or stuck in second-guessing.",
-  "7": "Type 7s are optimists and experience-seekers. They keep life full — of plans, options, ideas, people — partly because they love variety and partly because staying busy keeps painful feelings at bay. <strong>Core motivation:</strong> to be happy, satisfied, and free. <strong>Core fear:</strong> being trapped, deprived, or stuck in pain. At their best, 7s are joyful, resilient, and genuinely fun to be around. Under stress they can become scattered, avoidant, or unable to follow through.",
-  "8": "Type 8s are protectors and challengers. They take up space, speak directly, and instinctively push back against anything that feels like control. <strong>Core motivation:</strong> to be strong and in control of their own life. <strong>Core fear:</strong> being controlled, harmed, or vulnerable. At their best, 8s are decisive, protective, and use their strength on behalf of others. Under stress they can become confrontational, domineering, or unwilling to show weakness.",
-  "9": "Type 9s are peacemakers. They're naturally easy-going, good at seeing every side, and skilled at keeping things calm — sometimes by going along with others rather than asserting themselves. <strong>Core motivation:</strong> to have inner and outer peace. <strong>Core fear:</strong> conflict, loss of connection, or being overlooked. At their best, 9s are accepting, steady, and genuinely bring people together. Under stress they can become passive, stubborn through inaction, or disconnected from their own priorities."
+  "1": { intro: "Type 1s are driven by a sense of right and wrong. They have a strong inner critic that constantly checks whether things meet the standard, and they hold themselves to it before anyone else.",
+    motivation: "to be good, correct, and have integrity",
+    fear: "being wrong, bad, or corrupt",
+    best: "fair, responsible, and genuinely improve everything they touch",
+    stress: "rigid, critical, or quietly resentful" },
+  "2": { intro: "Type 2s are wired to focus on other people's needs. They feel most valuable when they're helping, supporting, or being needed by someone.",
+    motivation: "to be loved and appreciated",
+    fear: "being unwanted or unworthy of love",
+    best: "genuinely warm, generous, and emotionally attuned",
+    stress: "over-give, neglect their own needs, or feel hurt when help isn't reciprocated" },
+  "3": { intro: "Type 3s are achievement-oriented. They adapt to whatever 'success' looks like in their environment and work hard to embody it.",
+    motivation: "to be valuable and admired",
+    fear: "being worthless or a failure",
+    best: "competent, motivating, and genuinely accomplished",
+    stress: "over-identify with their image and lose touch with what they actually want" },
+  "4": { intro: "Type 4s are focused on identity and authenticity. They're highly aware of how they're different from others and place a lot of value on emotional depth and meaning.",
+    motivation: "to be unique and understood for who they really are",
+    fear: "having no identity or significance",
+    best: "creative, emotionally honest, and deeply empathetic",
+    stress: "withdraw, dwell on what's missing, or feel chronically misunderstood" },
+  "5": { intro: "Type 5s are observers. They cope with the world by understanding it — gathering knowledge, conserving energy, and keeping a clear boundary between themselves and outside demands.",
+    motivation: "to be capable and competent",
+    fear: "being overwhelmed, depleted, or incapable",
+    best: "insightful, objective, and inventive",
+    stress: "detached, withholding, or isolated" },
+  "6": { intro: "Type 6s are focused on security and trust. They constantly scan for what could go wrong and who can be relied on, which makes them excellent troubleshooters and very loyal once trust is earned.",
+    motivation: "to feel safe and supported",
+    fear: "being without guidance or unable to cope alone",
+    best: "dependable, courageous, and great in a team",
+    stress: "anxious, suspicious, or stuck in second-guessing" },
+  "7": { intro: "Type 7s are optimists and experience-seekers. They keep life full — of plans, options, ideas, people — partly because they love variety and partly because staying busy keeps painful feelings at bay.",
+    motivation: "to be happy, satisfied, and free",
+    fear: "being trapped, deprived, or stuck in pain",
+    best: "joyful, resilient, and genuinely fun to be around",
+    stress: "scattered, avoidant, or unable to follow through" },
+  "8": { intro: "Type 8s are protectors and challengers. They take up space, speak directly, and instinctively push back against anything that feels like control.",
+    motivation: "to be strong and in control of their own life",
+    fear: "being controlled, harmed, or vulnerable",
+    best: "decisive, protective, and use their strength on behalf of others",
+    stress: "confrontational, domineering, or unwilling to show weakness" },
+  "9": { intro: "Type 9s are peacemakers. They're naturally easy-going, good at seeing every side, and skilled at keeping things calm — sometimes by going along with others rather than asserting themselves.",
+    motivation: "to have inner and outer peace",
+    fear: "conflict, loss of connection, or being overlooked",
+    best: "accepting, steady, and genuinely bring people together",
+    stress: "passive, stubborn through inaction, or disconnected from their own priorities" }
 };
 
 // Short profile-card version
@@ -647,24 +694,55 @@ const ennShort = {
 };
 
 const wingDesc = {
-  "1w9": "calmer and more measured than a typical 1",
-  "1w2": "warmer and more people-focused than a typical 1",
-  "2w1": "a more principled, slightly reserved Helper",
-  "2w3": "a more outgoing, polished Helper",
-  "3w2": "a more relational, charming Achiever",
-  "3w4": "a more introspective, image-conscious Achiever",
-  "4w3": "a 4 who still wants to be seen and recognised",
-  "4w5": "a quieter, more withdrawn and analytical 4",
-  "5w4": "a more imaginative, emotionally-tinged 5",
-  "5w6": "a more loyal, risk-aware 5",
-  "6w5": "a quieter, more analytical Loyalist",
-  "6w7": "a warmer, more sociable Loyalist",
-  "7w6": "a 7 with more loyalty and warmth alongside the spark",
-  "7w8": "a bolder, more assertive 7 — fun with backbone",
-  "8w7": "a more outgoing, adventurous Challenger",
-  "8w9": "a calmer, steadier Challenger",
-  "9w8": "a Peacemaker with more push when needed",
-  "9w1": "a Peacemaker with a quiet sense of how things should be"
+  "1w9": "calmer and more measured than a typical 1 — holds the same standards but with a quieter, more philosophical streak; less outwardly critical, more inwardly idealistic",
+  "1w2": "warmer and more people-focused than a typical 1 — wants to improve things <em>for</em> people, not just on principle; more hands-on, more vocal, more relational",
+  "2w1": "a more principled, slightly reserved Helper — gives out of duty as much as warmth, has clearer boundaries, and holds quiet standards about the 'right' way to care",
+  "2w3": "a more outgoing, polished Helper — sociable, image-aware, energised by being visibly appreciated; brings real charm to the helping",
+  "3w2": "a more relational, charming Achiever — succeeds <em>with</em> people, reads rooms instinctively, wants the win to feel like a shared one",
+  "3w4": "a more introspective, image-conscious Achiever — wants to succeed on their own terms with their own aesthetic; more private, more particular",
+  "4w3": "a 4 who still wants to be seen — turns the inner world into something polished enough to put on stage; competitive about their craft, ambitious about their uniqueness",
+  "4w5": "a quieter, more withdrawn 4 — keeps the rich inner world mostly private, more analytical about feelings, less interested in an audience",
+  "5w4": "a more imaginative, emotionally-tinged 5 — the knowledge-gathering has an aesthetic and personal flavour; more individualistic, more drawn to the unusual",
+  "5w6": "a more loyal, risk-aware 5 — gathers knowledge partly to feel prepared; more practical, more alliance-minded, more aware of what could go wrong",
+  "6w5": "a quieter, more analytical Loyalist — manages anxiety by researching and understanding rather than by checking with others; more self-contained, more cerebral",
+  "6w7": "a warmer, more sociable Loyalist — manages anxiety by staying connected and keeping things light; more playful, more people-seeking, faster to reframe worry into humour",
+  "7w6": "a 7 with more loyalty and warmth alongside the spark — keeps a trusted circle, checks in with people, and balances the freedom-chasing with real follow-through for those they care about",
+  "7w8": "a bolder, more assertive 7 — meets the world with humour but pushes back hard when constrained; expansive energy with real backbone underneath the fun",
+  "8w7": "a more outgoing, adventurous Challenger — big appetite, big plans, casts themselves as the hero; energy leaks out constantly rather than being held in reserve",
+  "8w9": "a calmer, steadier Challenger — quiet but immovable, applies exactly as much force as needed and no more; the grizzly in the cave who's perfectly fine until poked",
+  "9w8": "a Peacemaker with more push when needed — easy-going by default but will assert a boundary firmly once they've decided to; the anger surfaces in short, decisive bursts",
+  "9w1": "a Peacemaker with a quiet sense of how things should be — gentle and idealistic, notices what's out of alignment, holds a private picture of the better version"
+};
+
+// Wing-pair contrasts for the enneagram accordion
+const wingContrast = {
+  "1": { a: "1w9", b: "1w2",
+    aText: "More withdrawn and philosophical. Holds the same high standards but is less outwardly corrective — the criticism turns inward and the idealism stays quiet.",
+    bText: "More involved and interpersonal. Channels the drive to improve into actively helping people; warmer, more vocal, more likely to step in." },
+  "2": { a: "2w1", b: "2w3",
+    aText: "More principled and dutiful. Helps because it's <em>right</em>, has clearer boundaries, and is a bit more reserved about it.",
+    bText: "More outgoing and image-aware. Helps with charm and energy, enjoys being appreciated, and is more comfortable in the spotlight." },
+  "3": { a: "3w2", b: "3w4",
+    aText: "More people-oriented. Achieves through relationships and likability; warmer, more collaborative.",
+    bText: "More individualistic and introspective. Wants success that reflects their own taste and identity; more private, more particular about how they're seen." },
+  "4": { a: "4w3", b: "4w5",
+    aText: "Wants the inner world to be <em>seen</em>. Polishes and presents what they create; competitive, ambitious, drawn toward an audience.",
+    bText: "Keeps the inner world private. More analytical and withdrawn; less interested in recognition, more interested in understanding." },
+  "5": { a: "5w4", b: "5w6",
+    aText: "More imaginative and individualistic. The knowledge-seeking has a personal, aesthetic flavour; drawn to the unusual.",
+    bText: "More practical and security-minded. Gathers knowledge to feel prepared; more loyal, more aware of risk, more alliance-building." },
+  "6": { a: "6w5", b: "6w7",
+    aText: "Manages anxiety by understanding. Quieter, more analytical, more self-contained — researches rather than reaches out.",
+    bText: "Manages anxiety by connecting. Warmer, more playful, more sociable — reframes worry through humour and other people." },
+  "7": { a: "7w6", b: "7w8",
+    aText: "More loyal and people-oriented. Keeps a trusted circle and balances freedom with showing up for them; warmer, more relational.",
+    bText: "More assertive and independent. Pushes back hard when constrained; bigger energy, less interested in approval, more comfortable taking up space." },
+  "8": { a: "8w7", b: "8w9",
+    aText: "More expansive and outgoing. Dreams big, casts themselves as the hero, energy is always 'on' — anger leaks rather than waits.",
+    bText: "More contained and economical. Quiet force, applies exactly the pressure needed; doesn't escalate without reason but is immovable once engaged." },
+  "9": { a: "9w8", b: "9w1",
+    aText: "More grounded and assertive. Easy-going until a boundary is crossed, then surprisingly firm; the push comes in short decisive bursts.",
+    bText: "More idealistic and gentle. Carries a quiet picture of how things <em>should</em> be; less confrontational, more inwardly perfectionist." }
 };
 
 let filter = { dim: null, family: null, mbti: null, enn: null, triad: null };
@@ -1125,6 +1203,10 @@ function renderEnnList() {
     row.className = "enn-row" + (isActive ? " active" : "") + (isDimmed && !isActive ? " muted" : "");
     row.style.setProperty("--ec", e.color);
     row.dataset.num = e.num;
+    const L = ennLong[e.num];
+    const wc = wingContrast[e.num];
+    const wingAMembers = characters.filter(c => c.wing === wc.a);
+    const wingBMembers = characters.filter(c => c.wing === wc.b);
     row.innerHTML = `
       <div class="enn-row-head">
         <div class="enn-icon-wrap">${ennIcons[e.num]}</div>
@@ -1133,8 +1215,27 @@ function renderEnnList() {
       </div>
       <div class="enn-row-body">
         <div class="enn-row-body-inner">
-          <div class="enn-body-desc">${ennLong[e.num]}</div>
-          <div class="enn-body-members-lbl">In the flock · ${members.length}</div>
+          <div class="enn-body-desc">${L.intro}</div>
+          <ul class="enn-bullets">
+            <li><strong>Core motivation:</strong> ${L.motivation}</li>
+            <li><strong>Core fear:</strong> ${L.fear}</li>
+            <li><strong>At their best:</strong> ${L.best}</li>
+            <li><strong>Under stress:</strong> ${L.stress}</li>
+          </ul>
+          <div class="enn-body-members-lbl">The two wings · ${wc.a} vs ${wc.b}</div>
+          <div class="enn-wing-contrast">
+            <div class="enn-wing-col">
+              <div class="enn-wing-col-head">${wc.a}</div>
+              <div class="enn-wing-col-text">${wc.aText}</div>
+              <div class="enn-wing-col-members">${wingAMembers.length ? wingAMembers.map(m => chipHTML(m, "mbti")).join("") : '<span class="muted-txt">none in flock</span>'}</div>
+            </div>
+            <div class="enn-wing-col">
+              <div class="enn-wing-col-head">${wc.b}</div>
+              <div class="enn-wing-col-text">${wc.bText}</div>
+              <div class="enn-wing-col-members">${wingBMembers.length ? wingBMembers.map(m => chipHTML(m, "mbti")).join("") : '<span class="muted-txt">none in flock</span>'}</div>
+            </div>
+          </div>
+          <div class="enn-body-members-lbl">All Type ${e.num}s in the flock · ${members.length}</div>
           <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">No geese of this type yet.</span>'}</div>
         </div>
       </div>
