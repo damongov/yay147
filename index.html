@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>147 YAY: Silly Geese — The Flock Database</title>
+<title>147 YAY: Silly Geese — The Flock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -195,6 +195,8 @@
   .fam-type-icon-mini { width:16px;height:16px;color:var(--fc);flex-shrink:0; }
   .fam-type-members { font-family:'Fraunces',serif;color:var(--ink-soft);text-align:right;font-size:13px; }
   .fam-type-members.empty { color:var(--ink-fade);font-style:italic; }
+  .fam-name-link { cursor:pointer;border-bottom:1px dotted transparent;transition:color 0.15s,border-color 0.15s; }
+  .fam-name-link:hover { color:var(--fc);border-bottom-color:var(--fc); }
   .fam-detail, .triad-detail { margin-top:20px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--fc, var(--tc, var(--ink-fade)));border-radius:2px;display:none; }
   .fam-detail.open, .triad-detail.open { display:block; }
   .fam-detail-title, .triad-detail-title { font-family:'Fraunces',serif;font-size:22px;color:var(--fc, var(--tc));margin-bottom:6px;font-weight:500; }
@@ -233,6 +235,16 @@
   .triad-count { font-family:'Fraunces',serif;font-size:clamp(28px,5vw,36px);font-weight:300;color:var(--tc);line-height:1; }
   .triad-emotion { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:8px; }
   .triad-desc { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:8px; }
+  .triad-bullets { list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px; }
+  .triad-bullets li { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.5;padding-left:18px;position:relative; }
+  .triad-bullets li::before { content:'';position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:50%;background:var(--tc); }
+  .triad-bullets li strong { color:var(--ink);font-weight:600; }
+  .triad-detail-group { margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--line); }
+  .triad-detail-group:last-child { border-bottom:none;margin-bottom:0;padding-bottom:0; }
+  .triad-detail-group-head { display:flex;align-items:baseline;gap:10px;margin-bottom:6px; }
+  .triad-detail-group-num { font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--tc); }
+  .triad-detail-group-label { font-family:'Fraunces',serif;font-size:15px;color:var(--ink);font-weight:500; }
+  .triad-detail-group-count { font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;margin-left:auto; }
   .triad-types { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:0.08em; }
 
   /* INSIGHTS */
@@ -334,9 +346,9 @@
       <path d="M 12 42 Q 6 38 8 34" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
-    <div><div class="logo-text">147 YAY · GUILD CENSUS · MMXXVI</div></div>
+    <div><div class="logo-text">147 YAY · FLOCK DATABASE · LAST UPDATED: <span id="last-updated"></span></div></div>
   </div>
-  <h1>147 <em>YAY</em><br/>silly geese.</h1>
+  <h1>147 YAY<br/><em>Silly Geese.</em></h1>
   <p class="tagline">"Birds of a feather flock together."</p>
 </header>
 
@@ -566,11 +578,26 @@ const ennIcons = {
 
 const triadInfo = {
   head:  { name: "Head", emotion: "Fear", color: "var(--triad-head)", types: ["5", "6", "7"],
-    desc: "Head types process life through thinking. Their core struggle is fear and anxiety — they manage uncertainty by analysing, planning ahead, or staying busy. At their best they're insightful, prepared, and quick-minded." },
+    desc: "Mental-center types who process the world through logic, analysis, and future planning. The core emotion is <strong>fear</strong> — anxiety, doubt, insecurity — and the core desire is security and certainty. They're future-oriented, cautious, and tend to over-think before acting so they never feel unprepared.",
+    bullets: [
+      { num: "5", text: "<strong>Type 5</strong> internalises fear — withdraws, gathers knowledge, minimises needs to feel capable." },
+      { num: "6", text: "<strong>Type 6</strong> externalises fear — anticipates worst-cases, leans on trusted people and systems." },
+      { num: "7", text: "<strong>Type 7</strong> denies fear — stays busy, chases positive options, avoids pain or boredom." }
+    ] },
   heart: { name: "Heart", emotion: "Shame", color: "var(--triad-heart)", types: ["2", "3", "4"],
-    desc: "Heart types process life through identity and relationships. Their core struggle is shame — questions of self-worth and how they're seen. At their best they're emotionally intelligent, connective, and authentic." },
+    desc: "Feeling-center types driven by emotions, self-image, and the need to be valued. The core emotion is <strong>shame</strong> — the question underneath is \"am I loved? do I matter? am I seen?\" They're highly empathetic, very aware of how they come across, and motivated by connection and worthiness.",
+    bullets: [
+      { num: "2", text: "<strong>Type 2</strong> focuses on others' needs to feel loved — often at the expense of their own." },
+      { num: "3", text: "<strong>Type 3</strong> focuses on goals, productivity and image to feel competent and worthy." },
+      { num: "4", text: "<strong>Type 4</strong> focuses on what's missing and what makes them unique to feel significant and authentic." }
+    ] },
   body:  { name: "Body", emotion: "Anger", color: "var(--triad-body)", types: ["8", "9", "1"],
-    desc: "Body types process life through gut instinct and action. Their core struggle is anger — expressed outwardly (8), suppressed (9), or turned into self-correction (1). At their best they're grounded, fair, and decisive." }
+    desc: "Instinct-center (\"gut\") types focused on autonomy, boundaries, and fairness. The core emotion is <strong>anger</strong> — often felt as frustration or moral outrage. They decide quickly, trust gut feelings, prefer to take charge, and dislike being micromanaged.",
+    bullets: [
+      { num: "8", text: "<strong>Type 8</strong> externalises anger — confronts, takes control, protects autonomy." },
+      { num: "9", text: "<strong>Type 9</strong> suppresses anger — avoids conflict to keep inner peace." },
+      { num: "1", text: "<strong>Type 1</strong> internalises anger — turns it into self-criticism or moral indignation." }
+    ] }
 };
 
 // PLAIN-LANGUAGE MBTI descriptions, no function jargon, name + pronouns woven through
@@ -740,7 +767,11 @@ function renderProfile() {
   const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
 
   const sameMbti = characters.filter(o => o.name !== c.name && o.mbti === c.mbti);
+  const sisterType = dom ? dom.types.find(t => t !== c.mbti) : null;
+  const similarMbtiOnly = sisterType ? characters.filter(o => o.name !== c.name && o.mbti === sisterType) : [];
   const sameEnn = characters.filter(o => o.name !== c.name && c.enn && o.enn === c.enn);
+  const sameWingExact = c.wing ? characters.filter(o => o.name !== c.name && o.wing === c.wing) : [];
+  const similarEnnOnly = c.enn ? characters.filter(o => o.name !== c.name && o.enn === c.enn && (c.wing ? o.wing !== c.wing : true)) : [];
   const sameWing = c.wing ? characters.filter(o => o.name !== c.name && o.wing === c.wing) : [];
   const sameTriad = ennInfo ? characters.filter(o => o.name !== c.name && o.enn && triadInfo[ennInfo.triad].types.includes(o.enn)) : [];
   const sameGroup = dom ? characters.filter(o => o.name !== c.name && dom.types.includes(o.mbti)) : [];
@@ -750,19 +781,27 @@ function renderProfile() {
   const popRank = pop ? popSorted.findIndex(([code]) => code === c.mbti) + 1 : null;
   const flockMbtiCount = characters.filter(o => o.mbti === c.mbti).length;
   const flockMbtiPct = (flockMbtiCount / characters.length) * 100;
-  const flockVsWorld = pop ? flockMbtiPct - pop : null;
 
-  // Plain description
+  // Three paragraphs: MBTI, Enneagram, Triad
   const p = pronouns(c.g);
-  let desc = "";
-  if (mbtiInfo && mbtiDesc[c.mbti]) desc += mbtiDesc[c.mbti](c.name, p);
+  let mbtiPara = "";
+  if (mbtiInfo && mbtiDesc[c.mbti]) mbtiPara = mbtiDesc[c.mbti](c.name, p);
+
+  let ennPara = "";
   if (ennInfo) {
-    desc += ` On the Enneagram, ${ennShort[c.enn](c.name, p)}`;
+    ennPara = `As a <strong>Type ${c.enn} · ${ennInfo.label.replace('The ','')}</strong>, ${ennShort[c.enn](c.name, p)}`;
     if (c.wing && wingDesc[c.wing]) {
-      desc += ` Specifically a <strong>${c.wing}</strong> — ${wingDesc[c.wing]}.`;
+      ennPara += ` ${p.They} is specifically a <strong>${c.wing}</strong> — ${wingDesc[c.wing]}.`;
     }
-  } else if (mbtiInfo) {
-    desc += ` <em>(${p.Their} Enneagram type isn't on record yet.)</em>`;
+  } else {
+    ennPara = `<em>${p.Their} Enneagram type isn't on record yet.</em>`;
+  }
+
+  let triadPara = "";
+  if (tri) {
+    const bullet = tri.bullets.find(b => b.num === c.enn);
+    const handle = bullet ? bullet.text.replace(/<\/?strong>/g, '').replace(/^Type \d+\s*/, '') : '';
+    triadPara = `${c.name} sits in the <strong>${tri.name} triad</strong> (types ${tri.types.join(', ')}). ${tri.desc} Within this triad, ${c.name}'s type ${handle}`;
   }
 
   const mbtiIconHTML = mbtiIcons[c.mbti] || '';
@@ -782,12 +821,6 @@ function renderProfile() {
     label: "Same MBTI in the flock", val: `${flockMbtiCount} of ${characters.length} are ${c.mbti}`,
     sub: `${flockMbtiPct.toFixed(0)}% of catalogued geese`,
     members: sameMbti, tag: "enn" });
-  if (flockVsWorld !== null) {
-    statCards.push({ key: "delta", color: "var(--gold)",
-      label: "vs. general population", val: `${flockVsWorld > 0 ? '+' : ''}${flockVsWorld.toFixed(1)} points`,
-      sub: flockVsWorld > 0 ? `${c.mbti} is over-represented here` : `${c.mbti} is under-represented here`,
-      members: null });
-  }
   if (ennInfo) {
     statCards.push({ key: "enn", color: ennInfo.color,
       label: "Same Enneagram", val: `${sameEnn.length + 1} ${sameEnn.length + 1 === 1 ? 'goose' : 'geese'} are Type ${c.enn}`,
@@ -824,8 +857,15 @@ function renderProfile() {
       <div class="stat"><div class="stat-key">Triad</div><div class="stat-val ${!tri ? 'muted' : ''}">${tri ? tri.name : '—'}</div><div class="stat-sub">${tri ? `Core emotion · ${tri.emotion.toLowerCase()}` : ''}</div></div>
     </div>
 
-    <div class="profile-section-lbl">About ${c.name}</div>
-    <div class="profile-desc">${desc}</div>
+    <div class="profile-section-lbl">MBTI · ${c.mbti || '—'}${mbtiInfo ? ` · ${mbtiInfo.label}` : ''}</div>
+    <div class="profile-desc">${mbtiPara || '<em>MBTI not on record.</em>'}</div>
+
+    <div class="profile-section-lbl">Enneagram · ${c.wing || (c.enn ? 'Type ' + c.enn : '—')}${ennInfo ? ` · ${ennInfo.label}` : ''}</div>
+    <div class="profile-desc">${ennPara}</div>
+
+    ${tri ? `
+    <div class="profile-section-lbl">Triad · ${tri.name} · core emotion: ${tri.emotion}</div>
+    <div class="profile-desc">${triadPara}</div>` : ''}
 
     <div class="profile-section-lbl">${c.name} by the numbers · click any card to see who matches</div>
     <div class="profile-stats-row">
@@ -845,13 +885,21 @@ function renderProfile() {
 
     <div class="profile-similar">
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same MBTI as ${c.name}</div>
-        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m, "enn", {noDim:true})).join("") : '<span class="muted-txt">No one else in the flock shares this MBTI.</span>'}</div>
+        <div class="profile-similar-lbl">Same MBTI · ${c.mbti || '—'}</div>
+        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m, "enn", {noDim:true})).join("") : '<span class="muted-txt">No one else is ' + (c.mbti || 'this type') + '.</span>'}</div>
+      </div>
+      <div class="profile-similar-block">
+        <div class="profile-similar-lbl">Similar MBTI · ${sisterType || '—'}</div>
+        <div>${similarMbtiOnly.length ? similarMbtiOnly.map(m => chipHTML(m, "mbti", {noDim:true})).join("") : '<span class="muted-txt">No ' + (sisterType || 'sister-type') + 's in the flock.</span>'}</div>
       </div>
       ${c.enn ? `
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same Enneagram as ${c.name}</div>
-        <div>${sameEnn.length ? sameEnn.map(m => chipHTML(m, "mbti", {noDim:true})).join("") : '<span class="muted-txt">No one else in the flock shares this enneatype.</span>'}</div>
+        <div class="profile-similar-lbl">Same Enneagram · ${c.wing || ('Type ' + c.enn)}</div>
+        <div>${(c.wing ? sameWingExact : sameEnn).length ? (c.wing ? sameWingExact : sameEnn).map(m => chipHTML(m, "mbti", {noDim:true})).join("") : '<span class="muted-txt">No one else shares ' + (c.wing || ('Type ' + c.enn)) + '.</span>'}</div>
+      </div>
+      <div class="profile-similar-block">
+        <div class="profile-similar-lbl">Similar Enneagram · other Type ${c.enn}s</div>
+        <div>${similarEnnOnly.length ? similarEnnOnly.map(m => chipHTML(m, "enn", {noDim:true})).join("") : '<span class="muted-txt">No other Type ' + c.enn + ' wings in the flock.</span>'}</div>
       </div>` : ''}
     </div>
   `;
@@ -929,7 +977,7 @@ function renderFamilies() {
       const members = characters.filter(c => c.mbti === tc);
       const memberStr = members.length === 0
         ? '<span class="fam-type-members empty">—</span>'
-        : `<span class="fam-type-members">${members.map(m => m.name).join(", ")}</span>`;
+        : `<span class="fam-type-members">${members.map(m => `<span class="fam-name-link" data-goose-name="${m.name}">${m.name}</span>`).join(", ")}</span>`;
       const active = filter.mbti === tc ? "active" : "";
       return `<div class="fam-type ${active}" data-mbti="${tc}">
         <span class="fam-type-code"><span class="fam-type-icon-mini">${mbtiIcons[tc]}</span>${tc}</span>${memberStr}
@@ -937,7 +985,7 @@ function renderFamilies() {
     }).join("");
 
     const el = document.createElement("div");
-    el.className = "fam-card" + (isActive ? " active" : "") + (isDimmed && !isActive ? " muted" : "");
+    el.className = "fam-card" + (isActive ? " active" : "");
     el.style.setProperty("--fc", g.color);
     el.innerHTML = `
       <div class="fam-head"><div class="fam-name">${g.code}</div><div class="fam-count">${groupMembers.length}</div></div>
@@ -946,6 +994,12 @@ function renderFamilies() {
       <div class="fam-types">${typeRows}</div>
     `;
     el.addEventListener("click", (ev) => {
+      const nameEl = ev.target.closest(".fam-name-link");
+      if (nameEl) {
+        ev.stopPropagation();
+        selectGoose(nameEl.dataset.gooseName);
+        return;
+      }
       const typeEl = ev.target.closest(".fam-type");
       if (typeEl) {
         ev.stopPropagation();
@@ -1110,6 +1164,7 @@ function renderTriads() {
       </div>
       <div class="triad-emotion">Types ${t.types.join(" · ")} · core emotion: ${t.emotion}</div>
       <div class="triad-desc">${t.desc}</div>
+      <ul class="triad-bullets">${t.bullets.map(b => `<li>${b.text}</li>`).join("")}</ul>
     `;
     el.addEventListener("click", () => {
       filter.triad = filter.triad === key ? null : key;
@@ -1121,13 +1176,27 @@ function renderTriads() {
   const detail = document.getElementById("triad-detail");
   if (filter.triad) {
     const t = triadInfo[filter.triad];
-    const members = characters.filter(c => c.enn && t.types.includes(c.enn));
+    const allMembers = characters.filter(c => c.enn && t.types.includes(c.enn));
+    const groups = t.types.map(num => {
+      const e = ennData.find(x => x.num === num);
+      const members = characters.filter(c => c.enn === num);
+      return `
+        <div class="triad-detail-group">
+          <div class="triad-detail-group-head">
+            <span class="triad-detail-group-num">${num}</span>
+            <span class="triad-detail-group-label">${e.label}</span>
+            <span class="triad-detail-group-count">${members.length} ${members.length === 1 ? 'goose' : 'geese'}</span>
+          </div>
+          <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">None.</span>'}</div>
+        </div>
+      `;
+    }).join("");
     detail.style.setProperty("--tc", t.color);
     detail.className = "triad-detail open";
     detail.innerHTML = `
-      <div class="triad-detail-title">${t.name} triad · ${members.length} geese</div>
+      <div class="triad-detail-title">${t.name} triad · ${allMembers.length} geese</div>
       <div class="triad-detail-sub">${t.desc}</div>
-      <div>${members.map(m => chipHTML(m, "enn")).join("")}</div>
+      ${groups}
     `;
   } else {
     detail.className = "triad-detail";
@@ -1156,13 +1225,24 @@ function renderInsights() {
   const fully = characters.filter(c => c.mbti && c.enn);
 
   let bestPair = null, bestScore = -1;
-  let farPair = null, farScore = 999;
+  let farScore = 999;
+  const allPairs = [];
   for (let i = 0; i < fully.length; i++)
     for (let j = i+1; j < fully.length; j++) {
       const s = similarity(fully[i], fully[j]);
+      allPairs.push([fully[i], fully[j], s]);
       if (s > bestScore) { bestScore = s; bestPair = [fully[i], fully[j]]; }
-      if (s < farScore) { farScore = s; farPair = [fully[i], fully[j]]; }
+      if (s < farScore) farScore = s;
     }
+  // collect all pairs at the minimum, then pick the goose who appears in the most of them
+  const minPairs = allPairs.filter(([,,s]) => s === farScore);
+  const counts = {};
+  minPairs.forEach(([a,b]) => { counts[a.name]=(counts[a.name]||0)+1; counts[b.name]=(counts[b.name]||0)+1; });
+  const anchorName = Object.entries(counts).sort((x,y)=>y[1]-x[1])[0][0];
+  const farAnchor = fully.find(c => c.name === anchorName);
+  const farOpposites = minPairs
+    .filter(([a,b]) => a.name === anchorName || b.name === anchorName)
+    .map(([a,b]) => a.name === anchorName ? b : a);
 
   const mbtiCounts = {};
   characters.forEach(c => { if (c.mbti) mbtiCounts[c.mbti] = (mbtiCounts[c.mbti]||0)+1; });
@@ -1212,10 +1292,10 @@ function renderInsights() {
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12l5-5M5 12l5 5M19 12l-5-5M19 12l-5 5"/></svg>',
       title: "Perfect complements",
-      headline: `${farPair[0].name} & ${farPair[1].name}`,
-      sub: `The most contrasting pair`,
-      members: farPair, tag: "default",
-      note: `${farPair[0].name} and ${farPair[1].name} sit at opposite ends of nearly every scale — which means together they cover every blind spot. A powerful duo when they're on the same team.`,
+      headline: `${farAnchor.name} ↔ ${farOpposites.map(o => o.name).join(" & ")}`,
+      sub: `The most contrasting ${farOpposites.length > 1 ? 'pairings' : 'pair'} in the flock`,
+      members: [farAnchor, ...farOpposites], tag: "default",
+      note: `${farAnchor.name} sits at the opposite end of nearly every scale from ${farOpposites.map(o => o.name).join(" and ")} — different MBTI letters, different family, different triad. Together they cover every blind spot. A powerful team when they're on the same side.`,
       color: "var(--enn6)"
     },
     {
@@ -1424,6 +1504,9 @@ function renderAll() {
   renderInsights();
   renderRoster();
 }
+
+const LAST_UPDATED = "Apr 24, 2026";
+document.getElementById("last-updated").textContent = LAST_UPDATED;
 
 renderAll();
 </script>
