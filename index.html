@@ -26,9 +26,11 @@
     --axis3-a:#2a8a8a;--axis3-b:#a33862;
     --axis3-a-soft:#c8e8e8;--axis3-b-soft:#f0d0dc;
     --nt:#4a3d80;--nf:#1f6a50;--sj:#24517d;--sp:#8a5408;
-    --enn1:#6a4ba8;--enn2:#1f7559;--enn3:#b85932;
-    --enn4:#a33862;--enn5:#5a5450;--enn6:#2c5f96;
-    --enn7:#a87515;--enn8:#8f1f1f;--enn9:#5a7a2f;
+    --dom-extj:#b32424;--dom-ixtp:#2c5f96;--dom-exfj:#1f7a4f;--dom-ixfp:#d05088;
+    --dom-esxp:#d6a510;--dom-isxj:#1f3a66;--dom-enxp:#cc6a1f;--dom-inxj:#1a1712;
+    --enn1:#a8871f;--enn2:#3a8f3a;--enn3:#b0aaa0;
+    --enn4:#b85518;--enn5:#6a4ba8;--enn6:#4a7ab8;
+    --enn7:#7a5a32;--enn8:#8f1f1f;--enn9:#b85a7a;
     --triad-head:#5a5450;--triad-heart:#a33862;--triad-body:#8f1f1f;
     --shadow:rgba(0,0,0,0.08);--backdrop:rgba(26,23,18,0.55);
     --bg-grad-1:rgba(194,90,31,0.08);--bg-grad-2:rgba(37,93,110,0.08);
@@ -51,9 +53,11 @@
     --axis3-a:#60c0c0;--axis3-b:#e08098;
     --axis3-a-soft:rgba(96,192,192,0.22);--axis3-b-soft:rgba(224,128,152,0.22);
     --nt:#a890e0;--nf:#5fc296;--sj:#7ab0e0;--sp:#e0b060;
-    --enn1:#a890e0;--enn2:#5fc296;--enn3:#e89a70;
-    --enn4:#e08098;--enn5:#b0a898;--enn6:#7ab0e0;
-    --enn7:#e0b060;--enn8:#e07070;--enn9:#b0c880;
+    --dom-extj:#e87070;--dom-ixtp:#7ab0e0;--dom-exfj:#5fc296;--dom-ixfp:#f090b8;
+    --dom-esxp:#f0c850;--dom-isxj:#6888c8;--dom-enxp:#e89a55;--dom-inxj:#3a3530;
+    --enn1:#d4b860;--enn2:#80c880;--enn3:#d0cabe;
+    --enn4:#d88850;--enn5:#a890e0;--enn6:#98c0e8;
+    --enn7:#b89060;--enn8:#c85858;--enn9:#d890a8;
     --triad-head:#b0a898;--triad-heart:#e08098;--triad-body:#e07070;
     --shadow:rgba(0,0,0,0.4);--backdrop:rgba(0,0,0,0.7);
     --bg-grad-1:rgba(232,144,85,0.06);--bg-grad-2:rgba(106,179,196,0.06);
@@ -126,7 +130,8 @@
   .profile-type-icon { width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:white; }
   .profile-type-icon svg { width:24px;height:24px; }
   .profile-name { font-family:'Fraunces',serif;font-size:clamp(32px,5vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.05; }
-  .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--accent);margin-bottom:20px; }
+  .profile-aka { font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:0.45em;color:var(--ink-fade);margin-left:14px;letter-spacing:0;white-space:nowrap; }
+  .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;font-weight:500;color:var(--ink-fade);margin-bottom:20px; }
   .profile-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line); }
   .stat { display:flex;flex-direction:column;gap:4px; }
   .stat-key { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700; }
@@ -515,24 +520,24 @@ const mbtiTypes = [
   { code: "ESFP", label: "The Entertainer", family: "SP" }
 ];
 
-const mbtiIcons = {
-  INTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M9 21v-7h6v7"/><circle cx="12" cy="11" r="1.2" fill="currentColor"/></svg>',
-  INTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M7 17l-1.5 1.5M18.5 5.5L17 7"/></svg>',
-  ENTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17l3-9 4 6 4-9 3 12"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>',
-  ENTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 2h6M12 8c-3 0-6 2-6 6v2a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-2c0-4-3-6-6-6z"/><path d="M9 14h.01M15 14h.01"/></svg>',
-  INFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12c4-1 8 3 7 7M19 12c-4-1-8 3-7 7M5 12c4 1 8-3 7-7M19 12c-4 1-8-3-7-7"/></svg>',
-  INFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/></svg>',
-  ENFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7M12 12v3M9 16h6"/></svg>',
-  ENFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
-  ISTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/></svg>',
-  ISFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 7.5-8 12-8 12z"/><path d="M9 11l2 2 4-4"/></svg>',
-  ESTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6l2-7 4 14 2-7h4"/></svg>',
-  ESFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><path d="M7.5 9c.5-.5 1-1 2-1M14 9c-.5-.5-1-1-2-1"/></svg>',
-  ISTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3l3 3-9 9H5.7v-3z"/><path d="M13 8l3 3M3 21h18"/></svg>',
-  ISFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="11" r="2"/><circle cx="6" cy="13" r="2.5"/><circle cx="10" cy="19" r="2"/><path d="M12 22a10 10 0 0 1-7-7"/></svg>',
-  ESTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-12h-7z"/></svg>',
-  ESFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>'
+// Dominant-function icons: sword/shield/hand/heart/sun/moon/bullseye/firework
+const domIcons = {
+  ExTJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10 L21 3 L21 6 L21 3 L18 3"/><path d="M14 10 L6 18"/><path d="M4 16 L8 20"/><path d="M3 21 L6 18"/><path d="M9 13 L11 15"/></svg>',
+  IxTP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 16 16 20 12 21 C8 20 5 16 5 11 V6 Z"/><path d="M12 3 V21"/><path d="M5 10 H19"/></svg>',
+  ExFJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11 V5.5 a1.5 1.5 0 0 1 3 0 V10"/><path d="M10 10 V4.5 a1.5 1.5 0 0 1 3 0 V10"/><path d="M13 10 V5.5 a1.5 1.5 0 0 1 3 0 V11"/><path d="M16 11 a1.5 1.5 0 0 1 3 0 V15 c0 3 -2 6 -6 6 h-1 c-2 0 -3.5 -1 -5 -3 l-3 -4 a1.5 1.5 0 0 1 2.2 -2 L7 13"/></svg>',
+  IxFP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 s-8-4.5-8-11 a5 5 0 0 1 8-3 a5 5 0 0 1 8 3 c0 6.5-8 11-8 11z"/></svg>',
+  ESxP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1l2.1-2.1M17 7l2.1-2.1"/></svg>',
+  ISxJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8 A9 9 0 1 1 11.2 3 A7 7 0 0 0 21 12.8 Z"/></svg>',
+  INxJ: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 C5 6 9 4 12 4 C15 4 19 6 22 12 C19 18 15 20 12 20 C9 20 5 18 2 12 Z"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>',
+  ENxP: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.5" fill="currentColor"/><path d="M12 9V3M12 15v6M9 12H3M15 12h6M9.9 9.9L5.5 5.5M14.1 14.1l4.4 4.4M9.9 14.1l-4.4 4.4M14.1 9.9l4.4-4.4"/><circle cx="12" cy="3" r="1"/><circle cx="12" cy="21" r="1"/><circle cx="3" cy="12" r="1"/><circle cx="21" cy="12" r="1"/><circle cx="5.5" cy="5.5" r="1"/><circle cx="18.5" cy="18.5" r="1"/><circle cx="5.5" cy="18.5" r="1"/><circle cx="18.5" cy="5.5" r="1"/></svg>'
 };
+
+function mbtiIcon(code) {
+  const g = getDomGroup(code);
+  return g ? domIcons[g.code] : '';
+}
+// Backward-compatible map: any [code] lookup returns the dom-function icon
+const mbtiIcons = new Proxy({}, { get: (_, code) => mbtiIcon(code) });
 
 const families = [
   { code: "NT", name: "Analysts", sub: "Intuitive · Thinking", color: "var(--nt)" },
@@ -543,21 +548,21 @@ const families = [
 
 // Dominant-function groups (8): two MBTI types per group share the same "lead" process.
 const domGroups = [
-  { code: "ExTJ", types: ["ESTJ","ENTJ"], name: "Lead with Logic (outward)", color: "var(--nt)",
+  { code: "ExTJ", types: ["ESTJ","ENTJ"], name: "Lead with Logic (outward)", color: "var(--dom-extj)",
     def: "ESTJs and ENTJs lead with extraverted thinking. They organise the outside world: set goals, build systems, decide quickly, and judge things by results. Direct, efficient, and natural managers." },
-  { code: "IxTP", types: ["ISTP","INTP"], name: "Lead with Logic (inward)", color: "var(--enn5)",
+  { code: "IxTP", types: ["ISTP","INTP"], name: "Lead with Logic (inward)", color: "var(--dom-ixtp)",
     def: "ISTPs and INTPs lead with introverted thinking. They build private mental models, take ideas apart to see how they work, and won't accept something just because everyone says so. Analytical, precise, independent." },
-  { code: "ExFJ", types: ["ESFJ","ENFJ"], name: "Lead with Harmony (outward)", color: "var(--enn2)",
+  { code: "ExFJ", types: ["ESFJ","ENFJ"], name: "Lead with Harmony (outward)", color: "var(--dom-exfj)",
     def: "ESFJs and ENFJs lead with extraverted feeling. They're tuned in to the emotional temperature of the group, instinctively smooth things over, and feel responsible for everyone being okay. Warm, expressive, connective." },
-  { code: "IxFP", types: ["ISFP","INFP"], name: "Lead with Values (inward)", color: "var(--nf)",
+  { code: "IxFP", types: ["ISFP","INFP"], name: "Lead with Values (inward)", color: "var(--dom-ixfp)",
     def: "ISFPs and INFPs lead with introverted feeling. They run everything past a private inner compass of what's authentic and right for them. Quietly principled, individualistic, hard to push into anything that feels false." },
-  { code: "ESxP", types: ["ESTP","ESFP"], name: "Lead with Action", color: "var(--sp)",
+  { code: "ESxP", types: ["ESTP","ESFP"], name: "Lead with Action", color: "var(--dom-esxp)",
     def: "ESTPs and ESFPs lead with extraverted sensing. They live in the present moment, react fast, and learn by jumping in. Energetic, observant, good in a crisis, easily bored by sitting still." },
-  { code: "ISxJ", types: ["ISTJ","ISFJ"], name: "Lead with Memory", color: "var(--sj)",
+  { code: "ISxJ", types: ["ISTJ","ISFJ"], name: "Lead with Memory", color: "var(--dom-isxj)",
     def: "ISTJs and ISFJs lead with introverted sensing. They rely on past experience, proven methods, and detailed recall. Steady, dependable, careful — they trust what's been shown to work." },
-  { code: "ENxP", types: ["ENTP","ENFP"], name: "Lead with Possibility", color: "var(--enn7)",
+  { code: "ENxP", types: ["ENTP","ENFP"], name: "Lead with Possibility", color: "var(--dom-enxp)",
     def: "ENTPs and ENFPs lead with extraverted intuition. They see connections and possibilities everywhere, love brainstorming, and get restless with routine. Curious, quick, idea-driven." },
-  { code: "INxJ", types: ["INTJ","INFJ"], name: "Lead with Vision", color: "var(--enn1)",
+  { code: "INxJ", types: ["INTJ","INFJ"], name: "Lead with Vision", color: "var(--dom-inxj)",
     def: "INTJs and INFJs lead with introverted intuition. They look for the underlying pattern, think long-term, and trust their sense of where things are heading. Private, insightful, future-focused." }
 ];
 
@@ -960,9 +965,11 @@ function renderProfile() {
         ${c.mbti ? `<div class="profile-type-icon" style="background:${mbtiColor};" title="${c.mbti}">${mbtiIconHTML}</div>` : ''}
         ${c.enn ? `<div class="profile-type-icon" style="background:${ennColor};" title="Type ${c.enn}">${ennIconHTML}</div>` : ''}
       </div>
-      <div><div class="profile-name">${c.name}</div></div>
+      <div>
+        <div class="profile-name">${c.name}${c.nick ? `<span class="profile-aka">aka ${c.nick}</span>` : ''}</div>
+      </div>
     </div>
-    <div class="profile-nick">${c.nick ? `also known as ${c.nick}` : (mbtiInfo ? mbtiInfo.label : 'Uncharted')}${ennInfo ? ` · ${ennInfo.label}` : ''}</div>
+    <div class="profile-nick">${mbtiInfo ? `<span style="color:${mbtiColor};">${mbtiInfo.label}</span>` : 'Uncharted'}${ennInfo ? ` <span style="color:var(--ink-fade);">·</span> <span style="color:${ennColor};">${ennInfo.label}</span>` : ''}</div>
 
     <div class="profile-stats">
       <div class="stat"><div class="stat-key">MBTI</div><div class="stat-val ${!c.mbti ? 'muted' : ''}">${c.mbti || '—'}</div><div class="stat-sub">${mbtiInfo ? mbtiInfo.label : ''}</div></div>
