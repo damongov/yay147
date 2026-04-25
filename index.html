@@ -418,31 +418,37 @@
 
 <script>
 const characters = [
-  { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: null },
-  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6" },
-  { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: null },
-  { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3" },
-  { name: "CPD", nick: "GooseLaLa", mbti: "ESFP", enn: "8", wing: "8w9" },
-  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7" },
-  { name: "Diss", nick: null, mbti: "INTJ", enn: "1", wing: null },
-  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: null },
-  { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: null },
-  { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: null },
-  { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: null },
-  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2" },
-  { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: null },
-  { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: null },
-  { name: "Mollies", nick: null, mbti: "ENFP", enn: null, wing: null },
-  { name: "Nel", nick: "Nelgandis", mbti: "ENTP", enn: "7", wing: null },
-  { name: "Nori", nick: "Noriella", mbti: "ISFJ", enn: "2", wing: "2w1" },
-  { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6" },
-  { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: null },
-  { name: "Sels", nick: null, mbti: "INFP", enn: "4", wing: "4w5" },
-  { name: "Sevi", nick: "Lilac", mbti: "ESTJ", enn: "6", wing: "6w5" },
-  { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Vesper", nick: null, mbti: "ISFP", enn: "7", wing: "7w8" },
-  { name: "Whiskey", nick: null, mbti: "ESTP", enn: "7", wing: "7w8" }
+  { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: null, g: "f" },
+  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6", g: "m" },
+  { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: null, g: "f" },
+  { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3", g: "f" },
+  { name: "CPD", nick: "GooseLaLa", mbti: "ESFP", enn: "8", wing: "8w9", g: "f" },
+  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m" },
+  { name: "Disseia", nick: "Diss", mbti: "INTJ", enn: "1", wing: "1w9", g: "f" },
+  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m" },
+  { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f" },
+  { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: "1w2", g: "m" },
+  { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: "9w1", g: "f" },
+  { name: "Mollies", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Nel", nick: "Nelgandis", mbti: "ENTP", enn: "7", wing: "7w6", g: "m" },
+  { name: "Nori", nick: "Noriella", mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: "6w7", g: "f" },
+  { name: "Sels", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
+  { name: "Sevi", nick: "Lilac", mbti: "ESTJ", enn: "6", wing: "6w5", g: "f" },
+  { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null, g: "f" },
+  { name: "Vesper", nick: null, mbti: "ISFP", enn: "7", wing: "7w8", g: "f" },
+  { name: "Whiskey", nick: null, mbti: "ESTP", enn: "7", wing: "7w8", g: "f" }
 ];
+
+function pronouns(g) {
+  return g === "m"
+    ? { they: "he", them: "him", their: "his", themself: "himself", theyre: "he's", They: "He", Their: "His" }
+    : { they: "she", them: "her", their: "her", themself: "herself", theyre: "she's", They: "She", Their: "Her" };
+}
 
 const knownButUntyped = ["Aria", "Clover", "Lily"];
 const TOTAL_MEMBERS = 27;
@@ -566,24 +572,24 @@ const triadInfo = {
     desc: "Body types process life through gut instinct and action. Their core struggle is anger — expressed outwardly (8), suppressed (9), or turned into self-correction (1). At their best they're grounded, fair, and decisive." }
 };
 
-// PLAIN-LANGUAGE MBTI descriptions, no function jargon, name woven through
+// PLAIN-LANGUAGE MBTI descriptions, no function jargon, name + pronouns woven through
 const mbtiDesc = {
-  INTJ: n => `${n} is the kind of person who's already three moves ahead. ${n} likes having a plan, prefers working things out alone before sharing, and isn't interested in doing something just because that's how it's always been done. Direct, private, and very comfortable working independently — ${n} would rather get something <em>right</em> than get it done fast.`,
-  INTP: n => `${n} is endlessly curious about how things work and why. ${n} questions assumptions, takes ideas apart for fun, and is far more interested in understanding something properly than in winning the argument. Reserved, independent, and happiest when given room to think — ${n} can lose track of time chasing an interesting problem.`,
-  ENTJ: n => `${n} is a natural organiser. When something's inefficient or directionless, ${n} can't help but step in and structure it. Decisive, ambitious, and very direct — ${n} sets high standards, says what they mean, and expects to be evaluated on results, not intentions.`,
-  ENTP: n => `${n} loves a new idea, a what-if, or a friendly argument. ${n} is quick on their feet, gets bored with routine, and would rather poke at the rules than follow them. Charming, clever, and a little contrarian — ${n} is the goose who'll find the loophole no one else noticed.`,
-  INFJ: n => `${n} is quiet but deeply tuned in to people. ${n} picks up on what others are feeling, thinks long-term about what actually matters, and tends to keep their inner world private. Warm but reserved, idealistic, and selective about who they let close.`,
-  INFP: n => `${n} runs on personal values. ${n} cares deeply about authenticity — both their own and other people's — and would rather do what feels right than what's expected. Imaginative, gentle, and more sensitive than they let on. ${n} doesn't try to change anyone; they just want everyone to be allowed to be themselves.`,
-  ENFJ: n => `${n} is a people person through and through. ${n} reads the room instinctively, draws others out, and genuinely enjoys helping people get where they're going. Warm, organised, encouraging — and occasionally so focused on everyone else that they forget to check on themselves.`,
-  ENFP: n => `${n} is enthusiastic, open-minded, and easily lit up by possibility. ${n} sees potential in people and ideas that others miss, hates being boxed in, and can talk to anyone about anything. Warm, spontaneous, and sometimes scattered — but never boring.`,
-  ISTJ: n => `${n} is dependable and thorough. ${n} likes things done properly, remembers the details everyone else forgets, and takes commitments seriously. Reserved, practical, steady — ${n} isn't flashy, but is exactly who you want when something actually has to work.`,
-  ISFJ: n => `${n} is the quiet caretaker. ${n} notices what people need before they ask, remembers what matters to them, and shows up consistently without making a fuss about it. Loyal, practical, and genuinely kind — ${n} keeps things running in ways that often go unnoticed.`,
-  ESTJ: n => `${n} likes order, clear expectations, and getting things done. ${n} is practical, organised, and not afraid to take charge when something needs structure. Direct and reliable — ${n} says what they think and follows through on what they promise.`,
-  ESFJ: n => `${n} is warm, sociable, and tuned in to how everyone's doing. ${n} likes keeping the group happy, remembers birthdays, and feels responsible for the vibe in the room. Caring and dependable — ${n} is the one who makes sure no one's left out.`,
-  ISTP: n => `${n} is hands-on, observant, and unbothered by pressure. ${n} learns by doing, fixes things rather than talking about them, and doesn't waste words. Calm, independent, and surprisingly hard to rattle.`,
-  ISFP: n => `${n} is easy-going on the surface and quietly principled underneath. ${n} lives in the moment, expresses themselves through what they make or do rather than what they say, and won't be pushed into anything that doesn't feel right. Gentle, observant, and more stubborn than they look.`,
-  ESTP: n => `${n} is action-first. ${n} thinks fast, jumps in, and figures it out on the way. Practical, charming, and good in a crisis — ${n} would rather <em>do</em> something than sit around discussing it.`,
-  ESFP: n => `${n} brings the energy. ${n} lives in the moment, loves people, and has a gift for turning an ordinary situation into something fun. Warm, spontaneous, and genuinely present — when ${n} is in the room, you know it.`
+  INTJ: (n,p) => `${n} is the kind of person who's already three moves ahead. ${p.They} likes having a plan, prefers working things out alone before sharing, and isn't interested in doing something just because that's how it's always been done. Direct, private, and very comfortable working independently — ${n} would rather get something <em>right</em> than get it done fast.`,
+  INTP: (n,p) => `${n} is endlessly curious about how things work and why. ${p.They} questions assumptions, takes ideas apart for fun, and is far more interested in understanding something properly than in winning the argument. Reserved, independent, and happiest when given room to think — ${p.they} can lose track of time chasing an interesting problem.`,
+  ENTJ: (n,p) => `${n} is a natural organiser. When something's inefficient or directionless, ${p.they} can't help but step in and structure it. Decisive, ambitious, and very direct — ${n} sets high standards, says what ${p.they} means, and expects to be evaluated on results, not intentions.`,
+  ENTP: (n,p) => `${n} loves a new idea, a what-if, or a friendly argument. ${p.They} is quick on ${p.their} feet, gets bored with routine, and would rather poke at the rules than follow them. Charming, clever, and a little contrarian — ${n} is the one who'll find the loophole no one else noticed.`,
+  INFJ: (n,p) => `${n} is quiet but deeply tuned in to people. ${p.They} picks up on what others are feeling, thinks long-term about what actually matters, and tends to keep ${p.their} inner world private. Warm but reserved, idealistic, and selective about who ${p.they} lets close.`,
+  INFP: (n,p) => `${n} runs on personal values. ${p.They} cares deeply about authenticity — both ${p.their} own and other people's — and would rather do what feels right than what's expected. Imaginative, gentle, and more sensitive than ${p.they} lets on. ${n} doesn't try to change anyone; ${p.they} just wants everyone to be allowed to be themselves.`,
+  ENFJ: (n,p) => `${n} is a people person through and through. ${p.They} reads the room instinctively, draws others out, and genuinely enjoys helping people get where they're going. Warm, organised, encouraging — and occasionally so focused on everyone else that ${p.they} forgets to check on ${p.themself}.`,
+  ENFP: (n,p) => `${n} is enthusiastic, open-minded, and easily lit up by possibility. ${p.They} sees potential in people and ideas that others miss, hates being boxed in, and can talk to anyone about anything. Warm, spontaneous, and sometimes scattered — but never boring.`,
+  ISTJ: (n,p) => `${n} is dependable and thorough. ${p.They} likes things done properly, remembers the details everyone else forgets, and takes commitments seriously. Reserved, practical, steady — ${n} isn't flashy, but is exactly who you want when something actually has to work.`,
+  ISFJ: (n,p) => `${n} is the quiet caretaker. ${p.They} notices what people need before they ask, remembers what matters to them, and shows up consistently without making a fuss about it. Loyal, practical, and genuinely kind — ${n} keeps things running in ways that often go unnoticed.`,
+  ESTJ: (n,p) => `${n} likes order, clear expectations, and getting things done. ${p.They} is practical, organised, and not afraid to take charge when something needs structure. Direct and reliable — ${n} says what ${p.they} thinks and follows through on what ${p.they} promises.`,
+  ESFJ: (n,p) => `${n} is warm, sociable, and tuned in to how everyone's doing. ${p.They} likes keeping the group happy, remembers birthdays, and feels responsible for the vibe in the room. Caring and dependable — ${n} is the one who makes sure no one's left out.`,
+  ISTP: (n,p) => `${n} is hands-on, observant, and unbothered by pressure. ${p.They} learns by doing, fixes things rather than talking about them, and doesn't waste words. Calm, independent, and surprisingly hard to rattle.`,
+  ISFP: (n,p) => `${n} is easy-going on the surface and quietly principled underneath. ${p.They} lives in the moment, expresses ${p.themself} through what ${p.they} makes or does rather than what ${p.they} says, and won't be pushed into anything that doesn't feel right. Gentle, observant, and more stubborn than ${p.they} looks.`,
+  ESTP: (n,p) => `${n} is action-first. ${p.They} thinks fast, jumps in, and figures it out on the way. Practical, charming, and good in a crisis — ${n} would rather <em>do</em> something than sit around discussing it.`,
+  ESFP: (n,p) => `${n} brings the energy. ${p.They} lives in the moment, loves people, and has a gift for turning an ordinary situation into something fun. Warm, spontaneous, and genuinely present — when ${n} is in the room, you know it.`
 };
 
 // PLAIN-LANGUAGE Enneagram descriptions for accordion + profile
@@ -601,15 +607,15 @@ const ennLong = {
 
 // Short profile-card version
 const ennShort = {
-  "1": n => `${n} is driven by a strong sense of right and wrong, holds high standards (for ${n} most of all), and feels responsible for improving whatever's in front of them.`,
-  "2": n => `${n} is naturally focused on other people — quick to help, quick to notice what's needed, and feels most themselves when they're supporting someone.`,
-  "3": n => `${n} is goal-oriented and adaptable — works hard, reads what success looks like in any room, and is motivated by achievement and recognition.`,
-  "4": n => `${n} places a lot of value on authenticity and depth, is highly aware of how they're different from others, and feels things intensely.`,
-  "5": n => `${n} copes with the world by understanding it — observes more than they participate, guards their energy, and feels safest when they're well-informed.`,
-  "6": n => `${n} is loyal and security-minded — scans for what could go wrong, values people who are reliable, and shows up consistently for those they trust.`,
-  "7": n => `${n} is an optimist and an experience-seeker — keeps options open, reframes setbacks quickly, and would always rather look forward than dwell.`,
-  "8": n => `${n} is direct, protective, and instinctively pushes back against being controlled — comfortable taking charge and not afraid of conflict.`,
-  "9": n => `${n} is easy-going and steady — good at seeing every side, naturally calming, and prefers harmony over confrontation.`
+  "1": (n,p) => `${p.they} is driven by a strong sense of right and wrong, holds high standards (for ${p.themself} most of all), and feels responsible for improving whatever's in front of ${p.them}.`,
+  "2": (n,p) => `${p.they} is naturally focused on other people — quick to help, quick to notice what's needed, and feels most ${p.themself} when ${p.theyre} supporting someone.`,
+  "3": (n,p) => `${p.they} is goal-oriented and adaptable — works hard, reads what success looks like in any room, and is motivated by achievement and recognition.`,
+  "4": (n,p) => `${p.they} places a lot of value on authenticity and depth, is highly aware of how ${p.theyre} different from others, and feels things intensely.`,
+  "5": (n,p) => `${p.they} copes with the world by understanding it — observes more than ${p.they} participates, guards ${p.their} energy, and feels safest when ${p.theyre} well-informed.`,
+  "6": (n,p) => `${p.they} is loyal and security-minded — scans for what could go wrong, values people who are reliable, and shows up consistently for those ${p.they} trusts.`,
+  "7": (n,p) => `${p.they} is an optimist and an experience-seeker — keeps options open, reframes setbacks quickly, and would always rather look forward than dwell.`,
+  "8": (n,p) => `${p.they} is direct, protective, and instinctively pushes back against being controlled — comfortable taking charge and not afraid of conflict.`,
+  "9": (n,p) => `${p.they} is easy-going and steady — good at seeing every side, naturally calming, and prefers harmony over confrontation.`
 };
 
 const wingDesc = {
@@ -746,15 +752,16 @@ function renderProfile() {
   const flockVsWorld = pop ? flockMbtiPct - pop : null;
 
   // Plain description
+  const p = pronouns(c.g);
   let desc = "";
-  if (mbtiInfo && mbtiDesc[c.mbti]) desc += mbtiDesc[c.mbti](c.name);
+  if (mbtiInfo && mbtiDesc[c.mbti]) desc += mbtiDesc[c.mbti](c.name, p);
   if (ennInfo) {
-    desc += ` On the Enneagram, ${ennShort[c.enn](c.name)}`;
+    desc += ` On the Enneagram, ${ennShort[c.enn](c.name, p)}`;
     if (c.wing && wingDesc[c.wing]) {
       desc += ` Specifically a <strong>${c.wing}</strong> — ${wingDesc[c.wing]}.`;
     }
   } else if (mbtiInfo) {
-    desc += ` <em>(${c.name}'s Enneagram type isn't on record yet.)</em>`;
+    desc += ` <em>(${p.Their} Enneagram type isn't on record yet.)</em>`;
   }
 
   const mbtiIconHTML = mbtiIcons[c.mbti] || '';
