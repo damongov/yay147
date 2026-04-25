@@ -3,822 +3,311 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YAY: Silly Geese — A Census</title>
+<title>147 YAY: Silly Geese — Birds of a feather flock together</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1712;
-    --ink-soft: #403a32;
-    --ink-fade: #706858;
-    --cream: #faf4e6;
-    --cream-deep: #ece1c4;
-    --surface: #ffffff;
-    --surface-soft: rgba(255,255,255,0.7);
-    --accent: #c25a1f;
-    --accent-deep: #9a4418;
-    --gold: #a8871f;
-    --line: rgba(26, 23, 18, 0.18);
-    --line-strong: rgba(26, 23, 18, 0.3);
-
-    --pole-a: #255d6e;
-    --pole-b: #a84a20;
-    --pole-a-soft: #c8dde3;
-    --pole-b-soft: #f0d4bc;
-    --pole-a-text: #164051;
-    --pole-b-text: #7a3413;
-
-    --nt: #4a3d80; --nt-soft: #ddd6ef;
-    --nf: #1f6a50; --nf-soft: #c9e3d3;
-    --sj: #24517d; --sj-soft: #cde0ef;
-    --sp: #8a5408; --sp-soft: #eed9b4;
-
-    --enn1: #6a4ba8; --enn2: #1f7559; --enn3: #b85932;
-    --enn4: #a33862; --enn5: #5a5450; --enn6: #2c5f96;
-    --enn7: #a87515; --enn8: #8f1f1f; --enn9: #5a7a2f;
-
-    --triad-head: #5a5450;
-    --triad-heart: #a33862;
-    --triad-body: #8f1f1f;
-
-    --shadow: rgba(0,0,0,0.08);
-    --backdrop: rgba(26, 23, 18, 0.55);
-    --bg-grad-1: rgba(194, 90, 31, 0.08);
-    --bg-grad-2: rgba(37, 93, 110, 0.08);
+    --ink:#1a1712;--ink-soft:#403a32;--ink-fade:#706858;
+    --cream:#faf4e6;--cream-deep:#ece1c4;
+    --surface:#ffffff;--surface-soft:rgba(255,255,255,0.7);
+    --accent:#c25a1f;--accent-deep:#9a4418;--gold:#a8871f;
+    --line:rgba(26,23,18,0.18);--line-strong:rgba(26,23,18,0.3);
+    --pole-a:#255d6e;--pole-b:#a84a20;
+    --pole-a-soft:#c8dde3;--pole-b-soft:#f0d4bc;
+    --pole-a-text:#164051;--pole-b-text:#7a3413;
+    --nt:#4a3d80;--nf:#1f6a50;--sj:#24517d;--sp:#8a5408;
+    --enn1:#6a4ba8;--enn2:#1f7559;--enn3:#b85932;
+    --enn4:#a33862;--enn5:#5a5450;--enn6:#2c5f96;
+    --enn7:#a87515;--enn8:#8f1f1f;--enn9:#5a7a2f;
+    --triad-head:#5a5450;--triad-heart:#a33862;--triad-body:#8f1f1f;
+    --shadow:rgba(0,0,0,0.08);--backdrop:rgba(26,23,18,0.55);
+    --bg-grad-1:rgba(194,90,31,0.08);--bg-grad-2:rgba(37,93,110,0.08);
   }
-
   [data-theme="dark"] {
-    --ink: #f0e8d6;
-    --ink-soft: #c5bba5;
-    --ink-fade: #8a8070;
-    --cream: #1a1712;
-    --cream-deep: #252019;
-    --surface: #2a241c;
-    --surface-soft: rgba(255,255,255,0.04);
-    --accent: #e89055;
-    --accent-deep: #d97a3e;
-    --gold: #d4b254;
-    --line: rgba(240, 232, 214, 0.15);
-    --line-strong: rgba(240, 232, 214, 0.3);
-
-    --pole-a: #6ab3c4;
-    --pole-b: #e89055;
-    --pole-a-soft: rgba(106, 179, 196, 0.22);
-    --pole-b-soft: rgba(232, 144, 85, 0.22);
-    --pole-a-text: #8fc9d8;
-    --pole-b-text: #f0a474;
-
-    --nt: #a890e0; --nt-soft: rgba(168, 144, 224, 0.22);
-    --nf: #5fc296; --nf-soft: rgba(95, 194, 150, 0.22);
-    --sj: #7ab0e0; --sj-soft: rgba(122, 176, 224, 0.22);
-    --sp: #e0b060; --sp-soft: rgba(224, 176, 96, 0.22);
-
-    --enn1: #a890e0; --enn2: #5fc296; --enn3: #e89a70;
-    --enn4: #e08098; --enn5: #b0a898; --enn6: #7ab0e0;
-    --enn7: #e0b060; --enn8: #e07070; --enn9: #b0c880;
-
-    --triad-head: #b0a898;
-    --triad-heart: #e08098;
-    --triad-body: #e07070;
-
-    --shadow: rgba(0,0,0,0.4);
-    --backdrop: rgba(0, 0, 0, 0.7);
-    --bg-grad-1: rgba(232, 144, 85, 0.06);
-    --bg-grad-2: rgba(106, 179, 196, 0.06);
+    --ink:#f0e8d6;--ink-soft:#c5bba5;--ink-fade:#8a8070;
+    --cream:#1a1712;--cream-deep:#252019;
+    --surface:#2a241c;--surface-soft:rgba(255,255,255,0.04);
+    --accent:#e89055;--accent-deep:#d97a3e;--gold:#d4b254;
+    --line:rgba(240,232,214,0.15);--line-strong:rgba(240,232,214,0.3);
+    --pole-a:#6ab3c4;--pole-b:#e89055;
+    --pole-a-soft:rgba(106,179,196,0.22);--pole-b-soft:rgba(232,144,85,0.22);
+    --pole-a-text:#8fc9d8;--pole-b-text:#f0a474;
+    --nt:#a890e0;--nf:#5fc296;--sj:#7ab0e0;--sp:#e0b060;
+    --enn1:#a890e0;--enn2:#5fc296;--enn3:#e89a70;
+    --enn4:#e08098;--enn5:#b0a898;--enn6:#7ab0e0;
+    --enn7:#e0b060;--enn8:#e07070;--enn9:#b0c880;
+    --triad-head:#b0a898;--triad-heart:#e08098;--triad-body:#e07070;
+    --shadow:rgba(0,0,0,0.4);--backdrop:rgba(0,0,0,0.7);
+    --bg-grad-1:rgba(232,144,85,0.06);--bg-grad-2:rgba(106,179,196,0.06);
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; }
-
+  * { box-sizing:border-box;margin:0;padding:0; }
+  html { -webkit-text-size-adjust:100%; }
   body {
-    font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    min-height: 100vh;
-    line-height: 1.6;
+    font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);
+    min-height:100vh;line-height:1.6;
     background-image:
       radial-gradient(ellipse at 15% 0%, var(--bg-grad-1), transparent 50%),
       radial-gradient(ellipse at 85% 100%, var(--bg-grad-2), transparent 50%);
-    transition: background-color 0.3s, color 0.3s;
+    transition:background-color 0.3s,color 0.3s;
   }
-
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
-
+  .wrap { max-width:1200px;margin:0 auto;padding:40px 24px 80px; }
   .theme-toggle {
-    position: fixed; top: 16px; right: 16px; z-index: 50;
-    background: var(--surface); border: 1px solid var(--line-strong);
-    color: var(--ink); width: 44px; height: 44px; border-radius: 50%;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s; box-shadow: 0 2px 10px var(--shadow);
+    position:fixed;top:16px;right:16px;z-index:50;
+    background:var(--surface);border:1px solid var(--line-strong);
+    color:var(--ink);width:44px;height:44px;border-radius:50%;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;box-shadow:0 2px 10px var(--shadow);
   }
-  .theme-toggle:hover { transform: scale(1.08); border-color: var(--accent); }
-  .theme-toggle svg { width: 20px; height: 20px; }
-  [data-theme="light"] .theme-toggle .sun { display: none; }
-  [data-theme="dark"] .theme-toggle .moon { display: none; }
+  .theme-toggle:hover { transform:scale(1.08);border-color:var(--accent); }
+  .theme-toggle svg { width:20px;height:20px; }
+  [data-theme="light"] .theme-toggle .sun { display:none; }
+  [data-theme="dark"] .theme-toggle .moon { display:none; }
 
-  header {
-    position: relative;
-    padding: 0 0 40px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--line);
-  }
-  .logo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-  .logo-goose { width: 56px; height: 56px; flex-shrink: 0; }
-  .logo-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.3em; color: var(--accent-deep);
-  }
-  h1 {
-    font-family: 'Fraunces', serif; font-weight: 300;
-    font-size: clamp(42px, 7vw, 88px);
-    letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 18px;
-  }
-  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-  .tagline {
-    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-    font-size: clamp(18px, 2.5vw, 22px);
-    color: var(--ink-soft); margin-bottom: 0;
-    position: relative; padding-left: 20px;
-    border-left: 2px solid var(--gold);
-  }
-  .census-bar { position: absolute; top: 0; right: 0; text-align: right; }
-  .census-bar .big {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(48px, 8vw, 72px);
-    font-weight: 300; line-height: 1; color: var(--accent);
-  }
-  .census-bar .lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.3em;
-    color: var(--ink-fade); text-transform: uppercase;
-  }
+  header { position:relative;padding:0 0 40px;margin-bottom:32px;border-bottom:1px solid var(--line); }
+  .logo-row { display:flex;align-items:center;gap:16px;margin-bottom:24px; }
+  .logo-goose { width:56px;height:56px;flex-shrink:0; }
+  .logo-text { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.3em;color:var(--accent-deep); }
+  h1 { font-family:'Fraunces',serif;font-weight:300;font-size:clamp(42px,7vw,88px);letter-spacing:-0.03em;line-height:0.95;margin-bottom:18px; }
+  h1 em { font-style:italic;font-weight:400;color:var(--accent); }
+  .tagline { font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(18px,2.5vw,22px);color:var(--ink-soft);padding-left:20px;border-left:2px solid var(--gold); }
+  .census-bar { position:absolute;top:0;right:0;text-align:right; }
+  .census-bar .big { font-family:'Fraunces',serif;font-size:clamp(48px,8vw,72px);font-weight:300;line-height:1;color:var(--accent); }
+  .census-bar .lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--ink-fade);text-transform:uppercase; }
 
-  /* Section headers with icons & quotes */
-  .sec-head { margin-bottom: 24px; }
-  .sec-title-row {
-    display: flex; align-items: center; gap: 14px;
-    margin-bottom: 8px;
-  }
-  .sec-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    color: var(--accent);
-  }
-  h2 {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: clamp(26px, 4vw, 32px);
-    letter-spacing: -0.015em;
-  }
-  .sec-quote {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 15px; color: var(--ink-soft);
-    padding-left: 14px; border-left: 2px solid var(--gold);
-    max-width: 700px;
-  }
-  .sec-quote .who {
-    font-style: normal; font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--ink-fade); display: block; margin-top: 4px;
-  }
-  .section { margin-bottom: 56px; }
+  .sec-head { margin-bottom:24px; }
+  .sec-title-row { display:flex;align-items:center;gap:14px;margin-bottom:4px; }
+  .sec-icon { width:36px;height:36px;flex-shrink:0;color:var(--accent); }
+  h2 { font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,4vw,32px);letter-spacing:-0.015em; }
+  .sec-sub { font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-fade);margin-left:50px; }
+  .section { margin-bottom:56px; }
 
-  /* SEARCH — now a profile reveal */
-  .search-wrap {
-    position: sticky; top: 0; z-index: 20;
-    background: var(--cream);
-    padding: 14px 0 0;
-    margin-bottom: 8px;
-    border-bottom: 1px solid var(--line);
-  }
-  .search-inner {
-    position: relative; display: flex; gap: 10px; align-items: center;
-    padding-bottom: 12px;
-  }
-  .search-input {
-    flex: 1; padding: 12px 14px 12px 40px;
-    border: 1px solid var(--line-strong);
-    background: var(--surface);
-    font-family: 'Fraunces', serif; font-size: 16px;
-    color: var(--ink); border-radius: 2px;
-    transition: border-color 0.2s; min-width: 0;
-    -webkit-appearance: none;
-  }
-  .search-input:focus { outline: none; border-color: var(--accent); }
-  .search-input::placeholder { color: var(--ink-fade); }
-  .search-icon {
-    position: absolute; left: 12px; top: 18px;
-    color: var(--ink-fade); pointer-events: none;
-  }
-  .clear-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 10px 12px; background: transparent;
-    border: 1px solid var(--line-strong); color: var(--ink-soft);
-    cursor: pointer; border-radius: 2px; white-space: nowrap;
-    transition: all 0.15s;
-  }
-  .clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .search-wrap { position:sticky;top:0;z-index:20;background:var(--cream);padding:14px 0 0;margin-bottom:8px;border-bottom:1px solid var(--line); }
+  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:12px; }
+  .search-input { flex:1;padding:12px 14px 12px 40px;border:1px solid var(--line-strong);background:var(--surface);font-family:'Fraunces',serif;font-size:16px;color:var(--ink);border-radius:2px;transition:border-color 0.2s;min-width:0;-webkit-appearance:none; }
+  .search-input:focus { outline:none;border-color:var(--accent); }
+  .search-input::placeholder { color:var(--ink-fade); }
+  .search-icon { position:absolute;left:12px;top:18px;color:var(--ink-fade);pointer-events:none; }
+  .clear-btn { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 12px;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);cursor:pointer;border-radius:2px;white-space:nowrap;transition:all 0.15s; }
+  .clear-btn:hover { border-color:var(--accent);color:var(--accent); }
+  .search-suggestions { position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--line-strong);border-top:none;max-height:280px;overflow-y:auto;z-index:30;box-shadow:0 8px 24px var(--shadow);display:none; }
+  .search-suggestions.open { display:block; }
+  .sugg-item { padding:10px 16px;cursor:pointer;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:background 0.1s; }
+  .sugg-item:hover, .sugg-item.focused { background:var(--cream-deep); }
+  .sugg-name { font-family:'Fraunces',serif;font-size:15px; }
+  .sugg-nick { font-style:italic;color:var(--ink-fade);font-size:12px;margin-left:6px; }
+  .sugg-meta { font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:0.08em; }
 
-  /* Search suggestions dropdown */
-  .search-suggestions {
-    position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--surface);
-    border: 1px solid var(--line-strong);
-    border-top: none;
-    max-height: 280px; overflow-y: auto;
-    z-index: 30;
-    box-shadow: 0 8px 24px var(--shadow);
-    display: none;
-  }
-  .search-suggestions.open { display: block; }
-  .sugg-item {
-    padding: 10px 16px; cursor: pointer;
-    border-bottom: 1px dashed var(--line);
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 12px; transition: background 0.1s;
-  }
-  .sugg-item:hover, .sugg-item.focused { background: var(--cream-deep); }
-  .sugg-name { font-family: 'Fraunces', serif; font-size: 15px; }
-  .sugg-nick {
-    font-style: italic; color: var(--ink-fade);
-    font-size: 12px; margin-left: 6px;
-  }
-  .sugg-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--ink-soft);
-    letter-spacing: 0.08em;
-  }
-
-  /* PROFILE CARD — search result */
-  .profile-card {
-    background: var(--surface);
-    border: 1px solid var(--line-strong);
-    border-radius: 2px;
-    padding: 28px 32px;
-    margin-bottom: 32px;
-    position: relative;
-    overflow: hidden;
-    background-image: radial-gradient(circle at top right, var(--bg-grad-1), transparent 60%);
-    display: none;
-  }
-  .profile-card.open { display: block; }
-  .profile-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; width: 4px; height: 100%;
-    background: linear-gradient(to bottom, var(--accent), var(--gold));
-  }
-  .profile-close {
-    position: absolute; top: 14px; right: 14px;
-    background: transparent; border: 1px solid var(--line-strong);
-    color: var(--ink-soft); width: 28px; height: 28px;
-    cursor: pointer; font-family: 'JetBrains Mono', monospace;
-    border-radius: 2px; font-size: 16px; line-height: 1;
-  }
-  .profile-close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-  .profile-name {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(32px, 5vw, 44px);
-    font-weight: 400; letter-spacing: -0.02em;
-    line-height: 1.05; margin-bottom: 4px;
-  }
-  .profile-nick {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 15px; color: var(--accent);
-    margin-bottom: 20px;
-  }
-  .profile-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-    padding: 18px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .stat {
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .stat-key {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    font-weight: 700;
-  }
-  .stat-val {
-    font-family: 'Fraunces', serif; font-size: 18px;
-    color: var(--ink); font-weight: 500;
-  }
-  .stat-val.muted { color: var(--ink-fade); font-style: italic; font-weight: 400; }
-  .stat-sub {
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    color: var(--ink-soft);
-  }
-  .profile-desc {
-    font-family: 'Fraunces', serif; font-size: 16px;
-    line-height: 1.65; color: var(--ink-soft);
-    margin-bottom: 18px;
-  }
-  .profile-desc strong { color: var(--ink); font-weight: 500; }
-  .profile-similar {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    padding-top: 16px; border-top: 1px dashed var(--line);
-  }
-  .profile-similar-block { flex: 1; min-width: 200px; }
-  .profile-similar-lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    font-weight: 700; margin-bottom: 8px;
-  }
+  /* PROFILE */
+  .profile-card { background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;padding:28px 32px;margin-bottom:32px;position:relative;overflow:hidden;background-image:radial-gradient(circle at top right, var(--bg-grad-1), transparent 60%);display:none; }
+  .profile-card.open { display:block; }
+  .profile-card::before { content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom, var(--accent), var(--gold)); }
+  .profile-close { position:absolute;top:14px;right:14px;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);width:28px;height:28px;cursor:pointer;font-family:'JetBrains Mono',monospace;border-radius:2px;font-size:16px;line-height:1; }
+  .profile-close:hover { background:var(--ink);color:var(--cream);border-color:var(--ink); }
+  .profile-name-row { display:flex;align-items:center;gap:16px;margin-bottom:4px;flex-wrap:wrap; }
+  .profile-icon-pair { display:flex;gap:8px; }
+  .profile-type-icon { width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:white; }
+  .profile-type-icon svg { width:24px;height:24px; }
+  .profile-name { font-family:'Fraunces',serif;font-size:clamp(32px,5vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.05; }
+  .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--accent);margin-bottom:20px; }
+  .profile-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line); }
+  .stat { display:flex;flex-direction:column;gap:4px; }
+  .stat-key { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700; }
+  .stat-val { font-family:'Fraunces',serif;font-size:18px;color:var(--ink);font-weight:500; }
+  .stat-val.muted { color:var(--ink-fade);font-style:italic;font-weight:400; }
+  .stat-sub { font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-soft); }
+  .profile-section-lbl { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin:18px 0 8px; }
+  .profile-desc { font-family:'Fraunces',serif;font-size:16px;line-height:1.7;color:var(--ink);margin-bottom:4px; }
+  .profile-desc strong { font-weight:600; }
+  .profile-desc em { color:var(--accent-deep);font-style:italic; }
+  .profile-stats-row { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px; }
+  .profile-stat-card { background:var(--cream-deep);border-radius:2px;padding:12px 14px;border-left:3px solid var(--sc-color, var(--accent));cursor:pointer;transition:background 0.15s, box-shadow 0.15s; }
+  .profile-stat-card:hover { background:var(--surface);box-shadow:0 2px 8px var(--shadow); }
+  .profile-stat-card.open { background:var(--surface);box-shadow:0 0 0 1px var(--sc-color, var(--accent)); }
+  .profile-stat-card.no-click { cursor:default; }
+  .profile-stat-card.no-click:hover { background:var(--cream-deep);box-shadow:none; }
+  .profile-stat-card-key { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:4px; }
+  .profile-stat-card-val { font-family:'Fraunces',serif;font-size:17px;color:var(--ink);font-weight:500;line-height:1.25; }
+  .profile-stat-card-sub { font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);margin-top:3px; }
+  .profile-stat-card-hint { font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--sc-color, var(--accent));margin-top:6px; }
+  .profile-stat-card-expand { max-height:0;overflow:hidden;transition:max-height 0.3s ease, margin-top 0.3s ease; }
+  .profile-stat-card.open .profile-stat-card-expand { max-height:400px;margin-top:10px; }
+  .profile-similar { display:flex;gap:16px;flex-wrap:wrap;padding-top:16px;margin-top:16px;border-top:1px dashed var(--line); }
+  .profile-similar-block { flex:1;min-width:200px; }
+  .profile-similar-lbl { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:8px; }
 
   /* DIMS */
-  .dim-stack { display: flex; flex-direction: column; gap: 14px; }
-  .dim {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 2px; padding: 18px 20px;
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .dim:hover { background: var(--surface); }
-  .dim.expanded { background: var(--surface); border-color: var(--accent); }
+  .dim-stack { display:flex;flex-direction:column;gap:14px; }
+  .dim { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;padding:18px 20px;transition:background 0.2s,border-color 0.2s; }
+  .dim:hover { background:var(--surface); }
+  .dim.expanded { background:var(--surface);border-color:var(--accent); }
+  .dim-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:16px; }
+  .pole { display:flex;align-items:baseline;gap:10px;min-width:0;padding:4px 6px;border-radius:2px; }
+  .pole.right { justify-content:flex-end; }
+  .pole-letter { font-family:'Fraunces',serif;font-size:clamp(30px,5vw,40px);font-weight:500;line-height:1; }
+  .pole-letter.a { color:var(--pole-a); }
+  .pole-letter.b { color:var(--pole-b); }
+  .pole-info { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade);line-height:1.4; }
+  .pole-info strong { font-weight:600;color:var(--ink);font-size:12px;display:block; }
+  .pole-count { font-family:'Fraunces',serif;font-size:22px;font-weight:500; }
+  .pole-count.a { color:var(--pole-a); }
+  .pole-count.b { color:var(--pole-b); }
+  .dim-def { font-family:'Fraunces',serif;font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;padding:10px 14px;background:var(--cream-deep);border-radius:2px;border-left:3px solid var(--gold); }
+  .dim-def strong { color:var(--ink);font-weight:600; }
+  .dim-bar { display:flex;height:38px;border-radius:2px;overflow:hidden;border:1px solid var(--line); }
+  .dim-bar-a, .dim-bar-b { display:flex;align-items:center;padding:0 12px; }
+  .dim-bar-a { background:var(--pole-a-soft);color:var(--pole-a-text); }
+  .dim-bar-b { background:var(--pole-b-soft);color:var(--pole-b-text);justify-content:flex-end; }
+  .dim-bar-pct { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.05em; }
+  .dim-members { margin-top:16px; }
+  .dim-members-inner { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+  .dim-members-col { background:var(--cream-deep);padding:12px 14px;border-radius:2px; }
+  .dim-members-col.a { border-left:3px solid var(--pole-a); }
+  .dim-members-col.b { border-left:3px solid var(--pole-b); }
+  .dim-members-lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;font-weight:700; }
 
-  .dim-head {
-    display: flex; justify-content: space-between;
-    align-items: baseline; margin-bottom: 14px; gap: 16px;
-  }
-  .pole {
-    display: flex; align-items: baseline; gap: 10px;
-    min-width: 0; cursor: pointer; padding: 4px 6px;
-    border-radius: 2px; transition: background 0.15s;
-  }
-  .pole:hover { background: var(--cream-deep); }
-  .pole.right { justify-content: flex-end; }
-  .pole.active-a { background: var(--pole-a-soft); }
-  .pole.active-b { background: var(--pole-b-soft); }
-  .pole-letter {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(30px, 5vw, 40px);
-    font-weight: 500; line-height: 1;
-  }
-  .pole-letter.a { color: var(--pole-a); }
-  .pole-letter.b { color: var(--pole-b); }
-  .pole-info {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--ink-fade);
-    line-height: 1.4;
-  }
-  .pole-info strong {
-    font-weight: 600; color: var(--ink);
-    font-size: 12px; display: block;
-  }
-  .pole-count {
-    font-family: 'Fraunces', serif;
-    font-size: 22px; font-weight: 500;
-  }
-  .pole-count.a { color: var(--pole-a); }
-  .pole-count.b { color: var(--pole-b); }
-
-  .dim-bar {
-    display: flex; height: 38px; border-radius: 2px;
-    overflow: hidden; border: 1px solid var(--line);
-    cursor: pointer;
-  }
-  .dim-bar-a, .dim-bar-b {
-    display: flex; align-items: center; padding: 0 12px;
-    transition: flex-basis 0.6s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
-  }
-  .dim-bar-a { background: var(--pole-a-soft); color: var(--pole-a-text); }
-  .dim-bar-b { background: var(--pole-b-soft); color: var(--pole-b-text); justify-content: flex-end; }
-  .dim-bar-pct {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
-  }
-  .dim-members {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, margin-top 0.4s ease;
-  }
-  .dim.expanded .dim-members { max-height: 1500px; margin-top: 16px; }
-  .dim-members-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  .dim-members-col {
-    background: var(--cream-deep);
-    padding: 12px 14px; border-radius: 2px;
-    transition: opacity 0.3s, box-shadow 0.3s;
-  }
-  .dim-members-col.a { border-left: 3px solid var(--pole-a); }
-  .dim-members-col.b { border-left: 3px solid var(--pole-b); }
-  .dim-members-col.dim { opacity: 0.35; }
-  .dim-members-col.highlight { box-shadow: 0 0 0 2px var(--gold); }
-  .dim-members-lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--ink-soft);
-    margin-bottom: 8px; font-weight: 700;
-  }
-
-  .chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-family: 'Fraunces', serif; font-size: 14px;
-    padding: 4px 10px; background: var(--surface);
-    color: var(--ink); border-radius: 2px;
-    margin: 2px 3px 2px 0;
-    border: 1px solid var(--line-strong);
-    cursor: pointer;
-    transition: transform 0.1s, box-shadow 0.15s, opacity 0.2s;
-  }
-  .chip:hover { transform: translateY(-1px); box-shadow: 0 2px 8px var(--shadow); }
-  .chip.muted { opacity: 0.3; }
-  .chip-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; opacity: 0.7; letter-spacing: 0.05em;
-  }
+  .chip { display:inline-flex;align-items:center;gap:5px;font-family:'Fraunces',serif;font-size:14px;padding:4px 10px;background:var(--surface);color:var(--ink);border-radius:2px;margin:2px 3px 2px 0;border:1px solid var(--line-strong);cursor:pointer;transition:transform 0.1s,box-shadow 0.15s,opacity 0.2s; }
+  .chip:hover { transform:translateY(-1px);box-shadow:0 2px 8px var(--shadow); }
+  .chip.muted { opacity:0.3; }
+  .chip.lit { box-shadow:0 0 0 2px var(--gold);background:color-mix(in srgb, var(--gold) 14%, var(--surface)); }
+  .chip-tag { font-family:'JetBrains Mono',monospace;font-size:9px;opacity:0.7;letter-spacing:0.05em; }
 
   /* FAMILIES */
-  .fam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 14px;
-  }
-  .fam-card {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 2px; padding: 18px 20px;
-    position: relative; overflow: hidden; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s, background 0.2s;
-  }
-  .fam-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); background: var(--surface); }
-  .fam-card.active { box-shadow: 0 0 0 2px var(--fc); background: var(--surface); }
-  .fam-card.muted { opacity: 0.4; }
-  .fam-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 100%; height: 3px; background: var(--fc);
-  }
-  .fam-head {
-    display: flex; justify-content: space-between;
-    align-items: baseline; margin-bottom: 4px;
-  }
-  .fam-name {
-    font-family: 'Fraunces', serif; font-size: 22px;
-    font-weight: 500; color: var(--fc);
-  }
-  .fam-count {
-    font-family: 'Fraunces', serif; font-size: 28px;
-    font-weight: 300; color: var(--fc);
-  }
-  .fam-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--ink-fade);
-    margin-bottom: 14px;
-  }
-  .fam-bar {
-    height: 4px; background: var(--cream-deep);
-    border-radius: 2px; overflow: hidden; margin-bottom: 14px;
-  }
-  .fam-bar-fill {
-    height: 100%; background: var(--fc);
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .fam-types { display: flex; flex-direction: column; gap: 2px; }
-  .fam-type {
-    display: flex; justify-content: space-between;
-    align-items: baseline; font-size: 13px;
-    border-bottom: 1px dashed var(--line);
-    gap: 12px; cursor: pointer;
-    transition: background 0.15s;
-    border-radius: 2px; padding: 5px 6px;
-  }
-  .fam-type:hover { background: var(--cream-deep); }
-  .fam-type.active { background: color-mix(in srgb, var(--fc) 18%, transparent); }
-  .fam-type:last-child { border-bottom: none; }
-  .fam-type-code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; color: var(--fc);
-    flex-shrink: 0;
-  }
-  .fam-type-members {
-    font-family: 'Fraunces', serif; color: var(--ink-soft);
-    text-align: right; font-size: 13px;
-  }
-  .fam-type-members.empty { color: var(--ink-fade); font-style: italic; }
-
-  .fam-detail, .triad-detail {
-    margin-top: 20px; padding: 20px 22px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--fc, var(--tc, var(--ink-fade)));
-    border-radius: 2px; display: none;
-  }
-  .fam-detail.open, .triad-detail.open { display: block; }
-  .fam-detail-title, .triad-detail-title {
-    font-family: 'Fraunces', serif; font-size: 22px;
-    color: var(--fc, var(--tc)); margin-bottom: 6px;
-    font-weight: 500;
-  }
-  .fam-detail-sub, .triad-detail-sub {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 14px; color: var(--ink-soft);
-    margin-bottom: 14px;
-  }
+  .fam-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px; }
+  .fam-card { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;padding:18px 20px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s,background 0.2s; }
+  .fam-card:hover { transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow);background:var(--surface); }
+  .fam-card.active { box-shadow:0 0 0 2px var(--fc);background:var(--surface); }
+  .fam-card.muted { opacity:0.4; }
+  .fam-card::before { content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--fc); }
+  .fam-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px; }
+  .fam-name { font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--fc); }
+  .fam-count { font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--fc); }
+  .fam-meta { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:14px; }
+  .fam-bar { height:4px;background:var(--cream-deep);border-radius:2px;overflow:hidden;margin-bottom:14px; }
+  .fam-bar-fill { height:100%;background:var(--fc);transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .fam-types { display:flex;flex-direction:column;gap:2px; }
+  .fam-type { display:flex;justify-content:space-between;align-items:baseline;font-size:13px;border-bottom:1px dashed var(--line);gap:12px;cursor:pointer;transition:background 0.15s;border-radius:2px;padding:5px 6px; }
+  .fam-type:hover { background:var(--cream-deep); }
+  .fam-type.active { background:color-mix(in srgb, var(--fc) 18%, transparent); }
+  .fam-type:last-child { border-bottom:none; }
+  .fam-type-code { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--fc);flex-shrink:0;display:inline-flex;align-items:center;gap:6px; }
+  .fam-type-icon-mini { width:16px;height:16px;color:var(--fc);flex-shrink:0; }
+  .fam-type-members { font-family:'Fraunces',serif;color:var(--ink-soft);text-align:right;font-size:13px; }
+  .fam-type-members.empty { color:var(--ink-fade);font-style:italic; }
+  .fam-detail, .triad-detail { margin-top:20px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--fc, var(--tc, var(--ink-fade)));border-radius:2px;display:none; }
+  .fam-detail.open, .triad-detail.open { display:block; }
+  .fam-detail-title, .triad-detail-title { font-family:'Fraunces',serif;font-size:22px;color:var(--fc, var(--tc));margin-bottom:6px;font-weight:500; }
+  .fam-detail-sub, .triad-detail-sub { font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-soft);margin-bottom:14px; }
 
   /* ENNEAGRAM */
-  .enn-wheel-wrap {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 32px; align-items: center;
-  }
-  .enn-wheel { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
-  .enn-list { display: flex; flex-direction: column; gap: 4px; }
-  .enn-row {
-    display: grid; grid-template-columns: 28px 1fr auto;
-    align-items: center; gap: 12px; padding: 8px;
-    border-bottom: 1px dashed var(--line);
-    cursor: pointer; transition: background 0.15s;
-    border-radius: 2px;
-  }
-  .enn-row:hover { background: var(--cream-deep); }
-  .enn-row.active { background: var(--surface); box-shadow: inset 3px 0 0 var(--ec); }
-  .enn-row.muted { opacity: 0.4; }
-  .enn-dot {
-    width: 26px; height: 26px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-size: 14px;
-    font-weight: 600; color: white; background: var(--ec);
-  }
-  .enn-row-label {
-    font-family: 'Fraunces', serif; font-size: 15px;
-    color: var(--ink); font-weight: 500;
-  }
-  .enn-row-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.1em;
-    color: var(--ink-fade); text-transform: uppercase;
-    display: block; margin-top: 2px;
-  }
-  .enn-row-count {
-    font-family: 'Fraunces', serif; font-size: 20px;
-    color: var(--ec); font-weight: 500;
-  }
-  .enn-detail {
-    margin-top: 16px; padding: 16px 18px;
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 2px; min-height: 80px;
-  }
-  .enn-detail-title {
-    font-family: 'Fraunces', serif; font-size: 18px;
-    margin-bottom: 6px; font-weight: 500;
-  }
-  .enn-detail-title .num { color: var(--e-current); font-weight: 600; }
-  .enn-detail-sub {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 13px; color: var(--ink-soft); margin-bottom: 10px;
-  }
+  .enn-wheel-wrap { display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start; }
+  .enn-wheel { width:100%;max-width:440px;margin:0 auto;display:block;position:sticky;top:80px; }
+  .enn-list { display:flex;flex-direction:column;gap:4px; }
+  .enn-row { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;transition:background 0.15s,border-color 0.2s; }
+  .enn-row.active { background:var(--surface);border-color:var(--ec); }
+  .enn-row.muted { opacity:0.4; }
+  .enn-row-head { display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:12px;padding:10px 12px;cursor:pointer;transition:background 0.15s;border-radius:2px; }
+  .enn-row-head:hover { background:var(--cream-deep); }
+  .enn-icon-wrap { width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;background:var(--ec); }
+  .enn-icon-wrap svg { width:16px;height:16px; }
+  .enn-row-label { font-family:'Fraunces',serif;font-size:15px;color:var(--ink);font-weight:500; }
+  .enn-row-num { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ec);font-weight:700;margin-right:4px; }
+  .enn-row-sub { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--ink-fade);text-transform:uppercase;display:block;margin-top:2px; }
+  .enn-row-count { font-family:'Fraunces',serif;font-size:20px;color:var(--ec);font-weight:500; }
+  .enn-row-body { max-height:0;overflow:hidden;transition:max-height 0.35s ease; }
+  .enn-row.active .enn-row-body { max-height:800px; }
+  .enn-row-body-inner { padding:0 14px 14px;border-top:1px dashed var(--line);margin-top:4px;padding-top:12px; }
+  .enn-body-desc { font-family:'Fraunces',serif;font-size:14px;color:var(--ink-soft);line-height:1.65;margin-bottom:10px; }
+  .enn-body-desc strong { color:var(--ink);font-weight:600; }
+  .enn-body-members-lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:6px; }
 
   /* TRIADS */
-  .triad-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 14px; margin-top: 28px;
-  }
-  .triad-card {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 2px; padding: 18px;
-    text-align: center; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s, background 0.2s;
-  }
-  .triad-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); background: var(--surface); }
-  .triad-card.active { box-shadow: 0 0 0 2px var(--tc); background: var(--surface); }
-  .triad-card.muted { opacity: 0.4; }
-  .triad-name {
-    font-family: 'Fraunces', serif; font-size: 20px;
-    font-weight: 500; color: var(--tc); margin-bottom: 2px;
-  }
-  .triad-emotion {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    margin-bottom: 12px;
-  }
-  .triad-count {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(32px, 6vw, 44px);
-    font-weight: 300; color: var(--tc);
-    line-height: 1; margin-bottom: 4px;
-  }
-  .triad-types {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--ink-soft); letter-spacing: 0.08em;
-  }
+  .triad-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px; }
+  .triad-card { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;padding:18px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s,background 0.2s; }
+  .triad-card:hover { transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow);background:var(--surface); }
+  .triad-card.active { box-shadow:0 0 0 2px var(--tc);background:var(--surface); }
+  .triad-card.muted { opacity:0.4; }
+  .triad-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px; }
+  .triad-name { font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:var(--tc); }
+  .triad-count { font-family:'Fraunces',serif;font-size:clamp(28px,5vw,36px);font-weight:300;color:var(--tc);line-height:1; }
+  .triad-emotion { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:8px; }
+  .triad-desc { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:8px; }
+  .triad-types { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:0.08em; }
 
-  /* INSIGHTS SECTION */
-  .insights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  .insight-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 2px; padding: 22px 24px;
-    position: relative; overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .insight-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; width: 100%; height: 3px;
-    background: var(--ic, var(--accent));
-  }
-  .insight-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow); }
-  .insight-icon {
-    width: 28px; height: 28px;
-    color: var(--ic, var(--accent));
-    margin-bottom: 12px;
-  }
-  .insight-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    font-weight: 700; margin-bottom: 8px;
-  }
-  .insight-headline {
-    font-family: 'Fraunces', serif; font-size: 20px;
-    font-weight: 500; color: var(--ink);
-    margin-bottom: 6px; line-height: 1.25;
-  }
-  .insight-sub {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 13px; color: var(--ink-soft);
-    margin-bottom: 14px;
-  }
-  .insight-pair {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 8px; flex-wrap: wrap;
-  }
-  .insight-pair-name {
-    font-family: 'Fraunces', serif; font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    border-bottom: 1px dotted var(--ic, var(--accent));
-  }
-  .insight-pair-name:hover { color: var(--ic, var(--accent)); }
-  .insight-pair-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--ink-fade);
-    letter-spacing: 0.1em;
-  }
-  .insight-arrow {
-    color: var(--ink-fade); font-family: monospace;
-  }
-  .insight-note {
-    font-family: 'Inter', sans-serif; font-size: 13px;
-    color: var(--ink-soft); margin-top: 12px;
-    padding-top: 12px; border-top: 1px dashed var(--line);
-    line-height: 1.55;
-  }
+  /* INSIGHTS */
+  .insights-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px; }
+  .insight-card { background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:22px 24px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s; }
+  .insight-card::before { content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--ic, var(--accent)); }
+  .insight-card:hover { transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow); }
+  .insight-icon { width:28px;height:28px;color:var(--ic, var(--accent));margin-bottom:12px; }
+  .insight-title { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:8px; }
+  .insight-headline { font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:6px;line-height:1.25; }
+  .insight-sub { font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--ink-soft);margin-bottom:14px; }
+  .insight-members { margin-bottom:6px; }
+  .insight-note { font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-soft);margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.55; }
 
   /* ROSTER */
-  .roster-table {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 2px; overflow: hidden;
-  }
-  .roster-head, .roster-row {
-    display: grid;
-    grid-template-columns: 1fr 90px 90px 70px;
-    gap: 12px; padding: 10px 20px; align-items: center;
-  }
-  .roster-head {
-    background: var(--cream-deep);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-soft);
-    border-bottom: 1px solid var(--line);
-    font-weight: 700; user-select: none;
-  }
-  .roster-head > div { display: flex; align-items: center; gap: 4px; cursor: pointer; }
-  .roster-head .sort-arrow { font-size: 9px; color: var(--ink-fade); }
-  .roster-head .sort-arrow.active { color: var(--accent); }
-  .roster-row {
-    border-bottom: 1px dashed var(--line);
-    font-family: 'Fraunces', serif; font-size: 15px;
-    transition: background 0.15s, opacity 0.2s;
-    cursor: pointer;
-  }
-  .roster-row:hover { background: var(--cream-deep); }
-  .roster-row.muted { opacity: 0.3; }
-  .roster-row.match { background: color-mix(in srgb, var(--gold) 15%, transparent); }
-  .roster-row:last-child { border-bottom: none; }
-  .r-name { font-weight: 500; }
-  .r-nick {
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-size: 12px; color: var(--ink-fade); margin-left: 6px;
-  }
-  .r-mbti, .r-enn, .r-wing {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-  }
-  .r-mbti { color: var(--ink-soft); }
-  .r-enn { color: var(--ink-soft); }
-  .r-wing { color: var(--ink-fade); }
-  .muted-txt {
-    color: var(--ink-fade); font-style: italic;
-    font-family: 'Fraunces', serif; letter-spacing: 0;
-  }
+  .roster-table { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;overflow:hidden; }
+  .roster-head, .roster-row { display:grid;grid-template-columns:1fr 90px 90px 70px;gap:12px;padding:10px 20px;align-items:center; }
+  .roster-head { background:var(--cream-deep);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);font-weight:700;user-select:none; }
+  .roster-head > div { display:flex;align-items:center;gap:4px;cursor:pointer; }
+  .roster-head .sort-arrow { font-size:9px;color:var(--ink-fade); }
+  .roster-head .sort-arrow.active { color:var(--accent); }
+  .roster-row { border-bottom:1px dashed var(--line);font-family:'Fraunces',serif;font-size:15px;transition:background 0.15s,opacity 0.2s;cursor:pointer; }
+  .roster-row:hover { background:var(--cream-deep); }
+  .roster-row.muted { opacity:0.3; }
+  .roster-row:last-child { border-bottom:none; }
+  .r-name { font-weight:500; }
+  .r-nick { font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:var(--ink-fade);margin-left:6px; }
+  .r-mbti, .r-enn, .r-wing { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.08em; }
+  .r-mbti { color:var(--ink-soft); }
+  .r-enn { color:var(--ink-soft); }
+  .r-wing { color:var(--ink-fade); }
+  .muted-txt { color:var(--ink-fade);font-style:italic;font-family:'Fraunces',serif;letter-spacing:0; }
+  .divider-row { background:var(--cream-deep);padding:8px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-weight:700; }
 
-  .divider-row {
-    background: var(--cream-deep); padding: 8px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-fade);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    font-weight: 700;
+  footer { margin-top:64px;padding-top:28px;border-top:1px solid var(--line);text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--ink-fade);text-transform:uppercase; }
+
+  @media (max-width:760px) {
+    .wrap { padding:28px 16px 60px; }
+    .theme-toggle { top:12px;right:12px;width:40px;height:40px; }
+    header { padding-bottom:28px;margin-bottom:24px; }
+    .census-bar { position:static;text-align:left;margin-bottom:20px;display:flex;align-items:baseline;gap:12px; }
+    .census-bar .big { font-size:52px; }
+    h1 { font-size:44px; }
+    .section { margin-bottom:44px; }
+    .sec-icon { width:28px;height:28px; }
+    .sec-sub { margin-left:42px; }
+    .search-input { font-size:15px;padding:10px 12px 10px 36px; }
+    .search-icon { left:10px;top:16px; }
+    .clear-btn { padding:10px;font-size:9px; }
+    .profile-card { padding:22px 20px; }
+    .profile-stats { grid-template-columns:repeat(2,1fr);gap:14px; }
+    .profile-similar { flex-direction:column;gap:14px; }
+    .profile-type-icon { width:38px;height:38px; }
+    .profile-type-icon svg { width:20px;height:20px; }
+    .dim { padding:14px; }
+    .dim-head { flex-direction:column;align-items:stretch;gap:10px; }
+    .pole, .pole.right { justify-content:space-between;padding:8px 10px;border:1px solid var(--line);border-radius:2px;background:var(--surface-soft); }
+    .pole-letter { font-size:32px; }
+    .pole-info { flex:1;padding:0 10px; }
+    .pole.right .pole-info { text-align:left !important; }
+    .dim-members-inner { grid-template-columns:1fr;gap:10px; }
+    .dim-bar { height:34px; }
+    .fam-grid { grid-template-columns:1fr;gap:12px; }
+    .enn-wheel-wrap { grid-template-columns:1fr;gap:20px; }
+    .enn-wheel { max-width:320px;position:static; }
+    .triad-grid { grid-template-columns:1fr;gap:10px; }
+    .insights-grid { grid-template-columns:1fr; }
+    .roster-head, .roster-row { grid-template-columns:1fr 58px 52px 52px;padding:10px 12px;font-size:13px;gap:6px; }
+    .roster-head { font-size:9px;letter-spacing:0.12em; }
+    .r-nick { display:block;margin-left:0;font-size:11px;margin-top:2px; }
+    .r-mbti, .r-enn, .r-wing { font-size:10px;letter-spacing:0.04em; }
   }
-
-  footer {
-    margin-top: 64px; padding-top: 28px;
-    border-top: 1px solid var(--line); text-align: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    color: var(--ink-fade); text-transform: uppercase;
-  }
-
-  /* MOBILE */
-  @media (max-width: 760px) {
-    .wrap { padding: 28px 16px 60px; }
-    .theme-toggle { top: 12px; right: 12px; width: 40px; height: 40px; }
-    header { padding-bottom: 28px; margin-bottom: 24px; }
-    .census-bar {
-      position: static; text-align: left; margin-bottom: 20px;
-      display: flex; align-items: baseline; gap: 12px;
-    }
-    .census-bar .big { font-size: 52px; }
-    .census-bar .lbl { margin-bottom: 6px; }
-    h1 { font-size: 44px; }
-    .logo-row { margin-bottom: 20px; }
-    .section { margin-bottom: 44px; }
-    .sec-icon { width: 28px; height: 28px; }
-
-    .search-input { font-size: 15px; padding: 10px 12px 10px 36px; }
-    .search-icon { left: 10px; top: 16px; }
-    .clear-btn { padding: 10px; font-size: 9px; }
-
-    .profile-card { padding: 22px 20px; }
-    .profile-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .profile-similar { flex-direction: column; gap: 14px; }
-
-    .dim { padding: 14px 14px; }
-    .dim-head { flex-direction: column; align-items: stretch; gap: 10px; }
-    .pole, .pole.right {
-      justify-content: space-between;
-      padding: 8px 10px; border: 1px solid var(--line);
-      border-radius: 2px; background: var(--surface-soft);
-    }
-    .pole-letter { font-size: 32px; }
-    .pole-info { flex: 1; padding: 0 10px; }
-    .pole.right .pole-info { text-align: left !important; }
-    .pole.right { flex-direction: row !important; }
-    .dim-members-inner { grid-template-columns: 1fr; gap: 10px; }
-    .dim-bar { height: 34px; }
-
-    .fam-grid { grid-template-columns: 1fr; gap: 12px; }
-    .fam-card { padding: 16px 18px; }
-    .enn-wheel-wrap { grid-template-columns: 1fr; gap: 20px; }
-    .enn-wheel { max-width: 320px; }
-
-    .triad-grid { grid-template-columns: 1fr; gap: 10px; }
-    .triad-card { padding: 14px; display: grid; grid-template-columns: 1fr auto; text-align: left; align-items: center; gap: 8px 16px; }
-    .triad-name { margin-bottom: 0; }
-    .triad-emotion { margin-bottom: 0; grid-column: 1; grid-row: 2; }
-    .triad-count { grid-column: 2; grid-row: 1 / 3; font-size: 36px; align-self: center; }
-    .triad-types { grid-column: 1; grid-row: 3; margin-top: 4px; }
-
-    .insights-grid { grid-template-columns: 1fr; }
-    .insight-card { padding: 18px 20px; }
-
-    .roster-head, .roster-row {
-      grid-template-columns: 1fr 58px 52px 52px;
-      padding: 10px 12px; font-size: 13px; gap: 6px;
-    }
-    .roster-head { font-size: 9px; letter-spacing: 0.12em; }
-    .r-nick { display: block; margin-left: 0; font-size: 11px; margin-top: 2px; }
-    .r-mbti, .r-enn, .r-wing { font-size: 10px; letter-spacing: 0.04em; }
-  }
-  @media (max-width: 420px) {
-    h1 { font-size: 38px; }
-    .tagline { font-size: 16px; }
-    .roster-head, .roster-row {
-      grid-template-columns: 1.4fr 50px 44px 44px;
-      padding: 10px; gap: 4px;
-    }
+  @media (max-width:420px) {
+    h1 { font-size:38px; }
+    .roster-head, .roster-row { grid-template-columns:1.4fr 50px 44px 44px;padding:10px;gap:4px; }
   }
 </style>
 </head>
@@ -836,7 +325,6 @@
     <div class="big">27</div>
     <div class="lbl">Silly geese, in total</div>
   </div>
-
   <div class="logo-row">
     <svg class="logo-goose" viewBox="0 0 64 64" fill="none">
       <ellipse cx="32" cy="42" rx="20" ry="14" fill="var(--cream)" stroke="var(--ink)" stroke-width="1.5"/>
@@ -846,19 +334,16 @@
       <path d="M 12 42 Q 6 38 8 34" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
-    <div>
-      <div class="logo-text">YAY · GUILD CENSUS · MMXXVI</div>
-    </div>
+    <div><div class="logo-text">147 YAY · GUILD CENSUS · MMXXVI</div></div>
   </div>
-
-  <h1>Silly <em>Geese</em>,<br/>enumerated.</h1>
+  <h1>147 <em>YAY</em><br/>silly geese.</h1>
   <p class="tagline">"Birds of a feather flock together."</p>
 </header>
 
 <div class="search-wrap">
   <div class="search-inner">
     <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11L15 15"/></svg>
-    <input class="search-input" id="search" type="search" placeholder="Search a goose to see their profile..." autocomplete="off" />
+    <input class="search-input" id="search" type="search" placeholder="Search a goose to see their full profile..." autocomplete="off" />
     <button class="clear-btn" onclick="clearAll()">Clear</button>
     <div class="search-suggestions" id="suggestions"></div>
   </div>
@@ -872,12 +357,10 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
-      </svg>
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
       <h2>The four axes — MBTI</h2>
     </div>
-    <div class="sec-quote">"A bird does not sing because it has an answer; it sings because it has a song."<span class="who">— Chinese proverb</span></div>
+    <div class="sec-sub">Each goose's four-letter code is built from four either/or choices. Every axis below shows both sides, what they mean, and which geese sit where.</div>
   </div>
   <div class="dim-stack" id="dims"></div>
 </div>
@@ -885,12 +368,10 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/>
-      </svg>
-      <h2>By family — temperaments</h2>
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg>
+      <h2>By dominant function</h2>
     </div>
-    <div class="sec-quote">"Geese mate for life. They migrate together, take turns leading, and honk encouragement to those behind."<span class="who">— Field guide to Anseriformes</span></div>
+    <div class="sec-sub">Every type has one mental process that "leads." Types that share a lead process have a lot in common even when their other letters differ. Eight groups, two types each.</div>
   </div>
   <div class="fam-grid" id="fams"></div>
   <div class="fam-detail" id="fam-detail" style="--fc: var(--ink);"></div>
@@ -899,25 +380,15 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 2l5.5 17M12 2L6.5 19M2 12l20-3M22 15L2 9"/>
-      </svg>
-      <h2>The ennead — Enneagram</h2>
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2l5.5 17M12 2L6.5 19M2 12l20-3M22 15L2 9"/></svg>
+      <h2>Enneagram</h2>
     </div>
-    <div class="sec-quote">"Hope is the thing with feathers that perches in the soul, and sings the tune without the words, and never stops at all."<span class="who">— Emily Dickinson</span></div>
+    <div class="sec-sub">Nine core motivations. Click a wheel slice or list row to expand its description and see which geese share it.</div>
   </div>
   <div class="enn-wheel-wrap">
     <svg class="enn-wheel" id="enn-wheel" viewBox="-110 -110 220 220"></svg>
-    <div>
-      <div class="enn-list" id="enn-list"></div>
-      <div class="enn-detail" id="enn-detail" style="--e-current: var(--ink);">
-        <div class="enn-detail-title">Click a type to explore</div>
-        <div class="enn-detail-sub">See which geese belong to each enneatype.</div>
-      </div>
-    </div>
+    <div class="enn-list" id="enn-list"></div>
   </div>
-
   <div class="triad-grid" id="triads"></div>
   <div class="triad-detail" id="triad-detail" style="--tc: var(--ink);"></div>
 </div>
@@ -925,13 +396,9 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
-      </svg>
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
       <h2>Insights — flock dynamics</h2>
     </div>
-    <div class="sec-quote">"No bird soars too high if he soars with his own wings."<span class="who">— William Blake</span></div>
   </div>
   <div class="insights-grid" id="insights"></div>
 </div>
@@ -939,34 +406,31 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <h2>The full roster</h2>
     </div>
-    <div class="sec-quote">"It is the company of the wise, like a flock of geese, that makes the long flight bearable."<span class="who">— Old saying</span></div>
   </div>
   <div class="roster-table" id="roster-table"></div>
 </div>
 
-<footer>YAY · Silly Geese · Birds of a feather flock together</footer>
+<footer>147 YAY · Silly Geese · Birds of a feather flock together</footer>
 </div>
 
 <script>
 const characters = [
   { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: null },
-  { name: "Aria", nick: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Atlas", nick: null, mbti: "INTJ", enn: null, wing: null },
+  { name: "Aria", nick: null, mbti: "ISFP", enn: "6", wing: "6w7" },
+  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6" },
   { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: null },
   { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3" },
   { name: "CPD", nick: "GooseLaLa", mbti: "ESFP", enn: "8", wing: "8w9" },
-  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: null },
+  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7" },
   { name: "Diss", nick: null, mbti: "INTJ", enn: "1", wing: null },
-  { name: "Elvira", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: null },
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: null },
   { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: null },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: null },
-  { name: "Karma", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2" },
   { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: null },
   { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: null },
   { name: "Mollies", nick: null, mbti: "ENFP", enn: null, wing: null },
@@ -977,13 +441,19 @@ const characters = [
   { name: "Sels", nick: null, mbti: "INFP", enn: "4", wing: "4w5" },
   { name: "Sevi", nick: "Lilac", mbti: "ESTJ", enn: "6", wing: "6w5" },
   { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null },
-  { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8" },
-  { name: "Whiskey", nick: null, mbti: "ESTP", enn: null, wing: null }
+  { name: "Vesper", nick: null, mbti: "ISFP", enn: "7", wing: "7w8" },
+  { name: "Whiskey", nick: null, mbti: "ESTP", enn: "7", wing: "7w8" }
 ];
 
 const knownButUntyped = ["Clover", "Lily"];
 const TOTAL_MEMBERS = 27;
 const uncatalogued = TOTAL_MEMBERS - characters.length - knownButUntyped.length;
+
+const mbtiPopulation = {
+  ISFJ: 13.8, ESFJ: 12.0, ISTJ: 11.6, ISFP: 8.8, ESTJ: 8.7,
+  ESFP: 8.5, ENFP: 8.1, ISTP: 5.4, INFP: 4.4, ESTP: 4.3,
+  INTP: 3.3, ENTP: 3.2, ENFJ: 2.5, INTJ: 2.1, ENTJ: 1.8, INFJ: 1.5
+};
 
 const mbtiTypes = [
   { code: "INTJ", label: "The Architect", family: "NT" },
@@ -1004,6 +474,25 @@ const mbtiTypes = [
   { code: "ESFP", label: "The Entertainer", family: "SP" }
 ];
 
+const mbtiIcons = {
+  INTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M9 21v-7h6v7"/><circle cx="12" cy="11" r="1.2" fill="currentColor"/></svg>',
+  INTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M7 17l-1.5 1.5M18.5 5.5L17 7"/></svg>',
+  ENTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17l3-9 4 6 4-9 3 12"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>',
+  ENTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 2h6M12 8c-3 0-6 2-6 6v2a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-2c0-4-3-6-6-6z"/><path d="M9 14h.01M15 14h.01"/></svg>',
+  INFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12c4-1 8 3 7 7M19 12c-4-1-8 3-7 7M5 12c4 1 8-3 7-7M19 12c-4 1-8-3-7-7"/></svg>',
+  INFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/></svg>',
+  ENFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7M12 12v3M9 16h6"/></svg>',
+  ENFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
+  ISTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/></svg>',
+  ISFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 7.5-8 12-8 12z"/><path d="M9 11l2 2 4-4"/></svg>',
+  ESTJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6l2-7 4 14 2-7h4"/></svg>',
+  ESFJ:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/><path d="M7.5 9c.5-.5 1-1 2-1M14 9c-.5-.5-1-1-2-1"/></svg>',
+  ISTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3l3 3-9 9H5.7v-3z"/><path d="M13 8l3 3M3 21h18"/></svg>',
+  ISFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="11" r="2"/><circle cx="6" cy="13" r="2.5"/><circle cx="10" cy="19" r="2"/><path d="M12 22a10 10 0 0 1-7-7"/></svg>',
+  ESTP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-12h-7z"/></svg>',
+  ESFP:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>'
+};
+
 const families = [
   { code: "NT", name: "Analysts", sub: "Intuitive · Thinking", color: "var(--nt)" },
   { code: "NF", name: "Diplomats", sub: "Intuitive · Feeling", color: "var(--nf)" },
@@ -1011,190 +500,206 @@ const families = [
   { code: "SP", name: "Explorers", sub: "Observant · Prospecting", color: "var(--sp)" }
 ];
 
+// Dominant-function groups (8): two MBTI types per group share the same "lead" process.
+const domGroups = [
+  { code: "ExTJ", types: ["ESTJ","ENTJ"], name: "Lead with Logic (outward)", color: "var(--nt)",
+    def: "ESTJs and ENTJs lead with extraverted thinking. They organise the outside world: set goals, build systems, decide quickly, and judge things by results. Direct, efficient, and natural managers." },
+  { code: "IxTP", types: ["ISTP","INTP"], name: "Lead with Logic (inward)", color: "var(--enn5)",
+    def: "ISTPs and INTPs lead with introverted thinking. They build private mental models, take ideas apart to see how they work, and won't accept something just because everyone says so. Analytical, precise, independent." },
+  { code: "ExFJ", types: ["ESFJ","ENFJ"], name: "Lead with Harmony (outward)", color: "var(--enn2)",
+    def: "ESFJs and ENFJs lead with extraverted feeling. They're tuned in to the emotional temperature of the group, instinctively smooth things over, and feel responsible for everyone being okay. Warm, expressive, connective." },
+  { code: "IxFP", types: ["ISFP","INFP"], name: "Lead with Values (inward)", color: "var(--nf)",
+    def: "ISFPs and INFPs lead with introverted feeling. They run everything past a private inner compass of what's authentic and right for them. Quietly principled, individualistic, hard to push into anything that feels false." },
+  { code: "ESxP", types: ["ESTP","ESFP"], name: "Lead with Action", color: "var(--sp)",
+    def: "ESTPs and ESFPs lead with extraverted sensing. They live in the present moment, react fast, and learn by jumping in. Energetic, observant, good in a crisis, easily bored by sitting still." },
+  { code: "ISxJ", types: ["ISTJ","ISFJ"], name: "Lead with Memory", color: "var(--sj)",
+    def: "ISTJs and ISFJs lead with introverted sensing. They rely on past experience, proven methods, and detailed recall. Steady, dependable, careful — they trust what's been shown to work." },
+  { code: "ENxP", types: ["ENTP","ENFP"], name: "Lead with Possibility", color: "var(--enn7)",
+    def: "ENTPs and ENFPs lead with extraverted intuition. They see connections and possibilities everywhere, love brainstorming, and get restless with routine. Curious, quick, idea-driven." },
+  { code: "INxJ", types: ["INTJ","INFJ"], name: "Lead with Vision", color: "var(--enn1)",
+    def: "INTJs and INFJs lead with introverted intuition. They look for the underlying pattern, think long-term, and trust their sense of where things are heading. Private, insightful, future-focused." }
+];
+
+function getDomGroup(mbti) { return domGroups.find(g => g.types.includes(mbti)); }
+
+// Axis definitions written from the mbti-notes Type Fundamentals Guide
 const dims = [
-  { key: 0, a: "E", b: "I", a_name: "Extravert", b_name: "Introvert", a_sub: "Outward energy", b_sub: "Inward energy" },
-  { key: 1, a: "S", b: "N", a_name: "Sensor", b_name: "Intuitive", a_sub: "Concrete · present", b_sub: "Abstract · patterns" },
-  { key: 2, a: "T", b: "F", a_name: "Thinker", b_name: "Feeler", a_sub: "Logic · objectivity", b_sub: "Values · harmony" },
-  { key: 3, a: "J", b: "P", a_name: "Judger", b_name: "Perceiver", a_sub: "Plans · closure", b_sub: "Open · adaptive" }
+  { key: 0, a: "E", b: "I", a_name: "Extravert", b_name: "Introvert",
+    def: "<strong>Where your energy goes.</strong> Extraverts naturally direct their attention outward — they recharge through action and interaction, get bored when forced to be too inactive, and process information quickly. Introverts direct attention inward — they recharge through reflection and solitary time, prefer a slower pace, and feel drained when over-stimulated. This isn't about being sociable vs. shy; it's about which direction restores you to balance." },
+  { key: 1, a: "S", b: "N", a_name: "Sensor", b_name: "Intuitive",
+    def: "<strong>What kind of information you trust.</strong> Sensors prefer concrete, verifiable information — facts, details, and what's actually in front of them — and get impatient with too much speculation. Intuitives prefer abstract patterns, possibilities, and big-picture connections, and get restless when held to literal detail. Both are valid; one just feels more natural. Roughly 73% of the general population are Sensors." },
+  { key: 2, a: "T", b: "F", a_name: "Thinker", b_name: "Feeler",
+    def: "<strong>How you make decisions.</strong> Both are reasoning processes — this is not 'logic vs. emotion'. Thinkers prefer impersonal criteria: rules, consistency, cause-and-effect, treating every case the same. Feelers prefer personal and interpersonal values: how this affects people, whether it sits right with their sense of integrity, and reaching outcomes everyone can live with." },
+  { key: 3, a: "J", b: "P", a_name: "Judger", b_name: "Perceiver",
+    def: "<strong>How you handle the outside world.</strong> Judgers feel uneasy until things are settled — they like decisions made, plans set, loose ends tied. Perceivers feel uneasy when things are locked down too early — they prefer keeping options open, adapting as they go, and waiting for more information. It's not about being organised vs. messy; it's whether closure or openness puts you at ease." }
 ];
 
 const ennData = [
   { num: "1", label: "The Reformer", tagline: "Principled, perfectionist", triad: "body", color: "var(--enn1)" },
-  { num: "2", label: "The Helper", tagline: "Generous, heart-driven", triad: "heart", color: "var(--enn2)" },
+  { num: "2", label: "The Helper", tagline: "Generous, people-first", triad: "heart", color: "var(--enn2)" },
   { num: "3", label: "The Achiever", tagline: "Adaptive, success-oriented", triad: "heart", color: "var(--enn3)" },
   { num: "4", label: "The Individualist", tagline: "Sensitive, introspective", triad: "heart", color: "var(--enn4)" },
   { num: "5", label: "The Investigator", tagline: "Perceptive, cerebral", triad: "head", color: "var(--enn5)" },
   { num: "6", label: "The Loyalist", tagline: "Committed, security-seeking", triad: "head", color: "var(--enn6)" },
   { num: "7", label: "The Enthusiast", tagline: "Spontaneous, versatile", triad: "head", color: "var(--enn7)" },
   { num: "8", label: "The Challenger", tagline: "Powerful, decisive", triad: "body", color: "var(--enn8)" },
-  { num: "9", label: "The Peacemaker", tagline: "Receptive, reassuring", triad: "body", color: "var(--enn9)" }
+  { num: "9", label: "The Peacemaker", tagline: "Receptive, easy-going", triad: "body", color: "var(--enn9)" }
 ];
 
+const ennIcons = {
+  "1": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l3-1v18M7 21h10"/></svg>',
+  "2": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-7 10-7 10z" transform="translate(-2.5 0) scale(0.95)"/></svg>',
+  "3": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5 1.5 6L12 16.5 6 19.5l1.5-6L3 9l6-1z"/></svg>',
+  "4": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2C5 6 5 10 8 12c-3 2-3 8 4 10M16 2c3 4 3 8 0 10 3 2 3 8-4 10"/></svg>',
+  "5": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L21 21"/></svg>',
+  "6": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 7.5-8 12-8 12z"/></svg>',
+  "7": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>',
+  "8": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12L12 4l5.5 8L12 20z"/><circle cx="12" cy="12" r="2"/></svg>',
+  "9": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>'
+};
+
 const triadInfo = {
-  head: { name: "Head", emotion: "Fear", color: "var(--triad-head)", types: ["5", "6", "7"] },
-  heart: { name: "Heart", emotion: "Shame", color: "var(--triad-heart)", types: ["2", "3", "4"] },
-  body: { name: "Body", emotion: "Anger", color: "var(--triad-body)", types: ["8", "9", "1"] }
+  head:  { name: "Head", emotion: "Fear", color: "var(--triad-head)", types: ["5", "6", "7"],
+    desc: "Head types process life through thinking. Their core struggle is fear and anxiety — they manage uncertainty by analysing, planning ahead, or staying busy. At their best they're insightful, prepared, and quick-minded." },
+  heart: { name: "Heart", emotion: "Shame", color: "var(--triad-heart)", types: ["2", "3", "4"],
+    desc: "Heart types process life through identity and relationships. Their core struggle is shame — questions of self-worth and how they're seen. At their best they're emotionally intelligent, connective, and authentic." },
+  body:  { name: "Body", emotion: "Anger", color: "var(--triad-body)", types: ["8", "9", "1"],
+    desc: "Body types process life through gut instinct and action. Their core struggle is anger — expressed outwardly (8), suppressed (9), or turned into self-correction (1). At their best they're grounded, fair, and decisive." }
 };
 
-// MBTI descriptions per type — bird-themed
+// PLAIN-LANGUAGE MBTI descriptions, no function jargon, name woven through
 const mbtiDesc = {
-  INTJ: "the lone heron — patient, strategic, content to stand still in the reeds while the others flap. Sees three steps ahead and prefers to plan in silence.",
-  INTP: "the thinking owl — turns ideas over endlessly, more curious than committed. Treats every conversation as a puzzle worth dismantling.",
-  ENTJ: "the lead goose in the V — natural pacesetter, wired to organize the migration. Decisive, direct, allergic to drift.",
-  ENTP: "the magpie of ideas — bright-eyed, easily delighted by a new shiny thought, quick to argue any side just to feel out its edges.",
-  INFJ: "the quiet swan — moves with intention beneath a still surface, seeing the patterns that others miss. Private, principled, deeply tuned in.",
-  INFP: "the songbird at dawn — interior, idealistic, with a private moral compass that points slightly off true north on purpose.",
-  ENFJ: "the warm-hearted goose-mother — keeps the flock honking encouragement to one another. Gathers strays and remembers everyone's name.",
-  ENFP: "the meadowlark — radiates possibility, can't help but light up the room. Easily bored by structure, easily moved by people.",
-  ISTJ: "the steady sentinel — reliable as the seasons. Will keep the schedule, lock the gate, and remember exactly where everything goes.",
-  ISFJ: "the nesting goose — quietly tending, anticipating needs before they're spoken. The flock's quiet keeper.",
-  ESTJ: "the practical commander — runs a tight nest. Direct, dependable, builds the routines everyone else benefits from.",
-  ESFJ: "the social hen — keeper of warmth and birthdays. Genuinely happiest when everyone else is taken care of.",
-  ISTP: "the kestrel — quiet, observant, tinkers in the corner. Speaks rarely but acts decisively when it matters.",
-  ISFP: "the gentle finch — soft-spoken, deeply aesthetic, lives by inner rhythm rather than outer schedule.",
-  ESTP: "the dive-bombing tern — all reflex and momentum, thrives where others freeze. Negotiates the world by leaping into it.",
-  ESFP: "the cockatoo at the party — bright, present, made of joy and rhythm. Pulls others into the moment whether they meant to come or not."
+  INTJ: n => `${n} is the kind of person who's already three moves ahead. ${n} likes having a plan, prefers working things out alone before sharing, and isn't interested in doing something just because that's how it's always been done. Direct, private, and very comfortable working independently — ${n} would rather get something <em>right</em> than get it done fast.`,
+  INTP: n => `${n} is endlessly curious about how things work and why. ${n} questions assumptions, takes ideas apart for fun, and is far more interested in understanding something properly than in winning the argument. Reserved, independent, and happiest when given room to think — ${n} can lose track of time chasing an interesting problem.`,
+  ENTJ: n => `${n} is a natural organiser. When something's inefficient or directionless, ${n} can't help but step in and structure it. Decisive, ambitious, and very direct — ${n} sets high standards, says what they mean, and expects to be evaluated on results, not intentions.`,
+  ENTP: n => `${n} loves a new idea, a what-if, or a friendly argument. ${n} is quick on their feet, gets bored with routine, and would rather poke at the rules than follow them. Charming, clever, and a little contrarian — ${n} is the goose who'll find the loophole no one else noticed.`,
+  INFJ: n => `${n} is quiet but deeply tuned in to people. ${n} picks up on what others are feeling, thinks long-term about what actually matters, and tends to keep their inner world private. Warm but reserved, idealistic, and selective about who they let close.`,
+  INFP: n => `${n} runs on personal values. ${n} cares deeply about authenticity — both their own and other people's — and would rather do what feels right than what's expected. Imaginative, gentle, and more sensitive than they let on. ${n} doesn't try to change anyone; they just want everyone to be allowed to be themselves.`,
+  ENFJ: n => `${n} is a people person through and through. ${n} reads the room instinctively, draws others out, and genuinely enjoys helping people get where they're going. Warm, organised, encouraging — and occasionally so focused on everyone else that they forget to check on themselves.`,
+  ENFP: n => `${n} is enthusiastic, open-minded, and easily lit up by possibility. ${n} sees potential in people and ideas that others miss, hates being boxed in, and can talk to anyone about anything. Warm, spontaneous, and sometimes scattered — but never boring.`,
+  ISTJ: n => `${n} is dependable and thorough. ${n} likes things done properly, remembers the details everyone else forgets, and takes commitments seriously. Reserved, practical, steady — ${n} isn't flashy, but is exactly who you want when something actually has to work.`,
+  ISFJ: n => `${n} is the quiet caretaker. ${n} notices what people need before they ask, remembers what matters to them, and shows up consistently without making a fuss about it. Loyal, practical, and genuinely kind — ${n} keeps things running in ways that often go unnoticed.`,
+  ESTJ: n => `${n} likes order, clear expectations, and getting things done. ${n} is practical, organised, and not afraid to take charge when something needs structure. Direct and reliable — ${n} says what they think and follows through on what they promise.`,
+  ESFJ: n => `${n} is warm, sociable, and tuned in to how everyone's doing. ${n} likes keeping the group happy, remembers birthdays, and feels responsible for the vibe in the room. Caring and dependable — ${n} is the one who makes sure no one's left out.`,
+  ISTP: n => `${n} is hands-on, observant, and unbothered by pressure. ${n} learns by doing, fixes things rather than talking about them, and doesn't waste words. Calm, independent, and surprisingly hard to rattle.`,
+  ISFP: n => `${n} is easy-going on the surface and quietly principled underneath. ${n} lives in the moment, expresses themselves through what they make or do rather than what they say, and won't be pushed into anything that doesn't feel right. Gentle, observant, and more stubborn than they look.`,
+  ESTP: n => `${n} is action-first. ${n} thinks fast, jumps in, and figures it out on the way. Practical, charming, and good in a crisis — ${n} would rather <em>do</em> something than sit around discussing it.`,
+  ESFP: n => `${n} brings the energy. ${n} lives in the moment, loves people, and has a gift for turning an ordinary situation into something fun. Warm, spontaneous, and genuinely present — when ${n} is in the room, you know it.`
 };
 
-// Enneagram descriptions
-const ennDesc = {
-  "1": "carries an inner voice of 'should be better' — strives for what's right, sometimes at the cost of what's easy.",
-  "2": "leads with the heart outstretched — finds purpose in caring, must learn to receive as well as give.",
-  "3": "moves toward goals like a homing pigeon — driven by the shape of success, learning to distinguish their image from themselves.",
-  "4": "holds beauty and longing in the same beat — a romantic of the inner life, always reaching for the missing piece.",
-  "5": "guards a private library of mind — observes the world from a safe perch, conserving energy for what matters.",
-  "6": "scans the horizon for threats and allies — loyal to the bone, finding courage by walking through doubt.",
-  "7": "chases the next bright idea like a swallow on the wing — joyful, scattered, learning to land.",
-  "8": "fronts the flock without flinching — protects, confronts, leads with raw force; softens by trusting others.",
-  "9": "makes peace by finding the still water — easygoing, attuned, learning that their presence matters too."
+// PLAIN-LANGUAGE Enneagram descriptions for accordion + profile
+const ennLong = {
+  "1": "Type 1s are driven by a sense of right and wrong. They have a strong inner critic that constantly checks whether things meet the standard, and they hold themselves to it before anyone else. <strong>Core motivation:</strong> to be good, correct, and have integrity. <strong>Core fear:</strong> being wrong, bad, or corrupt. At their best, 1s are fair, responsible, and genuinely improve everything they touch. Under stress they can become rigid, critical, or quietly resentful.",
+  "2": "Type 2s are wired to focus on other people's needs. They feel most valuable when they're helping, supporting, or being needed by someone. <strong>Core motivation:</strong> to be loved and appreciated. <strong>Core fear:</strong> being unwanted or unworthy of love. At their best, 2s are genuinely warm, generous, and emotionally attuned. Under stress they can over-give, neglect their own needs, or feel hurt when help isn't reciprocated.",
+  "3": "Type 3s are achievement-oriented. They adapt to whatever 'success' looks like in their environment and work hard to embody it. <strong>Core motivation:</strong> to be valuable and admired. <strong>Core fear:</strong> being worthless or a failure. At their best, 3s are competent, motivating, and genuinely accomplished. Under stress they can over-identify with their image and lose touch with what they actually want.",
+  "4": "Type 4s are focused on identity and authenticity. They're highly aware of how they're different from others and place a lot of value on emotional depth and meaning. <strong>Core motivation:</strong> to be unique and understood for who they really are. <strong>Core fear:</strong> having no identity or significance. At their best, 4s are creative, emotionally honest, and deeply empathetic. Under stress they can withdraw, dwell on what's missing, or feel chronically misunderstood.",
+  "5": "Type 5s are observers. They cope with the world by understanding it — gathering knowledge, conserving energy, and keeping a clear boundary between themselves and outside demands. <strong>Core motivation:</strong> to be capable and competent. <strong>Core fear:</strong> being overwhelmed, depleted, or incapable. At their best, 5s are insightful, objective, and inventive. Under stress they can become detached, withholding, or isolated.",
+  "6": "Type 6s are focused on security and trust. They constantly scan for what could go wrong and who can be relied on, which makes them excellent troubleshooters and very loyal once trust is earned. <strong>Core motivation:</strong> to feel safe and supported. <strong>Core fear:</strong> being without guidance or unable to cope alone. At their best, 6s are dependable, courageous, and great in a team. Under stress they can become anxious, suspicious, or stuck in second-guessing.",
+  "7": "Type 7s are optimists and experience-seekers. They keep life full — of plans, options, ideas, people — partly because they love variety and partly because staying busy keeps painful feelings at bay. <strong>Core motivation:</strong> to be happy, satisfied, and free. <strong>Core fear:</strong> being trapped, deprived, or stuck in pain. At their best, 7s are joyful, resilient, and genuinely fun to be around. Under stress they can become scattered, avoidant, or unable to follow through.",
+  "8": "Type 8s are protectors and challengers. They take up space, speak directly, and instinctively push back against anything that feels like control. <strong>Core motivation:</strong> to be strong and in control of their own life. <strong>Core fear:</strong> being controlled, harmed, or vulnerable. At their best, 8s are decisive, protective, and use their strength on behalf of others. Under stress they can become confrontational, domineering, or unwilling to show weakness.",
+  "9": "Type 9s are peacemakers. They're naturally easy-going, good at seeing every side, and skilled at keeping things calm — sometimes by going along with others rather than asserting themselves. <strong>Core motivation:</strong> to have inner and outer peace. <strong>Core fear:</strong> conflict, loss of connection, or being overlooked. At their best, 9s are accepting, steady, and genuinely bring people together. Under stress they can become passive, stubborn through inaction, or disconnected from their own priorities."
 };
 
-// MBTI + Enneagram combo descriptors (programmatic but feel hand-crafted)
-function comboDescription(c) {
-  if (!c.mbti) return "Untyped — a goose of mystery still circling the pond.";
+// Short profile-card version
+const ennShort = {
+  "1": n => `${n} is driven by a strong sense of right and wrong, holds high standards (for ${n} most of all), and feels responsible for improving whatever's in front of them.`,
+  "2": n => `${n} is naturally focused on other people — quick to help, quick to notice what's needed, and feels most themselves when they're supporting someone.`,
+  "3": n => `${n} is goal-oriented and adaptable — works hard, reads what success looks like in any room, and is motivated by achievement and recognition.`,
+  "4": n => `${n} places a lot of value on authenticity and depth, is highly aware of how they're different from others, and feels things intensely.`,
+  "5": n => `${n} copes with the world by understanding it — observes more than they participate, guards their energy, and feels safest when they're well-informed.`,
+  "6": n => `${n} is loyal and security-minded — scans for what could go wrong, values people who are reliable, and shows up consistently for those they trust.`,
+  "7": n => `${n} is an optimist and an experience-seeker — keeps options open, reframes setbacks quickly, and would always rather look forward than dwell.`,
+  "8": n => `${n} is direct, protective, and instinctively pushes back against being controlled — comfortable taking charge and not afraid of conflict.`,
+  "9": n => `${n} is easy-going and steady — good at seeing every side, naturally calming, and prefers harmony over confrontation.`
+};
 
-  const mbtiInfo = mbtiTypes.find(t => t.code === c.mbti);
-  const fam = families.find(f => f.code === mbtiInfo.family);
-  const ennInfo = c.enn ? ennData.find(e => e.num === c.enn) : null;
-  const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
+const wingDesc = {
+  "1w9": "calmer and more measured than a typical 1",
+  "1w2": "warmer and more people-focused than a typical 1",
+  "2w1": "a more principled, slightly reserved Helper",
+  "2w3": "a more outgoing, polished Helper",
+  "3w2": "a more relational, charming Achiever",
+  "3w4": "a more introspective, image-conscious Achiever",
+  "4w3": "a 4 who still wants to be seen and recognised",
+  "4w5": "a quieter, more withdrawn and analytical 4",
+  "5w4": "a more imaginative, emotionally-tinged 5",
+  "5w6": "a more loyal, risk-aware 5",
+  "6w5": "a quieter, more analytical Loyalist",
+  "6w7": "a warmer, more sociable Loyalist",
+  "7w6": "a 7 with more loyalty and warmth alongside the spark",
+  "7w8": "a bolder, more assertive 7 — fun with backbone",
+  "8w7": "a more outgoing, adventurous Challenger",
+  "8w9": "a calmer, steadier Challenger",
+  "9w8": "a Peacemaker with more push when needed",
+  "9w1": "a Peacemaker with a quiet sense of how things should be"
+};
 
-  let text = `<strong>${c.mbti}</strong> · <em>${mbtiInfo.label}</em> — ${mbtiDesc[c.mbti]}`;
-
-  if (ennInfo) {
-    text += ` Layered with the <strong>Enneagram ${c.enn}</strong> (${ennInfo.label.toLowerCase()}), ${ennDesc[c.enn]}`;
-    text += ` Rooted in the <strong>${tri.name} triad</strong>, the core current is ${tri.emotion.toLowerCase()} — felt and metabolised, not always named.`;
-    if (c.wing) {
-      const wingNum = c.wing.split('w')[1];
-      const wingInfo = ennData.find(e => e.num === wingNum);
-      text += ` The wing toward <strong>${c.wing}</strong> brings a flavor of the ${wingInfo.label.toLowerCase()} alongside.`;
-    }
-    // Combo flavor
-    text += ` ${comboFlavor(c.mbti, c.enn)}`;
-  } else {
-    text += ` <em>Enneatype not yet recorded — half the picture, half the song.</em>`;
-  }
-
-  return text;
-}
-
-// Hand-curated combo flavor for the most common combos
-function comboFlavor(mbti, enn) {
-  const key = `${mbti}-${enn}`;
-  const map = {
-    "INFP-2": "An INFP-2 is a goose who feels everything twice — once for themselves, once for whoever they're with. Soft beak, fierce inner compass.",
-    "INFP-4": "An INFP-4 is the dreamer of dreamers — keeps a private nest of feelings most never see, but the songs that come out of it are the ones the flock remembers.",
-    "INTJ-1": "An INTJ-1 builds the blueprint and then enforces it on themselves first — quietly demanding, quietly excellent.",
-    "INTJ": "An INTJ on its own is already an architect; the lack of an enneatype here just means we haven't seen the engine yet.",
-    "ENFJ-6": "An ENFJ-6 is the goose who calls everyone home before the storm — warm, anticipatory, occasionally over-vigilant on the flock's behalf.",
-    "ESFP-8": "An ESFP-8 is full-throttle presence — lives loud, loves loud, doesn't ask permission to take up the room they were going to take up anyway.",
-    "ESFP-7": "An ESFP-7 is sunlight-on-water energy — the goose who turns a regular afternoon into something everyone tells stories about later.",
-    "ENTJ-8": "An ENTJ-8 is twice-distilled command — strategic vision plus raw drive. The goose who would actually plan the migration *and* lead it.",
-    "INFJ-2": "An INFJ-2 is a quiet healer — sees what people need before they say it, gives without spectacle, needs more rest than they admit.",
-    "INTP-5": "An INTP-5 is the most introverted bird in the pond — both types pull inward, and together they build a genuinely private inner world.",
-    "ESFP-7-7w6": "An ESFP-7w6 brings warmth alongside the spark — the loyal life-of-the-party rather than the chaotic one.",
-    "ESFP-7-7w8": "An ESFP-7w8 is sparkle with teeth — fun, yes, but with backbone you only notice when you cross it.",
-    "ISFJ-2": "An ISFJ-2 is the quiet keeper of the flock — remembers how everyone takes their tea, protects the small things others overlook.",
-    "ISFJ-6": "An ISFJ-6 is loyalty in its purest plumage — steady, watchful, the goose you'd want guarding the eggs.",
-    "ESTJ-6": "An ESTJ-6 builds structure as a form of devotion — the rules exist because they keep the flock safe.",
-    "ESFJ-1": "An ESFJ-1 is the goose who organizes the potluck and politely fixes the spelling on the sign-up sheet.",
-    "INFP-4-4w3": "A 4w3 INFP is the introspective artist who still wants to be seen — the songbird who writes the song *and* takes the stage.",
-    "INFP-4-4w5": "A 4w5 INFP is the deep-water type — feelings in one wing, ideas in the other, both private until trusted.",
-    "INTJ-1-default": "Plans in silence and corrects in silence — two types that share a deep tolerance for solitude.",
-    "ENTP-7": "An ENTP-7 is two species of curiosity in one body — the goose who has six tabs open and is genuinely thriving.",
-    "ISFP-9": "An ISFP-9 is the most peaceable nest in the marsh — quiet aesthetic, low conflict, surprisingly stubborn at the core.",
-    "INFJ-2-default": "Sensitive antennae plus a giving heart — wonderful and exhausting in equal measure.",
-  };
-  // try wing-specific first
-  return map[`${mbti}-${enn}`] || "";
-}
-
-let filter = { search: "", dim: null, family: null, mbti: null, enn: null, triad: null };
+let filter = { dim: null, family: null, mbti: null, enn: null, triad: null };
 let rosterSort = { by: "name", dir: "asc" };
 let selectedProfile = null;
+let litGoose = null;
 let suggIdx = -1;
+let searchTerm = "";
 
 function getFamily(mbti) { return mbtiTypes.find(t => t.code === mbti)?.family; }
+function getMbtiInfo(code) { return mbtiTypes.find(t => t.code === code); }
+function getEnnInfo(num) { return ennData.find(e => e.num === num); }
 
 function passesFilter(c) {
   if (filter.dim !== null && (!c.mbti || c.mbti[filter.dim.key] !== filter.dim.value)) return false;
-  if (filter.family && getFamily(c.mbti) !== filter.family) return false;
+  if (filter.family) {
+    const g = domGroups.find(x => x.code === filter.family);
+    if (!g || !g.types.includes(c.mbti)) return false;
+  }
   if (filter.mbti && c.mbti !== filter.mbti) return false;
   if (filter.enn && c.enn !== filter.enn) return false;
   if (filter.triad && (!c.enn || !triadInfo[filter.triad].types.includes(c.enn))) return false;
   return true;
 }
+function anyFilterActive() { return filter.dim || filter.family || filter.mbti || filter.enn || filter.triad; }
 
-function anyFilterActive() {
-  return filter.dim || filter.family || filter.mbti || filter.enn || filter.triad;
-}
-
-function chipHTML(m) {
+function chipHTML(m, tagType, opts = {}) {
   const passes = passesFilter(m);
-  const cls = (anyFilterActive() && !passes ? "muted" : "");
-  const tag = m.wing || m.mbti || m.enn || "";
-  return `<span class="chip ${cls}" data-goose="${m.name}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
+  let cls = "";
+  if (!opts.noDim && anyFilterActive() && !passes) cls = "muted";
+  if (litGoose === m.name) cls += " lit";
+  let tag = "";
+  if (tagType === "mbti") tag = m.mbti || "";
+  else if (tagType === "enn") tag = m.wing || (m.enn ? "Type " + m.enn : "");
+  else if (tagType === "none") tag = "";
+  else tag = m.wing || m.mbti || (m.enn ? "Type " + m.enn : "");
+  const action = opts.action || "profile";
+  return `<span class="chip ${cls}" data-goose="${m.name}" data-action="${action}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
 }
 
-// SEARCH SUGGESTIONS
+// ===== SEARCH =====
 function renderSuggestions() {
-  const q = filter.search.toLowerCase();
+  const q = searchTerm.toLowerCase();
   const box = document.getElementById("suggestions");
-  if (!q) {
-    box.classList.remove("open");
-    box.innerHTML = "";
-    suggIdx = -1;
-    return;
-  }
+  if (!q) { box.classList.remove("open"); box.innerHTML = ""; suggIdx = -1; return; }
   const matches = characters.filter(c =>
     c.name.toLowerCase().includes(q) || (c.nick && c.nick.toLowerCase().includes(q))
   );
   if (matches.length === 0) {
     box.innerHTML = `<div class="sugg-item" style="cursor:default; color: var(--ink-fade); font-style: italic;">No goose by that name in the flock.</div>`;
-    box.classList.add("open");
-    return;
+    box.classList.add("open"); return;
   }
   box.innerHTML = matches.map((c, i) => `
     <div class="sugg-item ${i === suggIdx ? 'focused' : ''}" data-name="${c.name}">
-      <div>
-        <span class="sugg-name">${c.name}</span>
-        ${c.nick ? `<span class="sugg-nick">aka ${c.nick}</span>` : ''}
-      </div>
-      <div class="sugg-meta">${c.mbti || '—'} · ${c.enn ? 'Type ' + c.enn : '—'}</div>
+      <div><span class="sugg-name">${c.name}</span>${c.nick ? `<span class="sugg-nick">aka ${c.nick}</span>` : ''}</div>
+      <div class="sugg-meta">${c.mbti || '—'} · ${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div>
     </div>
   `).join("");
   box.classList.add("open");
   box.querySelectorAll(".sugg-item[data-name]").forEach(el => {
-    el.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      selectGoose(el.dataset.name);
-    });
+    el.addEventListener("mousedown", (e) => { e.preventDefault(); selectGoose(el.dataset.name); });
   });
 }
 
 function selectGoose(name) {
   selectedProfile = name;
   document.getElementById("search").value = name;
-  filter.search = "";
+  searchTerm = "";
   document.getElementById("suggestions").classList.remove("open");
   renderProfile();
   document.getElementById("profile-card").scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -1203,74 +708,158 @@ function selectGoose(name) {
 function closeProfile() {
   selectedProfile = null;
   document.getElementById("search").value = "";
-  filter.search = "";
+  searchTerm = "";
   renderProfile();
-  renderSuggestions();
 }
 
+function rarityLabel(pct) {
+  if (pct >= 10) return "very common";
+  if (pct >= 5) return "common";
+  if (pct >= 3) return "moderately rare";
+  if (pct >= 2) return "rare";
+  return "very rare";
+}
+
+// ===== PROFILE =====
 function renderProfile() {
   const card = document.getElementById("profile-card");
-  if (!selectedProfile) {
-    card.classList.remove("open");
-    return;
-  }
+  if (!selectedProfile) { card.classList.remove("open"); return; }
   const c = characters.find(x => x.name === selectedProfile);
   if (!c) { card.classList.remove("open"); return; }
 
-  const mbtiInfo = mbtiTypes.find(t => t.code === c.mbti);
+  const mbtiInfo = getMbtiInfo(c.mbti);
+  const dom = mbtiInfo ? getDomGroup(c.mbti) : null;
   const fam = mbtiInfo ? families.find(f => f.code === mbtiInfo.family) : null;
-  const ennInfo = c.enn ? ennData.find(e => e.num === c.enn) : null;
+  const ennInfo = c.enn ? getEnnInfo(c.enn) : null;
   const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
 
-  // Find similar geese
   const sameMbti = characters.filter(o => o.name !== c.name && o.mbti === c.mbti);
   const sameEnn = characters.filter(o => o.name !== c.name && c.enn && o.enn === c.enn);
+  const sameWing = c.wing ? characters.filter(o => o.name !== c.name && o.wing === c.wing) : [];
+  const sameTriad = ennInfo ? characters.filter(o => o.name !== c.name && o.enn && triadInfo[ennInfo.triad].types.includes(o.enn)) : [];
+  const sameGroup = dom ? characters.filter(o => o.name !== c.name && dom.types.includes(o.mbti)) : [];
+
+  const pop = mbtiInfo ? mbtiPopulation[c.mbti] : null;
+  const popSorted = Object.entries(mbtiPopulation).sort((a,b) => b[1] - a[1]);
+  const popRank = pop ? popSorted.findIndex(([code]) => code === c.mbti) + 1 : null;
+  const flockMbtiCount = characters.filter(o => o.mbti === c.mbti).length;
+  const flockMbtiPct = (flockMbtiCount / characters.length) * 100;
+  const flockVsWorld = pop ? flockMbtiPct - pop : null;
+
+  // Plain description
+  let desc = "";
+  if (mbtiInfo && mbtiDesc[c.mbti]) desc += mbtiDesc[c.mbti](c.name);
+  if (ennInfo) {
+    desc += ` On the Enneagram, ${ennShort[c.enn](c.name)}`;
+    if (c.wing && wingDesc[c.wing]) {
+      desc += ` Specifically a <strong>${c.wing}</strong> — ${wingDesc[c.wing]}.`;
+    }
+  } else if (mbtiInfo) {
+    desc += ` <em>(${c.name}'s Enneagram type isn't on record yet.)</em>`;
+  }
+
+  const mbtiIconHTML = mbtiIcons[c.mbti] || '';
+  const ennIconHTML = c.enn ? ennIcons[c.enn] : '';
+  const mbtiColor = dom ? dom.color : 'var(--accent)';
+  const ennColor = ennInfo ? ennInfo.color : 'var(--accent)';
+
+  // Clickable stat cards
+  const statCards = [];
+  if (pop !== null) {
+    statCards.push({ key: "world", color: pop < 3 ? "var(--enn4)" : (pop > 8 ? "var(--enn2)" : "var(--accent)"),
+      label: "In the world", val: `${pop}% of people are ${c.mbti}`,
+      sub: `Rank ${popRank} of 16 — ${rarityLabel(pop)}`,
+      members: null });
+  }
+  statCards.push({ key: "flock-mbti", color: mbtiColor,
+    label: "Same MBTI in the flock", val: `${flockMbtiCount} of ${characters.length} are ${c.mbti}`,
+    sub: `${flockMbtiPct.toFixed(0)}% of catalogued geese`,
+    members: sameMbti, tag: "enn" });
+  if (flockVsWorld !== null) {
+    statCards.push({ key: "delta", color: "var(--gold)",
+      label: "vs. general population", val: `${flockVsWorld > 0 ? '+' : ''}${flockVsWorld.toFixed(1)} points`,
+      sub: flockVsWorld > 0 ? `${c.mbti} is over-represented here` : `${c.mbti} is under-represented here`,
+      members: null });
+  }
+  if (ennInfo) {
+    statCards.push({ key: "enn", color: ennInfo.color,
+      label: "Same Enneagram", val: `${sameEnn.length + 1} ${sameEnn.length + 1 === 1 ? 'goose' : 'geese'} are Type ${c.enn}`,
+      sub: ennInfo.label, members: sameEnn, tag: "mbti" });
+    statCards.push({ key: "triad", color: tri.color,
+      label: "Same triad", val: `${sameTriad.length + 1} in the ${tri.name} triad`,
+      sub: `Core emotion: ${tri.emotion.toLowerCase()}`, members: sameTriad, tag: "enn" });
+  }
+  if (dom) {
+    statCards.push({ key: "group", color: dom.color,
+      label: "Same dominant group", val: `${sameGroup.length + 1} in ${dom.code}`,
+      sub: dom.name, members: sameGroup, tag: "mbti" });
+  }
+  if (c.wing) {
+    statCards.push({ key: "wing", color: ennColor,
+      label: "Same wing", val: `${sameWing.length + 1} ${sameWing.length + 1 === 1 ? 'goose is' : 'geese are'} ${c.wing}`,
+      sub: wingDesc[c.wing] || '', members: sameWing, tag: "mbti" });
+  }
 
   document.getElementById("profile-content").innerHTML = `
-    <div class="profile-name">${c.name}</div>
+    <div class="profile-name-row">
+      <div class="profile-icon-pair">
+        ${c.mbti ? `<div class="profile-type-icon" style="background:${mbtiColor};" title="${c.mbti}">${mbtiIconHTML}</div>` : ''}
+        ${c.enn ? `<div class="profile-type-icon" style="background:${ennColor};" title="Type ${c.enn}">${ennIconHTML}</div>` : ''}
+      </div>
+      <div><div class="profile-name">${c.name}</div></div>
+    </div>
     <div class="profile-nick">${c.nick ? `also known as ${c.nick}` : (mbtiInfo ? mbtiInfo.label : 'Uncharted')}${ennInfo ? ` · ${ennInfo.label}` : ''}</div>
 
     <div class="profile-stats">
-      <div class="stat">
-        <div class="stat-key">MBTI</div>
-        <div class="stat-val ${!c.mbti ? 'muted' : ''}">${c.mbti || '—'}</div>
-        <div class="stat-sub">${mbtiInfo ? mbtiInfo.label : ''}</div>
-      </div>
-      <div class="stat">
-        <div class="stat-key">Family</div>
-        <div class="stat-val ${!fam ? 'muted' : ''}">${fam ? fam.name : '—'}</div>
-        <div class="stat-sub">${fam ? fam.sub : ''}</div>
-      </div>
-      <div class="stat">
-        <div class="stat-key">Enneagram</div>
-        <div class="stat-val ${!c.enn ? 'muted' : ''}">${c.enn ? 'Type ' + c.enn : '—'}</div>
-        <div class="stat-sub">${ennInfo ? ennInfo.tagline : ''}</div>
-      </div>
-      <div class="stat">
-        <div class="stat-key">Wing · Triad</div>
-        <div class="stat-val ${!c.wing && !tri ? 'muted' : ''}">${c.wing || (tri ? tri.name : '—')}</div>
-        <div class="stat-sub">${tri ? `${tri.name} · ${tri.emotion}` : ''}</div>
-      </div>
+      <div class="stat"><div class="stat-key">MBTI</div><div class="stat-val ${!c.mbti ? 'muted' : ''}">${c.mbti || '—'}</div><div class="stat-sub">${mbtiInfo ? mbtiInfo.label : ''}</div></div>
+      <div class="stat"><div class="stat-key">Group</div><div class="stat-val ${!dom ? 'muted' : ''}">${dom ? dom.code : '—'}</div><div class="stat-sub">${dom ? dom.name : ''}</div></div>
+      <div class="stat"><div class="stat-key">Enneagram</div><div class="stat-val ${!c.enn ? 'muted' : ''}">${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div><div class="stat-sub">${ennInfo ? ennInfo.tagline : ''}</div></div>
+      <div class="stat"><div class="stat-key">Triad</div><div class="stat-val ${!tri ? 'muted' : ''}">${tri ? tri.name : '—'}</div><div class="stat-sub">${tri ? `Core emotion · ${tri.emotion.toLowerCase()}` : ''}</div></div>
     </div>
 
-    <div class="profile-desc">${comboDescription(c)}</div>
+    <div class="profile-section-lbl">About ${c.name}</div>
+    <div class="profile-desc">${desc}</div>
+
+    <div class="profile-section-lbl">${c.name} by the numbers · click any card to see who matches</div>
+    <div class="profile-stats-row">
+      ${statCards.map(sc => `
+        <div class="profile-stat-card ${sc.members ? '' : 'no-click'}" data-stat="${sc.key}" style="--sc-color:${sc.color};">
+          <div class="profile-stat-card-key">${sc.label}</div>
+          <div class="profile-stat-card-val">${sc.val}</div>
+          <div class="profile-stat-card-sub">${sc.sub}</div>
+          ${sc.members ? `
+            <div class="profile-stat-card-hint">Click to see them ▾</div>
+            <div class="profile-stat-card-expand">
+              ${sc.members.length ? sc.members.map(m => chipHTML(m, sc.tag, {noDim:true})).join("") : '<span class="muted-txt">Just ' + c.name + '.</span>'}
+            </div>` : ''}
+        </div>
+      `).join("")}
+    </div>
 
     <div class="profile-similar">
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same MBTI</div>
-        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m)).join("") : '<span class="muted-txt">No others share this type.</span>'}</div>
+        <div class="profile-similar-lbl">Same MBTI as ${c.name}</div>
+        <div>${sameMbti.length ? sameMbti.map(m => chipHTML(m, "enn", {noDim:true})).join("") : '<span class="muted-txt">No one else in the flock shares this MBTI.</span>'}</div>
       </div>
       ${c.enn ? `
       <div class="profile-similar-block">
-        <div class="profile-similar-lbl">Same Enneagram</div>
-        <div>${sameEnn.length ? sameEnn.map(m => chipHTML(m)).join("") : '<span class="muted-txt">No others share this type.</span>'}</div>
+        <div class="profile-similar-lbl">Same Enneagram as ${c.name}</div>
+        <div>${sameEnn.length ? sameEnn.map(m => chipHTML(m, "mbti", {noDim:true})).join("") : '<span class="muted-txt">No one else in the flock shares this enneatype.</span>'}</div>
       </div>` : ''}
     </div>
   `;
+  // wire stat card toggles
+  card.querySelectorAll(".profile-stat-card[data-stat]").forEach(el => {
+    if (el.classList.contains("no-click")) return;
+    el.addEventListener("click", (ev) => {
+      if (ev.target.closest(".chip")) return;
+      el.classList.toggle("open");
+    });
+  });
   card.classList.add("open");
 }
 
-// SECTIONS
+// ===== DIMS (static, always expanded, no interactivity) =====
 function renderDims() {
   const host = document.getElementById("dims");
   host.innerHTML = "";
@@ -1280,81 +869,72 @@ function renderDims() {
     const total = aMembers.length + bMembers.length;
     const aPct = Math.round((aMembers.length / total) * 100);
     const bPct = 100 - aPct;
-    const dimActive = filter.dim?.key === d.key;
-    const aActive = dimActive && filter.dim.value === d.a;
-    const bActive = dimActive && filter.dim.value === d.b;
 
     const el = document.createElement("div");
-    el.className = "dim" + (dimActive ? " expanded" : "");
+    el.className = "dim";
     el.innerHTML = `
       <div class="dim-head">
-        <div class="pole ${aActive ? 'active-a' : ''}" data-dim="${d.key}" data-val="${d.a}">
+        <div class="pole">
           <div class="pole-letter a">${d.a}</div>
-          <div class="pole-info"><strong>${d.a_name}</strong>${d.a_sub}</div>
+          <div class="pole-info"><strong>${d.a_name}</strong></div>
           <div class="pole-count a">${aMembers.length}</div>
         </div>
-        <div class="pole right ${bActive ? 'active-b' : ''}" data-dim="${d.key}" data-val="${d.b}">
+        <div class="pole right">
           <div class="pole-count b">${bMembers.length}</div>
-          <div class="pole-info" style="text-align:right;"><strong>${d.b_name}</strong>${d.b_sub}</div>
+          <div class="pole-info" style="text-align:right;"><strong>${d.b_name}</strong></div>
           <div class="pole-letter b">${d.b}</div>
         </div>
       </div>
+      <div class="dim-def">${d.def}</div>
       <div class="dim-bar">
-        <div class="dim-bar-a" style="flex-basis: ${aPct}%;" data-dim="${d.key}" data-val="${d.a}"><span class="dim-bar-pct">${aPct}%</span></div>
-        <div class="dim-bar-b" style="flex-basis: ${bPct}%;" data-dim="${d.key}" data-val="${d.b}"><span class="dim-bar-pct">${bPct}%</span></div>
+        <div class="dim-bar-a" style="flex-basis: ${aPct}%;"><span class="dim-bar-pct">${aPct}%</span></div>
+        <div class="dim-bar-b" style="flex-basis: ${bPct}%;"><span class="dim-bar-pct">${bPct}%</span></div>
       </div>
       <div class="dim-members">
         <div class="dim-members-inner">
-          <div class="dim-members-col a ${aActive ? 'highlight' : (bActive ? 'dim' : '')}">
+          <div class="dim-members-col a">
             <div class="dim-members-lbl">${d.a_name}s · ${aMembers.length}</div>
-            <div>${aMembers.map(m => chipHTML(m)).join("")}</div>
+            <div>${aMembers.map(m => chipHTML(m, "mbti", {noDim:true})).join("")}</div>
           </div>
-          <div class="dim-members-col b ${bActive ? 'highlight' : (aActive ? 'dim' : '')}">
+          <div class="dim-members-col b">
             <div class="dim-members-lbl">${d.b_name}s · ${bMembers.length}</div>
-            <div>${bMembers.map(m => chipHTML(m)).join("")}</div>
+            <div>${bMembers.map(m => chipHTML(m, "mbti", {noDim:true})).join("")}</div>
           </div>
         </div>
       </div>
     `;
-    el.querySelectorAll("[data-dim]").forEach(elm => {
-      elm.addEventListener("click", (ev) => {
-        ev.stopPropagation();
-        const k = parseInt(elm.dataset.dim);
-        const v = elm.dataset.val;
-        if (filter.dim?.key === k && filter.dim?.value === v) filter.dim = null;
-        else filter.dim = { key: k, value: v };
-        renderAll();
-      });
-    });
     host.appendChild(el);
   });
 }
 
+// ===== DOMINANT-FUNCTION GROUPS =====
 function renderFamilies() {
   const host = document.getElementById("fams");
   host.innerHTML = "";
-  families.forEach(f => {
-    const famTypes = mbtiTypes.filter(t => t.family === f.code);
-    const famMembers = characters.filter(c => famTypes.some(t => t.code === c.mbti));
-    const pct = Math.round((famMembers.length / characters.length) * 100);
-    const isFamActive = filter.family === f.code;
-    const isDimmed = (filter.family && filter.family !== f.code) || (filter.mbti && !famTypes.some(t => t.code === filter.mbti));
+  domGroups.forEach(g => {
+    const groupMembers = characters.filter(c => g.types.includes(c.mbti));
+    const pct = Math.round((groupMembers.length / characters.length) * 100);
+    const isActive = filter.family === g.code;
+    const isDimmed = (filter.family && filter.family !== g.code) || (filter.mbti && !g.types.includes(filter.mbti));
 
-    const typeRows = famTypes.map(t => {
-      const members = characters.filter(c => c.mbti === t.code);
+    const typeRows = g.types.map(tc => {
+      const t = getMbtiInfo(tc);
+      const members = characters.filter(c => c.mbti === tc);
       const memberStr = members.length === 0
         ? '<span class="fam-type-members empty">—</span>'
         : `<span class="fam-type-members">${members.map(m => m.name).join(", ")}</span>`;
-      const active = filter.mbti === t.code ? "active" : "";
-      return `<div class="fam-type ${active}" data-mbti="${t.code}"><span class="fam-type-code">${t.code}</span>${memberStr}</div>`;
+      const active = filter.mbti === tc ? "active" : "";
+      return `<div class="fam-type ${active}" data-mbti="${tc}">
+        <span class="fam-type-code"><span class="fam-type-icon-mini">${mbtiIcons[tc]}</span>${tc}</span>${memberStr}
+      </div>`;
     }).join("");
 
     const el = document.createElement("div");
-    el.className = "fam-card" + (isFamActive ? " active" : "") + (isDimmed && !isFamActive ? " muted" : "");
-    el.style.setProperty("--fc", f.color);
+    el.className = "fam-card" + (isActive ? " active" : "") + (isDimmed && !isActive ? " muted" : "");
+    el.style.setProperty("--fc", g.color);
     el.innerHTML = `
-      <div class="fam-head"><div class="fam-name">${f.name}</div><div class="fam-count">${famMembers.length}</div></div>
-      <div class="fam-meta">${f.sub} · ${pct}% of catalogued</div>
+      <div class="fam-head"><div class="fam-name">${g.code}</div><div class="fam-count">${groupMembers.length}</div></div>
+      <div class="fam-meta">${g.name} · ${pct}% of catalogued</div>
       <div class="fam-bar"><div class="fam-bar-fill" style="width: ${pct}%;"></div></div>
       <div class="fam-types">${typeRows}</div>
     `;
@@ -1368,7 +948,7 @@ function renderFamilies() {
         renderAll();
         return;
       }
-      filter.family = filter.family === f.code ? null : f.code;
+      filter.family = filter.family === g.code ? null : g.code;
       filter.mbti = null;
       renderAll();
     });
@@ -1377,25 +957,26 @@ function renderFamilies() {
 
   const detail = document.getElementById("fam-detail");
   if (filter.family) {
-    const f = families.find(x => x.code === filter.family);
-    const members = characters.filter(c => getFamily(c.mbti) === f.code);
-    detail.style.setProperty("--fc", f.color);
+    const g = domGroups.find(x => x.code === filter.family);
+    const members = characters.filter(c => g.types.includes(c.mbti));
+    detail.style.setProperty("--fc", g.color);
     detail.className = "fam-detail open";
     detail.innerHTML = `
-      <div class="fam-detail-title">${f.name}</div>
-      <div class="fam-detail-sub">${f.sub} · ${members.length} geese in the flock</div>
-      <div>${members.map(m => chipHTML(m)).join("")}</div>
+      <div class="fam-detail-title">${g.code} · ${g.name}</div>
+      <div class="fam-detail-sub">${g.def}</div>
+      <div class="enn-body-members-lbl">In the flock · ${members.length}</div>
+      <div>${members.length ? members.map(m => chipHTML(m, "mbti")).join("") : '<span class="muted-txt">None of this group yet.</span>'}</div>
     `;
   } else if (filter.mbti) {
     const t = mbtiTypes.find(x => x.code === filter.mbti);
-    const f = families.find(x => x.code === t.family);
+    const g = getDomGroup(filter.mbti);
     const members = characters.filter(c => c.mbti === t.code);
-    detail.style.setProperty("--fc", f.color);
+    detail.style.setProperty("--fc", g.color);
     detail.className = "fam-detail open";
     detail.innerHTML = `
       <div class="fam-detail-title">${t.code} · ${t.label}</div>
-      <div class="fam-detail-sub">${f.name} family · ${members.length} ${members.length === 1 ? 'goose' : 'geese'}</div>
-      <div>${members.length ? members.map(m => chipHTML(m)).join("") : '<span class="muted-txt">None of this type yet.</span>'}</div>
+      <div class="fam-detail-sub">${g.code} group — ${g.name} · ${members.length} ${members.length === 1 ? 'goose' : 'geese'} · ${mbtiPopulation[t.code]}% of general population</div>
+      <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">None of this type yet.</span>'}</div>
     `;
   } else {
     detail.className = "fam-detail";
@@ -1403,83 +984,73 @@ function renderFamilies() {
   }
 }
 
-function polar(angleDeg, radius) {
-  const rad = (angleDeg - 90) * Math.PI / 180;
-  return [Math.cos(rad) * radius, Math.sin(rad) * radius];
-}
+// ===== ENNEAGRAM =====
+function polar(a, r) { const rad = (a - 90) * Math.PI / 180; return [Math.cos(rad)*r, Math.sin(rad)*r]; }
 function arcPath(s, e, ro, ri) {
-  const [x1,y1] = polar(s,ro), [x2,y2] = polar(e,ro), [x3,y3] = polar(e,ri), [x4,y4] = polar(s,ri);
-  const la = (e - s) > 180 ? 1 : 0;
+  const [x1,y1]=polar(s,ro),[x2,y2]=polar(e,ro),[x3,y3]=polar(e,ri),[x4,y4]=polar(s,ri);
+  const la=(e-s)>180?1:0;
   return `M ${x1} ${y1} A ${ro} ${ro} 0 ${la} 1 ${x2} ${y2} L ${x3} ${y3} A ${ri} ${ri} 0 ${la} 0 ${x4} ${y4} Z`;
 }
 
 function renderWheel() {
   const svg = document.getElementById("enn-wheel");
   svg.innerHTML = "";
-  const rOuter = 100, rInner = 50;
-  const sliceAngle = 360 / 9;
+  const rOuter = 100, rInner = 50, slice = 360 / 9;
   const cs = getComputedStyle(document.body);
-  const creamColor = cs.getPropertyValue('--cream').trim();
-  const inkColor = cs.getPropertyValue('--ink').trim();
-  const fadeColor = cs.getPropertyValue('--ink-fade').trim();
-  const lineColor = cs.getPropertyValue('--line').trim();
+  const cream = cs.getPropertyValue('--cream').trim();
+  const ink = cs.getPropertyValue('--ink').trim();
+  const fade = cs.getPropertyValue('--ink-fade').trim();
+  const line = cs.getPropertyValue('--line').trim();
 
   ennData.forEach((e, i) => {
-    const start = i * sliceAngle;
-    const end = start + sliceAngle;
-    const [lx, ly] = polar(start + sliceAngle / 2, (rOuter + rInner) / 2);
+    const start = i * slice, end = start + slice;
+    const [lx, ly] = polar(start + slice/2, (rOuter+rInner)/2);
     const members = characters.filter(c => c.enn === e.num);
     const isActive = filter.enn === e.num;
     const isDimmed = (filter.enn && filter.enn !== e.num) || (filter.triad && !triadInfo[filter.triad].types.includes(e.num));
     let opacity = isActive ? 1 : isDimmed ? 0.15 : (members.length > 0 ? 0.92 : 0.3);
 
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
     path.setAttribute("d", arcPath(start, end, rOuter, rInner));
     path.setAttribute("fill", e.color);
     path.setAttribute("fill-opacity", opacity);
-    path.setAttribute("stroke", creamColor);
+    path.setAttribute("stroke", cream);
     path.setAttribute("stroke-width", "2");
-    path.setAttribute("style", "cursor: pointer; transition: fill-opacity 0.25s;");
+    path.setAttribute("style", "cursor:pointer;transition:fill-opacity 0.25s;");
     path.addEventListener("click", () => {
       filter.enn = filter.enn === e.num ? null : e.num;
       renderAll();
+      const row = document.querySelector(`.enn-row[data-num="${e.num}"]`);
+      if (row && filter.enn) row.scrollIntoView({behavior:"smooth", block:"nearest"});
     });
     svg.appendChild(path);
 
-    const numText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    numText.setAttribute("x", lx); numText.setAttribute("y", ly - 2);
-    numText.setAttribute("text-anchor", "middle"); numText.setAttribute("fill", "white");
-    numText.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; pointer-events: none;");
-    numText.textContent = e.num;
-    svg.appendChild(numText);
+    const t1 = document.createElementNS("http://www.w3.org/2000/svg","text");
+    t1.setAttribute("x", lx); t1.setAttribute("y", ly-2); t1.setAttribute("text-anchor","middle");
+    t1.setAttribute("fill","white"); t1.setAttribute("style","font-family:'Fraunces',serif;font-size:15px;font-weight:600;pointer-events:none;");
+    t1.textContent = e.num; svg.appendChild(t1);
 
-    const countText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    countText.setAttribute("x", lx); countText.setAttribute("y", ly + 10);
-    countText.setAttribute("text-anchor", "middle"); countText.setAttribute("fill", "white");
-    countText.setAttribute("fill-opacity", "0.9");
-    countText.setAttribute("style", "font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; pointer-events: none;");
-    countText.textContent = members.length;
-    svg.appendChild(countText);
+    const t2 = document.createElementNS("http://www.w3.org/2000/svg","text");
+    t2.setAttribute("x", lx); t2.setAttribute("y", ly+10); t2.setAttribute("text-anchor","middle");
+    t2.setAttribute("fill","white"); t2.setAttribute("fill-opacity","0.9");
+    t2.setAttribute("style","font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;pointer-events:none;");
+    t2.textContent = members.length; svg.appendChild(t2);
   });
 
-  const center = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  center.setAttribute("cx", 0); center.setAttribute("cy", 0); center.setAttribute("r", rInner - 2);
-  center.setAttribute("fill", creamColor); center.setAttribute("stroke", lineColor);
+  const center = document.createElementNS("http://www.w3.org/2000/svg","circle");
+  center.setAttribute("cx",0);center.setAttribute("cy",0);center.setAttribute("r",rInner-2);
+  center.setAttribute("fill",cream);center.setAttribute("stroke",line);
   svg.appendChild(center);
 
-  const c1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  c1.setAttribute("x", 0); c1.setAttribute("y", -4); c1.setAttribute("text-anchor", "middle");
-  c1.setAttribute("fill", inkColor);
-  c1.setAttribute("style", "font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;");
-  c1.textContent = characters.filter(c => c.enn).length;
-  svg.appendChild(c1);
+  const c1 = document.createElementNS("http://www.w3.org/2000/svg","text");
+  c1.setAttribute("x",0);c1.setAttribute("y",-4);c1.setAttribute("text-anchor","middle");
+  c1.setAttribute("fill",ink);c1.setAttribute("style","font-family:'Fraunces',serif;font-size:18px;font-weight:500;");
+  c1.textContent = characters.filter(c => c.enn).length; svg.appendChild(c1);
 
-  const c2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  c2.setAttribute("x", 0); c2.setAttribute("y", 12); c2.setAttribute("text-anchor", "middle");
-  c2.setAttribute("fill", fadeColor);
-  c2.setAttribute("style", "font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;");
-  c2.textContent = "typed";
-  svg.appendChild(c2);
+  const c2 = document.createElementNS("http://www.w3.org/2000/svg","text");
+  c2.setAttribute("x",0);c2.setAttribute("y",12);c2.setAttribute("text-anchor","middle");
+  c2.setAttribute("fill",fade);c2.setAttribute("style","font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;");
+  c2.textContent = "typed"; svg.appendChild(c2);
 }
 
 function renderEnnList() {
@@ -1492,35 +1063,27 @@ function renderEnnList() {
     const row = document.createElement("div");
     row.className = "enn-row" + (isActive ? " active" : "") + (isDimmed && !isActive ? " muted" : "");
     row.style.setProperty("--ec", e.color);
-    row.addEventListener("click", () => {
+    row.dataset.num = e.num;
+    row.innerHTML = `
+      <div class="enn-row-head">
+        <div class="enn-icon-wrap">${ennIcons[e.num]}</div>
+        <div><div class="enn-row-label"><span class="enn-row-num">${e.num}</span>${e.label}</div><div class="enn-row-sub">${e.tagline}</div></div>
+        <div class="enn-row-count">${members.length}</div>
+      </div>
+      <div class="enn-row-body">
+        <div class="enn-row-body-inner">
+          <div class="enn-body-desc">${ennLong[e.num]}</div>
+          <div class="enn-body-members-lbl">In the flock · ${members.length}</div>
+          <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">No geese of this type yet.</span>'}</div>
+        </div>
+      </div>
+    `;
+    row.querySelector(".enn-row-head").addEventListener("click", () => {
       filter.enn = filter.enn === e.num ? null : e.num;
       renderAll();
     });
-    row.innerHTML = `
-      <div class="enn-dot">${e.num}</div>
-      <div><div class="enn-row-label">${e.label}</div><div class="enn-row-sub">${e.tagline}</div></div>
-      <div class="enn-row-count">${members.length}</div>
-    `;
     host.appendChild(row);
   });
-
-  const detail = document.getElementById("enn-detail");
-  if (filter.enn) {
-    const e = ennData.find(x => x.num === filter.enn);
-    const members = characters.filter(c => c.enn === filter.enn);
-    detail.style.setProperty("--e-current", e.color);
-    detail.innerHTML = `
-      <div class="enn-detail-title"><span class="num">${filter.enn}.</span> ${e.label}</div>
-      <div class="enn-detail-sub">${e.tagline} · ${triadInfo[e.triad].name} triad</div>
-      <div>${members.length ? members.map(m => chipHTML(m)).join("") : '<div style="font-family: Fraunces, serif; font-style: italic; color: var(--ink-fade);">No geese of this type yet.</div>'}</div>
-    `;
-  } else {
-    detail.style.setProperty("--e-current", "var(--ink)");
-    detail.innerHTML = `
-      <div class="enn-detail-title">Click a type to explore</div>
-      <div class="enn-detail-sub">See which geese belong to each enneatype.</div>
-    `;
-  }
 }
 
 function renderTriads() {
@@ -1534,10 +1097,12 @@ function renderTriads() {
     el.className = "triad-card" + (isActive ? " active" : "") + (isDimmed ? " muted" : "");
     el.style.setProperty("--tc", t.color);
     el.innerHTML = `
-      <div class="triad-name">${t.name} triad</div>
-      <div class="triad-emotion">Root emotion · ${t.emotion}</div>
-      <div class="triad-count">${members.length}</div>
-      <div class="triad-types">Types ${t.types.join(" · ")}</div>
+      <div class="triad-head">
+        <div class="triad-name">${t.name} triad</div>
+        <div class="triad-count">${members.length}</div>
+      </div>
+      <div class="triad-emotion">Types ${t.types.join(" · ")} · core emotion: ${t.emotion}</div>
+      <div class="triad-desc">${t.desc}</div>
     `;
     el.addEventListener("click", () => {
       filter.triad = filter.triad === key ? null : key;
@@ -1553,9 +1118,9 @@ function renderTriads() {
     detail.style.setProperty("--tc", t.color);
     detail.className = "triad-detail open";
     detail.innerHTML = `
-      <div class="triad-detail-title">${t.name} triad · ${t.emotion}</div>
-      <div class="triad-detail-sub">Types ${t.types.join(", ")} · ${members.length} geese</div>
-      <div>${members.map(m => chipHTML(m)).join("")}</div>
+      <div class="triad-detail-title">${t.name} triad · ${members.length} geese</div>
+      <div class="triad-detail-sub">${t.desc}</div>
+      <div>${members.map(m => chipHTML(m, "enn")).join("")}</div>
     `;
   } else {
     detail.className = "triad-detail";
@@ -1563,155 +1128,145 @@ function renderTriads() {
   }
 }
 
-// ====== INSIGHTS ======
+// ===== INSIGHTS =====
 function similarity(a, b) {
-  // Higher = more similar. MBTI dim matches + enneagram triad/family bonuses.
-  let score = 0;
+  let s = 0;
   if (a.mbti && b.mbti) {
-    for (let i = 0; i < 4; i++) {
-      if (a.mbti[i] === b.mbti[i]) score += 1;
-    }
-    if (getFamily(a.mbti) === getFamily(b.mbti)) score += 1;
+    for (let i = 0; i < 4; i++) if (a.mbti[i] === b.mbti[i]) s += 1;
+    if (getFamily(a.mbti) === getFamily(b.mbti)) s += 1;
   }
   if (a.enn && b.enn) {
-    if (a.enn === b.enn) score += 3;
-    const triA = ennData.find(e => e.num === a.enn)?.triad;
-    const triB = ennData.find(e => e.num === b.enn)?.triad;
-    if (triA && triA === triB) score += 1;
+    if (a.enn === b.enn) s += 3;
+    const ta = ennData.find(e => e.num === a.enn)?.triad;
+    const tb = ennData.find(e => e.num === b.enn)?.triad;
+    if (ta && ta === tb) s += 1;
   }
-  return score;
-}
-
-function distance(a, b) {
-  // For "most different": lower-similarity pair, but require both be fully typed
-  if (!a.mbti || !b.mbti || !a.enn || !b.enn) return null;
-  return -similarity(a, b);
+  return s;
 }
 
 function renderInsights() {
   const host = document.getElementById("insights");
   const fully = characters.filter(c => c.mbti && c.enn);
 
-  // Most similar pair
   let bestPair = null, bestScore = -1;
-  for (let i = 0; i < fully.length; i++) {
+  let farPair = null, farScore = 999;
+  for (let i = 0; i < fully.length; i++)
     for (let j = i+1; j < fully.length; j++) {
       const s = similarity(fully[i], fully[j]);
       if (s > bestScore) { bestScore = s; bestPair = [fully[i], fully[j]]; }
-    }
-  }
-
-  // Most different pair
-  let farPair = null, farScore = 999;
-  for (let i = 0; i < fully.length; i++) {
-    for (let j = i+1; j < fully.length; j++) {
-      const s = similarity(fully[i], fully[j]);
       if (s < farScore) { farScore = s; farPair = [fully[i], fully[j]]; }
     }
-  }
 
-  // Most common MBTI
   const mbtiCounts = {};
   characters.forEach(c => { if (c.mbti) mbtiCounts[c.mbti] = (mbtiCounts[c.mbti]||0)+1; });
   const topMbti = Object.entries(mbtiCounts).sort((a,b)=>b[1]-a[1])[0];
   const topMbtiMembers = characters.filter(c => c.mbti === topMbti[0]);
+  const topMbtiPop = mbtiPopulation[topMbti[0]];
 
-  // Most common Enneagram
   const ennCounts = {};
   characters.forEach(c => { if (c.enn) ennCounts[c.enn] = (ennCounts[c.enn]||0)+1; });
   const topEnn = Object.entries(ennCounts).sort((a,b)=>b[1]-a[1])[0];
   const topEnnMembers = characters.filter(c => c.enn === topEnn[0]);
   const topEnnInfo = ennData.find(e => e.num === topEnn[0]);
 
-  // Rarest MBTI in flock (types with exactly 1)
   const uniques = characters.filter(c => c.mbti && mbtiCounts[c.mbti] === 1);
 
-  // Most common triad
-  const triadCounts = { head: 0, heart: 0, body: 0 };
+  // rarest type goose
+  let rarest = null, rarestPop = 100;
   characters.forEach(c => {
-    if (c.enn) {
-      const t = ennData.find(e => e.num === c.enn).triad;
-      triadCounts[t]++;
-    }
+    if (c.mbti && mbtiPopulation[c.mbti] < rarestPop) { rarestPop = mbtiPopulation[c.mbti]; rarest = c; }
   });
+  const rareMembers = characters.filter(c => mbtiPopulation[c.mbti] && mbtiPopulation[c.mbti] < 3);
+
+  const triadCounts = { head:0, heart:0, body:0 };
+  characters.forEach(c => { if (c.enn) triadCounts[ennData.find(e => e.num === c.enn).triad]++; });
   const topTriad = Object.entries(triadCounts).sort((a,b)=>b[1]-a[1])[0];
   const topTriadInfo = triadInfo[topTriad[0]];
+  const topTriadMembers = characters.filter(c => c.enn && topTriadInfo.types.includes(c.enn));
 
-  // Introverts vs Extraverts
-  const ints = characters.filter(c => c.mbti?.[0] === "I").length;
-  const exts = characters.filter(c => c.mbti?.[0] === "E").length;
-  const introvertWins = ints > exts;
-
-  // Feelers vs Thinkers
-  const feelers = characters.filter(c => c.mbti?.[2] === "F").length;
-  const thinkers = characters.filter(c => c.mbti?.[2] === "T").length;
+  const ints = characters.filter(c => c.mbti?.[0] === "I");
+  const exts = characters.filter(c => c.mbti?.[0] === "E");
+  const introvertWins = ints.length > exts.length;
+  const feelers = characters.filter(c => c.mbti?.[2] === "F");
+  const thinkers = characters.filter(c => c.mbti?.[2] === "T");
 
   const cards = [
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>',
-      title: "Most alike",
+      title: "Kindred geese",
       headline: `${bestPair[0].name} & ${bestPair[1].name}`,
-      sub: `Cognitive twins · similarity ${bestScore}/8`,
-      pairs: [[bestPair[0], bestPair[1]]],
+      sub: `Most similar pair in the flock`,
+      members: bestPair, tag: "default",
       note: bestPair[0].mbti === bestPair[1].mbti && bestPair[0].enn === bestPair[1].enn
-        ? "Same MBTI and Enneagram — these two would honk in unison without trying."
-        : "They share most of the same wiring across both systems. Likely to finish each other's sentences.",
+        ? `Same MBTI and Enneagram — ${bestPair[0].name} and ${bestPair[1].name} are wired almost identically. Natural shorthand.`
+        : `${bestPair[0].name} and ${bestPair[1].name} share the most overlap across both systems — likely to "get" each other without explaining much.`,
       color: "var(--enn2)"
     },
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M5 12l5-5M5 12l5 5M19 12l-5-5M19 12l-5 5"/></svg>',
-      title: "Most different",
+      title: "Perfect complements",
       headline: `${farPair[0].name} & ${farPair[1].name}`,
-      sub: `Polar opposites · similarity ${-farScore}/8`,
-      pairs: [[farPair[0], farPair[1]]],
-      note: "These two operate from nearly opposite ends of both systems. Together they'd cover every blind spot — or drive each other a little wild.",
-      color: "var(--enn8)"
+      sub: `The most contrasting pair`,
+      members: farPair, tag: "default",
+      note: `${farPair[0].name} and ${farPair[1].name} sit at opposite ends of nearly every scale — which means together they cover every blind spot. A powerful duo when they're on the same team.`,
+      color: "var(--enn6)"
     },
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>',
-      title: "Most common MBTI",
-      headline: `${topMbti[0]} · ${mbtiTypes.find(t=>t.code===topMbti[0]).label}`,
-      sub: `${topMbti[1]} geese share this type`,
-      members: topMbtiMembers,
-      note: `The flock leans toward ${mbtiTypes.find(t=>t.code===topMbti[0]).label.toLowerCase().replace('the ','')} energy more than any other.`,
+      title: "The flock's signature type",
+      headline: `${topMbti[0]} · ${getMbtiInfo(topMbti[0]).label}`,
+      sub: `${topMbti[1]} geese · most common MBTI in the guild`,
+      members: topMbtiMembers, tag: "enn",
+      note: `In the wider world ${topMbti[0]}s make up ${topMbtiPop}%. In 147 YAY they're ${((topMbti[1]/characters.length)*100).toFixed(0)}% — this is the personality flavour the guild attracts most.`,
       color: families.find(f => f.code === getFamily(topMbti[0])).color
     },
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10z" transform="translate(-2.5 -1)"/></svg>',
-      title: "Most common Enneagram",
+      title: "The flock's heart",
       headline: `Type ${topEnn[0]} · ${topEnnInfo.label}`,
-      sub: `${topEnn[1]} geese · ${topEnnInfo.tagline}`,
-      members: topEnnMembers,
-      note: `The flock has more ${topEnnInfo.label.replace('The ','').toLowerCase()}s than any other type. ${topEnn[0] === '2' ? "A nest full of caretakers." : ""}`,
+      sub: `${topEnn[1]} geese · most common Enneagram`,
+      members: topEnnMembers, tag: "mbti",
+      note: `More geese share the ${topEnnInfo.label.replace('The ','').toLowerCase()} motivation than any other — this is the engine the guild runs on.`,
       color: topEnnInfo.color
     },
     {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>',
+      title: "Rare birds",
+      headline: `${rarest.name} has the rarest type`,
+      sub: `${rarest.mbti}s are only ${rarestPop}% of people`,
+      members: rareMembers, tag: "mbti",
+      note: `These geese all carry types that show up in less than 3% of the general population. Genuinely uncommon company.`,
+      color: "var(--enn4)"
+    },
+    {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>',
-      title: "Dominant triad",
-      headline: `${topTriadInfo.name} triad`,
-      sub: `${topTriad[1]} geese · root emotion is ${topTriadInfo.emotion.toLowerCase()}`,
+      title: "Center of gravity",
+      headline: `${topTriadInfo.name} triad leads`,
+      sub: `${topTriad[1]} geese · core emotion is ${topTriadInfo.emotion.toLowerCase()}`,
+      members: topTriadMembers, tag: "enn",
       note: topTriad[0] === 'heart'
-        ? "The flock's center of gravity is the heart — image, connection, and feeling drive most of its members."
+        ? "The flock leans heart — connection, identity, and being valued are the recurring themes."
         : topTriad[0] === 'head'
-          ? "The flock's center of gravity is the head — fear, planning, and pattern-recognition lead the way."
-          : "The flock's center of gravity is the body — instinct, presence, and gut-knowing lead the way.",
+          ? "The flock leans head — thinking, planning, and staying one step ahead are the recurring themes."
+          : "The flock leans body — instinct, fairness, and decisive action are the recurring themes.",
       color: topTriadInfo.color
     },
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>',
-      title: "Energy balance",
-      headline: introvertWins ? `${ints} introverts vs ${exts} extraverts` : `${exts} extraverts vs ${ints} introverts`,
-      sub: introvertWins ? "A quieter flock — many private nests" : "A louder flock — many open meadows",
-      note: `Feelers outnumber thinkers ${feelers}–${thinkers}. This is a flock that runs on heart more than logic.`,
+      title: "Energy mix",
+      headline: introvertWins ? `${ints.length} introverts · ${exts.length} extraverts` : `${exts.length} extraverts · ${ints.length} introverts`,
+      sub: `Feelers ${feelers.length} · Thinkers ${thinkers.length}`,
+      members: (introvertWins ? ints : exts).slice(0, 12), tag: "mbti",
+      note: `A nicely balanced flock. The general population splits about the same way (~50/50 on E/I, ~60/40 on F/T), so 147 YAY mirrors the world fairly closely here.`,
       color: "var(--accent)"
     },
     {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>',
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
       title: "One of a kind",
-      headline: `${uniques.length} unique types`,
+      headline: `${uniques.length} unique MBTI types`,
       sub: "Geese with no MBTI twin in the flock",
-      members: uniques,
-      note: "Each of these geese carries an MBTI no one else in the catalogued flock shares — solo voices in the chorus.",
+      members: uniques, tag: "mbti",
+      note: "Each of these geese brings a perspective no one else in the flock duplicates — the chorus is richer for it.",
       color: "var(--gold)"
     }
   ];
@@ -1722,26 +1277,13 @@ function renderInsights() {
       <div class="insight-title">${card.title}</div>
       <div class="insight-headline">${card.headline}</div>
       <div class="insight-sub">${card.sub}</div>
-      ${card.pairs ? card.pairs.map(([a,b]) => `
-        <div class="insight-pair">
-          <span class="insight-pair-name" data-goose="${a.name}">${a.name}</span>
-          <span class="insight-pair-meta">${a.mbti} · ${a.enn ? 'E'+a.enn : ''}</span>
-          <span class="insight-arrow">↔</span>
-          <span class="insight-pair-name" data-goose="${b.name}">${b.name}</span>
-          <span class="insight-pair-meta">${b.mbti} · ${b.enn ? 'E'+b.enn : ''}</span>
-        </div>
-      `).join('') : ''}
-      ${card.members ? `<div>${card.members.map(m => chipHTML(m)).join("")}</div>` : ''}
+      ${card.members ? `<div class="insight-members">${card.members.map(m => chipHTML(m, card.tag, {noDim:true})).join("")}</div>` : ''}
       <div class="insight-note">${card.note}</div>
     </div>
   `).join("");
-
-  // wire pair-name clicks
-  host.querySelectorAll(".insight-pair-name[data-goose]").forEach(el => {
-    el.addEventListener("click", () => selectGoose(el.dataset.goose));
-  });
 }
 
+// ===== ROSTER =====
 function renderRoster() {
   const host = document.getElementById("roster-table");
   host.innerHTML = "";
@@ -1813,54 +1355,42 @@ function renderRoster() {
   }
 }
 
-// chip click → select goose
+// chip click handler — distinguishes "lit" (axes) from "profile"
 document.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip[data-goose]");
-  if (chip) {
-    e.stopPropagation();
-    selectGoose(chip.dataset.goose);
+  if (!chip) return;
+  e.stopPropagation();
+  const name = chip.dataset.goose;
+  if (chip.dataset.action === "lit") {
+    litGoose = (litGoose === name) ? null : name;
+    filter.dim = null;
+    renderDims();
+  } else {
+    selectGoose(name);
   }
 });
 
-// SEARCH input
 const searchEl = document.getElementById("search");
-searchEl.addEventListener("input", (e) => {
-  filter.search = e.target.value.trim();
-  suggIdx = -1;
-  renderSuggestions();
-});
-searchEl.addEventListener("focus", () => {
-  if (filter.search) renderSuggestions();
-});
-searchEl.addEventListener("blur", () => {
-  // delay so click on suggestion still registers
-  setTimeout(() => document.getElementById("suggestions").classList.remove("open"), 150);
-});
+searchEl.addEventListener("input", (e) => { searchTerm = e.target.value.trim(); suggIdx = -1; renderSuggestions(); });
+searchEl.addEventListener("focus", () => { if (searchTerm) renderSuggestions(); });
+searchEl.addEventListener("blur", () => { setTimeout(() => document.getElementById("suggestions").classList.remove("open"), 150); });
 searchEl.addEventListener("keydown", (e) => {
   const box = document.getElementById("suggestions");
   const items = box.querySelectorAll(".sugg-item[data-name]");
-  if (e.key === "ArrowDown" && items.length) {
-    e.preventDefault();
-    suggIdx = Math.min(suggIdx + 1, items.length - 1);
-    renderSuggestions();
-  } else if (e.key === "ArrowUp" && items.length) {
-    e.preventDefault();
-    suggIdx = Math.max(suggIdx - 1, 0);
-    renderSuggestions();
-  } else if (e.key === "Enter") {
-    if (items.length) {
-      const target = suggIdx >= 0 ? items[suggIdx] : items[0];
-      selectGoose(target.dataset.name);
-    }
-  } else if (e.key === "Escape") {
+  if (e.key === "ArrowDown" && items.length) { e.preventDefault(); suggIdx = Math.min(suggIdx+1, items.length-1); renderSuggestions(); }
+  else if (e.key === "ArrowUp" && items.length) { e.preventDefault(); suggIdx = Math.max(suggIdx-1, 0); renderSuggestions(); }
+  else if (e.key === "Enter") { if (items.length) selectGoose((suggIdx >= 0 ? items[suggIdx] : items[0]).dataset.name); }
+  else if (e.key === "Escape") {
     if (selectedProfile) closeProfile();
-    else { searchEl.value = ""; filter.search = ""; renderSuggestions(); clearAll(); }
+    else { searchEl.value = ""; searchTerm = ""; renderSuggestions(); clearAll(); }
   }
 });
 
 function clearAll() {
-  filter = { search: "", dim: null, family: null, mbti: null, enn: null, triad: null };
+  filter = { dim:null, family:null, mbti:null, enn:null, triad:null };
   selectedProfile = null;
+  litGoose = null;
+  searchTerm = "";
   document.getElementById("search").value = "";
   document.getElementById("suggestions").classList.remove("open");
   renderProfile();
@@ -1868,19 +1398,14 @@ function clearAll() {
 }
 
 function toggleTheme() {
-  const body = document.body;
-  const next = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  body.setAttribute("data-theme", next);
+  const next = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.body.setAttribute("data-theme", next);
   try { localStorage.setItem("goose-theme", next); } catch(e) {}
   renderWheel();
 }
-
 try {
   const saved = localStorage.getItem("goose-theme");
-  if (saved) document.body.setAttribute("data-theme", saved);
-  else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.setAttribute("data-theme", "dark");
-  }
+  if (saved === "dark") document.body.setAttribute("data-theme", "dark");
 } catch(e) {}
 
 function renderAll() {
