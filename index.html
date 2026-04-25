@@ -367,7 +367,6 @@
   <div class="search-inner">
     <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11L15 15"/></svg>
     <input class="search-input" id="search" type="search" placeholder="Search a goose to see their full profile..." autocomplete="off" />
-    <button class="clear-btn" onclick="clearAll()">Clear</button>
     <div class="search-suggestions" id="suggestions"></div>
   </div>
 </div>
@@ -550,6 +549,12 @@ const domGroups = [
 ];
 
 function getDomGroup(mbti) { return domGroups.find(g => g.types.includes(mbti)); }
+
+function oppositeMbti(mbti) {
+  if (!mbti) return null;
+  const flip = { E:'I', I:'E', S:'N', N:'S', T:'F', F:'T', J:'P', P:'J' };
+  return mbti.split('').map(l => flip[l]).join('');
+}
 
 // Axis definitions written from the mbti-notes Type Fundamentals Guide
 const dims = [
@@ -916,6 +921,15 @@ function renderProfile() {
     statCards.push({ key: "wing", color: ennColor,
       label: "Same wing", val: `${sameWing.length + 1} ${sameWing.length + 1 === 1 ? 'goose is' : 'geese are'} ${c.wing}`,
       sub: wingDesc[c.wing] || '', members: sameWing, tag: "mbti" });
+  }
+  const oppType = oppositeMbti(c.mbti);
+  if (oppType) {
+    const oppMembers = characters.filter(o => o.mbti === oppType);
+    const oppInfo = getMbtiInfo(oppType);
+    statCards.push({ key: "opposite", color: "var(--enn6)",
+      label: "Most different MBTI", val: `${oppType} · ${oppInfo ? oppInfo.label : ''}`,
+      sub: oppMembers.length ? `${oppMembers.length} in the flock — perfect complements` : `No ${oppType}s in the flock`,
+      members: oppMembers, tag: "enn" });
   }
 
   document.getElementById("profile-content").innerHTML = `
@@ -1326,39 +1340,17 @@ function renderInsights() {
   const fully = characters.filter(c => c.mbti && c.enn);
 
   let bestPair = null, bestScore = -1;
-  let farScore = 999;
-  const allPairs = [];
   for (let i = 0; i < fully.length; i++)
     for (let j = i+1; j < fully.length; j++) {
       const s = similarity(fully[i], fully[j]);
-      allPairs.push([fully[i], fully[j], s]);
       if (s > bestScore) { bestScore = s; bestPair = [fully[i], fully[j]]; }
-      if (s < farScore) farScore = s;
     }
-  // collect all pairs at the minimum, then cluster members into two opposing sides by MBTI
-  const minPairs = allPairs.filter(([,,s]) => s === farScore);
-  const sideA = new Map(), sideB = new Map();
-  if (minPairs.length) {
-    sideA.set(minPairs[0][0].name, minPairs[0][0]);
-    sideB.set(minPairs[0][1].name, minPairs[0][1]);
-    const aMbti = minPairs[0][0].mbti, bMbti = minPairs[0][1].mbti;
-    minPairs.forEach(([x, y]) => {
-      [x, y].forEach(m => {
-        if (m.mbti === aMbti) sideA.set(m.name, m);
-        else if (m.mbti === bMbti) sideB.set(m.name, m);
-        else if (!sideA.has(m.name) && !sideB.has(m.name)) {
-          // assign to whichever side they appear opposite of more often
-          const oppA = minPairs.filter(([p,q]) => (p===m && sideA.has(q.name)) || (q===m && sideA.has(p.name))).length;
-          const oppB = minPairs.filter(([p,q]) => (p===m && sideB.has(q.name)) || (q===m && sideB.has(p.name))).length;
-          (oppA >= oppB ? sideB : sideA).set(m.name, m);
-        }
-      });
-    });
-  }
-  const farA = [...sideA.values()];
-  const farB = [...sideB.values()];
-  const farAType = farA[0]?.mbti || '';
-  const farBType = farB[0]?.mbti || '';
+
+  // Perfect complements: ESTJ vs INFP — opposite on all four MBTI letters
+  const farA = characters.filter(c => c.mbti === "ESTJ");
+  const farB = characters.filter(c => c.mbti === "INFP");
+  const farAType = "ESTJ";
+  const farBType = "INFP";
 
   const mbtiCounts = {};
   characters.forEach(c => { if (c.mbti) mbtiCounts[c.mbti] = (mbtiCounts[c.mbti]||0)+1; });
@@ -1395,6 +1387,55 @@ function renderInsights() {
 
   const cards = [
     {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>',
+      title: "Energy mix",
+      headline: introvertWins ? `${ints.length} introverts · ${exts.length} extraverts` : `${exts.length} extraverts · ${ints.length} introverts`,
+      sub: `Feelers ${feelers.length} · Thinkers ${thinkers.length}`,
+      members: (introvertWins ? ints : exts).slice(0, 12), tag: "mbti",
+      note: `A nicely balanced flock. The general population splits about the same way (~50/50 on E/I, ~60/40 on F/T), so 147 YAY mirrors the world fairly closely here.`,
+      color: "var(--accent)"
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>',
+      title: "Center of gravity",
+      headline: `${topTriadInfo.name} triad leads`,
+      sub: `${topTriad[1]} geese · core emotion is ${topTriadInfo.emotion.toLowerCase()}`,
+      members: topTriadMembers, tag: "enn",
+      note: topTriad[0] === 'heart'
+        ? "The flock leans heart — connection, identity, and being valued are the recurring themes."
+        : topTriad[0] === 'head'
+          ? "The flock leans head — thinking, planning, and staying one step ahead are the recurring themes."
+          : "The flock leans body — instinct, fairness, and decisive action are the recurring themes.",
+      color: topTriadInfo.color
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10z" transform="translate(-2.5 -1)"/></svg>',
+      title: "The flock's heart",
+      headline: `Type ${topEnn[0]} · ${topEnnInfo.label}`,
+      sub: `${topEnn[1]} geese · most common Enneagram`,
+      members: topEnnMembers, tag: "mbti",
+      note: `More geese share the ${topEnnInfo.label.replace('The ','').toLowerCase()} motivation than any other — this is the engine the guild runs on.`,
+      color: topEnnInfo.color
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>',
+      title: "The flock's signature type",
+      headline: `${topMbti[0]} · ${getMbtiInfo(topMbti[0]).label}`,
+      sub: `${topMbti[1]} geese · most common MBTI in the guild`,
+      members: topMbtiMembers, tag: "enn",
+      note: `In the wider world ${topMbti[0]}s make up ${topMbtiPop}%. In 147 YAY they're ${((topMbti[1]/characters.length)*100).toFixed(0)}% — this is the personality flavour the guild attracts most.`,
+      color: families.find(f => f.code === getFamily(topMbti[0])).color
+    },
+    {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
+      title: "One of a kind",
+      headline: `${uniques.length} unique MBTI types`,
+      sub: "Geese with no MBTI twin in the flock",
+      members: uniques, tag: "mbti",
+      note: "Each of these geese brings a perspective no one else in the flock duplicates — the chorus is richer for it.",
+      color: "var(--gold)"
+    },
+    {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>',
       title: "Kindred geese",
       headline: `${bestPair[0].name} & ${bestPair[1].name}`,
@@ -1415,24 +1456,6 @@ function renderInsights() {
       color: "var(--enn6)"
     },
     {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>',
-      title: "The flock's signature type",
-      headline: `${topMbti[0]} · ${getMbtiInfo(topMbti[0]).label}`,
-      sub: `${topMbti[1]} geese · most common MBTI in the guild`,
-      members: topMbtiMembers, tag: "enn",
-      note: `In the wider world ${topMbti[0]}s make up ${topMbtiPop}%. In 147 YAY they're ${((topMbti[1]/characters.length)*100).toFixed(0)}% — this is the personality flavour the guild attracts most.`,
-      color: families.find(f => f.code === getFamily(topMbti[0])).color
-    },
-    {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10z" transform="translate(-2.5 -1)"/></svg>',
-      title: "The flock's heart",
-      headline: `Type ${topEnn[0]} · ${topEnnInfo.label}`,
-      sub: `${topEnn[1]} geese · most common Enneagram`,
-      members: topEnnMembers, tag: "mbti",
-      note: `More geese share the ${topEnnInfo.label.replace('The ','').toLowerCase()} motivation than any other — this is the engine the guild runs on.`,
-      color: topEnnInfo.color
-    },
-    {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>',
       title: "Rare birds",
       headline: `${rarest.name} has the rarest type`,
@@ -1440,37 +1463,6 @@ function renderInsights() {
       members: rareMembers, tag: "mbti",
       note: `These geese all carry types that show up in less than 3% of the general population. Genuinely uncommon company.`,
       color: "var(--enn4)"
-    },
-    {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>',
-      title: "Center of gravity",
-      headline: `${topTriadInfo.name} triad leads`,
-      sub: `${topTriad[1]} geese · core emotion is ${topTriadInfo.emotion.toLowerCase()}`,
-      members: topTriadMembers, tag: "enn",
-      note: topTriad[0] === 'heart'
-        ? "The flock leans heart — connection, identity, and being valued are the recurring themes."
-        : topTriad[0] === 'head'
-          ? "The flock leans head — thinking, planning, and staying one step ahead are the recurring themes."
-          : "The flock leans body — instinct, fairness, and decisive action are the recurring themes.",
-      color: topTriadInfo.color
-    },
-    {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>',
-      title: "Energy mix",
-      headline: introvertWins ? `${ints.length} introverts · ${exts.length} extraverts` : `${exts.length} extraverts · ${ints.length} introverts`,
-      sub: `Feelers ${feelers.length} · Thinkers ${thinkers.length}`,
-      members: (introvertWins ? ints : exts).slice(0, 12), tag: "mbti",
-      note: `A nicely balanced flock. The general population splits about the same way (~50/50 on E/I, ~60/40 on F/T), so 147 YAY mirrors the world fairly closely here.`,
-      color: "var(--accent)"
-    },
-    {
-      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>',
-      title: "One of a kind",
-      headline: `${uniques.length} unique MBTI types`,
-      sub: "Geese with no MBTI twin in the flock",
-      members: uniques, tag: "mbti",
-      note: "Each of these geese brings a perspective no one else in the flock duplicates — the chorus is richer for it.",
-      color: "var(--gold)"
     }
   ];
 
