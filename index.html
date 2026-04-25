@@ -143,13 +143,8 @@
   .dim:hover { background:var(--surface); }
   .dim.expanded { background:var(--surface);border-color:var(--accent); }
   .dim-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:16px; }
-  .pole { display:flex;align-items:baseline;gap:10px;min-width:0;cursor:pointer;padding:4px 6px;border-radius:2px;transition:background 0.15s, box-shadow 0.2s; }
-  .pole:hover { background:var(--cream-deep); }
+  .pole { display:flex;align-items:baseline;gap:10px;min-width:0;padding:4px 6px;border-radius:2px; }
   .pole.right { justify-content:flex-end; }
-  .pole.active-a { background:var(--pole-a-soft); }
-  .pole.active-b { background:var(--pole-b-soft); }
-  .pole.lit-a { background:var(--pole-a-soft);box-shadow:0 0 0 2px var(--pole-a); }
-  .pole.lit-b { background:var(--pole-b-soft);box-shadow:0 0 0 2px var(--pole-b); }
   .pole-letter { font-family:'Fraunces',serif;font-size:clamp(30px,5vw,40px);font-weight:500;line-height:1; }
   .pole-letter.a { color:var(--pole-a); }
   .pole-letter.b { color:var(--pole-b); }
@@ -160,21 +155,16 @@
   .pole-count.b { color:var(--pole-b); }
   .dim-def { font-family:'Fraunces',serif;font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;padding:10px 14px;background:var(--cream-deep);border-radius:2px;border-left:3px solid var(--gold); }
   .dim-def strong { color:var(--ink);font-weight:600; }
-  .dim-bar { display:flex;height:38px;border-radius:2px;overflow:hidden;border:1px solid var(--line);cursor:pointer; }
-  .dim-bar-a, .dim-bar-b { display:flex;align-items:center;padding:0 12px;transition:flex-basis 0.6s cubic-bezier(0.4,0,0.2,1),background 0.2s,box-shadow 0.2s; }
+  .dim-bar { display:flex;height:38px;border-radius:2px;overflow:hidden;border:1px solid var(--line); }
+  .dim-bar-a, .dim-bar-b { display:flex;align-items:center;padding:0 12px; }
   .dim-bar-a { background:var(--pole-a-soft);color:var(--pole-a-text); }
   .dim-bar-b { background:var(--pole-b-soft);color:var(--pole-b-text);justify-content:flex-end; }
-  .dim-bar-a.lit { box-shadow:inset 0 0 0 3px var(--pole-a); }
-  .dim-bar-b.lit { box-shadow:inset 0 0 0 3px var(--pole-b); }
   .dim-bar-pct { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.05em; }
-  .dim-members { max-height:0;overflow:hidden;transition:max-height 0.4s ease,margin-top 0.4s ease; }
-  .dim.expanded .dim-members { max-height:1500px;margin-top:16px; }
+  .dim-members { margin-top:16px; }
   .dim-members-inner { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
-  .dim-members-col { background:var(--cream-deep);padding:12px 14px;border-radius:2px;transition:opacity 0.3s,box-shadow 0.3s; }
+  .dim-members-col { background:var(--cream-deep);padding:12px 14px;border-radius:2px; }
   .dim-members-col.a { border-left:3px solid var(--pole-a); }
   .dim-members-col.b { border-left:3px solid var(--pole-b); }
-  .dim-members-col.dim-col { opacity:0.35; }
-  .dim-members-col.highlight { box-shadow:0 0 0 2px var(--gold); }
   .dim-members-lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;font-weight:700; }
 
   .chip { display:inline-flex;align-items:center;gap:5px;font-family:'Fraunces',serif;font-size:14px;padding:4px 10px;background:var(--surface);color:var(--ink);border-radius:2px;margin:2px 3px 2px 0;border:1px solid var(--line-strong);cursor:pointer;transition:transform 0.1s,box-shadow 0.15s,opacity 0.2s; }
@@ -370,7 +360,7 @@
       <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
       <h2>The four axes — MBTI</h2>
     </div>
-    <div class="sec-sub">Each goose's four-letter code is built from four either/or choices. Click a goose chip to light up which side of every axis they sit on.</div>
+    <div class="sec-sub">Each goose's four-letter code is built from four either/or choices. Every axis below shows both sides, what they mean, and which geese sit where.</div>
   </div>
   <div class="dim-stack" id="dims"></div>
 </div>
@@ -379,8 +369,9 @@
   <div class="sec-head">
     <div class="sec-title-row">
       <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg>
-      <h2>By family — temperaments</h2>
+      <h2>By dominant function</h2>
     </div>
+    <div class="sec-sub">Every type has one mental process that "leads." Types that share a lead process have a lot in common even when their other letters differ. Eight groups, two types each.</div>
   </div>
   <div class="fam-grid" id="fams"></div>
   <div class="fam-detail" id="fam-detail" style="--fc: var(--ink);"></div>
@@ -439,7 +430,7 @@ const characters = [
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: null },
   { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: null },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: null },
-  { name: "Karma", nick: null, mbti: "INFJ", enn: "2", wing: null },
+  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2" },
   { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: null },
   { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: null },
   { name: "Mollies", nick: null, mbti: "ENFP", enn: null, wing: null },
@@ -508,6 +499,28 @@ const families = [
   { code: "SJ", name: "Sentinels", sub: "Observant · Judging", color: "var(--sj)" },
   { code: "SP", name: "Explorers", sub: "Observant · Prospecting", color: "var(--sp)" }
 ];
+
+// Dominant-function groups (8): two MBTI types per group share the same "lead" process.
+const domGroups = [
+  { code: "ExTJ", types: ["ESTJ","ENTJ"], name: "Lead with Logic (outward)", color: "var(--nt)",
+    def: "ESTJs and ENTJs lead with extraverted thinking. They organise the outside world: set goals, build systems, decide quickly, and judge things by results. Direct, efficient, and natural managers." },
+  { code: "IxTP", types: ["ISTP","INTP"], name: "Lead with Logic (inward)", color: "var(--enn5)",
+    def: "ISTPs and INTPs lead with introverted thinking. They build private mental models, take ideas apart to see how they work, and won't accept something just because everyone says so. Analytical, precise, independent." },
+  { code: "ExFJ", types: ["ESFJ","ENFJ"], name: "Lead with Harmony (outward)", color: "var(--enn2)",
+    def: "ESFJs and ENFJs lead with extraverted feeling. They're tuned in to the emotional temperature of the group, instinctively smooth things over, and feel responsible for everyone being okay. Warm, expressive, connective." },
+  { code: "IxFP", types: ["ISFP","INFP"], name: "Lead with Values (inward)", color: "var(--nf)",
+    def: "ISFPs and INFPs lead with introverted feeling. They run everything past a private inner compass of what's authentic and right for them. Quietly principled, individualistic, hard to push into anything that feels false." },
+  { code: "ESxP", types: ["ESTP","ESFP"], name: "Lead with Action", color: "var(--sp)",
+    def: "ESTPs and ESFPs lead with extraverted sensing. They live in the present moment, react fast, and learn by jumping in. Energetic, observant, good in a crisis, easily bored by sitting still." },
+  { code: "ISxJ", types: ["ISTJ","ISFJ"], name: "Lead with Memory", color: "var(--sj)",
+    def: "ISTJs and ISFJs lead with introverted sensing. They rely on past experience, proven methods, and detailed recall. Steady, dependable, careful — they trust what's been shown to work." },
+  { code: "ENxP", types: ["ENTP","ENFP"], name: "Lead with Possibility", color: "var(--enn7)",
+    def: "ENTPs and ENFPs lead with extraverted intuition. They see connections and possibilities everywhere, love brainstorming, and get restless with routine. Curious, quick, idea-driven." },
+  { code: "INxJ", types: ["INTJ","INFJ"], name: "Lead with Vision", color: "var(--enn1)",
+    def: "INTJs and INFJs lead with introverted intuition. They look for the underlying pattern, think long-term, and trust their sense of where things are heading. Private, insightful, future-focused." }
+];
+
+function getDomGroup(mbti) { return domGroups.find(g => g.types.includes(mbti)); }
 
 // Axis definitions written from the mbti-notes Type Fundamentals Guide
 const dims = [
@@ -634,7 +647,10 @@ function getEnnInfo(num) { return ennData.find(e => e.num === num); }
 
 function passesFilter(c) {
   if (filter.dim !== null && (!c.mbti || c.mbti[filter.dim.key] !== filter.dim.value)) return false;
-  if (filter.family && getFamily(c.mbti) !== filter.family) return false;
+  if (filter.family) {
+    const g = domGroups.find(x => x.code === filter.family);
+    if (!g || !g.types.includes(c.mbti)) return false;
+  }
   if (filter.mbti && c.mbti !== filter.mbti) return false;
   if (filter.enn && c.enn !== filter.enn) return false;
   if (filter.triad && (!c.enn || !triadInfo[filter.triad].types.includes(c.enn))) return false;
@@ -712,6 +728,7 @@ function renderProfile() {
   if (!c) { card.classList.remove("open"); return; }
 
   const mbtiInfo = getMbtiInfo(c.mbti);
+  const dom = mbtiInfo ? getDomGroup(c.mbti) : null;
   const fam = mbtiInfo ? families.find(f => f.code === mbtiInfo.family) : null;
   const ennInfo = c.enn ? getEnnInfo(c.enn) : null;
   const tri = ennInfo ? triadInfo[ennInfo.triad] : null;
@@ -720,7 +737,7 @@ function renderProfile() {
   const sameEnn = characters.filter(o => o.name !== c.name && c.enn && o.enn === c.enn);
   const sameWing = c.wing ? characters.filter(o => o.name !== c.name && o.wing === c.wing) : [];
   const sameTriad = ennInfo ? characters.filter(o => o.name !== c.name && o.enn && triadInfo[ennInfo.triad].types.includes(o.enn)) : [];
-  const sameFamily = fam ? characters.filter(o => o.name !== c.name && getFamily(o.mbti) === fam.code) : [];
+  const sameGroup = dom ? characters.filter(o => o.name !== c.name && dom.types.includes(o.mbti)) : [];
 
   const pop = mbtiInfo ? mbtiPopulation[c.mbti] : null;
   const popSorted = Object.entries(mbtiPopulation).sort((a,b) => b[1] - a[1]);
@@ -743,7 +760,7 @@ function renderProfile() {
 
   const mbtiIconHTML = mbtiIcons[c.mbti] || '';
   const ennIconHTML = c.enn ? ennIcons[c.enn] : '';
-  const mbtiColor = fam ? fam.color : 'var(--accent)';
+  const mbtiColor = dom ? dom.color : 'var(--accent)';
   const ennColor = ennInfo ? ennInfo.color : 'var(--accent)';
 
   // Clickable stat cards
@@ -772,10 +789,10 @@ function renderProfile() {
       label: "Same triad", val: `${sameTriad.length + 1} in the ${tri.name} triad`,
       sub: `Core emotion: ${tri.emotion.toLowerCase()}`, members: sameTriad, tag: "enn" });
   }
-  if (fam) {
-    statCards.push({ key: "fam", color: fam.color,
-      label: "Same family", val: `${sameFamily.length + 1} ${fam.name}`,
-      sub: fam.sub, members: sameFamily, tag: "mbti" });
+  if (dom) {
+    statCards.push({ key: "group", color: dom.color,
+      label: "Same dominant group", val: `${sameGroup.length + 1} in ${dom.code}`,
+      sub: dom.name, members: sameGroup, tag: "mbti" });
   }
   if (c.wing) {
     statCards.push({ key: "wing", color: ennColor,
@@ -795,7 +812,7 @@ function renderProfile() {
 
     <div class="profile-stats">
       <div class="stat"><div class="stat-key">MBTI</div><div class="stat-val ${!c.mbti ? 'muted' : ''}">${c.mbti || '—'}</div><div class="stat-sub">${mbtiInfo ? mbtiInfo.label : ''}</div></div>
-      <div class="stat"><div class="stat-key">Family</div><div class="stat-val ${!fam ? 'muted' : ''}">${fam ? fam.name : '—'}</div><div class="stat-sub">${fam ? fam.sub : ''}</div></div>
+      <div class="stat"><div class="stat-key">Group</div><div class="stat-val ${!dom ? 'muted' : ''}">${dom ? dom.code : '—'}</div><div class="stat-sub">${dom ? dom.name : ''}</div></div>
       <div class="stat"><div class="stat-key">Enneagram</div><div class="stat-val ${!c.enn ? 'muted' : ''}">${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div><div class="stat-sub">${ennInfo ? ennInfo.tagline : ''}</div></div>
       <div class="stat"><div class="stat-key">Triad</div><div class="stat-val ${!tri ? 'muted' : ''}">${tri ? tri.name : '—'}</div><div class="stat-sub">${tri ? `Core emotion · ${tri.emotion.toLowerCase()}` : ''}</div></div>
     </div>
@@ -842,32 +859,27 @@ function renderProfile() {
   card.classList.add("open");
 }
 
-// ===== DIMS =====
+// ===== DIMS (static, always expanded, no interactivity) =====
 function renderDims() {
   const host = document.getElementById("dims");
   host.innerHTML = "";
-  const lit = litGoose ? characters.find(c => c.name === litGoose) : null;
   dims.forEach(d => {
     const aMembers = characters.filter(c => c.mbti && c.mbti[d.key] === d.a);
     const bMembers = characters.filter(c => c.mbti && c.mbti[d.key] === d.b);
     const total = aMembers.length + bMembers.length;
     const aPct = Math.round((aMembers.length / total) * 100);
     const bPct = 100 - aPct;
-    const dimActive = filter.dim?.key === d.key;
-    const aActive = dimActive && filter.dim.value === d.a;
-    const bActive = dimActive && filter.dim.value === d.b;
-    const litSide = lit?.mbti ? (lit.mbti[d.key] === d.a ? "a" : "b") : null;
 
     const el = document.createElement("div");
-    el.className = "dim" + ((dimActive || litSide) ? " expanded" : "");
+    el.className = "dim";
     el.innerHTML = `
       <div class="dim-head">
-        <div class="pole ${aActive ? 'active-a' : ''} ${litSide === 'a' ? 'lit-a' : ''}" data-dim="${d.key}" data-val="${d.a}">
+        <div class="pole">
           <div class="pole-letter a">${d.a}</div>
           <div class="pole-info"><strong>${d.a_name}</strong></div>
           <div class="pole-count a">${aMembers.length}</div>
         </div>
-        <div class="pole right ${bActive ? 'active-b' : ''} ${litSide === 'b' ? 'lit-b' : ''}" data-dim="${d.key}" data-val="${d.b}">
+        <div class="pole right">
           <div class="pole-count b">${bMembers.length}</div>
           <div class="pole-info" style="text-align:right;"><strong>${d.b_name}</strong></div>
           <div class="pole-letter b">${d.b}</div>
@@ -875,65 +887,54 @@ function renderDims() {
       </div>
       <div class="dim-def">${d.def}</div>
       <div class="dim-bar">
-        <div class="dim-bar-a ${litSide === 'a' ? 'lit' : ''}" style="flex-basis: ${aPct}%;" data-dim="${d.key}" data-val="${d.a}"><span class="dim-bar-pct">${aPct}%</span></div>
-        <div class="dim-bar-b ${litSide === 'b' ? 'lit' : ''}" style="flex-basis: ${bPct}%;" data-dim="${d.key}" data-val="${d.b}"><span class="dim-bar-pct">${bPct}%</span></div>
+        <div class="dim-bar-a" style="flex-basis: ${aPct}%;"><span class="dim-bar-pct">${aPct}%</span></div>
+        <div class="dim-bar-b" style="flex-basis: ${bPct}%;"><span class="dim-bar-pct">${bPct}%</span></div>
       </div>
       <div class="dim-members">
         <div class="dim-members-inner">
-          <div class="dim-members-col a ${aActive || litSide === 'a' ? 'highlight' : (bActive || litSide === 'b' ? 'dim-col' : '')}">
+          <div class="dim-members-col a">
             <div class="dim-members-lbl">${d.a_name}s · ${aMembers.length}</div>
-            <div>${aMembers.map(m => chipHTML(m, "mbti", {action:"lit"})).join("")}</div>
+            <div>${aMembers.map(m => chipHTML(m, "mbti", {noDim:true})).join("")}</div>
           </div>
-          <div class="dim-members-col b ${bActive || litSide === 'b' ? 'highlight' : (aActive || litSide === 'a' ? 'dim-col' : '')}">
+          <div class="dim-members-col b">
             <div class="dim-members-lbl">${d.b_name}s · ${bMembers.length}</div>
-            <div>${bMembers.map(m => chipHTML(m, "mbti", {action:"lit"})).join("")}</div>
+            <div>${bMembers.map(m => chipHTML(m, "mbti", {noDim:true})).join("")}</div>
           </div>
         </div>
       </div>
     `;
-    el.querySelectorAll("[data-dim]").forEach(elm => {
-      elm.addEventListener("click", (ev) => {
-        ev.stopPropagation();
-        const k = parseInt(elm.dataset.dim);
-        const v = elm.dataset.val;
-        litGoose = null;
-        if (filter.dim?.key === k && filter.dim?.value === v) filter.dim = null;
-        else filter.dim = { key: k, value: v };
-        renderAll();
-      });
-    });
     host.appendChild(el);
   });
 }
 
-// ===== FAMILIES =====
+// ===== DOMINANT-FUNCTION GROUPS =====
 function renderFamilies() {
   const host = document.getElementById("fams");
   host.innerHTML = "";
-  families.forEach(f => {
-    const famTypes = mbtiTypes.filter(t => t.family === f.code);
-    const famMembers = characters.filter(c => famTypes.some(t => t.code === c.mbti));
-    const pct = Math.round((famMembers.length / characters.length) * 100);
-    const isFamActive = filter.family === f.code;
-    const isDimmed = (filter.family && filter.family !== f.code) || (filter.mbti && !famTypes.some(t => t.code === filter.mbti));
+  domGroups.forEach(g => {
+    const groupMembers = characters.filter(c => g.types.includes(c.mbti));
+    const pct = Math.round((groupMembers.length / characters.length) * 100);
+    const isActive = filter.family === g.code;
+    const isDimmed = (filter.family && filter.family !== g.code) || (filter.mbti && !g.types.includes(filter.mbti));
 
-    const typeRows = famTypes.map(t => {
-      const members = characters.filter(c => c.mbti === t.code);
+    const typeRows = g.types.map(tc => {
+      const t = getMbtiInfo(tc);
+      const members = characters.filter(c => c.mbti === tc);
       const memberStr = members.length === 0
         ? '<span class="fam-type-members empty">—</span>'
         : `<span class="fam-type-members">${members.map(m => m.name).join(", ")}</span>`;
-      const active = filter.mbti === t.code ? "active" : "";
-      return `<div class="fam-type ${active}" data-mbti="${t.code}">
-        <span class="fam-type-code"><span class="fam-type-icon-mini">${mbtiIcons[t.code]}</span>${t.code}</span>${memberStr}
+      const active = filter.mbti === tc ? "active" : "";
+      return `<div class="fam-type ${active}" data-mbti="${tc}">
+        <span class="fam-type-code"><span class="fam-type-icon-mini">${mbtiIcons[tc]}</span>${tc}</span>${memberStr}
       </div>`;
     }).join("");
 
     const el = document.createElement("div");
-    el.className = "fam-card" + (isFamActive ? " active" : "") + (isDimmed && !isFamActive ? " muted" : "");
-    el.style.setProperty("--fc", f.color);
+    el.className = "fam-card" + (isActive ? " active" : "") + (isDimmed && !isActive ? " muted" : "");
+    el.style.setProperty("--fc", g.color);
     el.innerHTML = `
-      <div class="fam-head"><div class="fam-name">${f.name}</div><div class="fam-count">${famMembers.length}</div></div>
-      <div class="fam-meta">${f.sub} · ${pct}% of catalogued</div>
+      <div class="fam-head"><div class="fam-name">${g.code}</div><div class="fam-count">${groupMembers.length}</div></div>
+      <div class="fam-meta">${g.name} · ${pct}% of catalogued</div>
       <div class="fam-bar"><div class="fam-bar-fill" style="width: ${pct}%;"></div></div>
       <div class="fam-types">${typeRows}</div>
     `;
@@ -947,7 +948,7 @@ function renderFamilies() {
         renderAll();
         return;
       }
-      filter.family = filter.family === f.code ? null : f.code;
+      filter.family = filter.family === g.code ? null : g.code;
       filter.mbti = null;
       renderAll();
     });
@@ -956,24 +957,25 @@ function renderFamilies() {
 
   const detail = document.getElementById("fam-detail");
   if (filter.family) {
-    const f = families.find(x => x.code === filter.family);
-    const members = characters.filter(c => getFamily(c.mbti) === f.code);
-    detail.style.setProperty("--fc", f.color);
+    const g = domGroups.find(x => x.code === filter.family);
+    const members = characters.filter(c => g.types.includes(c.mbti));
+    detail.style.setProperty("--fc", g.color);
     detail.className = "fam-detail open";
     detail.innerHTML = `
-      <div class="fam-detail-title">${f.name}</div>
-      <div class="fam-detail-sub">${f.sub} · ${members.length} geese</div>
-      <div>${members.map(m => chipHTML(m, "mbti")).join("")}</div>
+      <div class="fam-detail-title">${g.code} · ${g.name}</div>
+      <div class="fam-detail-sub">${g.def}</div>
+      <div class="enn-body-members-lbl">In the flock · ${members.length}</div>
+      <div>${members.length ? members.map(m => chipHTML(m, "mbti")).join("") : '<span class="muted-txt">None of this group yet.</span>'}</div>
     `;
   } else if (filter.mbti) {
     const t = mbtiTypes.find(x => x.code === filter.mbti);
-    const f = families.find(x => x.code === t.family);
+    const g = getDomGroup(filter.mbti);
     const members = characters.filter(c => c.mbti === t.code);
-    detail.style.setProperty("--fc", f.color);
+    detail.style.setProperty("--fc", g.color);
     detail.className = "fam-detail open";
     detail.innerHTML = `
       <div class="fam-detail-title">${t.code} · ${t.label}</div>
-      <div class="fam-detail-sub">${f.name} family · ${members.length} ${members.length === 1 ? 'goose' : 'geese'} · ${mbtiPopulation[t.code]}% of general population</div>
+      <div class="fam-detail-sub">${g.code} group — ${g.name} · ${members.length} ${members.length === 1 ? 'goose' : 'geese'} · ${mbtiPopulation[t.code]}% of general population</div>
       <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">None of this type yet.</span>'}</div>
     `;
   } else {
