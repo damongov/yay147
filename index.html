@@ -101,6 +101,9 @@
   .sec-icon { width:36px;height:36px;flex-shrink:0;color:var(--accent); }
   h2 { font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,4vw,32px);letter-spacing:-0.015em; }
   .sec-sub { font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-fade);margin-left:50px; }
+  .sec-quote { font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:13px;color:var(--accent);margin:10px 0 0 50px;padding-left:14px;border-left:2px solid var(--gold);letter-spacing:0.01em; }
+  .sec-quote::before { content:'“'; }
+  .sec-quote::after { content:'”'; }
   .section { margin-bottom:56px; }
 
   .search-wrap { position:sticky;top:0;z-index:20;padding:14px 0 0;margin-bottom:8px;background:linear-gradient(to bottom, var(--cream) 0%, var(--cream) 75%, transparent 100%); }
@@ -142,6 +145,10 @@
   .profile-type-icon svg { width:24px;height:24px; }
   .profile-name { font-family:'Fraunces',serif;font-size:clamp(32px,5vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.05; }
   .profile-aka { font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:0.45em;color:var(--ink-fade);margin-left:14px;letter-spacing:0;white-space:nowrap; }
+  .profile-role { display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:6px;color:white; }
+  .profile-role.leader { background:var(--accent); }
+  .profile-role.officer { background:var(--gold); }
+  .profile-role.veteran { background:var(--ink-fade); }
   .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;font-weight:500;color:var(--ink-fade);margin-bottom:20px; }
   .profile-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line); }
   .stat { display:flex;flex-direction:column;gap:4px; }
@@ -322,6 +329,71 @@
   .muted-txt { color:var(--ink-fade);font-style:italic;font-family:'Fraunces',serif;letter-spacing:0; }
   .divider-row { background:var(--cream-deep);padding:8px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-weight:700; }
 
+  /* TABS */
+  .tabs { display:flex;gap:4px;margin:0 0 24px;border-bottom:1px solid var(--line); }
+  .tab { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:14px 22px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--ink-fade);cursor:pointer;transition:color 0.15s,border-color 0.15s;margin-bottom:-1px; }
+  .tab:hover { color:var(--ink); }
+  .tab.active { color:var(--accent);border-bottom-color:var(--accent); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* TYPER */
+  .typer-lede { font-style:italic;font-size:15px;color:var(--ink-soft);max-width:640px;margin-bottom:24px; }
+  .typer-progress { position:sticky;top:0;z-index:10;background:linear-gradient(to bottom, var(--cream) 70%, transparent);padding:14px 0 18px;margin-bottom:8px; }
+  .typer-progress-bar { height:6px;background:var(--cream-deep);border-radius:3px;overflow:hidden; }
+  .typer-progress-fill { height:100%;background:linear-gradient(to right, var(--accent), var(--gold));width:0%;transition:width 0.3s ease; }
+  .typer-progress-label { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);margin-top:6px;font-weight:700; }
+  .tq { background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:22px 24px;margin-bottom:16px;position:relative;transition:border-color 0.2s; }
+  .tq:focus-within { border-color:var(--accent); }
+  .tq-num { position:absolute;top:-10px;left:20px;background:var(--cream);padding:0 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--accent); }
+  .tq-text { font-size:18px;font-weight:500;margin-bottom:6px;line-height:1.4; }
+  .tq-hint { font-style:italic;font-size:13px;color:var(--ink-fade);margin-bottom:14px; }
+  .tq textarea { width:100%;min-height:90px;padding:12px 14px;border:1px solid var(--line);background:var(--cream);font-family:'Fraunces',serif;font-size:15px;color:var(--ink);border-radius:2px;resize:vertical;line-height:1.6; }
+  .tq textarea:focus { outline:none;border-color:var(--accent);background:var(--surface); }
+  .tq textarea::placeholder { color:var(--ink-fade);font-style:italic; }
+  .tq textarea:read-only { background:var(--cream-deep);color:var(--ink-fade);cursor:not-allowed; }
+  .tq.locked { border-color:var(--line);opacity:0.85; }
+  .tq.locked:focus-within { border-color:var(--line); }
+  .typer-reset { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:12px 20px;background:transparent;color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:2px;cursor:pointer; }
+  .typer-reset:hover { border-color:var(--accent);color:var(--accent); }
+  .typer-submit { margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:10px; }
+  .typer-btn { font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:18px 40px;background:var(--accent);color:white;border:none;border-radius:40px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(194,90,31,0.25); }
+  .typer-btn:hover:not(:disabled) { background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 6px 20px rgba(194,90,31,0.35); }
+  .typer-btn:disabled { opacity:0.4;cursor:not-allowed; }
+  .typer-note { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade); }
+  .typer-loading { display:none;text-align:center;padding:60px 20px; }
+  .typer-loading.show { display:block; }
+  .typer-loading-goose { width:80px;height:80px;margin:0 auto 16px;animation:typer-think 1.4s ease-in-out infinite; }
+  @keyframes typer-think { 0%,100% { transform:translateY(0) rotate(-2deg); } 50% { transform:translateY(-8px) rotate(3deg); } }
+  .typer-loading-text { font-style:italic;font-size:16px;color:var(--ink-soft); }
+  .typer-dots::after { content:'';animation:typer-dots 1.4s steps(4) infinite; }
+  @keyframes typer-dots { 0% {content:'';} 25% {content:'.';} 50% {content:'..';} 75% {content:'...';} }
+  .typer-result { display:none;background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;padding:32px;margin-top:32px;position:relative;overflow:hidden; }
+  .typer-result.show { display:block; }
+  .typer-result::before { content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(to right, var(--accent), var(--gold)); }
+  .tr-label { font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:16px; }
+  .tr-pair { display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px; }
+  .tr-type { flex:1;min-width:220px;display:flex;align-items:center;gap:14px; }
+  .tr-icon { width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;flex-shrink:0; }
+  .tr-icon svg { width:28px;height:28px; }
+  .tr-type-code { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.15em;color:var(--ink-fade); }
+  .tr-type-label { font-size:24px;font-weight:500;line-height:1.1; }
+  .tr-head { font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);margin:20px 0 8px; }
+  .tr-reason { font-size:15px;line-height:1.7;color:var(--ink-soft); }
+  .tr-reason strong { color:var(--ink);font-weight:600; }
+  .tr-again { margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:12px 20px;background:transparent;color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:2px;cursor:pointer; }
+  .tr-again:hover { border-color:var(--accent);color:var(--accent); }
+  .tr-kindred { display:flex;flex-direction:column;gap:8px;margin-top:10px; }
+  .tr-kindred-row { display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--cream-deep);border-radius:2px;border-left:3px solid var(--kc, var(--accent));cursor:pointer; }
+  .tr-kindred-row:hover { background:color-mix(in srgb, var(--accent) 8%, var(--cream-deep)); }
+  .tr-kin-icon { width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;flex-shrink:0; }
+  .tr-kin-icon svg { width:16px;height:16px; }
+  .tr-kin-name { font-size:17px;font-weight:500;color:var(--ink); }
+  .tr-kin-meta { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--ink-fade);margin-top:2px; }
+  .tr-kin-why { font-style:italic;font-size:12px;color:var(--ink-soft);margin-left:auto;text-align:right; }
+  .typer-error { display:none;background:color-mix(in srgb, var(--dom-extj) 8%, var(--surface));border:1px solid var(--dom-extj);border-radius:2px;padding:16px 20px;margin-top:20px;font-size:14px;color:var(--ink-soft); }
+  .typer-error.show { display:block; }
+
   /* SCROLL TO TOP */
   .to-top { position:fixed;right:20px;bottom:20px;z-index:45;width:56px;height:auto;padding:8px 6px 6px;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 4px 16px var(--shadow);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity 0.25s,transform 0.25s; }
   .to-top.show { opacity:1;pointer-events:auto;transform:translateY(0); }
@@ -340,6 +412,11 @@
     .theme-toggle { top:12px;right:12px;width:40px;height:40px; }
     .to-top { right:12px;bottom:12px;width:50px; }
     .to-top svg { width:32px;height:32px; }
+    .tab { padding:12px 14px;font-size:10px;letter-spacing:0.12em; }
+    .tq { padding:18px; }
+    .tq-text { font-size:16px; }
+    .typer-result { padding:24px 20px; }
+    .tr-pair { flex-direction:column;gap:16px; }
     header { padding-bottom:28px;margin-bottom:24px; }
     .census-bar { position:static;text-align:left;margin-bottom:20px;display:flex;align-items:baseline;gap:12px; }
     .census-bar .big { font-size:52px; }
@@ -416,6 +493,13 @@
   <p class="tagline">"Birds of a feather flock together."</p>
 </header>
 
+<div class="tabs" id="tabs">
+  <button class="tab active" data-tab="census">The Flock</button>
+  <button class="tab" data-tab="typer">Type Me</button>
+</div>
+
+<div class="tab-panel active" id="panel-census">
+
 <div class="search-wrap">
   <div class="search-inner">
     <input class="search-input" id="search" type="search" placeholder="honk a name to learn more about a goose" autocomplete="off" />
@@ -442,6 +526,7 @@
       <h2>The four axes — MBTI</h2>
     </div>
     <div class="sec-sub">Each goose's four-letter code is built from four either/or choices. Every axis below shows both sides, what they mean, and which geese sit where.</div>
+    <div class="sec-quote">In feathers we trust. In flocks we rise. In nonsense we thrive.</div>
   </div>
   <div class="dim-stack" id="dims"></div>
 </div>
@@ -453,6 +538,7 @@
       <h2>Enneagram</h2>
     </div>
     <div class="sec-sub">Nine core motivations. Click a wheel slice or list row to expand its description and see which geese share it.</div>
+    <div class="sec-quote">And lo, they descended on silver wings, flapping with neither reason nor remorse.</div>
   </div>
   <div class="enn-wheel-wrap">
     <svg class="enn-wheel" id="enn-wheel" viewBox="-110 -110 220 220"></svg>
@@ -467,6 +553,7 @@
       <h2>The three triads</h2>
     </div>
     <div class="sec-sub">The nine Enneagram types cluster into three "centres" — head, heart, and body — each organised around a different core emotion.</div>
+    <div class="sec-quote">One goose is chaos. A flock is destiny.</div>
   </div>
   <div class="triad-grid" id="triads"></div>
 </div>
@@ -477,6 +564,7 @@
       <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
       <h2>Insights — flock dynamics</h2>
     </div>
+    <div class="sec-quote">Aggressively silly. Dangerously honky.</div>
   </div>
   <div class="insights-grid" id="insights"></div>
 </div>
@@ -487,9 +575,44 @@
       <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <h2>The full roster</h2>
     </div>
+    <div class="sec-quote">We will, we will, flock you.</div>
   </div>
   <div class="roster-table" id="roster-table"></div>
 </div>
+
+</div><!-- /panel-census -->
+
+<div class="tab-panel" id="panel-typer">
+  <p class="typer-lede">Ten open-ended questions. Answer in your own words — a sentence or a paragraph, whatever feels right. There are no wrong answers; the more honest and specific you are, the better the read.</p>
+
+  <div class="typer-progress">
+    <div class="typer-progress-bar"><div class="typer-progress-fill" id="typer-fill"></div></div>
+    <div class="typer-progress-label"><span id="typer-count">0</span> of 10 answered</div>
+  </div>
+
+  <div id="typer-questions"></div>
+
+  <div class="typer-submit">
+    <button class="typer-btn" id="typer-btn" disabled>honk · type me</button>
+    <div class="typer-note" id="typer-note">answer at least 7 to get a read</div>
+  </div>
+
+  <div class="typer-loading" id="typer-loading">
+    <svg class="typer-loading-goose" viewBox="0 0 64 64" fill="none">
+      <ellipse cx="32" cy="42" rx="20" ry="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M 22 32 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 32" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="30" cy="18" r="1.6" fill="var(--ink)"/>
+      <path d="M 36 18 L 46 16 L 36 21 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.4"/>
+      <path d="M 18 8 Q 22 4 26 6" stroke="var(--ink-fade)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="16" cy="10" r="1" fill="var(--ink-fade)"/>
+      <circle cx="14" cy="6" r="1.5" fill="var(--ink-fade)"/>
+    </svg>
+    <div class="typer-loading-text">the goose is reading your answers<span class="typer-dots"></span></div>
+  </div>
+
+  <div class="typer-error" id="typer-error"></div>
+  <div class="typer-result" id="typer-result"></div>
+</div><!-- /panel-typer -->
 
 <footer>147 YAY · Silly Geese · Birds of a feather flock together</footer>
 </div>
@@ -497,21 +620,21 @@
 <script>
 const characters = [
   { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: "2w3", g: "f" },
-  { name: "Aria", nick: null, mbti: "ISFP", enn: "4", wing: "4w5", g: "f" },
-  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6", g: "m" },
-  { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: "6w5", g: "f" },
+  { name: "Aria", nick: null, mbti: "ISFP", enn: "4", wing: "4w5", g: "f", role: "Veteran" },
+  { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6", g: "m", role: "Veteran" },
+  { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: "6w5", g: "f", role: "Officer" },
   { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3", g: "f" },
   { name: "CPD", nick: "GooseLaLa", mbti: "ESTJ", enn: "8", wing: "8w9", g: "f" },
-  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m" },
-  { name: "Disseia", nick: "Diss", mbti: "INTJ", enn: "1", wing: "1w9", g: "f" },
+  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m", role: "Officer" },
+  { name: "Disseia", nick: "Diss", mbti: "INTJ", enn: "1", wing: "1w9", g: "f", role: "Guild Leader" },
   { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f" },
-  { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m" },
+  { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m", role: "Veteran" },
   { name: "Gogo", nick: "Loosey Goosey", mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
-  { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
-  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f" },
-  { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: "1w2", g: "m" },
+  { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f", role: "Officer" },
+  { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f", role: "Veteran" },
+  { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: "1w2", g: "m", role: "Officer" },
   { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: "9w1", g: "f" },
-  { name: "Mollies", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Mollies", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f", role: "Veteran" },
   { name: "Nel", nick: "Nelgandis", mbti: "ENTP", enn: "7", wing: "7w6", g: "m" },
   { name: "Nori", nick: "Noriella", mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
   { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
@@ -933,8 +1056,20 @@ function renderProfile() {
 
   // Three paragraphs: MBTI, Enneagram, Triad
   const p = pronouns(c.g);
+  const roleClass = c.role === "Guild Leader" ? "leader" : c.role === "Officer" ? "officer" : c.role ? "veteran" : "";
+  const roleIntro = c.role === "Guild Leader"
+    ? `<strong>${c.name} is the guild leader of YAY.</strong> `
+    : c.role === "Officer"
+      ? `<strong>${c.name} is an officer in YAY.</strong> `
+      : c.role === "Veteran"
+        ? `<strong>${c.name} is a veteran member of YAY.</strong> `
+        : "";
   let mbtiPara = "";
-  if (mbtiInfo && mbtiDesc[c.mbti]) mbtiPara = mbtiDesc[c.mbti](c.name, p);
+  if (mbtiInfo && mbtiDesc[c.mbti]) mbtiPara = roleIntro + mbtiDesc[c.mbti](c.name, p);
+  // Per-goose overrides
+  if (c.name === "Disseia") {
+    mbtiPara = `<strong>${c.name} is the guild leader of YAY.</strong> She thinks in trajectories — her mind connects scattered information into a single picture and arrives at a strong impression of where things are <em>heading</em>, not because she worked it out step by step but because the pattern is just there. She rarely thinks about the thing in front of her; she thinks about what it represents and what it will become. <strong>As the one steering the flock</strong>, that long-game wiring is exactly why she's in the chair: she's already mapped three moves ahead, she'd rather lose an argument than commit to a plan she can see won't work, and she holds the whole guild to the standard she holds herself to. She doesn't broadcast much in the chaos of the moment — but don't mistake the quiet for absence. She's watching everything.`;
+  }
 
   let ennPara = "";
   if (ennInfo) {
@@ -1005,6 +1140,7 @@ function renderProfile() {
         ${c.enn ? `<div class="profile-type-icon" style="background:${ennColor};" title="Type ${c.enn}">${ennIconHTML}</div>` : ''}
       </div>
       <div>
+        ${c.role ? `<div class="profile-role ${roleClass}">${c.role}</div>` : ''}
         <div class="profile-name">${c.name}${c.nick ? `<span class="profile-aka">aka ${c.nick}</span>` : ''}</div>
       </div>
     </div>
@@ -1668,6 +1804,268 @@ function renderAll() {
   renderInsights();
   renderRoster();
 }
+
+// ========== TABS ==========
+(function() {
+  const tabs = [...document.querySelectorAll(".tab")];
+  const panels = { census: document.getElementById("panel-census"), typer: document.getElementById("panel-typer") };
+  function setTab(name) {
+    tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+    Object.entries(panels).forEach(([k,el]) => el.classList.toggle("active", k === name));
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  tabs.forEach(t => t.addEventListener("click", () => setTab(t.dataset.tab)));
+  window.__setTab = setTab;
+})();
+
+// ========== TYPER ==========
+(function() {
+  const typerQuestions = [
+    { q: "After a long, demanding day, what actually restores you?",
+      hint: "Be specific — is it people, solitude, activity, quiet? What does 'recharged' feel like?" },
+    { q: "When you're learning something new, what's your instinct — dive in and figure it out by doing, or understand the whole picture first?",
+      hint: "Think about the last new game, skill, or system you picked up." },
+    { q: "Describe a decision you made recently that you're proud of. What made it the right call?",
+      hint: "Was it the outcome? That it was fair? That it felt true to you? That everyone was okay with it?" },
+    { q: "How do you handle plans changing at the last minute?",
+      hint: "Honestly — relief, irritation, indifference, scramble-mode?" },
+    { q: "In a group, what role do you naturally drift into without being asked?",
+      hint: "The organiser, the peacemaker, the ideas person, the one who just gets it done, the one cracking jokes…" },
+    { q: "What do people sometimes get wrong about you?",
+      hint: "The misread — 'people think I'm ___ but actually ___.'" },
+    { q: "When something's bothering you, what do you do with it?",
+      hint: "Talk it out, think it through alone, distract yourself, fix the problem, sit with the feeling?" },
+    { q: "What's something you find easy that other people seem to struggle with?",
+      hint: "And the reverse — what do others find easy that you have to work at?" },
+    { q: "What does a 'good life' look like to you, in one or two sentences?",
+      hint: "Not the right answer — your answer." },
+    { q: "What's your relationship with conflict?",
+      hint: "Do you lean in, smooth it over, avoid it, not notice it until it's loud?" }
+  ];
+  const MIN_ANSWERS = 7;
+
+  const qHost = document.getElementById("typer-questions");
+  qHost.innerHTML = typerQuestions.map((q,i) => `
+    <div class="tq">
+      <div class="tq-num">Q${String(i+1).padStart(2,'0')}</div>
+      <div class="tq-text">${q.q}</div>
+      <div class="tq-hint">${q.hint}</div>
+      <textarea data-tq="${i}" placeholder="type freely…"></textarea>
+    </div>
+  `).join("");
+
+  const fields = [...document.querySelectorAll("textarea[data-tq]")];
+  const fill = document.getElementById("typer-fill");
+  const count = document.getElementById("typer-count");
+  const btn = document.getElementById("typer-btn");
+  const note = document.getElementById("typer-note");
+  const loading = document.getElementById("typer-loading");
+  const resultEl = document.getElementById("typer-result");
+  const errorBox = document.getElementById("typer-error");
+
+  function answered() { return fields.filter(f => f.value.trim().length > 4).length; }
+  function updateProgress() {
+    const n = answered();
+    fill.style.width = (n/typerQuestions.length*100) + "%";
+    count.textContent = n;
+    btn.disabled = n < MIN_ANSWERS;
+    note.textContent = n < MIN_ANSWERS
+      ? `answer at least ${MIN_ANSWERS} to get a read`
+      : n < typerQuestions.length ? `${typerQuestions.length - n} more for the best read — or honk now`
+      : `all set — honk away`;
+  }
+  fields.forEach(f => f.addEventListener("input", updateProgress));
+  updateProgress();
+
+  function lockAnswers(lock) {
+    fields.forEach(f => {
+      f.readOnly = lock;
+      f.closest(".tq").classList.toggle("locked", lock);
+    });
+  }
+  window.__resetTyper = function() {
+    fields.forEach(f => { f.value = ""; });
+    lockAnswers(false);
+    resultEl.classList.remove("show");
+    resultEl.innerHTML = "";
+    errorBox.classList.remove("show");
+    btn.style.display = "";
+    note.style.display = "";
+    const rb = document.getElementById("typer-reset-btn");
+    if (rb) rb.remove();
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  function ennTriad(num) { const e = getEnnInfo(num); return e ? e.triad : null; }
+
+  function similarity(me, g) {
+    let s = 0;
+    if (me.mbti && g.mbti) {
+      for (let i = 0; i < 4; i++) if (me.mbti[i] === g.mbti[i]) s += 1;
+      const mg = getDomGroup(me.mbti), gg = getDomGroup(g.mbti);
+      if (mg && gg && mg.code === gg.code) s += 2;
+    }
+    if (me.enn && g.enn) {
+      if (me.enn === g.enn) s += 3;
+      if (me.wing && me.wing === g.wing) s += 1;
+      if (ennTriad(me.enn) === ennTriad(g.enn)) s += 1;
+    }
+    return s;
+  }
+  function matchLabel(me, g) {
+    const bits = [];
+    const mg = getDomGroup(me.mbti), gg = getDomGroup(g.mbti);
+    if (me.mbti === g.mbti) bits.push("same MBTI");
+    else if (mg && gg && mg.code === gg.code) bits.push("same dominant function");
+    if (me.wing && me.wing === g.wing) bits.push("same wing");
+    else if (me.enn === g.enn) bits.push("same Enneagram");
+    else if (g.enn && ennTriad(me.enn) === ennTriad(g.enn)) bits.push("same triad");
+    return bits.length ? bits.join(" · ") : "closest overall";
+  }
+
+  btn.addEventListener("click", async () => {
+    errorBox.classList.remove("show");
+    resultEl.classList.remove("show");
+    btn.disabled = true;
+    lockAnswers(true);
+    loading.classList.add("show");
+    loading.scrollIntoView({behavior:"smooth", block:"center"});
+
+    const answers = typerQuestions.map((q,i) => {
+      const val = fields[i].value.trim();
+      return val ? `Q${i+1}: ${q.q}\nA: ${val}` : null;
+    }).filter(Boolean).join("\n\n");
+
+    const sys = `You are a thoughtful, well-read personality typist who knows Jungian cognitive functions, the MBTI framework, and the Riso-Hudson Enneagram. You read free-text answers and infer the most likely MBTI type and Enneagram type (with wing).
+
+Guidelines:
+- MBTI: weigh the cognitive function stack, not just the four letters. E/I = where energy is directed; S/N = concrete vs pattern-seeking; T/F = impersonal criteria vs values/people; J/P = closure vs openness.
+- Enneagram: focus on core motivation and core fear, not surface behaviour.
+- Be decisive. Pick ONE MBTI type and ONE enneagram core+wing.
+- Quote or paraphrase the person's own words in your reasoning.
+- Reasoning paragraphs should be 3-5 sentences each, plain language, second person ("you"), no jargon like "Ti-dom" — say "you lead with internal logic" instead.
+
+Respond with ONLY a JSON object in exactly this shape (no markdown, no code fences, no preamble):
+{
+  "mbti": "XXXX",
+  "enneagram": "X",
+  "wing": "XwX",
+  "mbti_reasoning": "...",
+  "enneagram_reasoning": "...",
+  "alt_mbti": "XXXX",
+  "alt_enneagram": "X"
+}`;
+
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: sys,
+          messages: [{ role: "user", content: `Here are my answers:\n\n${answers}\n\nType me.` }]
+        })
+      });
+      const data = await res.json();
+      const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
+      const clean = text.replace(/```json|```/g, "").trim();
+      const out = JSON.parse(clean);
+      renderTyperResult(out);
+      // success: hide submit, show reset
+      btn.style.display = "none";
+      note.style.display = "none";
+      const reset = document.createElement("button");
+      reset.id = "typer-reset-btn";
+      reset.className = "typer-reset";
+      reset.textContent = "reset & try again";
+      reset.onclick = window.__resetTyper;
+      btn.parentNode.appendChild(reset);
+    } catch (e) {
+      errorBox.textContent = "honk — something went wrong reading your answers. Give it another try in a moment.";
+      errorBox.classList.add("show");
+      lockAnswers(false);
+      btn.disabled = answered() < MIN_ANSWERS;
+      console.error(e);
+    } finally {
+      loading.classList.remove("show");
+    }
+  });
+
+  function esc(s) { return String(s).replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function renderTyperResult(out) {
+    const mbti = (out.mbti || "").toUpperCase();
+    const enn = String(out.enneagram || "").replace(/\D/g,"");
+    const wing = out.wing || "";
+    const dom = getDomGroup(mbti);
+    const mColor = dom ? dom.color : "var(--accent)";
+    const eInfo = getEnnInfo(enn);
+    const eColor = eInfo ? eInfo.color : "var(--accent)";
+    const mInfo = getMbtiInfo(mbti);
+
+    const me = { mbti, enn, wing };
+    const ranked = characters.filter(c => c.mbti)
+      .map(g => ({ g, s: similarity(me, g) }))
+      .sort((a,b) => b.s - a.s);
+    const top = ranked.slice(0, 3);
+    const exact = ranked.filter(r => r.g.mbti === mbti && r.g.enn === enn);
+
+    const kindredHTML = top.map(({g}) => {
+      const gd = getDomGroup(g.mbti);
+      const gColor = gd ? gd.color : "var(--accent)";
+      const ge = g.enn ? getEnnInfo(g.enn) : null;
+      return `
+        <div class="tr-kindred-row" style="--kc:${gColor};" onclick="__setTab('census');selectGoose('${g.name.replace(/'/g,"\\'")}');">
+          <div class="tr-kin-icon" style="background:${gColor};">${dom ? domIcons[gd.code] : ""}</div>
+          ${g.enn ? `<div class="tr-kin-icon" style="background:${ge.color};">${ennIcons[g.enn]}</div>` : ""}
+          <div>
+            <div class="tr-kin-name">${g.name}</div>
+            <div class="tr-kin-meta">${g.mbti} · ${g.wing || (g.enn ? "Type " + g.enn : "—")}</div>
+          </div>
+          <div class="tr-kin-why">${matchLabel(me, g)}</div>
+        </div>
+      `;
+    }).join("");
+
+    resultEl.innerHTML = `
+      <div class="tr-label">your read</div>
+      <div class="tr-pair">
+        <div class="tr-type">
+          <div class="tr-icon" style="background:${mColor};">${dom ? domIcons[dom.code] : ""}</div>
+          <div>
+            <div class="tr-type-code">MBTI · ${mbti}</div>
+            <div class="tr-type-label" style="color:${mColor};">${mInfo ? mInfo.label : ""}</div>
+          </div>
+        </div>
+        <div class="tr-type">
+          <div class="tr-icon" style="background:${eColor};">${ennIcons[enn] || ""}</div>
+          <div>
+            <div class="tr-type-code">Enneagram · ${wing || ("Type " + enn)}</div>
+            <div class="tr-type-label" style="color:${eColor};">${eInfo ? eInfo.label : ""}</div>
+          </div>
+        </div>
+      </div>
+      <div class="tr-head">Why ${mbti}</div>
+      <div class="tr-reason">${esc(out.mbti_reasoning || "")}</div>
+      <div class="tr-head">Why ${wing || ("Type " + enn)}</div>
+      <div class="tr-reason">${esc(out.enneagram_reasoning || "")}</div>
+      ${(out.alt_mbti || out.alt_enneagram) ? `
+        <div class="tr-head">If not that, then</div>
+        <div class="tr-reason">Next best fit: <strong>${out.alt_mbti || "—"}</strong> · <strong>Type ${out.alt_enneagram || "—"}</strong>. If the read above doesn't land, try those on.</div>
+      ` : ""}
+      <div class="tr-head">Your kindred geese in 147 YAY</div>
+      <div class="tr-reason">${exact.length
+        ? `You're a type-twin with <strong>${exact.map(r => r.g.name).join(" & ")}</strong> — same MBTI and Enneagram. Here's who you're wired most like in the flock:`
+        : `No one in the flock is an exact type-twin, but here's who you're wired most like:`}</div>
+      <div class="tr-kindred">${kindredHTML}</div>
+      <button class="tr-again" onclick="__resetTyper()">reset & try again</button>
+    `;
+    resultEl.classList.add("show");
+    resultEl.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+})();
 
 const LAST_UPDATED = "Apr 25, 2026";
 document.getElementById("last-updated").textContent = LAST_UPDATED;
