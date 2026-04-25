@@ -623,6 +623,7 @@ const characters = [
   { name: "Aria", nick: null, mbti: "ISFP", enn: "4", wing: "4w5", g: "f", role: "Veteran" },
   { name: "Atlas", nick: null, mbti: "INTJ", enn: "5", wing: "5w6", g: "m", role: "Veteran" },
   { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: "6w5", g: "f", role: "Officer" },
+  { name: "Clover", nick: null, mbti: "ISFJ", enn: null, wing: null, g: "f" },
   { name: "Corpse Bride", nick: null, mbti: "INFP", enn: "4", wing: "4w3", g: "f" },
   { name: "CPD", nick: "GooseLaLa", mbti: "ESTJ", enn: "8", wing: "8w9", g: "f" },
   { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m", role: "Officer" },
@@ -652,7 +653,7 @@ function pronouns(g) {
     : { they: "she", them: "her", their: "her", themself: "herself", theyre: "she's", They: "She", Their: "Her" };
 }
 
-const knownButUntyped = ["Clover", "Lily"];
+const knownButUntyped = ["Lily"];
 const TOTAL_MEMBERS = 27;
 const uncatalogued = TOTAL_MEMBERS - characters.length - knownButUntyped.length;
 
