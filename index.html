@@ -31,7 +31,7 @@
     --enn1:#a8871f;--enn2:#3a8f3a;--enn3:#b0aaa0;
     --enn4:#b85518;--enn5:#6a4ba8;--enn6:#4a7ab8;
     --enn7:#7a5a32;--enn8:#8f1f1f;--enn9:#b85a7a;
-    --triad-head:#5a5450;--triad-heart:#a33862;--triad-body:#8f1f1f;
+    --triad-head:#2c5f96;--triad-heart:#1f7a4f;--triad-body:#a82a2a;
     --shadow:rgba(0,0,0,0.08);--backdrop:rgba(26,23,18,0.55);
     --bg-grad-1:rgba(194,90,31,0.08);--bg-grad-2:rgba(37,93,110,0.08);
   }
@@ -58,7 +58,7 @@
     --enn1:#d4b860;--enn2:#80c880;--enn3:#d0cabe;
     --enn4:#d88850;--enn5:#a890e0;--enn6:#98c0e8;
     --enn7:#b89060;--enn8:#c85858;--enn9:#d890a8;
-    --triad-head:#b0a898;--triad-heart:#e08098;--triad-body:#e07070;
+    --triad-head:#7ab0e0;--triad-heart:#5fc296;--triad-body:#e07070;
     --shadow:rgba(0,0,0,0.4);--backdrop:rgba(0,0,0,0.7);
     --bg-grad-1:rgba(232,144,85,0.06);--bg-grad-2:rgba(106,179,196,0.06);
   }
@@ -104,11 +104,22 @@
   .section { margin-bottom:56px; }
 
   .search-wrap { position:sticky;top:0;z-index:20;background:var(--cream);padding:14px 0 0;margin-bottom:8px;border-bottom:1px solid var(--line); }
-  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:12px; }
-  .search-input { flex:1;padding:12px 14px 12px 40px;border:1px solid var(--line-strong);background:var(--surface);font-family:'Fraunces',serif;font-size:16px;color:var(--ink);border-radius:2px;transition:border-color 0.2s;min-width:0;-webkit-appearance:none; }
-  .search-input:focus { outline:none;border-color:var(--accent); }
-  .search-input::placeholder { color:var(--ink-fade); }
-  .search-icon { position:absolute;left:12px;top:18px;color:var(--ink-fade);pointer-events:none; }
+  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:6px; }
+  .search-input { flex:1;padding:14px 16px 14px 56px;border:1px solid var(--line-strong);background:var(--surface);font-family:'Fraunces',serif;font-size:16px;color:var(--ink);border-radius:28px;transition:border-color 0.2s,box-shadow 0.2s;min-width:0;-webkit-appearance:none; }
+  .search-input:focus { outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .search-input::placeholder { color:var(--ink-fade);font-style:italic; }
+  .search-goose { position:absolute;left:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;pointer-events:none;animation:goose-bob 3.2s ease-in-out infinite;transform-origin:center bottom; }
+  .search-input:focus ~ .search-goose, .search-goose.active { animation:goose-honk 0.6s ease-in-out infinite; }
+  @keyframes goose-bob { 0%,100% { transform:translateY(-50%) rotate(0deg); } 50% { transform:translateY(-55%) rotate(-3deg); } }
+  @keyframes goose-honk { 0%,100% { transform:translateY(-50%) rotate(0deg); } 25% { transform:translateY(-52%) rotate(-8deg); } 75% { transform:translateY(-52%) rotate(6deg); } }
+  .search-trail { display:flex;align-items:center;gap:6px;padding:0 4px 10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-fade);letter-spacing:0.1em;overflow:hidden; }
+  .search-trail .trail-goose { width:14px;height:14px;flex-shrink:0;color:var(--ink-fade);opacity:0.55;animation:trail-walk 4s ease-in-out infinite; }
+  .search-trail .trail-goose:nth-child(2) { animation-delay:0.3s;opacity:0.45; }
+  .search-trail .trail-goose:nth-child(3) { animation-delay:0.6s;opacity:0.35; }
+  .search-trail .trail-goose:nth-child(4) { animation-delay:0.9s;opacity:0.28; }
+  .search-trail .trail-goose:nth-child(5) { animation-delay:1.2s;opacity:0.2; }
+  @keyframes trail-walk { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-2px) rotate(-4deg); } }
+  .search-trail .trail-label { margin-left:4px;font-style:italic; }
   .clear-btn { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 12px;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);cursor:pointer;border-radius:2px;white-space:nowrap;transition:all 0.15s; }
   .clear-btn:hover { border-color:var(--accent);color:var(--accent); }
   .search-suggestions { position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--line-strong);border-top:none;max-height:280px;overflow-y:auto;z-index:30;box-shadow:0 8px 24px var(--shadow);display:none; }
@@ -258,11 +269,8 @@
   .enn-body-members-lbl { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:6px; }
 
   /* TRIADS */
-  .triad-grid { display:flex;flex-direction:column;gap:14px;margin-top:28px; }
-  .triad-wrap { display:flex;flex-direction:column; }
-  .triad-card { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;padding:18px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s,background 0.2s; }
-  .triad-card:hover { transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow);background:var(--surface); }
-  .triad-card.active { box-shadow:0 0 0 2px var(--tc);background:var(--surface); }
+  .triad-grid { display:flex;flex-direction:column;gap:14px; }
+  .triad-card { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;padding:18px; }
   .triad-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px; }
   .triad-name { font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:var(--tc); }
   .triad-count { font-family:'Fraunces',serif;font-size:clamp(28px,5vw,36px);font-weight:300;color:var(--tc);line-height:1; }
@@ -272,6 +280,7 @@
   .triad-bullets li { font-family:'Fraunces',serif;font-size:13px;color:var(--ink-soft);line-height:1.5;padding-left:18px;position:relative; }
   .triad-bullets li::before { content:'';position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:50%;background:var(--tc); }
   .triad-bullets li strong { color:var(--ink);font-weight:600; }
+  .triad-groups { margin-top:14px;padding-top:14px;border-top:1px dashed var(--line); }
   .triad-detail-group { margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--line); }
   .triad-detail-group:last-child { border-bottom:none;margin-bottom:0;padding-bottom:0; }
   .triad-detail-group-head { display:flex;align-items:baseline;gap:10px;margin-bottom:6px; }
@@ -324,8 +333,8 @@
     .section { margin-bottom:44px; }
     .sec-icon { width:28px;height:28px; }
     .sec-sub { margin-left:42px; }
-    .search-input { font-size:15px;padding:10px 12px 10px 36px; }
-    .search-icon { left:10px;top:16px; }
+    .search-input { font-size:15px;padding:12px 14px 12px 50px; }
+    .search-goose { left:10px;width:28px;height:28px; }
     .clear-btn { padding:10px;font-size:9px; }
     .profile-card { padding:22px 20px; }
     .profile-stats { grid-template-columns:repeat(2,1fr);gap:14px; }
@@ -384,9 +393,23 @@
 
 <div class="search-wrap">
   <div class="search-inner">
-    <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11L15 15"/></svg>
-    <input class="search-input" id="search" type="search" placeholder="Search a goose to see their full profile..." autocomplete="off" />
+    <input class="search-input" id="search" type="search" placeholder="honk a name to learn more about a goose" autocomplete="off" />
+    <svg class="search-goose" id="search-goose" viewBox="0 0 64 64" fill="none">
+      <ellipse cx="32" cy="44" rx="18" ry="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M 22 34 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 34" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="30" cy="18" r="1.6" fill="var(--ink)"/>
+      <path d="M 36 18 L 46 16 L 36 21 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.4"/>
+      <path d="M 26 54 L 24 60 M 28 54 L 30 60 M 36 54 L 34 60 M 38 54 L 40 60" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
     <div class="search-suggestions" id="suggestions"></div>
+  </div>
+  <div class="search-trail">
+    <svg class="trail-goose" viewBox="0 0 24 24" fill="currentColor"><path d="M5 14c0-3 2-5 5-5l1-5c0-1 2-1 2 0l-1 5c3 0 6 2 6 5s-3 5-6.5 5S5 17 5 14z"/><path d="M14 5l4-1-4 2z"/></svg>
+    <svg class="trail-goose" viewBox="0 0 24 24" fill="currentColor"><path d="M5 14c0-3 2-5 5-5l1-5c0-1 2-1 2 0l-1 5c3 0 6 2 6 5s-3 5-6.5 5S5 17 5 14z"/><path d="M14 5l4-1-4 2z"/></svg>
+    <svg class="trail-goose" viewBox="0 0 24 24" fill="currentColor"><path d="M5 14c0-3 2-5 5-5l1-5c0-1 2-1 2 0l-1 5c3 0 6 2 6 5s-3 5-6.5 5S5 17 5 14z"/><path d="M14 5l4-1-4 2z"/></svg>
+    <svg class="trail-goose" viewBox="0 0 24 24" fill="currentColor"><path d="M5 14c0-3 2-5 5-5l1-5c0-1 2-1 2 0l-1 5c3 0 6 2 6 5s-3 5-6.5 5S5 17 5 14z"/><path d="M14 5l4-1-4 2z"/></svg>
+    <svg class="trail-goose" viewBox="0 0 24 24" fill="currentColor"><path d="M5 14c0-3 2-5 5-5l1-5c0-1 2-1 2 0l-1 5c3 0 6 2 6 5s-3 5-6.5 5S5 17 5 14z"/><path d="M14 5l4-1-4 2z"/></svg>
+    <span class="trail-label">find your flockmate</span>
   </div>
 </div>
 
@@ -409,18 +432,6 @@
 <div class="section">
   <div class="sec-head">
     <div class="sec-title-row">
-      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg>
-      <h2>By dominant function</h2>
-    </div>
-    <div class="sec-sub">Every type has one mental process that "leads." Types that share a lead process have a lot in common even when their other letters differ. Eight groups, two types each.</div>
-  </div>
-  <div class="fam-grid" id="fams"></div>
-  <div class="fam-detail" id="fam-detail" style="--fc: var(--ink);"></div>
-</div>
-
-<div class="section">
-  <div class="sec-head">
-    <div class="sec-title-row">
       <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2l5.5 17M12 2L6.5 19M2 12l20-3M22 15L2 9"/></svg>
       <h2>Enneagram</h2>
     </div>
@@ -429,6 +440,16 @@
   <div class="enn-wheel-wrap">
     <svg class="enn-wheel" id="enn-wheel" viewBox="-110 -110 220 220"></svg>
     <div class="enn-list" id="enn-list"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-title-row">
+      <svg class="sec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L21 19 H3 Z"/><circle cx="12" cy="13" r="2.5"/></svg>
+      <h2>The three triads</h2>
+    </div>
+    <div class="sec-sub">The nine Enneagram types cluster into three "centres" — head, heart, and body — each organised around a different core emotion.</div>
   </div>
   <div class="triad-grid" id="triads"></div>
 </div>
@@ -468,7 +489,7 @@ const characters = [
   { name: "Disseia", nick: "Diss", mbti: "INTJ", enn: "1", wing: "1w9", g: "f" },
   { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f" },
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m" },
-  { name: "Gogo", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Gogo", nick: "Loosey Goosey", mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
   { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f" },
   { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: "1w2", g: "m" },
@@ -824,7 +845,7 @@ function renderSuggestions() {
     c.name.toLowerCase().includes(q) || (c.nick && c.nick.toLowerCase().includes(q))
   );
   if (matches.length === 0) {
-    box.innerHTML = `<div class="sugg-item" style="cursor:default; color: var(--ink-fade); font-style: italic;">No goose by that name in the flock.</div>`;
+    box.innerHTML = `<div class="sugg-item" style="cursor:default; color: var(--ink-fade); font-style: italic;">honk? no goose by that name in the flock 𓅮</div>`;
     box.classList.add("open"); return;
   }
   box.innerHTML = matches.map((c, i) => `
@@ -990,7 +1011,7 @@ function renderProfile() {
 
     <div class="profile-section-lbl">${c.name} by the numbers · click any card to see who matches</div>
     <div class="profile-stats-row">
-      ${statCards.map(sc => `
+      ${statCards.filter(sc => sc.members === null || sc.members.length > 0).map(sc => `
         <div class="profile-stat-card ${sc.members ? '' : 'no-click'}" data-stat="${sc.key}" style="--sc-color:${sc.color};">
           <div class="profile-stat-card-key">${sc.label}</div>
           <div class="profile-stat-card-val">${sc.val}</div>
@@ -998,7 +1019,7 @@ function renderProfile() {
           ${sc.members ? `
             <div class="profile-stat-card-hint">Click to see them ▾</div>
             <div class="profile-stat-card-expand">
-              ${sc.members.length ? sc.members.map(m => chipHTML(m, sc.tag, {noDim:true})).join("") : '<span class="muted-txt">Just ' + c.name + '.</span>'}
+              ${sc.members.map(m => chipHTML(m, sc.tag, {noDim:true})).join("")}
             </div>` : ''}
         </div>
       `).join("")}
@@ -1300,14 +1321,24 @@ function renderTriads() {
   host.innerHTML = "";
   Object.entries(triadInfo).forEach(([key, t]) => {
     const allMembers = characters.filter(c => c.enn && t.types.includes(c.enn));
-    const isActive = filter.triad === key;
 
-    const wrap = document.createElement("div");
-    wrap.className = "triad-wrap";
-    wrap.style.setProperty("--tc", t.color);
+    const groups = t.types.map(num => {
+      const e = ennData.find(x => x.num === num);
+      const members = characters.filter(c => c.enn === num);
+      return `
+        <div class="triad-detail-group">
+          <div class="triad-detail-group-head">
+            <span class="triad-detail-group-num">${num}</span>
+            <span class="triad-detail-group-label">${e.label}</span>
+            <span class="triad-detail-group-count">${members.length} ${members.length === 1 ? 'goose' : 'geese'}</span>
+          </div>
+          <div>${members.length ? members.map(m => chipHTML(m, "enn", {noDim:true})).join("") : '<span class="muted-txt">None.</span>'}</div>
+        </div>
+      `;
+    }).join("");
 
     const card = document.createElement("div");
-    card.className = "triad-card" + (isActive ? " active" : "");
+    card.className = "triad-card";
     card.style.setProperty("--tc", t.color);
     card.innerHTML = `
       <div class="triad-head">
@@ -1317,38 +1348,9 @@ function renderTriads() {
       <div class="triad-emotion">Types ${t.types.join(" · ")} · core emotion: ${t.emotion}</div>
       <div class="triad-desc">${t.desc}</div>
       <ul class="triad-bullets">${t.bullets.map(b => `<li>${b.text}</li>`).join("")}</ul>
+      <div class="triad-groups">${groups}</div>
     `;
-    card.addEventListener("click", () => {
-      filter.triad = filter.triad === key ? null : key;
-      renderAll();
-    });
-    wrap.appendChild(card);
-
-    const detail = document.createElement("div");
-    detail.className = "triad-detail" + (isActive ? " open" : "");
-    detail.style.setProperty("--tc", t.color);
-    if (isActive) {
-      const groups = t.types.map(num => {
-        const e = ennData.find(x => x.num === num);
-        const members = characters.filter(c => c.enn === num);
-        return `
-          <div class="triad-detail-group">
-            <div class="triad-detail-group-head">
-              <span class="triad-detail-group-num">${num}</span>
-              <span class="triad-detail-group-label">${e.label}</span>
-              <span class="triad-detail-group-count">${members.length} ${members.length === 1 ? 'goose' : 'geese'}</span>
-            </div>
-            <div>${members.length ? members.map(m => chipHTML(m, "enn")).join("") : '<span class="muted-txt">None.</span>'}</div>
-          </div>
-        `;
-      }).join("");
-      detail.innerHTML = `
-        <div class="triad-detail-title">${t.name} triad · ${allMembers.length} geese</div>
-        ${groups}
-      `;
-    }
-    wrap.appendChild(detail);
-    host.appendChild(wrap);
+    host.appendChild(card);
   });
 }
 
@@ -1399,12 +1401,11 @@ function renderInsights() {
 
   const uniques = characters.filter(c => c.mbti && mbtiCounts[c.mbti] === 1);
 
-  // rarest type goose
-  let rarest = null, rarestPop = 100;
-  characters.forEach(c => {
-    if (c.mbti && mbtiPopulation[c.mbti] < rarestPop) { rarestPop = mbtiPopulation[c.mbti]; rarest = c; }
-  });
+  // rare types in the flock (under 3% of world population)
+  const rareTypeSet = [...new Set(characters.filter(c => c.mbti && mbtiPopulation[c.mbti] < 3).map(c => c.mbti))]
+    .sort((a,b) => mbtiPopulation[a] - mbtiPopulation[b]);
   const rareMembers = characters.filter(c => mbtiPopulation[c.mbti] && mbtiPopulation[c.mbti] < 3);
+  const rareTypesLine = rareTypeSet.map(t => `${t} ${mbtiPopulation[t]}%`).join(" · ");
 
   const triadCounts = { head:0, heart:0, body:0 };
   characters.forEach(c => { if (c.enn) triadCounts[ennData.find(e => e.num === c.enn).triad]++; });
@@ -1471,10 +1472,10 @@ function renderInsights() {
     {
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>',
       title: "One of a kind",
-      headline: `${rarest.name} has the rarest type`,
-      sub: `${rarest.mbti}s are only ${rarestPop}% of people`,
+      headline: `${rareTypeSet.length} rare types in the flock`,
+      sub: rareTypesLine,
       members: rareMembers, tag: "mbti",
-      note: `These geese all carry types that show up in less than 3% of the general population. Genuinely uncommon company.`,
+      note: `Each of these types makes up less than 3% of the general population — ${rareMembers.length} geese in the flock carry one. Genuinely uncommon company.`,
       color: "var(--enn4)"
     },
     {
@@ -1637,7 +1638,6 @@ try {
 
 function renderAll() {
   renderDims();
-  renderFamilies();
   renderWheel();
   renderEnnList();
   renderTriads();
