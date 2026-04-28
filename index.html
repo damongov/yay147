@@ -107,7 +107,11 @@
   .section { margin-bottom:56px; }
 
   .search-wrap { position:sticky;top:0;z-index:20;padding:14px 0 0;margin-bottom:8px;background:linear-gradient(to bottom, var(--cream) 0%, var(--cream) 75%, transparent 100%); }
-  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:14px; }
+  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:8px; }
+  .search-hint { display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:0 6px 14px 18px;font-family:'Fraunces',serif;font-size:12px;color:var(--ink-fade); }
+  .search-hint-label { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;margin-right:4px;flex-shrink:0; }
+  .search-hint .chip { font-size:12px;padding:3px 9px; }
+  .search-hint.hidden { display:none; }
   .search-input { flex:1;padding:14px 16px 14px 56px;border:1px solid var(--line-strong);background:var(--surface);font-family:'Fraunces',serif;font-size:16px;color:var(--ink);border-radius:28px;transition:border-color 0.2s,box-shadow 0.2s;min-width:0;-webkit-appearance:none; }
   .search-input:focus { outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
   .search-input::placeholder { color:var(--ink-fade);font-style:italic; }
@@ -426,6 +430,7 @@
     .sec-sub { margin-left:42px; }
     .search-input { font-size:15px;padding:12px 14px 12px 50px; }
     .search-goose { left:10px;width:28px;height:28px; }
+    .search-hint { padding-left:12px; }
     .clear-btn { padding:10px;font-size:9px; }
     .profile-card { padding:22px 20px; }
     .profile-stats { grid-template-columns:repeat(2,1fr);gap:14px; }
@@ -511,6 +516,10 @@
       <path d="M 26 54 L 24 60 M 28 54 L 30 60 M 36 54 L 34 60 M 38 54 L 40 60" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <div class="search-suggestions" id="suggestions"></div>
+  </div>
+  <div class="search-hint" id="search-hint">
+    <span class="search-hint-label">pick a goose:</span>
+    <span id="search-hint-chips"></span>
   </div>
 </div>
 
@@ -1007,6 +1016,7 @@ function selectGoose(name) {
   document.getElementById("search").value = name;
   searchTerm = "";
   document.getElementById("suggestions").classList.remove("open");
+  document.getElementById("search-hint").classList.add("hidden");
   renderProfile();
   document.getElementById("profile-card").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
@@ -1015,6 +1025,7 @@ function closeProfile() {
   selectedProfile = null;
   document.getElementById("search").value = "";
   searchTerm = "";
+  document.getElementById("search-hint").classList.remove("hidden");
   renderProfile();
 }
 
@@ -2082,6 +2093,13 @@ document.getElementById("goose-count").textContent = TOTAL_MEMBERS;
 })();
 
 renderAll();
+
+// Search hint quick-picks: every goose, alphabetical
+(function() {
+  document.getElementById("search-hint-chips").innerHTML =
+    [...characters].sort((a,b) => a.name.localeCompare(b.name))
+      .map(c => chipHTML(c, "none", { noDim: true })).join("");
+})();
 </script>
 </body>
 </html>
