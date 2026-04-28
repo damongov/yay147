@@ -106,36 +106,40 @@
   .sec-quote::after { content:'”'; }
   .section { margin-bottom:56px; }
 
-  .search-wrap { position:sticky;top:0;z-index:20;padding:14px 0 0;margin-bottom:8px;background:linear-gradient(to bottom, var(--cream) 0%, var(--cream) 75%, transparent 100%); }
-  .search-inner { position:relative;display:flex;gap:10px;align-items:center;padding-bottom:8px; }
-  .search-hint { display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:0 6px 14px 18px;font-family:'Fraunces',serif;font-size:12px;color:var(--ink-fade); }
-  .search-hint-label { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;margin-right:4px;flex-shrink:0; }
-  .search-hint .chip { font-size:12px;padding:3px 9px; }
-  .search-hint.hidden { display:none; }
-  .search-input { flex:1;padding:14px 16px 14px 56px;border:1px solid var(--line-strong);background:var(--surface);font-family:'Fraunces',serif;font-size:16px;color:var(--ink);border-radius:28px;transition:border-color 0.2s,box-shadow 0.2s;min-width:0;-webkit-appearance:none; }
-  .search-input:focus { outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
-  .search-input::placeholder { color:var(--ink-fade);font-style:italic; }
-  .search-goose { position:absolute;left:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;pointer-events:none;animation:goose-bob 3.2s ease-in-out infinite;transform-origin:center bottom; }
-  .search-input:focus ~ .search-goose, .search-goose.active { animation:goose-honk 0.6s ease-in-out infinite; }
-  @keyframes goose-bob { 0%,100% { transform:translateY(-50%) rotate(0deg); } 50% { transform:translateY(-55%) rotate(-3deg); } }
-  @keyframes goose-honk { 0%,100% { transform:translateY(-50%) rotate(0deg); } 25% { transform:translateY(-52%) rotate(-8deg); } 75% { transform:translateY(-52%) rotate(6deg); } }
-  .search-trail { display:flex;align-items:center;gap:6px;padding:0 4px 10px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-fade);letter-spacing:0.1em;overflow:hidden; }
-  .search-trail .trail-goose { width:14px;height:14px;flex-shrink:0;color:var(--ink-fade);opacity:0.55;animation:trail-walk 4s ease-in-out infinite; }
-  .search-trail .trail-goose:nth-child(2) { animation-delay:0.3s;opacity:0.45; }
-  .search-trail .trail-goose:nth-child(3) { animation-delay:0.6s;opacity:0.35; }
-  .search-trail .trail-goose:nth-child(4) { animation-delay:0.9s;opacity:0.28; }
-  .search-trail .trail-goose:nth-child(5) { animation-delay:1.2s;opacity:0.2; }
-  @keyframes trail-walk { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-2px) rotate(-4deg); } }
-  .search-trail .trail-label { margin-left:4px;font-style:italic; }
-  .clear-btn { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 12px;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);cursor:pointer;border-radius:2px;white-space:nowrap;transition:all 0.15s; }
-  .clear-btn:hover { border-color:var(--accent);color:var(--accent); }
-  .search-suggestions { position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--line-strong);border-top:none;max-height:280px;overflow-y:auto;z-index:30;box-shadow:0 8px 24px var(--shadow);display:none; }
-  .search-suggestions.open { display:block; }
-  .sugg-item { padding:10px 16px;cursor:pointer;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:background 0.1s; }
-  .sugg-item:hover, .sugg-item.focused { background:var(--cream-deep); }
-  .sugg-name { font-family:'Fraunces',serif;font-size:15px; }
-  .sugg-nick { font-style:italic;color:var(--ink-fade);font-size:12px;margin-left:6px; }
-  .sugg-meta { font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:0.08em; }
+  /* GOOSE DIRECTORY (replaces search bar) */
+  .goose-dir { margin-bottom:28px; }
+  .goose-dir-head { display:flex;align-items:center;gap:14px;margin-bottom:14px; }
+  .dir-goose { width:40px;height:40px;flex-shrink:0;animation:goose-bob 3.2s ease-in-out infinite;transform-origin:center bottom; }
+  .dir-goose.honking { animation:goose-honk 0.5s ease-in-out 3; }
+  @keyframes goose-bob { 0%,100% { transform:rotate(0deg); } 50% { transform:translateY(-3px) rotate(-3deg); } }
+  @keyframes goose-honk { 0%,100% { transform:rotate(0deg); } 25% { transform:translateY(-4px) rotate(-10deg); } 75% { transform:translateY(-2px) rotate(8deg); } }
+  .goose-dir-label { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--ink-fade); }
+  .goose-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:5px; }
+  .goose-tile { background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:6px 8px;cursor:pointer;text-align:center;transition:border-color 0.15s,box-shadow 0.15s;font-family:'Fraunces',serif;font-size:12.5px;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+  .goose-tile:hover { border-color:var(--accent);box-shadow:0 2px 8px var(--shadow); }
+  .goose-tile.active { border-color:var(--accent);background:color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+
+  /* STICKY PICKER (appears on scroll) */
+  .sticky-picker { position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 14px;margin:0 0 20px;background:var(--surface);border:1px solid var(--line-strong);border-radius:28px;box-shadow:0 4px 16px var(--shadow);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity 0.2s,transform 0.2s; }
+  .sticky-picker.show { opacity:1;pointer-events:auto;transform:translateY(0); }
+  .sticky-goose { width:26px;height:26px;flex-shrink:0; }
+  .sticky-picker select { flex:1;font-family:'Fraunces',serif;font-size:15px;color:var(--ink);background:transparent;border:none;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:20px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%23706858' stroke-width='1.5'/></svg>");background-repeat:no-repeat;background-position:right center; }
+
+  /* COMPARE */
+  .cmp-pickers { display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:start;margin:24px 0; }
+  .cmp-picker { background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:18px; }
+  .cmp-picker-label { font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:10px; }
+  .cmp-picker select { width:100%;padding:12px 14px;font-family:'Fraunces',serif;font-size:16px;color:var(--ink);background:var(--cream);border:1px solid var(--line-strong);border-radius:2px;cursor:pointer; }
+  .cmp-picker select:focus { outline:none;border-color:var(--accent); }
+  .cmp-vs { font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink-fade);align-self:center;padding-top:24px; }
+  .cmp-preview { margin-top:14px;min-height:56px; }
+  .cmp-preview-row { display:flex;align-items:center;gap:10px; }
+  .cmp-preview .pi { width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;flex-shrink:0; }
+  .cmp-preview .pi svg { width:20px;height:20px; }
+  .cmp-preview-name { font-family:'Fraunces',serif;font-size:18px;font-weight:500;line-height:1.1; }
+  .cmp-preview-meta { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--ink-fade);margin-top:2px; }
+  .cmp-result-body { font-size:15px;line-height:1.75;color:var(--ink-soft);white-space:pre-wrap; }
+  .cmp-result-body strong { color:var(--ink);font-weight:600; }
 
   /* PROFILE */
   .profile-card { background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;padding:28px 32px;margin-bottom:32px;position:relative;overflow:hidden;background-image:radial-gradient(circle at top right, var(--bg-grad-1), transparent 60%);display:none; }
@@ -428,10 +432,13 @@
     .section { margin-bottom:44px; }
     .sec-icon { width:28px;height:28px; }
     .sec-sub { margin-left:42px; }
-    .search-input { font-size:15px;padding:12px 14px 12px 50px; }
-    .search-goose { left:10px;width:28px;height:28px; }
-    .search-hint { padding-left:12px; }
-    .clear-btn { padding:10px;font-size:9px; }
+    .goose-grid { grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:4px; }
+    .goose-tile { font-size:11px;padding:5px 4px; }
+    .dir-goose { width:32px;height:32px; }
+    .sticky-picker { padding:8px 12px; }
+    .sticky-picker select { font-size:14px; }
+    .cmp-pickers { grid-template-columns:1fr;gap:12px; }
+    .cmp-vs { padding:0;text-align:center; }
     .profile-card { padding:22px 20px; }
     .profile-stats { grid-template-columns:repeat(2,1fr);gap:14px; }
     .profile-similar { flex-direction:column;gap:14px; }
@@ -500,27 +507,34 @@
 
 <div class="tabs" id="tabs">
   <button class="tab active" data-tab="census">The Flock</button>
+  <button class="tab" data-tab="compare">Compare Geese</button>
   <button class="tab" data-tab="typer">Type Me</button>
 </div>
 
 <div class="tab-panel active" id="panel-census">
 
-<div class="search-wrap">
-  <div class="search-inner">
-    <input class="search-input" id="search" type="search" placeholder="honk a name to learn more about a goose" autocomplete="off" />
-    <svg class="search-goose" id="search-goose" viewBox="0 0 64 64" fill="none">
+<div class="goose-dir" id="goose-dir">
+  <div class="goose-dir-head">
+    <svg class="dir-goose" id="dir-goose" viewBox="0 0 64 64" fill="none">
       <ellipse cx="32" cy="44" rx="18" ry="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
       <path d="M 22 34 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 34" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
       <circle cx="30" cy="18" r="1.6" fill="var(--ink)"/>
       <path d="M 36 18 L 46 16 L 36 21 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.4"/>
       <path d="M 26 54 L 24 60 M 28 54 L 30 60 M 36 54 L 34 60 M 38 54 L 40 60" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <div class="search-suggestions" id="suggestions"></div>
+    <div class="goose-dir-label">pick a goose to open their card</div>
   </div>
-  <div class="search-hint" id="search-hint">
-    <span class="search-hint-label">pick a goose:</span>
-    <span id="search-hint-chips"></span>
-  </div>
+  <div class="goose-grid" id="goose-grid"></div>
+</div>
+
+<div class="sticky-picker" id="sticky-picker">
+  <svg class="sticky-goose" viewBox="0 0 64 64" fill="none">
+    <ellipse cx="32" cy="44" rx="18" ry="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
+    <path d="M 22 34 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 34" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="30" cy="18" r="1.6" fill="var(--ink)"/>
+    <path d="M 36 18 L 46 16 L 36 21 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.4"/>
+  </svg>
+  <select id="sticky-select"><option value="">pick a goose…</option></select>
 </div>
 
 <div class="profile-card" id="profile-card">
@@ -590,6 +604,42 @@
 </div>
 
 </div><!-- /panel-census -->
+
+<div class="tab-panel" id="panel-compare">
+  <p class="typer-lede">Pick two geese. We'll read their MBTI and Enneagram side by side and tell you how that pairing tends to play out inside a guild — where they click, where they differ, and what they bring out in each other.</p>
+
+  <div class="cmp-pickers">
+    <div class="cmp-picker">
+      <div class="cmp-picker-label">Goose 1</div>
+      <select id="cmp-a"><option value="">— choose —</option></select>
+      <div class="cmp-preview" id="cmp-a-preview"></div>
+    </div>
+    <div class="cmp-vs">&amp;</div>
+    <div class="cmp-picker">
+      <div class="cmp-picker-label">Goose 2</div>
+      <select id="cmp-b"><option value="">— choose —</option></select>
+      <div class="cmp-preview" id="cmp-b-preview"></div>
+    </div>
+  </div>
+
+  <div class="typer-submit">
+    <button class="typer-btn" id="cmp-btn" disabled>honk · compare</button>
+    <div class="typer-note" id="cmp-note">pick two different geese</div>
+  </div>
+
+  <div class="typer-loading" id="cmp-loading">
+    <svg class="typer-loading-goose" viewBox="0 0 64 64" fill="none">
+      <ellipse cx="32" cy="42" rx="20" ry="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M 22 32 Q 18 18 28 14 Q 32 10 34 14 Q 36 18 34 24 Q 40 24 42 32" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="30" cy="18" r="1.6" fill="var(--ink)"/>
+      <path d="M 36 18 L 46 16 L 36 21 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="1.4"/>
+    </svg>
+    <div class="typer-loading-text">the goose is comparing wingspans<span class="typer-dots"></span></div>
+  </div>
+
+  <div class="typer-error" id="cmp-error"></div>
+  <div class="typer-result" id="cmp-result"></div>
+</div><!-- /panel-compare -->
 
 <div class="tab-panel" id="panel-typer">
   <p class="typer-lede">Ten open-ended questions. Answer in your own words — a sentence or a paragraph, whatever feels right. There are no wrong answers; the more honest and specific you are, the better the read.</p>
@@ -818,8 +868,8 @@ const triadInfo = {
 // Written for a guild context: how they think, how they show up in a group, what they bring to a team.
 const mbtiDesc = {
   INTJ: (n,p) => `${n} thinks in trajectories. ${p.Their} mind connects scattered information into a single picture and arrives at a strong impression of where things are <em>heading</em> — not because ${p.they} worked it out step by step, but because the pattern is just there. ${p.They} rarely thinks about the thing in front of ${p.them}; ${p.they} thinks about what it represents and what it will become. <strong>In a group</strong> ${n} is the long-game strategist — ${p.they} won't say much in the chaos of the moment but will have already mapped three moves ahead. ${p.They} prefers a small role done perfectly over a loud one done sloppily, and ${p.they} would rather lose an argument than commit to a plan ${p.they} can see won't work. Don't mistake ${p.their} quiet for absence — ${p.they} is paying attention to everything, ${p.they} just doesn't broadcast it.`,
-  INTP: (n,p) => `${n} won't accept anything until ${p.they} has taken it apart. Every claim, system, or build gets run through ${p.their} own private logic test before ${p.they} trusts it — not to be difficult, but because ${p.they} genuinely needs to understand how the pieces connect. ${p.They} cares far more about <em>understanding</em> something than about being agreed with. <strong>In a group</strong> ${n} is the one who actually read the patch notes, ran the numbers, and knows why the meta works the way it does. ${p.They} doesn't volunteer opinions unprompted, but ask a precise question and you'll get a precise answer. ${p.They} can vanish down a rabbit hole for hours and is occasionally caught off-guard by other people's emotional weather — ${p.they} isn't cold, just genuinely focused elsewhere.`,
-  ENTJ: (n,p) => `${n} thinks in systems and outcomes. Show ${p.them} something inefficient and ${p.they} will reorganise it; ${p.they} can't <em>not</em>. Facts don't care about feelings and neither does ${p.their} planning — ${p.they} wants the most likely result, not the most comfortable one. <strong>In a group</strong> ${n} is the natural shot-caller. ${p.They} will take charge if no one else does, set clear objectives, and keep everyone moving — and ${p.they} expects to be evaluated on results, not effort. ${p.They} is direct to the point of blunt and has limited patience for indecision, but ${p.they} is also the one who turns a vague "we should do this sometime" into a roster, a date, and a plan that actually happens.`,
+  INTP: (n,p) => `${n} won't accept anything until ${p.they} has taken it apart. Every claim, system, or build gets run through ${p.their} own private logic test before ${p.they} trusts it — not to be difficult, but because ${p.they} genuinely needs to understand how the pieces connect. ${p.They} cares far more about <em>understanding</em> something than about being agreed with. <strong>In a group</strong> ${n} is the one who actually read the patch notes, dug into the system, and knows why things work the way they do. ${p.They} doesn't volunteer opinions unprompted, but ask a precise question and you'll get a precise answer. ${p.They} can vanish down a rabbit hole for hours and is occasionally caught off-guard by other people's emotional weather — ${p.they} isn't cold, just genuinely focused elsewhere.`,
+  ENTJ: (n,p) => `${n} thinks in systems and outcomes. Show ${p.them} something inefficient and ${p.they} will reorganise it; ${p.they} can't <em>not</em>. Facts don't care about feelings and neither does ${p.their} planning — ${p.they} wants the most likely result, not the most comfortable one. <strong>In a group</strong> ${n} is the natural organiser. ${p.They} will take charge if no one else does, set clear objectives, and keep everyone moving — and ${p.they} expects to be evaluated on results, not effort. ${p.They} is direct to the point of blunt and has limited patience for indecision, but ${p.they} is also the one who turns a vague "we should do this sometime" into a roster, a date, and a plan that actually happens.`,
   ENTP: (n,p) => `For ${n}, nothing is ever what it first appears to be, and the obvious answer is never the one ${p.they} wants to pick. ${p.They} looks for hidden connections — like a spider feeling vibrations across a massive web — and ${p.their} attention zooms out to see everything at once rather than locking on one thing. <strong>In a group</strong> ${n} is the chaos agent and the loophole-finder. ${p.They} will suggest the strategy nobody thought of, argue the opposite side just to test it, and keep the chat alive when things get slow. ${p.They} doesn't intend to follow through on most of ${p.their} ideas — they're just fun to discuss — so pair ${p.them} with someone who finishes things. Quick, funny, a little contrarian, and genuinely hard to bore.`,
   INFJ: (n,p) => `${n} senses what's underneath the surface. ${p.They} picks up on patterns in people and situations that others miss — strong impressions of where something is heading or what someone really needs, often before ${p.they} can explain why. ${p.They} keeps ${p.their} inner world private and is selective about who ${p.they} lets close. <strong>In a group</strong> ${n} is the quiet read on the room — ${p.they} notices when someone's off, when tension is building, when a plan is about to fall apart for human reasons rather than mechanical ones. ${p.They} won't fight for the mic but ${p.their} one-on-one conversations hold groups together. Idealistic, perceptive, and harder on ${p.themself} than on anyone else.`,
   INFP: (n,p) => `${n} runs everything past an inner compass of "is this okay with me or not" — and that compass doesn't change with the scenery or the company. ${p.They} values acceptance deeply and won't impose ${p.their} standards on anyone; everyone's on their own journey and it's none of ${p.their} business unless it affects ${p.them}. But ${p.they} also won't pretend, won't perform, and won't sacrifice integrity to be liked. <strong>In a group</strong> ${n} is low-maintenance and non-judgemental — ${p.they} doesn't need to lead, doesn't need attention, and is happy doing ${p.their} own thing alongside everyone else. ${p.They} is the safe person to vent to. But push ${p.them} on something that crosses a line and you'll discover ${p.theyre} immovable — it just doesn't come up often because so little actually crosses it.`,
@@ -831,7 +881,7 @@ const mbtiDesc = {
   ESFJ: (n,p) => `${n} feels most at ease when everyone around ${p.them} is in harmony. ${p.They} thinks in "we" not "me," tunes into the unwritten rules of every room, and genuinely enjoys creating spaces where people feel included. <strong>In a group</strong> ${n} is the host. ${p.They} knows what's going on in everyone's life, makes sure nobody's left on the sidelines, runs the social events, and feels personally responsible for whether people are having a good time. ${p.They} is also the one who'll quietly enforce the norms — not through confrontation, but by modelling them so consistently that everyone else follows. Warm, dependable, and deeply invested in the group as a group.`,
   ISTP: (n,p) => `${n} learns by getting ${p.their} hands on things. ${p.They} takes systems apart to see how the pieces connect, builds a mental map of how they work, and won't trust information ${p.they} hasn't tested. Book learning bores ${p.them} — put ${p.them} on-site. <strong>In a group</strong> ${n} is the fixer. ${p.They} doesn't say much in voice chat, but mid-crisis ${p.they} is suddenly the calmest person in the room — adjusting in real time, doing the thing instead of debating it. ${p.They} dislikes being micromanaged and works best when given a problem and left alone with it. Unbothered by pressure, economical with words, and surprisingly hard to rattle.`,
   ISFP: (n,p) => `${n} checks in with ${p.themself} before acting — <em>is this who I am?</em> — and once the answer is yes, ${p.they} wants it to happen <em>now</em>. ${p.They} would rather be on the Ferris wheel than watch it spin. ${p.Their} values don't change with the scenery; if ${p.they} won't do something at home, ${p.they} won't do it here either. <strong>In a group</strong> ${n} is easy company — present, observant, happy to go with the flow, and genuinely uninterested in telling anyone else how to play. But ${p.they} won't fake enthusiasm or pretend to agree, and ${p.they} is far more stubborn than ${p.they} looks once something actually matters to ${p.them}. Low drama, high integrity, and quietly doing ${p.their} own thing beautifully.`,
-  ESTP: (n,p) => `${n} lives completely in the present second. ${p.They} notices opportunities and takes them — sees the opening, pulls the trigger, figures out the rest mid-air. ${p.They} learns by doing, eliminates possibilities through experimentation, and does ${p.their} best thinking with ${p.their} hands already on the problem. <strong>In a group</strong> ${n} is the clutch player. ${p.They} reads situations fast, improvises under pressure, and is at ${p.their} best when the plan has already gone sideways. ${p.They} gets bored during the planning meeting but comes alive the moment things go live. Practical, charming, all reflex and momentum — ${p.they} would rather <em>do</em> something than sit around discussing it.`,
+  ESTP: (n,p) => `${n} lives completely in the present second. ${p.They} notices opportunities and takes them — sees the opening, pulls the trigger, figures out the rest mid-air. ${p.They} learns by doing, eliminates possibilities through experimentation, and does ${p.their} best thinking with ${p.their} hands already on the problem. <strong>In a group</strong> ${n} is the improviser. ${p.They} reads situations fast, adapts on the fly, and is at ${p.their} best when the plan has already gone sideways. ${p.They} gets bored during the planning part but comes alive the moment things go live. Practical, charming, all reflex and momentum — ${p.they} would rather <em>do</em> something than sit around discussing it.`,
   ESFP: (n,p) => `${n} doesn't say no to experiences — they're how ${p.they} figures out who ${p.they} is. ${p.They} lives in a constant state of awareness of what's happening right now and has a gift for turning an ordinary moment into something fun. ${p.They} makes decisions for ${p.themself} and won't fake agreement, but won't impose ${p.their} views either. <strong>In a group</strong> ${n} is the energy. ${p.They} keeps morale up, gets people to actually log on, and makes the grind feel like a hangout. ${p.They} reads people well and adapts fast, but ${p.they} is here for the experience first and the objective second — which is usually exactly what a group that's taking itself too seriously needs.`
 };
 
@@ -888,7 +938,7 @@ const ennLong = {
 const ennShort = {
   "1": (n,p) => `${p.they} is driven by a strong sense of right and wrong, holds high standards (for ${p.themself} most of all), and feels responsible for improving whatever's in front of ${p.them}. In a guild, ${p.theyre} the one who cares that things are done <em>properly</em> — fair loot, kept promises, no cutting corners. ${p.They} won't let standards slip, but the inner critic that makes ${p.them} so reliable is also hardest on ${p.them}; a little appreciation goes a long way.`,
   "2": (n,p) => `${p.they} is naturally focused on other people — quick to help, quick to notice what's needed, and feels most ${p.themself} when ${p.theyre} supporting someone. In a guild, ${p.theyre} the one who remembers what you were stressed about last week and asks how it went. ${p.They} gives a lot without being asked, which means ${p.they} can quietly run on empty — ${p.they} won't tell you ${p.they} needs something back, but ${p.they} does.`,
-  "3": (n,p) => `${p.they} is goal-oriented and adaptable — works hard, reads what success looks like in any room, and is motivated by achievement and recognition. In a guild, ${p.theyre} competitive in the best way: wants the clear, the rank, the win, and will put in the reps to get there. ${p.They} thrives when there's a scoreboard and a goal; ${p.they} can lose ${p.themself} in the role a bit when there isn't.`,
+  "3": (n,p) => `${p.they} is goal-oriented and adaptable — works hard, reads what success looks like in any room, and is motivated by achievement and recognition. In a guild, ${p.theyre} competitive in the best way: wants the milestone, the rank, the win, and will put in the reps to get there. ${p.They} thrives when there's a scoreboard and a goal; ${p.they} can lose ${p.themself} in the role a bit when there isn't.`,
   "4": (n,p) => `${p.they} places a lot of value on authenticity and depth, is highly aware of how ${p.theyre} different from others, and feels things intensely. In a guild, ${p.they} brings taste, atmosphere, and the conversations that actually go somewhere — ${p.they} would rather have two real friends here than twenty acquaintances. ${p.They} can withdraw when ${p.they} feels unseen, so being genuinely <em>noticed</em> matters more to ${p.them} than being included by default.`,
   "5": (n,p) => `${p.they} copes with the world by understanding it — observes more than ${p.they} participates, guards ${p.their} energy, and feels safest when ${p.theyre} well-informed. In a guild, ${p.theyre} the deep-knowledge person: knows the system inside out, has the answer if you ask directly, and would rather DM than post in the big channel. Social energy is a finite resource for ${p.them} — ${p.they} isn't being distant, ${p.theyre} rationing.`,
   "6": (n,p) => `${p.they} is loyal and security-minded — scans for what could go wrong, values people who are reliable, and shows up consistently for those ${p.they} trusts. In a guild, ${p.theyre} the early-warning system and the one who actually has a backup plan. ${p.They} commits hard once trust is earned, but earning it takes consistency — say what you'll do, then do it, and ${p.theyre} yours.`,
@@ -953,8 +1003,6 @@ let filter = { dim: null, family: null, mbti: null, enn: null, triad: null };
 let rosterSort = { by: "name", dir: "asc" };
 let selectedProfile = null;
 let litGoose = null;
-let suggIdx = -1;
-let searchTerm = "";
 
 function getFamily(mbti) { return mbtiTypes.find(t => t.code === mbti)?.family; }
 function getMbtiInfo(code) { return mbtiTypes.find(t => t.code === code); }
@@ -987,45 +1035,42 @@ function chipHTML(m, tagType, opts = {}) {
   return `<span class="chip ${cls}" data-goose="${m.name}" data-action="${action}">${m.name}${tag ? `<span class="chip-tag">${tag}</span>` : ''}</span>`;
 }
 
-// ===== SEARCH =====
-function renderSuggestions() {
-  const q = searchTerm.toLowerCase();
-  const box = document.getElementById("suggestions");
-  if (!q) { box.classList.remove("open"); box.innerHTML = ""; suggIdx = -1; return; }
-  const matches = characters.filter(c =>
-    c.name.toLowerCase().includes(q) || (c.nick && c.nick.toLowerCase().includes(q))
-  );
-  if (matches.length === 0) {
-    box.innerHTML = `<div class="sugg-item" style="cursor:default; color: var(--ink-fade); font-style: italic;">honk? no goose by that name in the flock 𓅮</div>`;
-    box.classList.add("open"); return;
-  }
-  box.innerHTML = matches.map((c, i) => `
-    <div class="sugg-item ${i === suggIdx ? 'focused' : ''}" data-name="${c.name}">
-      <div><span class="sugg-name">${c.name}</span>${c.nick ? `<span class="sugg-nick">aka ${c.nick}</span>` : ''}</div>
-      <div class="sugg-meta">${c.mbti || '—'} · ${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div>
-    </div>
-  `).join("");
-  box.classList.add("open");
-  box.querySelectorAll(".sugg-item[data-name]").forEach(el => {
-    el.addEventListener("mousedown", (e) => { e.preventDefault(); selectGoose(el.dataset.name); });
+// ===== GOOSE DIRECTORY =====
+function renderDirectory() {
+  const grid = document.getElementById("goose-grid");
+  grid.innerHTML = [...characters]
+    .sort((a,b) => a.name.localeCompare(b.name))
+    .map(c => `<div class="goose-tile ${selectedProfile === c.name ? 'active' : ''}" data-goose-tile="${c.name}">${c.name}</div>`)
+    .join("");
+  grid.querySelectorAll("[data-goose-tile]").forEach(el => {
+    el.addEventListener("click", () => selectGoose(el.dataset.gooseTile));
   });
+}
+
+function honkDirGoose() {
+  const g = document.getElementById("dir-goose");
+  if (!g) return;
+  g.classList.remove("honking");
+  void g.offsetWidth; // restart animation
+  g.classList.add("honking");
+  setTimeout(() => g.classList.remove("honking"), 1600);
 }
 
 function selectGoose(name) {
   selectedProfile = name;
-  document.getElementById("search").value = name;
-  searchTerm = "";
-  document.getElementById("suggestions").classList.remove("open");
-  document.getElementById("search-hint").classList.add("hidden");
+  honkDirGoose();
+  renderDirectory();
+  const ss = document.getElementById("sticky-select");
+  if (ss) ss.value = name;
   renderProfile();
   document.getElementById("profile-card").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function closeProfile() {
   selectedProfile = null;
-  document.getElementById("search").value = "";
-  searchTerm = "";
-  document.getElementById("search-hint").classList.remove("hidden");
+  renderDirectory();
+  const ss = document.getElementById("sticky-select");
+  if (ss) ss.value = "";
   renderProfile();
 }
 
@@ -1770,29 +1815,11 @@ document.addEventListener("click", (e) => {
   }
 });
 
-const searchEl = document.getElementById("search");
-searchEl.addEventListener("input", (e) => { searchTerm = e.target.value.trim(); suggIdx = -1; renderSuggestions(); });
-searchEl.addEventListener("focus", () => { if (searchTerm) renderSuggestions(); });
-searchEl.addEventListener("blur", () => { setTimeout(() => document.getElementById("suggestions").classList.remove("open"), 150); });
-searchEl.addEventListener("keydown", (e) => {
-  const box = document.getElementById("suggestions");
-  const items = box.querySelectorAll(".sugg-item[data-name]");
-  if (e.key === "ArrowDown" && items.length) { e.preventDefault(); suggIdx = Math.min(suggIdx+1, items.length-1); renderSuggestions(); }
-  else if (e.key === "ArrowUp" && items.length) { e.preventDefault(); suggIdx = Math.max(suggIdx-1, 0); renderSuggestions(); }
-  else if (e.key === "Enter") { if (items.length) selectGoose((suggIdx >= 0 ? items[suggIdx] : items[0]).dataset.name); }
-  else if (e.key === "Escape") {
-    if (selectedProfile) closeProfile();
-    else { searchEl.value = ""; searchTerm = ""; renderSuggestions(); clearAll(); }
-  }
-});
-
 function clearAll() {
   filter = { dim:null, family:null, mbti:null, enn:null, triad:null };
   selectedProfile = null;
   litGoose = null;
-  searchTerm = "";
-  document.getElementById("search").value = "";
-  document.getElementById("suggestions").classList.remove("open");
+  renderDirectory();
   renderProfile();
   renderAll();
 }
@@ -1820,7 +1847,7 @@ function renderAll() {
 // ========== TABS ==========
 (function() {
   const tabs = [...document.querySelectorAll(".tab")];
-  const panels = { census: document.getElementById("panel-census"), typer: document.getElementById("panel-typer") };
+  const panels = { census: document.getElementById("panel-census"), compare: document.getElementById("panel-compare"), typer: document.getElementById("panel-typer") };
   function setTab(name) {
     tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
     Object.entries(panels).forEach(([k,el]) => el.classList.toggle("active", k === name));
@@ -2079,27 +2106,175 @@ Respond with ONLY a JSON object in exactly this shape (no markdown, no code fenc
   }
 })();
 
-const LAST_UPDATED = "Apr 25, 2026";
+const LAST_UPDATED = "Apr 27, 2026";
 document.getElementById("last-updated").textContent = LAST_UPDATED;
 document.getElementById("goose-count").textContent = TOTAL_MEMBERS;
 
-// SCROLL-TO-TOP
+// SCROLL-TO-TOP + STICKY PICKER
 (function() {
   const toTop = document.getElementById("to-top");
+  const sticky = document.getElementById("sticky-picker");
+  const dir = document.getElementById("goose-dir");
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  function onScroll() { toTop.classList.toggle("show", window.scrollY > 400); }
+  function onScroll() {
+    const y = window.scrollY;
+    toTop.classList.toggle("show", y > 400);
+    if (sticky && dir) {
+      const dirBottom = dir.offsetTop + dir.offsetHeight;
+      sticky.classList.toggle("show", y > dirBottom - 40);
+    }
+  }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 })();
 
+// STICKY PICKER select
+(function() {
+  const sel = document.getElementById("sticky-select");
+  if (!sel) return;
+  sel.innerHTML = `<option value="">pick a goose…</option>` +
+    [...characters].sort((a,b) => a.name.localeCompare(b.name))
+      .map(c => `<option value="${c.name}">${c.name}${c.nick ? ` (${c.nick})` : ''}</option>`).join("");
+  sel.addEventListener("change", () => { if (sel.value) selectGoose(sel.value); });
+})();
+
+// ========== COMPARE GEESE ==========
+(function() {
+  const selA = document.getElementById("cmp-a");
+  const selB = document.getElementById("cmp-b");
+  const btn = document.getElementById("cmp-btn");
+  const note = document.getElementById("cmp-note");
+  const loading = document.getElementById("cmp-loading");
+  const errorBox = document.getElementById("cmp-error");
+  const resultEl = document.getElementById("cmp-result");
+  const prevA = document.getElementById("cmp-a-preview");
+  const prevB = document.getElementById("cmp-b-preview");
+
+  const opts = `<option value="">— choose —</option>` +
+    [...characters].sort((a,b) => a.name.localeCompare(b.name))
+      .map(c => `<option value="${c.name}">${c.name}${c.nick ? ` (${c.nick})` : ''}</option>`).join("");
+  selA.innerHTML = opts;
+  selB.innerHTML = opts;
+
+  function previewHTML(c) {
+    if (!c) return "";
+    const dom = c.mbti ? getDomGroup(c.mbti) : null;
+    const eInfo = c.enn ? getEnnInfo(c.enn) : null;
+    return `
+      <div class="cmp-preview-row">
+        ${dom ? `<div class="pi" style="background:${dom.color};">${domIcons[dom.code]}</div>` : ''}
+        ${eInfo ? `<div class="pi" style="background:${eInfo.color};">${ennIcons[c.enn]}</div>` : ''}
+        <div>
+          <div class="cmp-preview-name">${c.name}</div>
+          <div class="cmp-preview-meta">${c.mbti || '—'} · ${c.wing || (c.enn ? 'Type ' + c.enn : '—')}</div>
+        </div>
+      </div>`;
+  }
+
+  function update() {
+    const a = characters.find(c => c.name === selA.value);
+    const b = characters.find(c => c.name === selB.value);
+    prevA.innerHTML = previewHTML(a);
+    prevB.innerHTML = previewHTML(b);
+    const valid = a && b && a.name !== b.name;
+    btn.disabled = !valid;
+    note.textContent = !a || !b ? "pick two different geese"
+      : a.name === b.name ? "that's the same goose — pick two different ones"
+      : "ready — honk to compare";
+  }
+  selA.addEventListener("change", update);
+  selB.addEventListener("change", update);
+  update();
+
+  function esc(s) { return String(s).replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  btn.addEventListener("click", async () => {
+    const a = characters.find(c => c.name === selA.value);
+    const b = characters.find(c => c.name === selB.value);
+    if (!a || !b || a.name === b.name) return;
+
+    errorBox.classList.remove("show");
+    resultEl.classList.remove("show");
+    btn.disabled = true;
+    loading.classList.add("show");
+    loading.scrollIntoView({behavior:"smooth", block:"center"});
+
+    const aDom = a.mbti ? getDomGroup(a.mbti) : null;
+    const bDom = b.mbti ? getDomGroup(b.mbti) : null;
+    const aEnn = a.enn ? getEnnInfo(a.enn) : null;
+    const bEnn = b.enn ? getEnnInfo(b.enn) : null;
+    const ap = pronouns(a.g), bp = pronouns(b.g);
+
+    const sys = `You are a thoughtful, well-read personality writer who knows Jungian cognitive functions, MBTI, and the Riso-Hudson Enneagram. You write warm, specific, plain-language comparisons between two people based on their types — framed as a relationship inside a casual, social online gaming guild called YAY (it is NOT a raiding or competitive guild — think hangout, voice chat, playing together for fun).
+
+Guidelines:
+- Use their actual names and the correct pronouns provided.
+- Compare across three lenses: MBTI (how they each think and process), Enneagram (what drives each of them and what they need), and the dynamic between the two inside a guild (where they click, where their styles differ, what they bring out in each other, what role-pairing they naturally fall into — e.g. organiser & spark, anchor & wanderer, glue & ideas person).
+- Be concrete and balanced. Mention both strengths and friction points kindly.
+- 4-6 short paragraphs. No headings, no bullet points, no jargon like "Ti-dom" — say "leads with internal logic" instead.
+- Do not invent facts about them beyond what their types imply. Do not use raiding or hardcore-progression language.`;
+
+    const userMsg = `Compare these two members of the guild "YAY":
+
+${a.name} (${ap.they}/${ap.them}) — MBTI: ${a.mbti || 'unknown'}${aDom ? ` (${aDom.func})` : ''} · Enneagram: ${a.wing || (a.enn ? 'Type ' + a.enn : 'unknown')}${aEnn ? ` (${aEnn.label})` : ''}
+
+${b.name} (${bp.they}/${bp.them}) — MBTI: ${b.mbti || 'unknown'}${bDom ? ` (${bDom.func})` : ''} · Enneagram: ${b.wing || (b.enn ? 'Type ' + b.enn : 'unknown')}${bEnn ? ` (${bEnn.label})` : ''}
+
+Write the comparison.`;
+
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: sys,
+          messages: [{ role: "user", content: userMsg }]
+        })
+      });
+      const data = await res.json();
+      const text = (data.content || []).filter(x => x.type === "text").map(x => x.text).join("\n").trim();
+
+      resultEl.innerHTML = `
+        <div class="tr-label">${a.name} × ${b.name}</div>
+        <div class="tr-pair">
+          <div class="tr-type">
+            ${aDom ? `<div class="tr-icon" style="background:${aDom.color};">${domIcons[aDom.code]}</div>` : ''}
+            ${aEnn ? `<div class="tr-icon" style="background:${aEnn.color};">${ennIcons[a.enn]}</div>` : ''}
+            <div>
+              <div class="tr-type-code">${a.mbti || '—'} · ${a.wing || (a.enn ? 'Type ' + a.enn : '—')}</div>
+              <div class="tr-type-label">${a.name}</div>
+            </div>
+          </div>
+          <div class="tr-type">
+            ${bDom ? `<div class="tr-icon" style="background:${bDom.color};">${domIcons[bDom.code]}</div>` : ''}
+            ${bEnn ? `<div class="tr-icon" style="background:${bEnn.color};">${ennIcons[b.enn]}</div>` : ''}
+            <div>
+              <div class="tr-type-code">${b.mbti || '—'} · ${b.wing || (b.enn ? 'Type ' + b.enn : '—')}</div>
+              <div class="tr-type-label">${b.name}</div>
+            </div>
+          </div>
+        </div>
+        <div class="cmp-result-body">${esc(text)}</div>
+        <button class="tr-again" onclick="document.getElementById('cmp-result').classList.remove('show');document.getElementById('cmp-a').focus();window.scrollTo({top:0,behavior:'smooth'});">compare another pair</button>
+      `;
+      resultEl.classList.add("show");
+      resultEl.scrollIntoView({behavior:"smooth", block:"start"});
+    } catch (e) {
+      errorBox.textContent = "honk — something went wrong comparing those two. Give it another try in a moment.";
+      errorBox.classList.add("show");
+      console.error(e);
+    } finally {
+      loading.classList.remove("show");
+      btn.disabled = false;
+    }
+  });
+})();
+
 renderAll();
 
-// Search hint quick-picks: every goose, alphabetical
-(function() {
-  document.getElementById("search-hint-chips").innerHTML =
-    [...characters].sort((a,b) => a.name.localeCompare(b.name))
-      .map(c => chipHTML(c, "none", { noDim: true })).join("");
-})();
+renderDirectory();
 </script>
 </body>
 </html>
