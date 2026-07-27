@@ -118,6 +118,7 @@
   .goose-tile { background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:6px 8px;cursor:pointer;text-align:center;transition:border-color 0.15s,box-shadow 0.15s;font-family:'Fraunces',serif;font-size:12.5px;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
   .goose-tile:hover { border-color:var(--accent);box-shadow:0 2px 8px var(--shadow); }
   .goose-tile.active { border-color:var(--accent);background:color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+  .goose-tile.alt { font-style:italic;color:var(--ink-soft);border-style:dashed; }
 
   /* STICKY PICKER (appears on scroll) */
   .sticky-picker { position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;padding:10px 14px;margin:0 0 20px;background:var(--surface);border:1px solid var(--line-strong);border-radius:28px;box-shadow:0 4px 16px var(--shadow);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity 0.2s,transform 0.2s; }
@@ -151,6 +152,9 @@
   .profile-role.officer { background:var(--gold); }
   .profile-role.veteran { background:var(--ink-fade); }
   .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;font-weight:500;color:var(--ink-fade);margin-bottom:20px; }
+  .profile-nick.has-alts { margin-bottom:5px; }
+  .profile-alts { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:18px; }
+  .profile-alts span { color:var(--accent); }
   .profile-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line); }
   .stat { display:flex;flex-direction:column;gap:4px; }
   .stat-key { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700; }
@@ -311,7 +315,9 @@
 
   /* ROSTER */
   .roster-table { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;overflow:hidden; }
-  .roster-head, .roster-row { display:grid;grid-template-columns:1fr 110px 110px 70px;gap:12px;padding:10px 20px;align-items:center; }
+  .roster-head, .roster-row { display:grid;grid-template-columns:44px 1fr 110px 110px 70px;gap:12px;padding:10px 20px;align-items:center; }
+  .roster-head .r-num-head { cursor:default; }
+  .r-num { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--ink-fade); }
   .roster-head { background:var(--cream-deep);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);font-weight:700;user-select:none; }
   .roster-head > div { display:flex;align-items:center;gap:4px;cursor:pointer; }
   .roster-head .sort-arrow { font-size:9px;color:var(--ink-fade); }
@@ -403,14 +409,15 @@
     .enn-wing-contrast { grid-template-columns:1fr; }
     .triad-grid { grid-template-columns:1fr;gap:10px; }
     .insights-grid { grid-template-columns:1fr; }
-    .roster-head, .roster-row { grid-template-columns:1fr 78px 78px 50px;padding:10px 12px;font-size:13px;gap:6px; }
+    .roster-head, .roster-row { grid-template-columns:26px 1fr 78px 78px 50px;padding:10px 12px;font-size:13px;gap:6px; }
+    .r-num { font-size:10px; }
     .roster-head { font-size:9px;letter-spacing:0.12em; }
     .r-nick { display:block;margin-left:0;font-size:11px;margin-top:2px; }
     .r-mbti, .r-enn, .r-wing { font-size:10px;letter-spacing:0.04em; }
   }
   @media (max-width:420px) {
     h1 { font-size:38px; }
-    .roster-head, .roster-row { grid-template-columns:1.4fr 50px 44px 44px;padding:10px;gap:4px; }
+    .roster-head, .roster-row { grid-template-columns:20px 1.4fr 50px 44px 44px;padding:10px;gap:4px; }
   }
 </style>
 </head>
@@ -441,7 +448,7 @@
       <path d="M 12 42 Q 6 38 8 34" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       <path d="M 10 48 L 6 52 M 14 50 L 12 54" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
-    <div><div class="logo-text">FLOCK DATABASE · <span id="goose-count">26</span> GEESE · LAST UPDATED: <span id="last-updated"></span></div></div>
+    <div><div class="logo-text">FLOCK DATABASE · <span id="goose-count">27</span> GEESE · LAST UPDATED: <span id="last-updated"></span></div></div>
   </div>
   <h1>147 YAY<br/><em>Silly Geese.</em></h1>
   <p class="tagline">"Birds of a feather flock together."</p>
@@ -560,11 +567,11 @@ const characters = [
   { name: "Atlas", nick: null, mbti: "INTJ", enn: "1", wing: "1w9", g: "m", role: "Veteran" },
   { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: "6w5", g: "f", role: "Officer" },
   { name: "Clover", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
-  { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m", role: "Officer" },
-  { name: "Disseia", nick: "Diss", mbti: "INTJ", enn: "1", wing: "1w9", g: "f", role: "Guild Leader" },
+  { name: "Damon", nick: null, alts: ["Goose Lee"], mbti: "ENTJ", enn: "8", wing: "8w7", g: "m", role: "Officer" },
+  { name: "Disseia", nick: null, alts: ["Goose Willis"], mbti: "INTJ", enn: "1", wing: "1w9", g: "f", role: "Guild Leader" },
   { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f" },
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m", role: "Veteran" },
-  { name: "Goosifer", nick: "Loosey Goosey", mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Goosifer", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
   { name: "Ivee", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f" },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f", role: "Officer" },
   { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f", role: "Veteran" },
@@ -574,11 +581,12 @@ const characters = [
   { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: "9w1", g: "f" },
   { name: "MeGoosa", nick: null, mbti: "ESTJ", enn: "8", wing: "8w9", g: "f" },
   { name: "Mollies", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f", role: "Veteran" },
-  { name: "Nel", nick: "Nelgandis", mbti: "ENTP", enn: "7", wing: "7w6", g: "m" },
-  { name: "Nori", nick: "Noriella", mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Nel", nick: null, mbti: "ENTP", enn: "7", wing: "7w6", g: "m" },
+  { name: "Nori", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
   { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Rascal", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
   { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: "6w7", g: "f" },
-  { name: "Shyloria", nick: "Sels", mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
+  { name: "Shyloria", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
   { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null, g: "f" },
   { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8", g: "f" }
 ];
@@ -590,7 +598,7 @@ function pronouns(g) {
 }
 
 const knownButUntyped = [];
-const TOTAL_MEMBERS = 26;
+const TOTAL_MEMBERS = 27;
 const uncatalogued = TOTAL_MEMBERS - characters.length - knownButUntyped.length;
 
 const mbtiPopulation = {
@@ -881,6 +889,11 @@ let rosterSort = { by: "name", dir: "asc" };
 let selectedProfile = null;
 let litGoose = null;
 
+function resolveGoose(n) {
+  return characters.find(c => c.name === n) ||
+         characters.find(c => c.alts && c.alts.includes(n));
+}
+
 function getFamily(mbti) { return mbtiTypes.find(t => t.code === mbti)?.family; }
 function getMbtiInfo(code) { return mbtiTypes.find(t => t.code === code); }
 function getEnnInfo(num) { return ennData.find(e => e.num === num); }
@@ -915,9 +928,14 @@ function chipHTML(m, tagType, opts = {}) {
 // ===== GOOSE DIRECTORY =====
 function renderDirectory() {
   const grid = document.getElementById("goose-grid");
-  grid.innerHTML = [...characters]
-    .sort((a,b) => a.name.localeCompare(b.name))
-    .map(c => `<div class="goose-tile ${selectedProfile === c.name ? 'active' : ''}" data-goose-tile="${c.name}">${c.name}</div>`)
+  const entries = [];
+  characters.forEach(c => {
+    entries.push({ label: c.name, target: c.name, alt: false });
+    (c.alts || []).forEach(a => entries.push({ label: a, target: c.name, alt: true }));
+  });
+  grid.innerHTML = entries
+    .sort((a,b) => a.label.localeCompare(b.label))
+    .map(e => `<div class="goose-tile ${e.alt ? 'alt' : ''} ${selectedProfile === e.target ? 'active' : ''}" data-goose-tile="${e.target}" title="${e.alt ? e.label + ' — alt of ' + e.target : e.label}">${e.label}</div>`)
     .join("");
   grid.querySelectorAll("[data-goose-tile]").forEach(el => {
     el.addEventListener("click", () => selectGoose(el.dataset.gooseTile));
@@ -934,7 +952,8 @@ function honkDirGoose() {
 }
 
 function selectGoose(name) {
-  selectedProfile = name;
+  const c = resolveGoose(name);
+  selectedProfile = c ? c.name : name;
   honkDirGoose();
   renderDirectory();
   renderProfile();
@@ -1074,7 +1093,8 @@ function renderProfile() {
         <div class="profile-name">${c.name}${c.nick ? `<span class="profile-aka">aka ${c.nick}</span>` : ''}</div>
       </div>
     </div>
-    <div class="profile-nick">${mbtiInfo ? `<span style="color:${mbtiColor};">${mbtiInfo.label}</span>` : 'Uncharted'}${ennInfo ? ` <span style="color:var(--ink-fade);">·</span> <span style="color:${ennColor};">${ennInfo.label}</span>` : ''}</div>
+    <div class="profile-nick${c.alts && c.alts.length ? ' has-alts' : ''}">${mbtiInfo ? `<span style="color:${mbtiColor};">${mbtiInfo.label}</span>` : 'Uncharted'}${ennInfo ? ` <span style="color:var(--ink-fade);">·</span> <span style="color:${ennColor};">${ennInfo.label}</span>` : ''}</div>
+    ${c.alts && c.alts.length ? `<div class="profile-alts">Also flies as · <span>${c.alts.join('</span> · <span>')}</span></div>` : ''}
 
     <div class="profile-stats">
       <div class="stat"><div class="stat-key">MBTI</div><div class="stat-val ${!c.mbti ? 'muted' : ''}">${c.mbti || '—'}</div><div class="stat-sub">${mbtiInfo ? mbtiInfo.label : ''}</div></div>
@@ -1608,7 +1628,7 @@ function renderRoster() {
     { key: "enn", label: "Enneagram" },
     { key: "wing", label: "Wing" }
   ];
-  head.innerHTML = cols.map(col => {
+  head.innerHTML = '<div class="r-num-head">#</div>' + cols.map(col => {
     const arrow = rosterSort.by === col.key ? (rosterSort.dir === "asc" ? "▲" : "▼") : "";
     return `<div data-sort="${col.key}">${col.label} <span class="sort-arrow ${rosterSort.by === col.key ? 'active' : ''}">${arrow}</span></div>`;
   }).join("");
@@ -1629,7 +1649,7 @@ function renderRoster() {
     return rosterSort.dir === "asc" ? cmp : -cmp;
   });
 
-  sorted.forEach(c => {
+  sorted.forEach((c, i) => {
     const dom = c.mbti ? getDomGroup(c.mbti) : null;
     const eInfo = c.enn ? getEnnInfo(c.enn) : null;
     const mColor = dom ? dom.color : 'var(--ink-fade)';
@@ -1639,7 +1659,13 @@ function renderRoster() {
     row.style.setProperty("--rc-m", mColor);
     row.style.setProperty("--rc-e", eColor);
     row.innerHTML = `
-      <div class="r-name">${c.name}${c.nick ? `<span class="r-nick">aka ${c.nick}</span>` : ''}</div>
+      <div class="r-num">${i + 1}</div>
+      <div class="r-name">${c.name}${(() => {
+        const bits = [];
+        if (c.nick) bits.push("aka " + c.nick);
+        if (c.alts && c.alts.length) bits.push("alt " + c.alts.join(", "));
+        return bits.length ? `<span class="r-nick">${bits.join(" · ")}</span>` : "";
+      })()}</div>
       <div class="r-mbti">${c.mbti ? `<span class="r-icon" style="background:${mColor};">${mbtiIcons[c.mbti]}</span>${c.mbti}` : '<span class="muted-txt">—</span>'}</div>
       <div class="r-enn">${c.enn ? `<span class="r-icon" style="background:${eColor};">${ennIcons[c.enn]}</span>Type ${c.enn}` : '<span class="muted-txt">—</span>'}</div>
       <div class="r-wing">${c.wing || '<span class="muted-txt">—</span>'}</div>
@@ -1657,6 +1683,7 @@ function renderRoster() {
       const row = document.createElement("div");
       row.className = "roster-row";
       row.innerHTML = `
+        <div class="r-num"></div>
         <div class="r-name">${n}</div>
         <div class="r-mbti"><span class="muted-txt">—</span></div>
         <div class="r-enn"><span class="muted-txt">—</span></div>
@@ -1830,17 +1857,22 @@ document.getElementById("goose-count").textContent = TOTAL_MEMBERS;
   function render() {
     const q = inp.value.trim().toLowerCase();
     if (!q) { box.classList.remove("open"); box.innerHTML = ""; idx = -1; return; }
-    const matches = characters.filter(c =>
-      c.name.toLowerCase().includes(q) || (c.nick && c.nick.toLowerCase().includes(q))
+    const index = [];
+    characters.forEach(c => {
+      index.push({ label: c.name, sub: c.nick ? "aka " + c.nick : "", c });
+      (c.alts || []).forEach(a => index.push({ label: a, sub: "alt of " + c.name, c }));
+    });
+    const matches = index.filter(e =>
+      e.label.toLowerCase().includes(q) || e.sub.toLowerCase().includes(q)
     ).slice(0, 8);
     if (!matches.length) {
       box.innerHTML = `<div class="sticky-sugg-item" style="cursor:default;color:var(--ink-fade);font-style:italic;">no goose by that name 𓅮</div>`;
       box.classList.add("open"); return;
     }
-    box.innerHTML = matches.map((c,i) => `
-      <div class="sticky-sugg-item ${i===idx?'focused':''}" data-name="${c.name}">
-        <span>${c.name}${c.nick?`<span class="sticky-sugg-nick">aka ${c.nick}</span>`:''}</span>
-        <span class="sticky-sugg-meta">${c.mbti||'—'} · ${c.wing||(c.enn?'T'+c.enn:'—')}</span>
+    box.innerHTML = matches.map((e,i) => `
+      <div class="sticky-sugg-item ${i===idx?'focused':''}" data-name="${e.c.name}">
+        <span>${e.label}${e.sub?`<span class="sticky-sugg-nick">${e.sub}</span>`:''}</span>
+        <span class="sticky-sugg-meta">${e.c.mbti||'—'} · ${e.c.wing||(e.c.enn?'T'+e.c.enn:'—')}</span>
       </div>`).join("");
     box.classList.add("open");
     box.querySelectorAll("[data-name]").forEach(el =>
