@@ -150,7 +150,8 @@
   .profile-role { display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:6px;color:white; }
   .profile-role.leader { background:var(--accent); }
   .profile-role.officer { background:var(--gold); }
-  .profile-role.veteran { background:var(--ink-fade); }
+  .profile-role.veteran { background:var(--axis3-a); }
+  .profile-role.member { background:var(--ink-fade); }
   .profile-nick { font-family:'Fraunces',serif;font-style:italic;font-size:15px;font-weight:500;color:var(--ink-fade);margin-bottom:20px; }
   .profile-nick.has-alts { margin-bottom:5px; }
   .profile-alts { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-bottom:18px; }
@@ -315,9 +316,26 @@
 
   /* ROSTER */
   .roster-table { background:var(--surface-soft);border:1px solid var(--line);border-radius:2px;overflow:hidden; }
-  .roster-head, .roster-row { display:grid;grid-template-columns:44px 1fr 110px 110px 70px;gap:12px;padding:10px 20px;align-items:center; }
+  .roster-head, .roster-row { display:grid;grid-template-columns:42px 1fr 98px 102px 64px 92px;gap:12px;padding:10px 20px;align-items:center; }
   .roster-head .r-num-head { cursor:default; }
   .r-num { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--ink-fade); }
+  .r-type { display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rk); }
+  .r-type-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--rk); }
+
+  /* ROSTER FILTERS */
+  .roster-controls { display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-bottom:12px;padding:14px 16px;background:var(--surface-soft);border:1px solid var(--line);border-radius:2px; }
+  .rf-group { display:flex;align-items:center;gap:6px;flex-wrap:wrap; }
+  .rf-label { font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-fade);font-weight:700;margin-right:2px; }
+  .rf-chip { display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px;background:var(--surface);color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:2px;cursor:pointer;transition:color 0.15s,border-color 0.15s,background 0.15s; }
+  .rf-chip:hover { border-color:var(--accent);color:var(--ink); }
+  .rf-chip.active { background:var(--rk, var(--accent));border-color:var(--rk, var(--accent));color:#fff; }
+  .rf-n { font-size:9px;opacity:0.7;font-weight:400; }
+  .rf-select { font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.08em;padding:6px 8px;background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:2px;cursor:pointer;max-width:180px; }
+  .rf-select:hover { border-color:var(--accent); }
+  .rf-clear { font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:6px 10px;background:transparent;color:var(--ink-fade);border:1px dashed var(--line-strong);border-radius:2px;cursor:pointer; }
+  .rf-clear:hover { border-style:solid;border-color:var(--accent);color:var(--accent); }
+  .rf-count { margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-fade);font-weight:700; }
+  .roster-empty { padding:26px 20px;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-fade); }
   .roster-head { background:var(--cream-deep);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);font-weight:700;user-select:none; }
   .roster-head > div { display:flex;align-items:center;gap:4px;cursor:pointer; }
   .roster-head .sort-arrow { font-size:9px;color:var(--ink-fade); }
@@ -409,15 +427,19 @@
     .enn-wing-contrast { grid-template-columns:1fr; }
     .triad-grid { grid-template-columns:1fr;gap:10px; }
     .insights-grid { grid-template-columns:1fr; }
-    .roster-head, .roster-row { grid-template-columns:26px 1fr 78px 78px 50px;padding:10px 12px;font-size:13px;gap:6px; }
+    .roster-head, .roster-row { grid-template-columns:24px 1fr 66px 70px 50px 62px;padding:10px 12px;font-size:13px;gap:6px; }
     .r-num { font-size:10px; }
+    .r-type { font-size:9px;letter-spacing:0.05em;gap:5px; }
+    .roster-controls { padding:12px;gap:8px 12px; }
+    .rf-count { margin-left:0; }
     .roster-head { font-size:9px;letter-spacing:0.12em; }
     .r-nick { display:block;margin-left:0;font-size:11px;margin-top:2px; }
     .r-mbti, .r-enn, .r-wing { font-size:10px;letter-spacing:0.04em; }
   }
   @media (max-width:420px) {
     h1 { font-size:38px; }
-    .roster-head, .roster-row { grid-template-columns:20px 1.4fr 50px 44px 44px;padding:10px;gap:4px; }
+    .roster-head, .roster-row { grid-template-columns:18px 1.2fr 46px 44px 54px;padding:10px;gap:4px; }
+    .roster-head [data-sort="enn"], .r-enn { display:none; }
   }
 </style>
 </head>
@@ -554,6 +576,7 @@
     </div>
     <div class="sec-quote">We will, we will, flock you.</div>
   </div>
+  <div class="roster-controls" id="roster-controls"></div>
   <div class="roster-table" id="roster-table"></div>
 </div>
 
@@ -562,33 +585,33 @@
 
 <script>
 const characters = [
-  { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: "2w3", g: "f" },
+  { name: "Alita", nick: null, mbti: "INFP", enn: "2", wing: "2w3", g: "f", role: "Member" },
   { name: "Aria", nick: null, mbti: "ISFP", enn: "4", wing: "4w5", g: "f", role: "Veteran" },
   { name: "Atlas", nick: null, mbti: "INTJ", enn: "1", wing: "1w9", g: "m", role: "Veteran" },
   { name: "Babs", nick: null, mbti: "ENFJ", enn: "6", wing: "6w5", g: "f", role: "Officer" },
-  { name: "Clover", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Clover", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f", role: "Member" },
   { name: "Damon", nick: null, mbti: "ENTJ", enn: "8", wing: "8w7", g: "m", role: "Officer" },
-  { name: "Disseia", nick: null, mbti: "INTJ", enn: "1", wing: "1w9", g: "f", role: "Guild Leader" },
-  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f" },
+  { name: "Disseia", nick: null, mbti: "INTJ", enn: "1", wing: "1w9", g: "f", role: "GM" },
+  { name: "Elvira", nick: null, mbti: "ENFJ", enn: "2", wing: "2w1", g: "f", role: "Member" },
   { name: "Ferrinh", nick: null, mbti: "INTP", enn: "5", wing: "5w6", g: "m", role: "Veteran" },
-  { name: "Goosifer", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
-  { name: "Ivee", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f" },
+  { name: "Goosifer", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f", role: "Member" },
+  { name: "Ivee", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f", role: "Member" },
   { name: "Ji Soo", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f", role: "Officer" },
   { name: "Karma", nick: null, mbti: "INFJ", enn: "1", wing: "1w2", g: "f", role: "Veteran" },
   { name: "Leif", nick: null, mbti: "ESFJ", enn: "1", wing: "1w2", g: "m", role: "Officer" },
-  { name: "Lilac", nick: null, mbti: "ESTJ", enn: "6", wing: "6w5", g: "f" },
-  { name: "Lily", nick: null, mbti: "ISFJ", enn: "6", wing: "6w5", g: "f" },
-  { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: "9w1", g: "f" },
-  { name: "MeGoosa", nick: null, mbti: "ESTJ", enn: "8", wing: "8w9", g: "f" },
+  { name: "Lilac", nick: null, mbti: "ESTJ", enn: "6", wing: "6w5", g: "f", role: "Member" },
+  { name: "Lily", nick: null, mbti: "ISFJ", enn: "6", wing: "6w5", g: "f", role: "Member" },
+  { name: "Maki", nick: null, mbti: "ISFP", enn: "9", wing: "9w1", g: "f", role: "Member" },
+  { name: "MeGoosa", nick: null, mbti: "ESTJ", enn: "8", wing: "8w9", g: "f", role: "Member" },
   { name: "Mollies", nick: null, mbti: "ENFP", enn: "7", wing: "7w6", g: "f", role: "Veteran" },
-  { name: "Nel", nick: null, mbti: "ENTP", enn: "7", wing: "7w6", g: "m" },
-  { name: "Nori", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f" },
-  { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f" },
-  { name: "Rascal", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
-  { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: "6w7", g: "f" },
-  { name: "Shyloria", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f" },
-  { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null, g: "f" },
-  { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8", g: "f" }
+  { name: "Nel", nick: null, mbti: "ENTP", enn: "7", wing: "7w6", g: "m", role: "Member" },
+  { name: "Nori", nick: null, mbti: "ISFJ", enn: "2", wing: "2w1", g: "f", role: "Member" },
+  { name: "Panda", nick: null, mbti: "ESFP", enn: "7", wing: "7w6", g: "f", role: "Member" },
+  { name: "Rascal", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f", role: "Member" },
+  { name: "Remy", nick: null, mbti: "ISFJ", enn: "6", wing: "6w7", g: "f", role: "Member" },
+  { name: "Shyloria", nick: null, mbti: "INFP", enn: "4", wing: "4w5", g: "f", role: "Member" },
+  { name: "Soul", nick: null, mbti: "ISFP", enn: null, wing: null, g: "f", role: "Member" },
+  { name: "Vesper", nick: null, mbti: "ESFP", enn: "7", wing: "7w8", g: "f", role: "Member" }
 ];
 
 function pronouns(g) {
@@ -884,6 +907,16 @@ const wingContrast = {
     bText: "More idealistic and gentle. Carries a quiet picture of how things <em>should</em> be; less confrontational, more inwardly perfectionist." }
 };
 
+const RANKS = [
+  { key: "GM",      label: "GM",      color: "var(--accent)"   },
+  { key: "Officer", label: "Officer", color: "var(--gold)"     },
+  { key: "Veteran", label: "Veteran", color: "var(--axis3-a)"  },
+  { key: "Member",  label: "Member",  color: "var(--ink-fade)" }
+];
+function rankInfo(r) { return RANKS.find(x => x.key === r) || RANKS[RANKS.length - 1]; }
+function rankOrder(r) { const i = RANKS.findIndex(x => x.key === r); return i < 0 ? RANKS.length : i; }
+
+let rosterFilter = { rank: "all", mbti: "", enn: "" };
 let filter = { dim: null, family: null, mbti: null, enn: null, triad: null };
 let rosterSort = { by: "name", dir: "asc" };
 let selectedProfile = null;
@@ -1005,8 +1038,8 @@ function renderProfile() {
 
   // Three paragraphs: MBTI, Enneagram, Triad
   const p = pronouns(c.g);
-  const roleClass = c.role === "Guild Leader" ? "leader" : c.role === "Officer" ? "officer" : c.role ? "veteran" : "";
-  const roleIntro = c.role === "Guild Leader"
+  const roleClass = c.role === "GM" ? "leader" : c.role === "Officer" ? "officer" : c.role === "Veteran" ? "veteran" : "member";
+  const roleIntro = c.role === "GM"
     ? `<strong>${c.name} is the guild leader of YAY.</strong> `
     : c.role === "Officer"
       ? `<strong>${c.name} is an officer in YAY.</strong> `
@@ -1617,20 +1650,85 @@ function renderInsights() {
 }
 
 // ===== ROSTER =====
+const ROSTER_COLS = [
+  { key: "name", label: "Name" },
+  { key: "mbti", label: "MBTI" },
+  { key: "enn",  label: "Enneagram" },
+  { key: "wing", label: "Wing" },
+  { key: "role", label: "Type" }
+];
+
+// `ignore` lets the rank chips show faceted counts: how many geese each rank
+// would yield under the *other* active filters.
+function rosterMatches(c, ignore) {
+  return (ignore === "rank" || rosterFilter.rank === "all" || c.role === rosterFilter.rank)
+      && (ignore === "mbti" || !rosterFilter.mbti || c.mbti === rosterFilter.mbti)
+      && (ignore === "enn"  || !rosterFilter.enn  || c.enn  === rosterFilter.enn);
+}
+
+function buildRosterControls() {
+  const host = document.getElementById("roster-controls");
+  if (!host) return;
+  const mbtis = [...new Set(characters.map(c => c.mbti).filter(Boolean))].sort();
+  const enns  = [...new Set(characters.map(c => c.enn).filter(Boolean))].sort();
+
+  host.innerHTML = `
+    <div class="rf-group">
+      <span class="rf-label">Type</span>
+      <button class="rf-chip" data-rank="all">All <span class="rf-n"></span></button>
+      ${RANKS.map(r => `<button class="rf-chip" data-rank="${r.key}" style="--rk:${r.color};">${r.label} <span class="rf-n"></span></button>`).join("")}
+    </div>
+    <div class="rf-group">
+      <span class="rf-label">MBTI</span>
+      <select class="rf-select" id="rf-mbti"><option value="">Any type</option>${mbtis.map(m => `<option value="${m}">${m} · ${getMbtiInfo(m).label}</option>`).join("")}</select>
+    </div>
+    <div class="rf-group">
+      <span class="rf-label">Enneagram</span>
+      <select class="rf-select" id="rf-enn"><option value="">Any type</option>${enns.map(e => `<option value="${e}">${e} · ${getEnnInfo(e).label}</option>`).join("")}</select>
+    </div>
+    <button class="rf-clear" id="rf-clear">clear</button>
+    <span class="rf-count" id="rf-count"></span>
+  `;
+
+  host.querySelectorAll("[data-rank]").forEach(b => b.addEventListener("click", () => {
+    rosterFilter.rank = b.dataset.rank;
+    renderRoster();
+  }));
+  host.querySelector("#rf-mbti").addEventListener("change", e => { rosterFilter.mbti = e.target.value; renderRoster(); });
+  host.querySelector("#rf-enn").addEventListener("change", e => { rosterFilter.enn = e.target.value; renderRoster(); });
+  host.querySelector("#rf-clear").addEventListener("click", () => {
+    rosterFilter = { rank: "all", mbti: "", enn: "" };
+    host.querySelector("#rf-mbti").value = "";
+    host.querySelector("#rf-enn").value = "";
+    renderRoster();
+  });
+}
+
+function syncRosterControls(shown) {
+  const host = document.getElementById("roster-controls");
+  if (!host) return;
+  host.querySelectorAll("[data-rank]").forEach(b => {
+    const k = b.dataset.rank;
+    b.classList.toggle("active", rosterFilter.rank === k);
+    b.querySelector(".rf-n").textContent = characters.filter(c =>
+      (k === "all" || c.role === k) && rosterMatches(c, "rank")).length;
+  });
+  const cnt = host.querySelector("#rf-count");
+  if (cnt) cnt.textContent = shown === characters.length
+    ? `${characters.length} geese`
+    : `${shown} of ${characters.length} geese`;
+}
+
 function renderRoster() {
   const host = document.getElementById("roster-table");
   host.innerHTML = "";
+
   const head = document.createElement("div");
   head.className = "roster-head";
-  const cols = [
-    { key: "name", label: "Name" },
-    { key: "mbti", label: "MBTI" },
-    { key: "enn", label: "Enneagram" },
-    { key: "wing", label: "Wing" }
-  ];
-  head.innerHTML = '<div class="r-num-head">#</div>' + cols.map(col => {
-    const arrow = rosterSort.by === col.key ? (rosterSort.dir === "asc" ? "▲" : "▼") : "";
-    return `<div data-sort="${col.key}">${col.label} <span class="sort-arrow ${rosterSort.by === col.key ? 'active' : ''}">${arrow}</span></div>`;
+  head.innerHTML = '<div class="r-num-head">#</div>' + ROSTER_COLS.map(col => {
+    const on = rosterSort.by === col.key;
+    const arrow = on ? (rosterSort.dir === "asc" ? "▲" : "▼") : "";
+    return `<div data-sort="${col.key}">${col.label} <span class="sort-arrow ${on ? 'active' : ''}">${arrow}</span></div>`;
   }).join("");
   head.querySelectorAll("[data-sort]").forEach(el => {
     el.addEventListener("click", () => {
@@ -1642,22 +1740,27 @@ function renderRoster() {
   });
   host.appendChild(head);
 
-  const sorted = [...characters].sort((a, b) => {
+  const rows = characters.filter(c => rosterMatches(c)).sort((a, b) => {
     const k = rosterSort.by;
-    const av = a[k] || "zzz", bv = b[k] || "zzz";
-    const cmp = String(av).localeCompare(String(bv));
+    // rank sorts by hierarchy, not alphabetically; name breaks every tie
+    let cmp = k === "role"
+      ? rankOrder(a.role) - rankOrder(b.role)
+      : String(a[k] || "zzz").localeCompare(String(b[k] || "zzz"));
+    if (cmp === 0) cmp = a.name.localeCompare(b.name);
     return rosterSort.dir === "asc" ? cmp : -cmp;
   });
 
-  sorted.forEach((c, i) => {
+  rows.forEach((c, i) => {
     const dom = c.mbti ? getDomGroup(c.mbti) : null;
     const eInfo = c.enn ? getEnnInfo(c.enn) : null;
+    const rk = rankInfo(c.role);
     const mColor = dom ? dom.color : 'var(--ink-fade)';
     const eColor = eInfo ? eInfo.color : 'var(--ink-fade)';
     const row = document.createElement("div");
     row.className = "roster-row";
     row.style.setProperty("--rc-m", mColor);
     row.style.setProperty("--rc-e", eColor);
+    row.style.setProperty("--rk", rk.color);
     row.innerHTML = `
       <div class="r-num">${i + 1}</div>
       <div class="r-name">${c.name}${(() => {
@@ -1669,12 +1772,21 @@ function renderRoster() {
       <div class="r-mbti">${c.mbti ? `<span class="r-icon" style="background:${mColor};">${mbtiIcons[c.mbti]}</span>${c.mbti}` : '<span class="muted-txt">—</span>'}</div>
       <div class="r-enn">${c.enn ? `<span class="r-icon" style="background:${eColor};">${ennIcons[c.enn]}</span>Type ${c.enn}` : '<span class="muted-txt">—</span>'}</div>
       <div class="r-wing">${c.wing || '<span class="muted-txt">—</span>'}</div>
+      <div class="r-type" title="${rk.label}"><span class="r-type-dot"></span><span class="r-type-text">${rk.label}</span></div>
     `;
     row.addEventListener("click", () => selectGoose(c.name));
     host.appendChild(row);
   });
 
-  if (knownButUntyped.length > 0) {
+  if (!rows.length) {
+    const empty = document.createElement("div");
+    empty.className = "roster-empty";
+    empty.textContent = "No geese match those filters.";
+    host.appendChild(empty);
+  }
+
+  const unfiltered = rosterFilter.rank === "all" && !rosterFilter.mbti && !rosterFilter.enn;
+  if (unfiltered && knownButUntyped.length > 0) {
     const div = document.createElement("div");
     div.className = "divider-row";
     div.textContent = `Known · awaiting typing · ${knownButUntyped.length}`;
@@ -1688,16 +1800,19 @@ function renderRoster() {
         <div class="r-mbti"><span class="muted-txt">—</span></div>
         <div class="r-enn"><span class="muted-txt">—</span></div>
         <div class="r-wing"><span class="muted-txt">—</span></div>
+        <div class="r-type"><span class="muted-txt">—</span></div>
       `;
       host.appendChild(row);
     });
   }
-  if (uncatalogued > 0) {
+  if (unfiltered && uncatalogued > 0) {
     const div = document.createElement("div");
     div.className = "divider-row";
     div.textContent = `Unaccounted · ${uncatalogued}`;
     host.appendChild(div);
   }
+
+  syncRosterControls(rows.length);
 }
 
 // chip click handler — distinguishes "lit" (axes) from "profile"
@@ -1894,6 +2009,7 @@ document.getElementById("goose-count").textContent = TOTAL_MEMBERS;
   });
 })();
 
+buildRosterControls();
 renderAll();
 
 renderDirectory();
